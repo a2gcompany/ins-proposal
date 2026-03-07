@@ -8,55 +8,43 @@ import { useEffect, useRef, useState } from "react";
 
 const STATS = [
   {
-    value: "$X.XB",
+    value: "$8.5B",
     label: "China Electronic Music Market",
-    sub: "Projected 2027 market size — fastest growing in Asia-Pacific",
-  },
-  {
-    value: "XX+",
-    label: "Venues Across Key Markets",
-    sub: "INS footprint: Shanghai, Beijing, Chengdu, Phuket and beyond",
-  },
-  {
-    value: "XXM+",
-    label: "Combined Streaming Audience",
-    sub: "Cross-platform reach of A2G's proposed Western artist roster",
+    sub: "2025 market size — projected to reach $19.1B by 2033 (10.6% CAGR)",
   },
 ];
 
-// MOCK — UPDATE with real China market data
 const MARKET_GROWTH = [
-  { year: "2021", value: 0.5, projected: false },
-  { year: "2022", value: 0.75, projected: false },
-  { year: "2023", value: 1.1, projected: false },
-  { year: "2024", value: 1.45, projected: false },
-  { year: "2025", value: 1.8, projected: false },
-  { year: "2026", value: 2.2, projected: true },
-  { year: "2027", value: 2.7, projected: true },
+  { year: "2021", value: 5.2, projected: false },
+  { year: "2022", value: 5.7, projected: false },
+  { year: "2023", value: 6.3, projected: false },
+  { year: "2024", value: 7.0, projected: false },
+  { year: "2025", value: 8.5, projected: false },
+  { year: "2026", value: 9.4, projected: true },
+  { year: "2027", value: 10.4, projected: true },
 ];
 
-// MOCK — UPDATE with actual deal terms
 const REVENUE_PHASES = [
   {
     phase: "01",
     title: "Recovery Phase",
-    ins: 80,
-    artist: 20,
-    desc: "INS recoups capital from artist revenues across Asia",
+    ins: 60,
+    artist: 40,
+    desc: "INS recoups initial investment from China territory revenues",
   },
   {
     phase: "02",
-    title: "Profit Phase",
+    title: "Profit Phase (3 yr)",
     ins: 30,
     artist: 70,
-    desc: "Artist takes majority once investment is recovered",
+    desc: "3 years post-recovery: artist takes majority, INS retains 30%",
   },
   {
     phase: "03",
-    title: "Long-term",
-    ins: 20,
-    artist: 80,
-    desc: "Artist owns the runway. INS retains minority upside",
+    title: "Long-term (up to 10 yr)",
+    ins: 10,
+    artist: 90,
+    desc: "INS retains 10% royalty on China territory revenues up to year 10",
   },
 ];
 
@@ -64,22 +52,25 @@ const REVENUE_PHASES = [
 // 3-year projection per pillar. Shows = trueque (no cash outlay for production)
 const FINANCIAL_YEARS = ["Year 1", "Year 2", "Year 3"];
 
+// Prophecy: marketing + creative director (€1K/mo) + marketing director (€1K/mo) = €24K/yr directors
 const PROPHECY_MODEL = {
   label: "Prophecy",
   share: 30,
-  investment: [15, 35, 80],   // K EUR — marketing only, shows = trueque
+  investment: [39, 59, 104],   // K EUR — marketing (15/35/80) + directors (24/24/24)
   revenue:    [25, 84, 275],   // K EUR — China revenue (streams, sync, shows, merch)
   insReturn:  [7.5, 25.2, 82.5], // K EUR — INS 30%
 };
 
+// AIRE: 3 shows/yr × $500×2 (DJ+VJ) = $3K ≈ €2.7K + content + directors (€24K/yr)
 const AIRE_MODEL = {
   label: "AIRE Live",
   share: 35,
-  investment: [10, 25, 50],
-  revenue:    [15, 55, 180],
-  insReturn:  [5.25, 19.25, 63],
+  investment: [30, 32, 35],    // K EUR — shows (3/5/8K) + content (3/3/3K) + directors (24/24/24K)
+  revenue:    [12, 48, 150],   // K EUR — show fees ($4K+ per show), content licensing
+  insReturn:  [4.2, 16.8, 52.5], // K EUR — INS 35%
 };
 
+// Local Artists: ghost production + development
 const LOCALS_MODEL = {
   label: "Local Artists",
   share: 20,
@@ -89,26 +80,25 @@ const LOCALS_MODEL = {
 };
 
 const COMBINED = {
-  investment: [30, 75, 170],    // sum of above
-  revenue:    [48, 174, 575],
-  insReturn:  [14.35, 51.45, 169.5],
-  cumInvest:  [30, 105, 275],   // cumulative
-  cumReturn:  [14.35, 65.8, 235.3],
+  investment: [74, 106, 179],    // sum of above
+  revenue:    [45, 167, 545],
+  insReturn:  [13.3, 49, 159],
+  cumInvest:  [74, 180, 359],    // cumulative
+  cumReturn:  [13.3, 62.3, 221.3],
 };
 
-// MOCK — UPDATE with actual Prophecy streaming numbers
 const STREAM_REACH = [
-  { platform: "Spotify", value: 65, label: "65M+ streams" },
-  { platform: "Beatport", value: 40, label: "40M+ plays" },
-  { platform: "YouTube", value: 52, label: "52M+ views" },
-  { platform: "SoundCloud", value: 30, label: "30M+ plays" },
+  { platform: "Spotify", label: "300K+ monthly listeners" },
+  { platform: "YouTube", label: "500K+ views (Tiësto collab)" },
+  { platform: "Beatport", label: "Active catalog" },
+  { platform: "DJ Support", label: "Tiësto · Guetta · MORTEN · ARTBAT" },
 ];
 
 const PHASES = [
   {
     num: "01",
     title: "Initial Investment",
-    body: "INS co-funds artist production, marketing, and live logistics for the Chinese market. Capital flows in, risk is shared from day one.",
+    body: "INS co-funds marketing, live logistics, creative direction and content for the Chinese market. Capital flows in, risk is shared from day one.",
   },
   {
     num: "02",
@@ -117,9 +107,18 @@ const PHASES = [
   },
   {
     num: "03",
-    title: "Long-term Partnership",
-    body: "Structured revenue share once the investment is recovered. Mutual upside built over years — not a one-off booking deal.",
+    title: "Long-term Revenue",
+    body: "Structured 3-phase revenue share on China territory: 60/40 until recovery, 30/70 for 3 years, then 10% INS royalty up to year 10.",
   },
+];
+
+const REVENUE_SOURCES = [
+  { source: "Live Shows", desc: "Show fees from INS venues and partner clubs across Asia" },
+  { source: "Streaming", desc: "China-territory streaming revenue (QQ Music, NetEase, Douyin)" },
+  { source: "Sync & Licensing", desc: "Brand partnerships, TV, gaming, and advertising placements" },
+  { source: "Merchandise", desc: "Artist merch sold through INS retail and online channels" },
+  { source: "Ghost Production", desc: "Production fees from INS-affiliated local artists" },
+  { source: "Content Licensing", desc: "Masterclass content, DJ sets, and media library licensing" },
 ];
 
 const TIMELINE = [
@@ -131,16 +130,6 @@ const TIMELINE = [
       "INS Shanghai — Apr 21–24",
       "Artist masterclass + scouting",
       "Park Coffee Club (300 cap)",
-    ],
-  },
-  {
-    date: "May 2026",
-    title: "Miami Music Week",
-    items: [
-      "Roger Sanchez live",
-      "INS China livestream",
-      "Media & press push",
-      "Platform placements",
     ],
   },
   {
@@ -157,10 +146,10 @@ const TIMELINE = [
     date: "Q4 2026",
     title: "Full Rollout",
     items: [
-      "Hero Dome (10K cap)",
       "Ghost production revenue",
       "44 Label integration",
       "Revenue phase activation",
+      "Second wave of AIRE shows",
     ],
   },
 ];
@@ -273,23 +262,13 @@ export default function Page() {
             </div>
           </div>
 
-          {/* Stat cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-gold/[0.1]">
-            {STATS.map((s, i) => (
-              <div
-                key={i}
-                className={`reveal reveal-delay-${i + 1} bg-[#050a10] p-10 hover:bg-[#0a1018] transition-colors group`}
-              >
-                <p className="font-mono text-[9px] tracking-[0.35em] text-gold/50 uppercase mb-6">
-                  0{i + 1}
-                </p>
-                <p className="font-display text-5xl md:text-6xl font-light text-gold mb-5 leading-none">
-                  {s.value}
-                </p>
-                <p className="font-body text-sm font-medium text-white/80 mb-3">{s.label}</p>
-                <p className="font-body text-xs text-white/35 leading-relaxed">{s.sub}</p>
-              </div>
-            ))}
+          {/* Market stat */}
+          <div className="reveal border border-gold/[0.08] bg-[#050a10] p-10 hover:bg-[#0a1018] transition-colors">
+            <p className="font-display text-5xl md:text-6xl font-light text-gold mb-5 leading-none">
+              {STATS[0].value}
+            </p>
+            <p className="font-body text-sm font-medium text-white/80 mb-3">{STATS[0].label}</p>
+            <p className="font-body text-xs text-white/35 leading-relaxed">{STATS[0].sub}</p>
           </div>
 
           {/* Market Growth Chart */}
@@ -367,8 +346,23 @@ export default function Page() {
             </div>
           </div>
 
-          {/* Streaming reach chart */}
-          <StreamReachChart />
+          {/* Streaming reach — compact */}
+          <div className="mt-6 border border-gold/[0.08] bg-[#060c14] p-8 shadow-[0_0_20px_rgba(0,207,255,0.04)]">
+            <p className="font-mono text-[9px] tracking-[0.4em] text-gold/50 uppercase mb-5">
+              Prophecy — Estimated China Reach Potential
+            </p>
+            <div className="flex flex-wrap gap-6">
+              {STREAM_REACH.map((d) => (
+                <div key={d.platform} className="flex items-center gap-2">
+                  <span className="font-mono text-[9px] text-white/30 uppercase tracking-wider">{d.platform}</span>
+                  <span className="font-mono text-[10px] text-gold/70">{d.label}</span>
+                </div>
+              ))}
+            </div>
+            <p className="font-mono text-[8px] text-white/15 mt-4 tracking-widest">
+              Current global reach · Foundation for China market penetration
+            </p>
+          </div>
         </div>
       </section>
 
@@ -410,6 +404,24 @@ export default function Page() {
 
           {/* Revenue split donuts */}
           <RevenueSplitChart />
+
+          {/* Revenue sources — China territory */}
+          <div className="mt-6 border border-gold/[0.08] bg-[#060c14] p-10 shadow-[0_0_20px_rgba(0,207,255,0.04)]">
+            <p className="font-mono text-[9px] tracking-[0.4em] text-gold/50 uppercase mb-8">
+              China Territory — Revenue Sources
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {REVENUE_SOURCES.map((r) => (
+                <div key={r.source} className="flex items-start gap-3">
+                  <span className="text-gold/40 shrink-0 mt-0.5">·</span>
+                  <div>
+                    <p className="font-body text-sm font-medium text-white/70 mb-1">{r.source}</p>
+                    <p className="font-body text-xs text-white/30 leading-relaxed">{r.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
@@ -605,7 +617,6 @@ function MarketGrowthChart() {
         <p className="font-mono text-[9px] tracking-[0.4em] text-gold/50 uppercase">
           China Electronic Music Market — USD Billions
         </p>
-        <p className="font-mono text-[9px] text-white/20 tracking-widest uppercase">Mock data</p>
       </div>
 
       <div className="flex items-end gap-3 md:gap-5" style={{ height: `${BAR_HEIGHT + 40}px` }}>
@@ -650,7 +661,7 @@ function MarketGrowthChart() {
       </div>
 
       <p className="font-mono text-[9px] text-white/20 mt-6 tracking-widest">
-        * Projected · Source: [UPDATE WITH SOURCE]
+        * Projected · Source: Market Research Reports, 2025
       </p>
     </div>
   );
@@ -666,7 +677,6 @@ function RevenueSplitChart() {
         <p className="font-mono text-[9px] tracking-[0.4em] text-gold/50 uppercase">
           Revenue Split by Phase — Artist Share
         </p>
-        <p className="font-mono text-[9px] text-white/20 tracking-widest uppercase">Mock data</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
@@ -756,58 +766,6 @@ function DonutChart({
   );
 }
 
-// ── Chart 3: Streaming Reach (horizontal bars) ────────────────────────────────
-function StreamReachChart() {
-  const { ref, visible } = useChartVisible(0.2);
-
-  return (
-    <div ref={ref} className="mt-14 border border-gold/[0.08] bg-[#050a10] p-10 shadow-[0_0_20px_rgba(0,207,255,0.04)]">
-      <div className="flex items-center justify-between mb-10">
-        <p className="font-mono text-[9px] tracking-[0.4em] text-gold/50 uppercase">
-          Prophecy — Platform Reach
-        </p>
-        <p className="font-mono text-[9px] text-white/20 tracking-widest uppercase">Mock data</p>
-      </div>
-
-      <div className="space-y-6">
-        {STREAM_REACH.map((d, i) => (
-          <div key={d.platform}>
-            <div className="flex items-center justify-between mb-2">
-              <p className="font-mono text-[9px] tracking-[0.3em] text-white/45 uppercase">
-                {d.platform}
-              </p>
-              <p
-                className="font-mono text-[9px] text-gold/60 transition-opacity duration-500"
-                style={{
-                  opacity: visible ? 1 : 0,
-                  transitionDelay: `${0.1 + i * 0.1}s`,
-                }}
-              >
-                {d.label}
-              </p>
-            </div>
-            {/* Track */}
-            <div className="h-[3px] bg-white/[0.05] w-full rounded-full overflow-hidden">
-              {/* Fill */}
-              <div
-                className="h-full rounded-full"
-                style={{
-                  width: visible ? `${d.value}%` : "0%",
-                  background: "linear-gradient(to right, #00cfff, rgba(0,207,255,0.5))",
-                  transition: `width 1.1s cubic-bezier(0.25, 1, 0.5, 1) ${i * 0.12}s`,
-                }}
-              />
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <p className="font-mono text-[9px] text-white/15 mt-8 tracking-widest">
-        Source: [UPDATE WITH REAL STATS] · As of March 2026
-      </p>
-    </div>
-  );
-}
 
 // ── Chart 4: Investment vs Return (grouped bars) ────────────────────────────
 function InvestmentReturnChart() {
@@ -1078,12 +1036,12 @@ function BreakEvenCard() {
             </p>
             <div className="flex items-end gap-8">
               <div>
-                <p className="font-display text-2xl font-light text-white/30">275K</p>
+                <p className="font-display text-2xl font-light text-white/30">359K</p>
                 <p className="font-mono text-[8px] text-white/20">total invested</p>
               </div>
               <div className="text-gold/30 text-xl mb-1">&rarr;</div>
               <div>
-                <p className="font-display text-2xl font-light text-gold">235K</p>
+                <p className="font-display text-2xl font-light text-gold">221K</p>
                 <p className="font-mono text-[8px] text-gold/40">base return</p>
               </div>
               <div className="text-gold/30 text-xl mb-1">&rarr;</div>
