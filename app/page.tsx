@@ -387,7 +387,7 @@ export default function Page() {
               }`}
               style={{ boxShadow: "0 0 40px rgba(0,207,255,0.03)" }}
             >
-              <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-10 items-start">
+              <div className="grid grid-cols-1 md:grid-cols-[1fr_340px] gap-10 items-start">
                 {/* Left: artist info */}
                 <div>
                   <div className="flex items-center gap-4 mb-2">
@@ -434,20 +434,32 @@ export default function Page() {
                   </div>
                 </div>
 
-                {/* Right: tab nav hint */}
-                <div className="hidden md:flex flex-col items-end gap-3 pt-2">
-                  {proposalData.artists.map((b, j) => (
-                    <button
-                      key={b.id}
-                      onClick={() => setActiveArtist(j)}
-                      className={`font-mono text-[9px] tracking-[0.35em] uppercase transition-colors ${
-                        j === i ? "text-gold/70" : "text-white/15 hover:text-white/35"
-                      }`}
-                    >
-                      {b.name}
-                    </button>
-                  ))}
-                  <button className="font-mono text-[9px] tracking-[0.3em] text-white/10 uppercase italic">next phase</button>
+                {/* Right: artist image + tab nav */}
+                <div className="hidden md:flex flex-col gap-4">
+                  {a.image && (
+                    <div className="relative overflow-hidden" style={{ aspectRatio: "16/9" }}>
+                      <img
+                        src={a.image}
+                        alt={a.name}
+                        className="w-full h-full object-cover"
+                        style={{ filter: "brightness(0.85) contrast(1.05)" }}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#060c14] via-transparent to-transparent opacity-60" />
+                    </div>
+                  )}
+                  <div className="flex flex-row items-center justify-end gap-4">
+                    {proposalData.artists.map((b, j) => (
+                      <button
+                        key={b.id}
+                        onClick={() => setActiveArtist(j)}
+                        className={`font-mono text-[9px] tracking-[0.35em] uppercase transition-colors ${
+                          j === i ? "text-gold/70" : "text-white/15 hover:text-white/35"
+                        }`}
+                      >
+                        {b.name}
+                      </button>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
