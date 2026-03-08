@@ -1,18 +1,13 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { DEFAULT_DATA, loadData, resetData, saveData } from "./lib/data";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // EDITABLE DATA — update numbers here when ready to "bajar a tierra"
 // ─────────────────────────────────────────────────────────────────────────────
 
-const STATS = [
-  {
-    value: "$8.5B",
-    label: "China Electronic Music Market",
-    sub: "2025 market size — projected to reach $19.1B by 2033 (10.6% CAGR)",
-  },
-];
+// STATS, ARTISTS, PHASES, REVENUE_SOURCES, ROADMAP are now in proposalData (loaded from data.ts)
 
 const MARKET_GROWTH = [
   { year: "2021", value: 5.2, projected: false },
@@ -49,141 +44,116 @@ const REVENUE_PHASES = [
 ];
 
 // ── FINANCIAL MODEL ──────────────────────────────────────────────────────────
-// 3-year projection per pillar. Shows = trueque (no cash outlay for production)
 const FINANCIAL_YEARS = ["Year 1", "Year 2", "Year 3"];
+const PILLAR_COLORS = ["#00cfff", "#7dd3fc", "#38bdf8"] as const;
 
-// Prophecy: marketing + creative director (€1K/mo) + marketing director (€1K/mo) = €24K/yr directors
-const PROPHECY_MODEL = {
-  label: "Prophecy",
-  share: 30,
-  investment: [39, 59, 104],   // K EUR — marketing (15/35/80) + directors (24/24/24)
-  revenue:    [25, 84, 275],   // K EUR — China revenue (streams, sync, shows, merch)
-  insReturn:  [7.5, 25.2, 82.5], // K EUR — INS 30%
+type ComputedTotals = {
+  revenue: number[];
+  investment: number[];
+  insReturn: number[];
+  cumInvest: number[];
+  cumReturn: number[];
 };
 
-// AIRE: 3 shows/yr × $500×2 (DJ+VJ) = $3K ≈ €2.7K + content + directors (€24K/yr)
-const AIRE_MODEL = {
-  label: "AIRE Live",
-  share: 35,
-  investment: [30, 32, 35],    // K EUR — shows (3/5/8K) + content (3/3/3K) + directors (24/24/24K)
-  revenue:    [12, 48, 150],   // K EUR — show fees ($4K+ per show), content licensing
-  insReturn:  [4.2, 16.8, 52.5], // K EUR — INS 35%
-};
+// ── Inline edit helpers ───────────────────────────────────────────────────────
+type UpdateFn = (path: (string | number)[], val: number | string) => void;
 
-// Local Artists: ghost production + development
-const LOCALS_MODEL = {
-  label: "Local Artists",
-  share: 20,
-  investment: [5, 15, 40],
-  revenue:    [8, 35, 120],
-  insReturn:  [1.6, 7, 24],
-};
+function EditNum({ value, path, onUpdate, editMode, className = "" }: {
+  value: number; path: (string | number)[];
+  onUpdate: UpdateFn; editMode: boolean; className?: string;
+}) {
+  if (!editMode) return <>{value}</>;
+  return (
+    <input
+      type="number"
+      defaultValue={value}
+      onBlur={(e) => onUpdate(path, Number(e.target.value))}
+      className={`bg-transparent border-b border-gold/40 outline-none text-center ${className}`}
+      style={{ width: `${String(value).length + 1}ch`, fontFamily: "inherit", fontSize: "inherit", color: "inherit" }}
+    />
+  );
+}
 
-const COMBINED = {
-  investment: [74, 106, 179],    // sum of above
-  revenue:    [45, 167, 545],
-  insReturn:  [13.3, 49, 159],
-  cumInvest:  [74, 180, 359],    // cumulative
-  cumReturn:  [13.3, 62.3, 221.3],
-};
+function EditTxt({ value, path, onUpdate, editMode, className = "" }: {
+  value: string; path: (string | number)[];
+  onUpdate: UpdateFn; editMode: boolean; className?: string;
+}) {
+  if (!editMode) return <>{value}</>;
+  return (
+    <input
+      type="text"
+      defaultValue={value}
+      onBlur={(e) => onUpdate(path, e.target.value)}
+      className={`bg-transparent border-b border-gold/30 outline-none ${className}`}
+      style={{ width: `${Math.max(value.length, 8)}ch`, fontFamily: "inherit", fontSize: "inherit", color: "inherit" }}
+    />
+  );
+}
 
-const STREAM_REACH = [
-  { platform: "Spotify", label: "300K+ monthly listeners" },
-  { platform: "YouTube", label: "500K+ views (Tiësto collab)" },
-  { platform: "Beatport", label: "Active catalog" },
-  { platform: "DJ Support", label: "Tiësto · Guetta · MORTEN · ARTBAT" },
-];
+function EditArea({ value, path, onUpdate, editMode, className = "" }: {
+  value: string; path: (string | number)[];
+  onUpdate: UpdateFn; editMode: boolean; className?: string;
+}) {
+  if (!editMode) return <>{value}</>;
+  return (
+    <textarea
+      defaultValue={value}
+      onBlur={(e) => onUpdate(path, e.target.value)}
+      rows={Math.max(2, Math.ceil(value.length / 55))}
+      className={`bg-transparent border border-gold/20 outline-none resize-none w-full p-1 rounded-sm ${className}`}
+      style={{ fontFamily: "inherit", fontSize: "inherit", color: "inherit", lineHeight: "inherit" }}
+    />
+  );
+}
 
-const PHASES = [
-  {
-    num: "01",
-    title: "Initial Investment",
-    body: "INS co-funds marketing, live logistics, creative direction and content for the Chinese market. Capital flows in, risk is shared from day one.",
-  },
-  {
-    num: "02",
-    title: "Artist Development",
-    body: "Exclusive Asia territory activation: shows, masterclasses, social media, brand-building, and strategic label collaborations.",
-  },
-  {
-    num: "03",
-    title: "Long-term Revenue",
-    body: "Structured 3-phase revenue share on China territory: 60/40 until recovery, 30/70 for 3 years, then 10% INS royalty up to year 10.",
-  },
-];
+// All content consts moved to proposalData (data.ts)
 
-const REVENUE_SOURCES = [
-  { source: "Live Shows", desc: "Show fees from INS venues and partner clubs across Asia" },
-  { source: "Streaming", desc: "China-territory streaming revenue (QQ Music, NetEase, Douyin)" },
-  { source: "Sync & Licensing", desc: "Brand partnerships, TV, gaming, and advertising placements" },
-  { source: "Merchandise", desc: "Artist merch sold through INS retail and online channels" },
-  { source: "Ghost Production", desc: "Production fees from INS-affiliated local artists" },
-  { source: "Content Licensing", desc: "Masterclass content, DJ sets, and media library licensing" },
-];
-
-const TIMELINE = [
-  {
-    date: "April 2026",
-    title: "Shanghai Activation",
-    items: [
-      "Illuzion Phuket — Apr 18",
-      "INS Shanghai — Apr 21–24",
-      "Artist masterclass + scouting",
-      "Park Coffee Club (300 cap)",
-    ],
-  },
-  {
-    date: "Q3 2026",
-    title: "Asia Expansion",
-    items: [
-      "Seoul · Tokyo · Hanoi · HCMC",
-      "Vietnam market entry",
-      "DJ Max campaign launch",
-      "Label partnerships",
-    ],
-  },
-  {
-    date: "Q4 2026",
-    title: "Full Rollout",
-    items: [
-      "Ghost production revenue",
-      "44 Label integration",
-      "Revenue phase activation",
-      "Second wave of AIRE shows",
-    ],
-  },
-];
-
-const ARTISTS = [
-  {
-    name: "PROPHECY",
-    genre: "Melodic Techno",
-    origin: "Almada, Portugal",
-    support: ["David Guetta", "MORTEN", "ARTBAT", "Armin van Buuren", "Fideles", "Chris Avantgarde"],
-    highlights: [
-      "Insomniac · Spinnin\u2019 / Warner · Future Rave",
-      "Shanghai confirmed Apr 21–24 · Phuket Apr 18",
-      "Available to ghost-produce for INS artists",
-    ],
-  },
-];
-
-const A2G_STATS = [
-  { n: "3", l: "Artists Managed" },
-  { n: "8", l: "Active Businesses" },
-  { n: "UAE", l: "Dubai HQ, Global Ops" },
-  { n: "6+", l: "Major Label Deals" },
-];
-
-const ROSTER = [
-  { artist: "Roger Sanchez", note: "House legend · Grammy-winning · 25+ years touring" },
-  { artist: "Prophecy", note: "Signed: Insomniac · Spinnin\u2019/Warner · Future Rave" },
-  { artist: "BABEL Music", note: "Melodic electronic · Tomorrowland-aligned" },
-];
+// A2G_STATS, ROSTER moved to proposalData.about
 
 // ─────────────────────────────────────────────────────────────────────────────
 
 export default function Page() {
+  const [activeArtist, setActiveArtist] = useState(0);
+  const [proposalData, setProposalData] = useState(DEFAULT_DATA);
+  const [editMode, setEditMode] = useState(false);
+  const [canEdit, setCanEdit] = useState(false);
+
+  useEffect(() => {
+    setProposalData(loadData());
+    setCanEdit(new URLSearchParams(window.location.search).get("edit") === "1");
+  }, []);
+
+  const updateField: UpdateFn = (path, val) => {
+    setProposalData(prev => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const next = JSON.parse(JSON.stringify(prev)) as typeof DEFAULT_DATA;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      let cur: any = next;
+      for (let i = 0; i < path.length - 1; i++) cur = cur[path[i]];
+      cur[path[path.length - 1]] = val;
+      saveData(next);
+      return next;
+    });
+  };
+
+  const computed = useMemo(() => {
+    const revenue = [0, 1, 2].map(yi =>
+      proposalData.revenueDetail.reduce((s, r) => s + r.years[yi].lines.reduce((ls, l) => ls + l.v, 0), 0)
+    );
+    const investment = [0, 1, 2].map(yi =>
+      proposalData.investmentDetail.reduce((s, p) => s + p.years[yi].lines.reduce((ls, l) => ls + l.v, 0), 0)
+    );
+    const insReturn = [0, 1, 2].map(yi =>
+      proposalData.revenueDetail.reduce((s, r) => {
+        const tot = r.years[yi].lines.reduce((ls, l) => ls + l.v, 0);
+        return s + Math.round(tot * r.insShare[yi] / 100);
+      }, 0)
+    );
+    const cumInvest = investment.map((_, i) => investment.slice(0, i + 1).reduce((s, v) => s + v, 0));
+    const cumReturn = insReturn.map((_, i) => insReturn.slice(0, i + 1).reduce((s, v) => s + v, 0));
+    return { revenue, investment, insReturn, cumInvest, cumReturn };
+  }, [proposalData.revenueDetail, proposalData.investmentDetail]);
+
   useEffect(() => {
     const els = document.querySelectorAll(".reveal");
     const obs = new IntersectionObserver(
@@ -203,11 +173,45 @@ export default function Page() {
   return (
     <main className="bg-[#050a10] text-white min-h-screen overflow-x-hidden relative z-10">
       {/* ── NAV ── */}
-      <nav className="nav-blur fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-5 border-b border-gold/[0.12]">
-        <span className="font-display text-xl font-light tracking-[0.15em]">
-          A2G <span className="text-gold/60 mx-1">×</span> INS
-        </span>
-        <span className="font-mono text-[9px] tracking-[0.35em] text-gold/50 uppercase hidden sm:block">
+      <nav className="nav-blur fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-5 border-b border-white/[0.06]">
+        {/* Logos */}
+        <div className="flex items-center gap-5 shrink-0">
+          <span className="font-display text-2xl font-light tracking-[0.25em] text-white">A2G</span>
+          <div className="flex items-center gap-5">
+            <div className="w-px h-5 bg-white/15" />
+            <span
+              className="font-display text-2xl font-light tracking-[0.25em]"
+              style={{ color: "#00cfff", textShadow: "0 0 20px rgba(0,207,255,0.5)" }}
+            >
+              INS
+            </span>
+          </div>
+        </div>
+
+        {/* Nav links */}
+        <div className="hidden md:flex items-center gap-7 mx-8">
+          {[
+            { label: "Opportunity", href: "#opportunity" },
+            { label: "The Model", href: "#precedent" },
+            { label: "Artists", href: "#artists" },
+            { label: "Deal", href: "#deal" },
+            { label: "Value", href: "#value" },
+            { label: "Numbers", href: "#numbers" },
+            { label: "Risks", href: "#risks" },
+            { label: "Roadmap", href: "#roadmap" },
+            { label: "About", href: "#about" },
+          ].map((l) => (
+            <a
+              key={l.href}
+              href={l.href}
+              className="font-mono text-[9px] tracking-[0.3em] text-white/25 hover:text-white/60 uppercase transition-colors duration-200"
+            >
+              {l.label}
+            </a>
+          ))}
+        </div>
+
+        <span className="font-mono text-[9px] tracking-[0.35em] text-white/20 uppercase hidden lg:block shrink-0">
           Private Proposal · 2026
         </span>
       </nav>
@@ -218,19 +222,20 @@ export default function Page() {
         <div className="absolute bottom-1/3 left-1/6 w-[400px] h-[400px] rounded-full bg-cyan-500/[0.02] blur-[120px] pointer-events-none" />
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent shadow-[0_0_15px_rgba(0,207,255,0.1)]" />
 
-        <div className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center relative z-10">
+        <div className="w-full max-w-7xl mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-16 items-center">
+          {/* Left: headline */}
           <div>
             <p className="font-mono text-[9px] tracking-[0.45em] text-gold uppercase mb-10 opacity-80">
               Strategic Partnership Proposal
             </p>
-            <h1 className="font-display text-[clamp(3rem,7vw,5.5rem)] font-light leading-[1.05] mb-8 tracking-tight">
-              Co-Building<br />
-              the Future of<br />
-              <em className="italic gold-shimmer">Music in Asia</em>
+            <h1 className="font-display text-[clamp(3.5rem,9vw,7.5rem)] font-light leading-[1.0] mb-8 tracking-tight">
+              {editMode
+                ? <EditArea value={proposalData.hero.title} path={["hero","title"]} onUpdate={updateField} editMode={editMode} className="text-white" />
+                : <>{proposalData.hero.title.split(" in ")[0]} in<br /><em className="italic gold-shimmer">{proposalData.hero.title.split(" in ")[1]}</em></>
+              }
             </h1>
-            <p className="font-body text-sm text-white/45 leading-relaxed mb-12 max-w-md">
-              A2G Company and INS propose a first-of-its-kind co-development model — transforming
-              Western artist booking into long-term shared ownership in the Chinese market.
+            <p className="font-body text-sm text-white/45 leading-relaxed mb-12 max-w-xl">
+              <EditArea value={proposalData.hero.subtitle} path={["hero","subtitle"]} onUpdate={updateField} editMode={editMode} />
             </p>
             <a
               href="#opportunity"
@@ -241,8 +246,20 @@ export default function Page() {
             </a>
           </div>
 
-          <div className="flex items-center justify-center">
-            <ConcentricRings />
+          {/* Right: Why / What / When / How */}
+          <div className="hidden lg:flex flex-col gap-0 border-l border-white/[0.06] pl-14 min-w-[280px]">
+            {[
+              { q: "Why",  a: proposalData.hero.whyA,  pA: ["hero","whyA"],  b: proposalData.hero.whyB,  pB: ["hero","whyB"] },
+              { q: "What", a: proposalData.hero.whatA, pA: ["hero","whatA"], b: proposalData.hero.whatB, pB: ["hero","whatB"] },
+              { q: "When", a: proposalData.hero.whenA, pA: ["hero","whenA"], b: proposalData.hero.whenB, pB: ["hero","whenB"] },
+              { q: "How",  a: proposalData.hero.howA,  pA: ["hero","howA"],  b: proposalData.hero.howB,  pB: ["hero","howB"] },
+            ].map((s, i) => (
+              <div key={i} className={`py-7 ${i < 3 ? "border-b border-white/[0.06]" : ""}`}>
+                <p className="font-display text-2xl font-light text-gold mb-2" style={{ textShadow: "0 0 15px rgba(0,207,255,0.3)" }}>{s.q}</p>
+                <p className="font-body text-sm text-white/55 leading-relaxed"><EditTxt value={s.a} path={s.pA} onUpdate={updateField} editMode={editMode} /></p>
+                <p className="font-body text-xs text-white/25 leading-relaxed mt-0.5"><EditTxt value={s.b} path={s.pB} onUpdate={updateField} editMode={editMode} /></p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -265,14 +282,64 @@ export default function Page() {
           {/* Market stat */}
           <div className="reveal border border-gold/[0.08] bg-[#050a10] p-10 hover:bg-[#0a1018] transition-colors">
             <p className="font-display text-5xl md:text-6xl font-light text-gold mb-5 leading-none">
-              {STATS[0].value}
+              <EditTxt value={proposalData.market.size} path={["market","size"]} onUpdate={updateField} editMode={editMode} />
             </p>
-            <p className="font-body text-sm font-medium text-white/80 mb-3">{STATS[0].label}</p>
-            <p className="font-body text-xs text-white/35 leading-relaxed">{STATS[0].sub}</p>
+            <p className="font-body text-sm font-medium text-white/80 mb-3"><EditTxt value={proposalData.market.sizeLabel} path={["market","sizeLabel"]} onUpdate={updateField} editMode={editMode} /></p>
+            <p className="font-body text-xs text-white/35 leading-relaxed"><EditArea value={proposalData.market.sizeSub} path={["market","sizeSub"]} onUpdate={updateField} editMode={editMode} /></p>
           </div>
 
           {/* Market Growth Chart */}
           <MarketGrowthChart />
+        </div>
+      </section>
+
+      {/* ── FIVE HOLDINGS PRECEDENT ── */}
+      <section id="precedent" className="py-32 px-8 md:px-16 lg:px-24 bg-[#040810]">
+        <div className="max-w-7xl mx-auto">
+          <div className="reveal mb-16">
+            <p className="font-mono text-[9px] tracking-[0.45em] text-gold uppercase mb-4 opacity-70">
+              Proven Model
+            </p>
+            <h2 className="font-display text-4xl md:text-5xl font-light">
+              {proposalData.precedent.title}
+            </h2>
+            <p className="font-mono text-[10px] tracking-[0.3em] text-white/30 mt-3">{proposalData.precedent.subtitle}</p>
+          </div>
+
+          <div className="reveal border border-white/[0.06] bg-[#060c14] p-10 mb-6 shadow-[0_0_20px_rgba(0,207,255,0.04)]">
+            <p className="font-body text-sm text-white/50 leading-relaxed mb-6 max-w-3xl">
+              {proposalData.precedent.body}
+            </p>
+            <p className="font-body text-sm text-gold/70 leading-relaxed max-w-3xl italic">
+              {proposalData.precedent.lesson}
+            </p>
+          </div>
+
+          {/* FIVE vs INS comparison */}
+          <div className="reveal grid grid-cols-1 md:grid-cols-2 gap-px bg-white/[0.05]">
+            <div className="bg-[#060c14] p-10 border border-red-500/[0.08]">
+              <p className="font-mono text-[9px] tracking-[0.4em] text-red-400/50 uppercase mb-5">
+                {proposalData.precedent.comparison.five.label}
+              </p>
+              <p className="font-display text-5xl font-light text-red-400/60 mb-4 leading-none">
+                {proposalData.precedent.comparison.five.investment}
+              </p>
+              <p className="font-body text-sm text-white/35 leading-relaxed">
+                {proposalData.precedent.comparison.five.problem}
+              </p>
+            </div>
+            <div className="bg-[#060c14] p-10 border border-gold/[0.12]" style={{ boxShadow: "0 0 30px rgba(0,207,255,0.05)" }}>
+              <p className="font-mono text-[9px] tracking-[0.4em] text-gold/60 uppercase mb-5">
+                {proposalData.precedent.comparison.ins.label}
+              </p>
+              <p className="font-display text-5xl font-light leading-none mb-4" style={{ color: "#00cfff", textShadow: "0 0 25px rgba(0,207,255,0.4)" }}>
+                {proposalData.precedent.comparison.ins.investment}
+              </p>
+              <p className="font-body text-sm text-white/50 leading-relaxed">
+                {proposalData.precedent.comparison.ins.advantage}
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -288,81 +355,103 @@ export default function Page() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Prophecy */}
-            <div className="reveal glow-card border border-white/[0.08] p-10 hover:border-gold/25 transition-all duration-500 relative overflow-hidden group">
-              <div className="absolute inset-0 bg-gradient-radial from-gold/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="relative z-10">
-                <p className="font-mono text-[9px] tracking-[0.45em] text-gold uppercase mb-6 opacity-70">
-                  Melodic Techno
-                </p>
-                <h3 className="font-display text-[3.5rem] font-light leading-none mb-2">PROPHECY</h3>
-                <p className="font-body text-xs text-white/30 mb-10">Almada, Portugal</p>
-                <div className="mb-10">
-                  <p className="font-mono text-[9px] tracking-[0.35em] text-white/25 uppercase mb-4">
-                    Supported By
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {ARTISTS[0].support.map((n) => (
-                      <span
-                        key={n}
-                        className="font-mono text-[9px] border border-white/[0.12] px-3 py-1.5 text-white/45 hover:border-gold/30 hover:text-gold/70 transition-colors"
+          {/* Tab bar */}
+          <div className="flex items-end gap-0 mb-0 border-b border-white/[0.06]">
+            {proposalData.artists.map((a, i) => (
+              <button
+                key={a.id}
+                onClick={() => setActiveArtist(i)}
+                className={`relative px-8 py-4 font-mono text-[10px] tracking-[0.4em] uppercase transition-all duration-300 ${
+                  activeArtist === i
+                    ? "text-gold border-t border-l border-r border-gold/25 bg-[#060c14] -mb-px"
+                    : "text-white/25 hover:text-white/50 border-t border-l border-r border-transparent"
+                }`}
+              >
+                {activeArtist === i && (
+                  <span className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
+                )}
+                {a.name}
+              </button>
+            ))}
+            <button className="relative px-6 py-4 font-mono text-[9px] tracking-[0.3em] text-white/12 hover:text-white/25 transition-colors border-t border-l border-r border-transparent italic">
+              TBA · next phase
+            </button>
+          </div>
+
+          {/* Active artist panel */}
+          {proposalData.artists.map((a, i) => (
+            <div
+              key={a.id}
+              className={`border border-gold/[0.08] border-t-0 bg-[#060c14] p-10 md:p-14 transition-all duration-300 ${
+                activeArtist === i ? "block" : "hidden"
+              }`}
+              style={{ boxShadow: "0 0 40px rgba(0,207,255,0.03)" }}
+            >
+              <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-10 items-start">
+                {/* Left: artist info */}
+                <div>
+                  <div className="flex items-center gap-4 mb-2">
+                    <p className="font-mono text-[9px] tracking-[0.45em] text-gold/60 uppercase">{a.genre}</p>
+                    {a.ig && (
+                      <a
+                        href={a.ig}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-mono text-[9px] text-white/20 hover:text-gold/60 transition-colors tracking-wider"
                       >
-                        {n}
-                      </span>
+                        {a.igHandle}
+                      </a>
+                    )}
+                  </div>
+                  <h3 className="font-display text-[3.5rem] md:text-[4.5rem] font-light leading-none mb-2">
+                    {a.name}
+                  </h3>
+                  <p className="font-body text-xs text-white/25 mb-6">{a.origin}</p>
+                  <p className="font-body text-sm text-white/40 italic mb-10 max-w-lg leading-relaxed"><EditArea value={a.tagline} path={["artists",i,"tagline"]} onUpdate={updateField} editMode={editMode} /></p>
+
+                  {a.collabs.length > 0 && (
+                    <div className="mb-10">
+                      <p className="font-mono text-[9px] tracking-[0.35em] text-white/20 uppercase mb-4">
+                        {a.id === "aire" ? "Collaborating With" : "Co-produced With"}
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        {a.collabs.map((n, ci) => (
+                          <span key={ci} className="font-mono text-[9px] border border-gold/20 px-3 py-1.5 text-gold/60 bg-gold/[0.04]">
+                            <EditTxt value={n} path={["artists",i,"collabs",ci]} onUpdate={updateField} editMode={editMode} />
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  <div className="space-y-3">
+                    {a.highlights.map((h, hi) => (
+                      <p key={hi} className="font-body text-sm text-white/40 flex items-start gap-3 leading-relaxed">
+                        <span className="text-gold/40 shrink-0 mt-0.5">·</span>
+                        <EditArea value={h} path={["artists",i,"highlights",hi]} onUpdate={updateField} editMode={editMode} />
+                      </p>
                     ))}
                   </div>
                 </div>
-                <div className="space-y-2.5">
-                  {ARTISTS[0].highlights.map((h) => (
-                    <p key={h} className="font-body text-xs text-white/35 flex items-start gap-2">
-                      <span className="text-gold/40 shrink-0">·</span>
-                      {h}
-                    </p>
+
+                {/* Right: tab nav hint */}
+                <div className="hidden md:flex flex-col items-end gap-3 pt-2">
+                  {proposalData.artists.map((b, j) => (
+                    <button
+                      key={b.id}
+                      onClick={() => setActiveArtist(j)}
+                      className={`font-mono text-[9px] tracking-[0.35em] uppercase transition-colors ${
+                        j === i ? "text-gold/70" : "text-white/15 hover:text-white/35"
+                      }`}
+                    >
+                      {b.name}
+                    </button>
                   ))}
+                  <button className="font-mono text-[9px] tracking-[0.3em] text-white/10 uppercase italic">next phase</button>
                 </div>
               </div>
-              <WaveformDecor />
             </div>
-
-            {/* TBD */}
-            <div className="reveal glow-card border border-dashed border-white/[0.12] p-10 flex flex-col items-center justify-center text-center min-h-72 hover:border-gold/20 transition-colors group">
-              <p className="font-mono text-[9px] tracking-[0.45em] text-white/25 uppercase mb-8">
-                To Be Discovered
-              </p>
-              <div className="w-14 h-14 border border-white/[0.12] flex items-center justify-center mb-8 group-hover:border-gold/25 transition-colors">
-                <span className="text-2xl text-white/15 group-hover:text-gold/30 transition-colors">+</span>
-              </div>
-              <h3 className="font-display text-3xl font-light text-white/35 mb-4">
-                Next A2G Artist
-              </h3>
-              <p className="font-body text-xs text-white/20 max-w-xs leading-relaxed">
-                Identified through our joint Shanghai masterclass in April 2026. INS and A2G scout
-                emerging Chinese-market talent together — co-ownership from day one.
-              </p>
-              <p className="font-mono text-[9px] text-gold/30 mt-8 tracking-[0.4em] uppercase">
-                Masterclass · April 2026 · Shanghai
-              </p>
-            </div>
-          </div>
-
-          {/* Streaming reach — compact */}
-          <div className="mt-6 border border-gold/[0.08] bg-[#060c14] p-8 shadow-[0_0_20px_rgba(0,207,255,0.04)]">
-            <p className="font-mono text-[9px] tracking-[0.4em] text-gold/50 uppercase mb-5">
-              Prophecy — Estimated China Reach Potential
-            </p>
-            <div className="flex flex-wrap gap-6">
-              {STREAM_REACH.map((d) => (
-                <div key={d.platform} className="flex items-center gap-2">
-                  <span className="font-mono text-[9px] text-white/30 uppercase tracking-wider">{d.platform}</span>
-                  <span className="font-mono text-[10px] text-gold/70">{d.label}</span>
-                </div>
-              ))}
-            </div>
-            <p className="font-mono text-[8px] text-white/15 mt-4 tracking-widest">
-              Current global reach · Foundation for China market penetration
-            </p>
-          </div>
+          ))}
         </div>
       </section>
 
@@ -386,7 +475,7 @@ export default function Page() {
               />
             </div>
 
-            {PHASES.map((p, i) => (
+            {proposalData.phases.map((p, i) => (
               <div
                 key={i}
                 className={`reveal reveal-delay-${i + 1} p-10 border border-transparent hover:border-gold/10 transition-colors group`}
@@ -396,8 +485,8 @@ export default function Page() {
                     <span className="font-mono text-xs text-gold/60">{p.num}</span>
                   </div>
                 </div>
-                <h3 className="font-display text-2xl md:text-3xl font-light mb-5">{p.title}</h3>
-                <p className="font-body text-sm text-white/40 leading-relaxed">{p.body}</p>
+                <h3 className="font-display text-2xl md:text-3xl font-light mb-5"><EditTxt value={p.title} path={["phases",i,"title"]} onUpdate={updateField} editMode={editMode} /></h3>
+                <p className="font-body text-sm text-white/40 leading-relaxed"><EditArea value={p.body} path={["phases",i,"body"]} onUpdate={updateField} editMode={editMode} /></p>
               </div>
             ))}
           </div>
@@ -411,16 +500,66 @@ export default function Page() {
               China Territory — Revenue Sources
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {REVENUE_SOURCES.map((r) => (
-                <div key={r.source} className="flex items-start gap-3">
+              {proposalData.revenueSources.map((r, ri) => (
+                <div key={ri} className="flex items-start gap-3">
                   <span className="text-gold/40 shrink-0 mt-0.5">·</span>
                   <div>
-                    <p className="font-body text-sm font-medium text-white/70 mb-1">{r.source}</p>
-                    <p className="font-body text-xs text-white/30 leading-relaxed">{r.desc}</p>
+                    <p className="font-body text-sm font-medium text-white/70 mb-1"><EditTxt value={r.source} path={["revenueSources",ri,"source"]} onUpdate={updateField} editMode={editMode} /></p>
+                    <p className="font-body text-xs text-white/30 leading-relaxed"><EditArea value={r.desc} path={["revenueSources",ri,"desc"]} onUpdate={updateField} editMode={editMode} /></p>
                   </div>
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── VALUE BEYOND REVENUE ── */}
+      <section id="value" className="py-32 px-8 md:px-16 lg:px-24">
+        <div className="max-w-7xl mx-auto">
+          <div className="reveal mb-16">
+            <p className="font-mono text-[9px] tracking-[0.45em] text-gold uppercase mb-4 opacity-70">
+              What INS Gets
+            </p>
+            <h2 className="font-display text-4xl md:text-5xl font-light">
+              Value Beyond<br />Revenue
+            </h2>
+            <p className="font-body text-sm text-white/40 mt-6 max-w-xl leading-relaxed">
+              The cash return is only one dimension. Six layers of value INS builds from day one.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-white/[0.04]">
+            {proposalData.valueDimensions.map((dim, i) => {
+              const categoryColors: Record<string, string> = {
+                Economic: "#f59e0b",
+                Strategic: "#00cfff",
+                Operational: "#34d399",
+                Marketing: "#a78bfa",
+                Scalable: "#22d3ee",
+              };
+              const badgeColor = categoryColors[dim.category] ?? "#f59e0b";
+              return (
+                <div
+                  key={i}
+                  className="reveal bg-[#060c14] p-8 border border-white/[0.06] hover:border-gold/15 transition-colors group"
+                >
+                  <div className="flex items-start justify-between mb-5">
+                    <span className="font-mono text-[9px] tracking-[0.45em] text-white/15">{dim.num}</span>
+                    <span
+                      className="font-mono text-[8px] tracking-[0.3em] uppercase px-2 py-1 rounded-sm"
+                      style={{ color: badgeColor, background: `${badgeColor}18`, border: `1px solid ${badgeColor}30` }}
+                    >
+                      {dim.category}
+                    </span>
+                  </div>
+                  <h3 className="font-display text-xl font-light mb-4 group-hover:text-gold transition-colors duration-300">
+                    {dim.title}
+                  </h3>
+                  <p className="font-body text-xs text-white/35 leading-relaxed">{dim.desc}</p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -437,18 +576,100 @@ export default function Page() {
             </h2>
             <p className="font-body text-sm text-white/40 mt-6 max-w-xl leading-relaxed">
               Conservative model based on standard industry percentages.
-              Shows are structured as trueque (show fee = production cost), so production investment is zero.
+              Shows are structured as value trades (show fee = production cost), so production investment is zero.
             </p>
           </div>
 
           {/* Combined Investment vs Return */}
-          <InvestmentReturnChart />
+          <InvestmentReturnChart combined={computed} editMode={editMode} onUpdate={updateField} />
 
-          {/* Per-pillar breakdown */}
-          <PillarBreakdown />
+          {/* Revenue + Investment breakdowns */}
+          <RevenueInvestmentBreakdown combined={computed} revenueDetail={proposalData.revenueDetail} investmentDetail={proposalData.investmentDetail} editMode={editMode} onUpdate={updateField} />
 
           {/* Break-even + Upside */}
-          <BreakEvenCard />
+          <BreakEvenCard combined={computed} editMode={editMode} onUpdate={updateField} />
+
+          {/* Break-even summary table */}
+          <div className="reveal mt-6 border border-gold/[0.08] bg-[#060c14] overflow-hidden shadow-[0_0_20px_rgba(0,207,255,0.04)]">
+            <div className="px-8 py-5 border-b border-white/[0.05]">
+              <p className="font-mono text-[9px] tracking-[0.4em] text-gold/50 uppercase">Investment Recovery Summary</p>
+            </div>
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b border-white/[0.05]">
+                    <th className="text-left px-8 py-4 font-mono text-[9px] tracking-[0.35em] text-white/25 uppercase">Metric</th>
+                    {["Year 1", "Year 2", "Year 3"].map(yr => (
+                      <th key={yr} className="text-right px-8 py-4 font-mono text-[9px] tracking-[0.35em] text-white/25 uppercase">{yr}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {proposalData.breakEven.map((row, ri) => (
+                    <tr
+                      key={ri}
+                      className={`border-b border-white/[0.04] hover:bg-white/[0.02] transition-colors ${row.highlight ? "bg-gold/[0.04]" : ""}`}
+                    >
+                      <td className={`px-8 py-4 font-body text-sm ${row.highlight ? "text-gold font-medium" : "text-white/45"}`}>{row.metric}</td>
+                      <td className={`px-8 py-4 text-right font-mono text-sm ${row.highlight ? "text-gold" : "text-white/35"}`}>{row.y1}</td>
+                      <td className={`px-8 py-4 text-right font-mono text-sm ${row.highlight ? "text-gold" : "text-white/35"}`}>{row.y2}</td>
+                      <td className={`px-8 py-4 text-right font-mono text-sm ${row.highlight ? "text-gold" : "text-white/35"}`}>{row.y3}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── RISK MITIGATION ── */}
+      <section id="risks" className="py-32 px-8 md:px-16 lg:px-24 bg-[#050a10]">
+        <div className="max-w-7xl mx-auto">
+          <div className="reveal mb-16">
+            <p className="font-mono text-[9px] tracking-[0.45em] text-gold uppercase mb-4 opacity-70">
+              Risk &amp; Mitigation
+            </p>
+            <h2 className="font-display text-4xl md:text-5xl font-light">
+              Every Risk<br />Has a Structure
+            </h2>
+            <p className="font-body text-sm text-white/40 mt-6 max-w-xl leading-relaxed">
+              We&apos;ve identified the five most likely failure modes. Each one has a contractual or structural response built in.
+            </p>
+          </div>
+
+          <div className="reveal border border-white/[0.06] bg-[#060c14] overflow-hidden shadow-[0_0_20px_rgba(0,207,255,0.04)]">
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b border-white/[0.05]">
+                    <th className="text-left px-8 py-5 font-mono text-[9px] tracking-[0.35em] text-white/25 uppercase w-1/3">Risk</th>
+                    <th className="text-left px-8 py-5 font-mono text-[9px] tracking-[0.35em] text-white/25 uppercase">Mitigation</th>
+                    <th className="text-left px-8 py-5 font-mono text-[9px] tracking-[0.35em] text-white/25 uppercase w-28">Likelihood</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {proposalData.risks.map((r, ri) => {
+                    const likelihoodColor = r.likelihood === "Low" ? "#34d399" : r.likelihood === "Medium" || r.likelihood === "Low–Medium" ? "#f59e0b" : "#94a3b8";
+                    return (
+                      <tr key={ri} className="border-b border-white/[0.04] hover:bg-white/[0.02] transition-colors">
+                        <td className="px-8 py-6 font-body text-sm text-white/60 align-top leading-relaxed">{r.risk}</td>
+                        <td className="px-8 py-6 font-body text-xs text-white/35 align-top leading-relaxed">{r.mitigation}</td>
+                        <td className="px-8 py-6 align-top">
+                          <span
+                            className="font-mono text-[8px] tracking-[0.2em] uppercase px-2 py-1 rounded-sm whitespace-nowrap"
+                            style={{ color: likelihoodColor, background: `${likelihoodColor}18`, border: `1px solid ${likelihoodColor}30` }}
+                          >
+                            {r.likelihood}
+                          </span>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -459,28 +680,79 @@ export default function Page() {
             <p className="font-mono text-[9px] tracking-[0.45em] text-gold uppercase mb-4 opacity-70">
               Timeline
             </p>
-            <h2 className="font-display text-4xl md:text-5xl font-light">2026 Roadmap</h2>
+            <h2 className="font-display text-4xl md:text-5xl font-light">3-Year Roadmap</h2>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0">
-            {TIMELINE.map((t, i) => (
+          <div className="space-y-0">
+            {proposalData.roadmap.map((phase, phaseIdx) => (
+              <div key={phase.year} className="reveal border border-gold/[0.08] bg-[#060c14] mb-px">
+                {/* Phase header */}
+                <div className="p-8 border-b border-white/[0.04] flex items-end justify-between gap-6 flex-wrap">
+                  <div>
+                    <p className="font-mono text-[9px] tracking-[0.4em] text-gold/60 uppercase mb-2">{phase.year}</p>
+                    <h3 className="font-display text-3xl font-light"><EditTxt value={phase.title} path={["roadmap",phaseIdx,"title"]} onUpdate={updateField} editMode={editMode} /></h3>
+                  </div>
+                  <p className="font-body text-sm text-white/30 max-w-md leading-relaxed"><EditTxt value={phase.subtitle} path={["roadmap",phaseIdx,"subtitle"]} onUpdate={updateField} editMode={editMode} /></p>
+                </div>
+
+                {/* Artist tracks */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0">
+                  {phase.tracks.map((track, ti) => (
+                    <div
+                      key={track.artist}
+                      className={`p-6 ${ti < phase.tracks.length - 1 ? "lg:border-r border-white/[0.04]" : ""} ${ti < 2 ? "md:border-r border-white/[0.04]" : ""}`}
+                    >
+                      <div className="flex items-center gap-2 mb-4">
+                        <div className="w-1.5 h-1.5 rounded-full" style={{ background: track.color, boxShadow: `0 0 6px ${track.color}` }} />
+                        <span className="font-mono text-[9px] tracking-[0.35em] uppercase" style={{ color: track.color }}>{track.artist}</span>
+                      </div>
+                      <ul className="space-y-2.5">
+                        {track.items.map((item, ii) => (
+                          <li key={ii} className="font-body text-xs text-white/35 flex items-start gap-2 leading-relaxed">
+                            <span className="shrink-0 mt-1 w-1 h-1 rounded-full bg-white/15" />
+                            <EditArea value={item} path={["roadmap",phaseIdx,"tracks",ti,"items",ii]} onUpdate={updateField} editMode={editMode} />
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── ADDITIONAL OPPORTUNITIES ── */}
+      <section className="py-32 px-8 md:px-16 lg:px-24 bg-[#040810]">
+        <div className="max-w-7xl mx-auto">
+          <div className="reveal mb-16">
+            <p className="font-mono text-[9px] tracking-[0.45em] text-gold uppercase mb-4 opacity-70">
+              Beyond the Core Deal
+            </p>
+            <h2 className="font-display text-4xl md:text-5xl font-light">
+              Additional<br />Opportunities
+            </h2>
+            <p className="font-body text-sm text-white/40 mt-6 max-w-xl leading-relaxed">
+              Five expansion vectors that sit outside the core deal but become accessible the moment the partnership is in place.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-white/[0.04]">
+            {proposalData.additionalOpps.map((opp, i) => (
               <div
                 key={i}
-                className={`reveal reveal-delay-${i + 1} border-l border-gold/15 pl-8 pr-6 pb-8 pt-2`}
+                className={`reveal bg-[#060c14] p-8 border border-white/[0.06] hover:border-gold/15 transition-colors group ${i === 4 ? "md:col-span-2 lg:col-span-1" : ""}`}
               >
-                <div className="w-2 h-2 rounded-full bg-gold/30 -ml-[calc(2rem+1px)] mb-6 mt-1 border border-gold/50 shadow-[0_0_8px_rgba(0,207,255,0.3)]" />
-                <p className="font-mono text-[9px] tracking-[0.35em] text-gold/60 uppercase mb-4">
-                  {t.date}
-                </p>
-                <h3 className="font-display text-xl font-light mb-5">{t.title}</h3>
-                <ul className="space-y-2.5">
-                  {t.items.map((item) => (
-                    <li key={item} className="font-body text-xs text-white/35 flex items-start gap-2 leading-relaxed">
-                      <span className="text-gold/30 shrink-0 mt-0.5">·</span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
+                <div className="flex items-center gap-4 mb-5">
+                  <span className="font-mono text-[9px] tracking-[0.45em] text-white/15">{opp.num}</span>
+                  <div className="h-px flex-1 bg-white/[0.05]" />
+                </div>
+                <h3 className="font-display text-xl font-light mb-1 group-hover:text-gold transition-colors duration-300">
+                  {opp.title}
+                </h3>
+                <p className="font-mono text-[9px] tracking-[0.3em] text-gold/40 uppercase mb-4">{opp.subtitle}</p>
+                <p className="font-body text-xs text-white/35 leading-relaxed">{opp.desc}</p>
               </div>
             ))}
           </div>
@@ -500,15 +772,13 @@ export default function Page() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             <div className="reveal space-y-10">
               <p className="font-body text-base text-white/50 leading-relaxed">
-                A2G Company is a Dubai-based music and technology holding. We develop artists, platforms,
-                and intellectual property — not as a traditional booking agency, but as a co-building
-                partner that takes long-term equity positions.
+                <EditArea value={proposalData.about.description} path={["about","description"]} onUpdate={updateField} editMode={editMode} />
               </p>
               <div className="grid grid-cols-2 gap-px bg-gold/[0.08]">
-                {A2G_STATS.map(({ n, l }) => (
-                  <div key={l} className="bg-[#050a10] p-7 hover:bg-[#0a1018] transition-colors">
-                    <p className="font-display text-4xl font-light text-gold mb-2">{n}</p>
-                    <p className="font-body text-xs text-white/35">{l}</p>
+                {proposalData.about.stats.map((s, si) => (
+                  <div key={si} className="bg-[#050a10] p-7 hover:bg-[#0a1018] transition-colors">
+                    <p className="font-display text-4xl font-light text-gold mb-2"><EditTxt value={s.n} path={["about","stats",si,"n"]} onUpdate={updateField} editMode={editMode} /></p>
+                    <p className="font-body text-xs text-white/35"><EditTxt value={s.l} path={["about","stats",si,"l"]} onUpdate={updateField} editMode={editMode} /></p>
                   </div>
                 ))}
               </div>
@@ -520,14 +790,14 @@ export default function Page() {
                   Artist Roster
                 </p>
                 <div className="space-y-0">
-                  {ROSTER.map(({ artist, note }) => (
+                  {proposalData.about.roster.map((r, ri) => (
                     <div
-                      key={artist}
+                      key={ri}
                       className="border-b border-white/[0.05] py-5 flex items-start justify-between gap-6 hover:border-gold/15 transition-colors"
                     >
-                      <p className="font-display text-xl font-light">{artist}</p>
+                      <p className="font-display text-xl font-light"><EditTxt value={r.artist} path={["about","roster",ri,"artist"]} onUpdate={updateField} editMode={editMode} /></p>
                       <p className="font-body text-xs text-white/30 text-right leading-relaxed max-w-44">
-                        {note}
+                        <EditTxt value={r.note} path={["about","roster",ri,"note"]} onUpdate={updateField} editMode={editMode} />
                       </p>
                     </div>
                   ))}
@@ -538,8 +808,7 @@ export default function Page() {
                   Label Track Record
                 </p>
                 <p className="font-body text-xs text-white/30 leading-relaxed">
-                  Insomniac Records · Spinnin&#39; / Warner Music · Future Rave ·
-                  HILOMATIK (HI-LO) · CR2 Records · Persona Records · Guesstimate
+                  <EditArea value={proposalData.about.labelTrackRecord} path={["about","labelTrackRecord"]} onUpdate={updateField} editMode={editMode} />
                 </p>
               </div>
             </div>
@@ -554,21 +823,20 @@ export default function Page() {
 
         <div className="max-w-4xl mx-auto text-center relative z-10 reveal">
           <p className="font-mono text-[9px] tracking-[0.5em] text-gold uppercase mb-10 opacity-70">
-            Ready to Build?
+            <EditTxt value={proposalData.cta.eyebrow} path={["cta","eyebrow"]} onUpdate={updateField} editMode={editMode} />
           </p>
           <h2 className="font-display text-[clamp(3rem,8vw,6rem)] font-light leading-none mb-10">
-            Let&apos;s Build<br />
-            <em className="italic gold-shimmer">Together</em>
+            <EditTxt value={proposalData.cta.title} path={["cta","title"]} onUpdate={updateField} editMode={editMode} /><br />
+            <em className="italic gold-shimmer"><EditTxt value={proposalData.cta.titleAccent} path={["cta","titleAccent"]} onUpdate={updateField} editMode={editMode} /></em>
           </h2>
           <p className="font-body text-sm text-white/40 mb-14 max-w-sm mx-auto leading-relaxed">
-            We propose a long-term partnership, not a one-night booking.
-            If the vision aligns, let&#39;s move fast.
+            <EditArea value={proposalData.cta.description} path={["cta","description"]} onUpdate={updateField} editMode={editMode} />
           </p>
           <a
-            href="mailto:aitzolarev@gmail.com"
+            href={`mailto:${proposalData.cta.email}`}
             className="inline-flex items-center gap-4 font-mono text-xs tracking-[0.35em] text-gold border border-gold/35 px-8 py-5 hover:bg-gold hover:text-black hover:shadow-[0_0_30px_rgba(0,207,255,0.3)] transition-all duration-300 uppercase group"
           >
-            aitzolarev@gmail.com
+            <EditTxt value={proposalData.cta.email} path={["cta","email"]} onUpdate={updateField} editMode={editMode} />
             <span className="group-hover:translate-x-1 transition-transform">→</span>
           </a>
         </div>
@@ -583,6 +851,32 @@ export default function Page() {
           </p>
         </div>
       </footer>
+
+      {/* ── EDIT MODE TOGGLE (only visible with ?edit=1) ── */}
+      {canEdit && (
+        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-2">
+          {editMode && (
+            <button
+              onClick={() => { if (confirm("Reset all content to defaults?")) { resetData(); setProposalData(DEFAULT_DATA); setEditMode(false); } }}
+              className="font-mono text-[10px] tracking-[0.3em] uppercase px-4 py-2.5 border transition-all duration-300 backdrop-blur-sm"
+              style={{ borderColor: "rgba(255,80,80,0.35)", color: "rgba(255,80,80,0.6)", background: "rgba(5,10,16,0.85)" }}
+            >
+              ↺ Reset
+            </button>
+          )}
+          <button
+            onClick={() => setEditMode((e) => !e)}
+            className="font-mono text-[10px] tracking-[0.3em] uppercase px-4 py-2.5 border transition-all duration-300 backdrop-blur-sm"
+            style={
+              editMode
+                ? { borderColor: "rgba(0,207,255,0.45)", color: "#00cfff", background: "rgba(0,207,255,0.08)", boxShadow: "0 0 20px rgba(0,207,255,0.12)" }
+                : { borderColor: "rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.2)", background: "rgba(5,10,16,0.85)" }
+            }
+          >
+            {editMode ? "✓ Done" : "✎ Edit"}
+          </button>
+        </div>
+      )}
     </main>
   );
 }
@@ -768,166 +1062,232 @@ function DonutChart({
 
 
 // ── Chart 4: Investment vs Return (grouped bars) ────────────────────────────
-function InvestmentReturnChart() {
+function InvestmentReturnChart({ combined }: { combined: ComputedTotals; editMode: boolean; onUpdate: UpdateFn }) {
   const { ref, visible } = useChartVisible(0.2);
-  const maxVal = Math.max(...COMBINED.revenue, ...COMBINED.investment);
+  const maxVal = Math.max(...combined.revenue, ...combined.investment);
   const BAR_H = 200;
 
   return (
-    <div ref={ref} className="border border-gold/[0.08] bg-[#060c14] p-10 mb-6 shadow-[0_0_20px_rgba(0,207,255,0.04)]">
-      <div className="flex items-center justify-between mb-10">
-        <p className="font-mono text-[9px] tracking-[0.4em] text-gold/50 uppercase">
-          Combined — Investment vs China Revenue (EUR K)
-        </p>
-      </div>
-
-      <div className="flex items-end gap-4 md:gap-8" style={{ height: `${BAR_H + 60}px` }}>
-        {FINANCIAL_YEARS.map((yr, i) => {
-          const invH = (COMBINED.investment[i] / maxVal) * BAR_H;
-          const revH = (COMBINED.revenue[i] / maxVal) * BAR_H;
-          const retH = (COMBINED.insReturn[i] / maxVal) * BAR_H;
-          return (
-            <div key={yr} className="flex-1 flex flex-col items-center gap-2">
-              {/* Labels */}
-              <div
-                className="flex items-center gap-3 font-mono text-[9px] transition-opacity duration-500"
-                style={{ opacity: visible ? 1 : 0, transitionDelay: `${0.2 + i * 0.15}s` }}
-              >
-                <span className="text-white/30">{COMBINED.investment[i]}K</span>
-                <span className="text-gold/70">{COMBINED.revenue[i]}K</span>
-                <span className="text-emerald-400/70">{COMBINED.insReturn[i]}K</span>
+    <div ref={ref} className="border border-gold/[0.08] bg-[#060c14] mb-6 shadow-[0_0_20px_rgba(0,207,255,0.04)]">
+      {/* Header KPIs */}
+      <div className="grid grid-cols-3 gap-0 border-b border-white/[0.06]">
+        {FINANCIAL_YEARS.map((yr, i) => (
+          <div
+            key={yr}
+            className={`p-8 ${i < 2 ? "border-r border-white/[0.06]" : ""} transition-opacity duration-700`}
+            style={{ opacity: visible ? 1 : 0, transitionDelay: `${i * 0.15}s` }}
+          >
+            <p className="font-mono text-[9px] tracking-[0.35em] text-white/25 uppercase mb-4">{yr}</p>
+            {/* Revenue — dominant */}
+            <p
+              className="font-display text-4xl md:text-5xl font-light leading-none mb-1"
+              style={{ color: "#00cfff", textShadow: "0 0 25px rgba(0,207,255,0.45)" }}
+            >
+              €{combined.revenue[i]}K
+            </p>
+            <p className="font-mono text-[8px] tracking-[0.3em] text-white/20 uppercase mb-5">China Revenue</p>
+            <div className="flex items-center gap-6">
+              <div>
+                <p className="font-mono text-sm text-white/40">€{combined.investment[i]}K</p>
+                <p className="font-mono text-[8px] text-white/18 tracking-wider uppercase">Invested</p>
               </div>
-
-              {/* Bar group */}
-              <div className="w-full flex items-end justify-center gap-1.5" style={{ height: `${BAR_H}px` }}>
-                {/* Investment bar */}
-                <div
-                  className="w-1/4 rounded-sm transition-all duration-700 ease-out"
-                  style={{
-                    height: visible ? `${invH}px` : "0px",
-                    transitionDelay: `${i * 0.1}s`,
-                    background: "linear-gradient(to top, rgba(255,255,255,0.15), rgba(255,255,255,0.05))",
-                  }}
-                />
-                {/* Revenue bar */}
-                <div
-                  className="w-1/4 rounded-sm transition-all duration-700 ease-out"
-                  style={{
-                    height: visible ? `${revH}px` : "0px",
-                    transitionDelay: `${0.05 + i * 0.1}s`,
-                    background: "linear-gradient(to top, #00cfff, rgba(0,207,255,0.4))",
-                  }}
-                />
-                {/* INS Return bar */}
-                <div
-                  className="w-1/4 rounded-sm transition-all duration-700 ease-out"
-                  style={{
-                    height: visible ? `${retH}px` : "0px",
-                    transitionDelay: `${0.1 + i * 0.1}s`,
-                    background: "linear-gradient(to top, rgba(52,211,153,0.7), rgba(52,211,153,0.25))",
-                  }}
-                />
+              <div className="w-px h-8 bg-white/[0.06]" />
+              <div>
+                <p className="font-mono text-sm text-emerald-400/70">€{combined.insReturn[i]}K</p>
+                <p className="font-mono text-[8px] text-white/18 tracking-wider uppercase">INS Return</p>
               </div>
-
-              {/* Year label */}
-              <p className="font-mono text-[9px] text-white/30 tracking-wider mt-1">{yr}</p>
             </div>
-          );
-        })}
+          </div>
+        ))}
       </div>
 
-      {/* Legend */}
-      <div className="flex items-center gap-8 mt-8 border-t border-white/[0.05] pt-6">
-        <div className="flex items-center gap-2">
-          <div className="w-3 h-2 rounded-sm bg-white/10" />
-          <span className="font-mono text-[9px] text-white/35">Investment</span>
+      {/* Bar chart */}
+      <div className="px-10 pt-8 pb-4">
+        <div className="flex items-end gap-4 md:gap-8" style={{ height: `${BAR_H + 20}px` }}>
+          {FINANCIAL_YEARS.map((yr, i) => {
+            const invH = (combined.investment[i] / maxVal) * BAR_H;
+            const revH = (combined.revenue[i] / maxVal) * BAR_H;
+            const retH = (combined.insReturn[i] / maxVal) * BAR_H;
+            return (
+              <div key={yr} className="flex-1 flex flex-col items-center gap-2">
+                <div className="w-full flex items-end justify-center gap-1.5" style={{ height: `${BAR_H}px` }}>
+                  <div className="w-1/4 rounded-sm transition-all duration-700 ease-out"
+                    style={{ height: visible ? `${invH}px` : "0px", transitionDelay: `${i * 0.1}s`, background: "linear-gradient(to top, rgba(255,255,255,0.15), rgba(255,255,255,0.05))" }} />
+                  <div className="w-1/4 rounded-sm transition-all duration-700 ease-out"
+                    style={{ height: visible ? `${revH}px` : "0px", transitionDelay: `${0.05 + i * 0.1}s`, background: "linear-gradient(to top, #00cfff, rgba(0,207,255,0.4))", boxShadow: visible ? "0 0 12px rgba(0,207,255,0.3)" : "none" }} />
+                  <div className="w-1/4 rounded-sm transition-all duration-700 ease-out"
+                    style={{ height: visible ? `${retH}px` : "0px", transitionDelay: `${0.1 + i * 0.1}s`, background: "linear-gradient(to top, rgba(52,211,153,0.7), rgba(52,211,153,0.25))" }} />
+                </div>
+                <p className="font-mono text-[9px] text-white/20 tracking-wider mt-1">{yr}</p>
+              </div>
+            );
+          })}
         </div>
-        <div className="flex items-center gap-2">
-          <div className="w-3 h-2 rounded-sm bg-gold/60" />
-          <span className="font-mono text-[9px] text-white/35">China Revenue</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="w-3 h-2 rounded-sm bg-emerald-400/50" />
-          <span className="font-mono text-[9px] text-white/35">INS Return</span>
+
+        <div className="flex items-center gap-8 mt-6 border-t border-white/[0.05] pt-5">
+          <div className="flex items-center gap-2"><div className="w-3 h-2 rounded-sm bg-white/10" /><span className="font-mono text-[9px] text-white/30">Investment</span></div>
+          <div className="flex items-center gap-2"><div className="w-3 h-2 rounded-sm" style={{ background: "#00cfff" }} /><span className="font-mono text-[9px] text-white/30">China Revenue</span></div>
+          <div className="flex items-center gap-2"><div className="w-3 h-2 rounded-sm bg-emerald-400/50" /><span className="font-mono text-[9px] text-white/30">INS Return</span></div>
         </div>
       </div>
+
     </div>
   );
 }
 
-// ── Chart 5: Pillar Breakdown ───────────────────────────────────────────────
-function PillarBreakdown() {
+// ── Chart 5: Revenue + Investment Breakdowns ────────────────────────────────
+function RevenueInvestmentBreakdown({
+  combined, revenueDetail, investmentDetail, editMode, onUpdate,
+}: {
+  combined: ComputedTotals;
+  revenueDetail: typeof DEFAULT_DATA.revenueDetail;
+  investmentDetail: typeof DEFAULT_DATA.investmentDetail;
+  editMode: boolean; onUpdate: UpdateFn;
+}) {
   const { ref, visible } = useChartVisible(0.2);
-  const pillars = [PROPHECY_MODEL, AIRE_MODEL, LOCALS_MODEL];
+  const [activeYear, setActiveYear] = useState(0);
 
   return (
-    <div ref={ref} className="grid grid-cols-1 md:grid-cols-3 gap-px bg-gold/[0.08] mb-6">
-      {pillars.map((p, pi) => (
-        <div
-          key={p.label}
-          className="bg-[#060c14] p-8"
-          style={{
-            opacity: visible ? 1 : 0,
-            transform: visible ? "translateY(0)" : "translateY(20px)",
-            transition: "opacity 0.6s ease, transform 0.6s ease",
-            transitionDelay: `${pi * 0.12}s`,
-          }}
-        >
+    <div ref={ref} className="mb-6">
+      {/* Year selector */}
+      <div className="flex items-center gap-0 mb-0">
+        {FINANCIAL_YEARS.map((yr, i) => (
+          <button
+            key={yr}
+            onClick={() => setActiveYear(i)}
+            className={`px-6 py-3 font-mono text-[10px] tracking-[0.35em] uppercase transition-all duration-300 border-t border-l border-r ${
+              activeYear === i
+                ? "text-gold border-gold/25 bg-[#060c14] -mb-px relative z-10"
+                : "text-white/20 border-transparent hover:text-white/40"
+            }`}
+          >
+            {yr}
+            {activeYear === i && <span className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent" />}
+          </button>
+        ))}
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-px bg-gold/[0.08]">
+        {/* Revenue */}
+        <div className="bg-[#060c14] p-8" style={{ opacity: visible ? 1 : 0, transition: "all 0.5s ease" }}>
           <div className="flex items-center justify-between mb-6">
-            <p className="font-display text-xl font-light">{p.label}</p>
-            <span className="font-mono text-[9px] text-gold/50 border border-gold/20 px-2 py-1">
-              {p.share}%
-            </span>
+            <p className="font-mono text-[9px] tracking-[0.4em] text-gold/50 uppercase">Revenue — Where It Comes From</p>
+            <p className="font-display text-2xl font-light text-gold" style={{ textShadow: "0 0 15px rgba(0,207,255,0.3)" }}>€{combined.revenue[activeYear]}K</p>
           </div>
 
-          {/* Mini bars per year */}
-          <div className="space-y-4">
-            {FINANCIAL_YEARS.map((yr, yi) => {
-              const maxRev = Math.max(...p.revenue);
-              const w = (p.revenue[yi] / maxRev) * 100;
+          <div className="space-y-6">
+            {revenueDetail.map((r, ri) => {
+              const color = PILLAR_COLORS[ri];
+              const yr = r.years[activeYear];
+              const yrTotal = yr.lines.reduce((s, l) => s + l.v, 0);
+              const insAmt = Math.round(yrTotal * r.insShare[activeYear] / 100);
               return (
-                <div key={yr}>
-                  <div className="flex items-center justify-between mb-1.5">
-                    <span className="font-mono text-[9px] text-white/30">{yr}</span>
-                    <span className="font-mono text-[9px] text-gold/60">
-                      {p.insReturn[yi]}K return
-                    </span>
+                <div key={r.pillar}>
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 rounded-full" style={{ background: color, boxShadow: `0 0 6px ${color}` }} />
+                      <span className="font-mono text-[10px] text-white/50 uppercase tracking-wider">{r.pillar}</span>
+                    </div>
+                    <span className="font-mono text-base font-medium" style={{ color }}>€{yrTotal}K</span>
                   </div>
-                  <div className="h-[3px] bg-white/[0.05] rounded-full overflow-hidden">
-                    <div
-                      className="h-full rounded-full"
-                      style={{
-                        width: visible ? `${w}%` : "0%",
-                        background: "linear-gradient(to right, #00cfff, rgba(0,207,255,0.4))",
-                        transition: `width 1s cubic-bezier(0.25,1,0.5,1) ${pi * 0.1 + yi * 0.15}s`,
-                      }}
-                    />
+
+                  {/* Line items */}
+                  <div className="ml-4 space-y-1 mb-3">
+                    {yr.lines.map((line, li) => (
+                      <div key={li} className="flex items-center justify-between">
+                        <span className="font-mono text-[9px] text-white/25"><EditTxt value={line.l} path={["revenueDetail",ri,"years",activeYear,"lines",li,"l"]} onUpdate={onUpdate} editMode={editMode} /></span>
+                        <span className="font-mono text-[9px] text-white/35">€<EditNum value={line.v} path={["revenueDetail",ri,"years",activeYear,"lines",li,"v"]} onUpdate={onUpdate} editMode={editMode} />K</span>
+                      </div>
+                    ))}
                   </div>
-                  <div className="flex items-center justify-between mt-1">
-                    <span className="font-mono text-[8px] text-white/20">
-                      Invest: {p.investment[yi]}K
-                    </span>
-                    <span className="font-mono text-[8px] text-white/20">
-                      Rev: {p.revenue[yi]}K
-                    </span>
+
+                  {/* INS share */}
+                  <div className="ml-4 flex items-center justify-between border-t border-white/[0.04] pt-1.5">
+                    <span className="font-mono text-[9px] text-emerald-400/50">INS share (<EditNum value={r.insShare[activeYear]} path={["revenueDetail",ri,"insShare",activeYear]} onUpdate={onUpdate} editMode={editMode} />%)</span>
+                    <span className="font-mono text-[9px] text-emerald-400/70 font-medium">€{insAmt}K</span>
                   </div>
+
+                  {ri < revenueDetail.length - 1 && <div className="border-b border-white/[0.04] mt-4" />}
                 </div>
               );
             })}
+
+            {/* Total INS return */}
+            <div className="border-t border-gold/15 pt-4">
+              <div className="flex items-center justify-between">
+                <span className="font-mono text-[10px] text-emerald-400/60 uppercase tracking-wider">Total INS return</span>
+                <span className="font-mono text-base text-emerald-400 font-medium">€{combined.insReturn[activeYear]}K</span>
+              </div>
+            </div>
           </div>
         </div>
-      ))}
+
+        {/* Investment */}
+        <div className="bg-[#060c14] p-8" style={{ opacity: visible ? 1 : 0, transition: "all 0.5s ease 0.1s" }}>
+          <div className="flex items-center justify-between mb-6">
+            <p className="font-mono text-[9px] tracking-[0.4em] text-gold/50 uppercase">Investment — Where It Goes</p>
+            <p className="font-display text-2xl font-light text-white/50">€{combined.investment[activeYear]}K</p>
+          </div>
+
+          <div className="space-y-6">
+            {investmentDetail.map((p, pi) => {
+              const color = PILLAR_COLORS[pi];
+              const yr = p.years[activeYear];
+              const yrTotal = yr.lines.reduce((s, l) => s + l.v, 0);
+              return (
+                <div key={p.pillar}>
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 rounded-full" style={{ background: color }} />
+                      <span className="font-mono text-[10px] text-white/50 uppercase tracking-wider">{p.pillar}</span>
+                    </div>
+                    <span className="font-mono text-base text-white/40 font-medium">€{yrTotal}K</span>
+                  </div>
+
+                  {/* Line items */}
+                  <div className="ml-4 space-y-1">
+                    {yr.lines.map((line, li) => {
+                      const pct = yrTotal ? (line.v / yrTotal) * 100 : 0;
+                      return (
+                        <div key={li}>
+                          <div className="flex items-center justify-between mb-0.5">
+                            <span className="font-mono text-[9px] text-white/25"><EditTxt value={line.l} path={["investmentDetail",pi,"years",activeYear,"lines",li,"l"]} onUpdate={onUpdate} editMode={editMode} /></span>
+                            <span className="font-mono text-[9px] text-white/35">€<EditNum value={line.v} path={["investmentDetail",pi,"years",activeYear,"lines",li,"v"]} onUpdate={onUpdate} editMode={editMode} />K</span>
+                          </div>
+                          <div className="h-[2px] bg-white/[0.03] rounded-full overflow-hidden">
+                            <div className="h-full rounded-full transition-all duration-700" style={{ width: `${pct}%`, background: color, opacity: 0.4 }} />
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  {pi < investmentDetail.length - 1 && <div className="border-b border-white/[0.04] mt-4" />}
+                </div>
+              );
+            })}
+
+            {/* Total */}
+            <div className="border-t border-gold/15 pt-4">
+              <div className="flex items-center justify-between">
+                <span className="font-mono text-[10px] text-white/40 uppercase tracking-wider">Total invested</span>
+                <span className="font-mono text-base text-white/50 font-medium">€{combined.investment[activeYear]}K</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
 
 // ── Break-even + Upside Card ────────────────────────────────────────────────
-function BreakEvenCard() {
+function BreakEvenCard({ combined }: { combined: ComputedTotals; editMode: boolean; onUpdate: UpdateFn }) {
   const { ref, visible } = useChartVisible(0.2);
 
   // Cumulative data for the progress line
-  const cumInvest = COMBINED.cumInvest;
-  const cumReturn = COMBINED.cumReturn;
+  const cumInvest = combined.cumInvest;
+  const cumReturn = combined.cumReturn;
 
   return (
     <div ref={ref} className="border border-gold/[0.08] bg-[#060c14] p-10 shadow-[0_0_20px_rgba(0,207,255,0.04)]">
@@ -1061,48 +1421,4 @@ function BreakEvenCard() {
 // DECORATIVE COMPONENTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-function ConcentricRings() {
-  const rings = [
-    { size: 90, opacity: 0.55, dur: 3.5, delay: 0 },
-    { size: 72, opacity: 0.45, dur: 4.0, delay: 0.5 },
-    { size: 54, opacity: 0.35, dur: 4.5, delay: 1.0 },
-    { size: 38, opacity: 0.50, dur: 3.8, delay: 0.3 },
-    { size: 22, opacity: 0.60, dur: 4.2, delay: 0.8 },
-    { size: 8,  opacity: 0.70, dur: 3.0, delay: 0.2 },
-  ];
 
-  return (
-    <div className="relative flex items-center justify-center" style={{ width: "380px", height: "380px" }}>
-      <div className="absolute inset-0 rounded-full bg-gradient-radial from-gold/[0.08] to-transparent" />
-      {rings.map((r, i) => (
-        <div
-          key={i}
-          className="absolute rounded-full border border-gold"
-          style={{
-            width: `${r.size}%`,
-            height: `${r.size}%`,
-            opacity: r.opacity,
-            ["--ring-opacity-start" as string]: r.opacity,
-            ["--ring-opacity-end" as string]: r.opacity * 0.3,
-            animation: `ring-pulse ${r.dur}s ease-in-out ${r.delay}s infinite`,
-          }}
-        />
-      ))}
-      <div className="w-3 h-3 rounded-full bg-gold shadow-[0_0_15px_rgba(0,207,255,0.5)]" style={{ animation: "dot-breathe 3s ease-in-out infinite" }} />
-      <div className="absolute bottom-6 left-0 right-0 text-center">
-        <p className="font-mono text-[9px] tracking-[0.4em] text-gold/30 uppercase">A2G × INS</p>
-      </div>
-    </div>
-  );
-}
-
-function WaveformDecor() {
-  const heights = [18, 28, 42, 55, 38, 62, 48, 30, 68, 52, 35, 70, 45, 58, 38, 72, 50, 40, 62, 30, 48, 55, 35, 22];
-  return (
-    <div className="absolute bottom-6 right-6 flex items-end gap-[2px] opacity-[0.07] group-hover:opacity-[0.15] transition-opacity duration-500 pointer-events-none">
-      {heights.map((h, i) => (
-        <div key={i} className="w-[2px] bg-gold rounded-sm" style={{ height: `${h}px` }} />
-      ))}
-    </div>
-  );
-}
