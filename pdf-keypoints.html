@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@300;400&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #050a10;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .page {
+    width: 100%;
+    min-height: 100vh;
+    padding: 60px 70px;
+    page-break-after: always;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .page::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(0,207,255,0.04) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* Typography */
+  .display { font-family: 'Cormorant Garamond', serif; }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+  .body { font-family: 'Inter', sans-serif; }
+
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #f59e0b;
+    opacity: 0.7;
+    margin-bottom: 16px;
+  }
+
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 52px;
+    line-height: 1.1;
+    margin-bottom: 24px;
+  }
+
+  h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 36px;
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+
+  h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: 24px;
+    margin-bottom: 12px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.7;
+    max-width: 500px;
+  }
+
+  .cyan { color: #00cfff; }
+  .gold { color: #f59e0b; }
+
+  /* Header bar */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .logo {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    letter-spacing: 3px;
+    color: rgba(255,255,255,0.6);
+  }
+
+  .logo span { color: #00cfff; }
+
+  .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.25);
+  }
+
+  /* Grid */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+  .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 20px; }
+
+  /* Cards */
+  .card {
+    border: 1px solid rgba(245,158,11,0.08);
+    background: rgba(6,12,20,0.8);
+    padding: 28px;
+  }
+
+  .card-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: rgba(255,255,255,0.15);
+    letter-spacing: 3px;
+    margin-bottom: 14px;
+  }
+
+  .card h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .card p {
+    font-size: 12px;
+    color: rgba(255,255,255,0.35);
+    line-height: 1.6;
+  }
+
+  /* Stats */
+  .stat-big {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 48px;
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.25);
+    margin-top: 6px;
+  }
+
+  /* Table */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+
+  th {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.25);
+    text-align: right;
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  th:first-child { text-align: left; }
+
+  td {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    padding: 14px 16px;
+    text-align: right;
+    color: rgba(255,255,255,0.4);
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+  }
+
+  td:first-child {
+    text-align: left;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+  }
+
+  tr.highlight td {
+    color: #f59e0b;
+    font-weight: 500;
+  }
+
+  /* Dot separator */
+  .dot { color: rgba(245,158,11,0.4); margin: 0 8px; }
+
+  /* Artist row */
+  .artist-row {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 24px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .artist-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 300;
+    min-width: 200px;
+  }
+
+  .artist-meta {
+    font-size: 12px;
+    color: rgba(255,255,255,0.3);
+    line-height: 1.6;
+  }
+
+  .badge {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border: 1px solid;
+    margin-right: 6px;
+  }
+
+  .badge-cyan { color: #00cfff; border-color: rgba(0,207,255,0.3); background: rgba(0,207,255,0.06); }
+  .badge-gold { color: #f59e0b; border-color: rgba(245,158,11,0.3); background: rgba(245,158,11,0.06); }
+
+  /* Comparison */
+  .compare-box {
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 28px;
+    position: relative;
+  }
+
+  .compare-box.gold-border {
+    border-color: rgba(245,158,11,0.25);
+    background: rgba(245,158,11,0.03);
+  }
+
+  .vs-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #050a10;
+    padding: 4px 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: rgba(255,255,255,0.25);
+    letter-spacing: 3px;
+  }
+
+  /* Footer */
+  .page-footer {
+    position: absolute;
+    bottom: 30px;
+    left: 70px;
+    right: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .page-footer span {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 7px;
+    letter-spacing: 2px;
+    color: rgba(255,255,255,0.12);
+    text-transform: uppercase;
+  }
+
+  /* Divider */
+  .divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(245,158,11,0.2), transparent);
+    margin: 30px 0;
+  }
+
+  .spacer { height: 40px; }
+  .spacer-sm { height: 20px; }
+</style>
+</head>
+<body>
+
+<!-- PAGE 1: COVER -->
+<div class="page" style="display:flex; flex-direction:column; justify-content:center;">
+  <div class="header" style="position:absolute; top:60px; left:70px; right:70px;">
+    <div class="logo">A <sub style="font-size:9px">2</sub> G &nbsp;<span style="color:rgba(255,255,255,0.15)">|</span>&nbsp; <span>I N S</span></div>
+    <div class="tag">Private Proposal · 2026</div>
+  </div>
+
+  <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
+    <p class="eyebrow">Strategic Partnership Proposal</p>
+    <h1 style="font-size:64px; max-width:700px;">
+      Co-Building the Future of Music in <span class="cyan">China</span>
+    </h1>
+    <div class="spacer-sm"></div>
+    <p class="subtitle" style="max-width:550px;">
+      A first-of-its-kind co-development model — transforming Western artist booking into long-term shared ownership in the Chinese market.
+    </p>
+
+    <div class="spacer"></div>
+    <div class="spacer"></div>
+
+    <div style="display:flex; gap:60px;">
+      <div>
+        <p class="stat-big cyan">$8.5B</p>
+        <p class="stat-label">China Electronic Music Market</p>
+      </div>
+      <div>
+        <p class="stat-big" style="color:rgba(255,255,255,0.5);">10.6%</p>
+        <p class="stat-label">Annual Growth (CAGR)</p>
+      </div>
+      <div>
+        <p class="stat-big gold">3</p>
+        <p class="stat-label">Artists · Year 1</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>A2G Company FZCO · Dubai</span>
+    <span>Confidential</span>
+  </div>
+</div>
+
+<!-- PAGE 2: THE ARTISTS -->
+<div class="page">
+  <div class="header">
+    <div class="logo">A <sub style="font-size:9px">2</sub> G &nbsp;<span style="color:rgba(255,255,255,0.15)">|</span>&nbsp; <span>I N S</span></div>
+    <div class="tag">The Artists</div>
+  </div>
+
+  <p class="eyebrow">The Artists</p>
+  <h2>Western talent, built for Asia.</h2>
+  <p class="subtitle">Three complementary acts — each solving a different part of the Chinese market puzzle.</p>
+
+  <div class="spacer"></div>
+
+  <div class="artist-row">
+    <div class="artist-name">PROPHECY</div>
+    <div>
+      <div style="margin-bottom:8px;">
+        <span class="badge badge-cyan">Melodic Techno</span>
+        <span class="badge badge-gold">Spain</span>
+      </div>
+      <p class="artist-meta">
+        Co-produced with Anyma, MORTEN, David Guetta & Tiësto. HOLLOW feat. Prophecy on Insomniac Records.<br>
+        Label ecosystem: Insomniac · Spinnin'/Warner · Future Rave. 300K+ Spotify monthly listeners.
+      </p>
+    </div>
+  </div>
+
+  <div class="artist-row">
+    <div class="artist-name">AIRE</div>
+    <div>
+      <div style="margin-bottom:8px;">
+        <span class="badge badge-cyan">DJ × VJ Live Act</span>
+        <span class="badge badge-gold">Spain</span>
+      </div>
+      <p class="artist-meta">
+        Immersive dual format: synchronized live music + real-time visual performance by Thundercode.<br>
+        Every show produces sellable A/V content. Purpose-built for Asian rave culture and brand activations.
+      </p>
+    </div>
+  </div>
+
+  <div class="artist-row" style="border-bottom:none;">
+    <div class="artist-name">BJÖRN</div>
+    <div>
+      <div style="margin-bottom:8px;">
+        <span class="badge badge-cyan">Electronic</span>
+        <span class="badge badge-gold">INS Local</span>
+      </div>
+      <p class="artist-meta">
+        INS's homegrown artist — the internal success story. A2G brings Western production network,<br>
+        co-production credits, and label pitches. The partnership's clearest proof of concept.
+      </p>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>A2G × INS · Partnership Proposal</span>
+    <span>02</span>
+  </div>
+</div>
+
+<!-- PAGE 3: THE DEAL -->
+<div class="page">
+  <div class="header">
+    <div class="logo">A <sub style="font-size:9px">2</sub> G &nbsp;<span style="color:rgba(255,255,255,0.15)">|</span>&nbsp; <span>I N S</span></div>
+    <div class="tag">Deal Structure</div>
+  </div>
+
+  <p class="eyebrow">How It Works</p>
+  <h2>The Structure</h2>
+
+  <div class="spacer-sm"></div>
+
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-num">01</div>
+      <h3>Initial Investment</h3>
+      <p>INS co-funds marketing, live logistics, creative direction and content. Capital flows in, risk is shared from day one.</p>
+    </div>
+    <div class="card">
+      <div class="card-num">02</div>
+      <h3>Artist Development</h3>
+      <p>Exclusive Asia territory: shows, masterclasses, social media, brand-building, and strategic label collaborations.</p>
+    </div>
+    <div class="card">
+      <div class="card-num">03</div>
+      <h3>Long-term Revenue</h3>
+      <p>3-phase revenue share on China territory: 60/40 until recovery, 30/70 for 3 years, then 10% INS royalty up to year 10.</p>
+    </div>
+  </div>
+
+  <div class="spacer"></div>
+  <div class="divider"></div>
+  <div class="spacer-sm"></div>
+
+  <p class="eyebrow">Revenue Sources — China Territory</p>
+  <div class="spacer-sm"></div>
+
+  <div class="grid-3" style="gap:16px;">
+    <div style="display:flex; align-items:start; gap:10px;">
+      <span class="gold" style="margin-top:2px;">·</span>
+      <div>
+        <p style="font-size:13px; color:rgba(255,255,255,0.6); margin-bottom:4px; font-weight:500;">Live Shows</p>
+        <p style="font-size:11px; color:rgba(255,255,255,0.3); line-height:1.5;">External bookings: INS takes % of net artist fee as profile grows.</p>
+      </div>
+    </div>
+    <div style="display:flex; align-items:start; gap:10px;">
+      <span class="gold" style="margin-top:2px;">·</span>
+      <div>
+        <p style="font-size:13px; color:rgba(255,255,255,0.6); margin-bottom:4px; font-weight:500;">Streaming</p>
+        <p style="font-size:11px; color:rgba(255,255,255,0.3); line-height:1.5;">QQ Music, NetEase, Douyin — INS earns % on every stream.</p>
+      </div>
+    </div>
+    <div style="display:flex; align-items:start; gap:10px;">
+      <span class="gold" style="margin-top:2px;">·</span>
+      <div>
+        <p style="font-size:13px; color:rgba(255,255,255,0.6); margin-bottom:4px; font-weight:500;">Gaming & Sync</p>
+        <p style="font-size:11px; color:rgba(255,255,255,0.3); line-height:1.5;">In-game music, brand collabs, advertising — INS gaming division.</p>
+      </div>
+    </div>
+    <div style="display:flex; align-items:start; gap:10px;">
+      <span class="gold" style="margin-top:2px;">·</span>
+      <div>
+        <p style="font-size:13px; color:rgba(255,255,255,0.6); margin-bottom:4px; font-weight:500;">Ghost Production</p>
+        <p style="font-size:11px; color:rgba(255,255,255,0.3); line-height:1.5;">Prophecy produces for local artists. Value trade: music for stage time.</p>
+      </div>
+    </div>
+    <div style="display:flex; align-items:start; gap:10px;">
+      <span class="gold" style="margin-top:2px;">·</span>
+      <div>
+        <p style="font-size:13px; color:rgba(255,255,255,0.6); margin-bottom:4px; font-weight:500;">Content Licensing</p>
+        <p style="font-size:11px; color:rgba(255,255,255,0.3); line-height:1.5;">AIRE A/V sets, masterclass content — sellable media from every show.</p>
+      </div>
+    </div>
+    <div style="display:flex; align-items:start; gap:10px;">
+      <span class="gold" style="margin-top:2px;">·</span>
+      <div>
+        <p style="font-size:13px; color:rgba(255,255,255,0.6); margin-bottom:4px; font-weight:500;">Merchandise</p>
+        <p style="font-size:11px; color:rgba(255,255,255,0.3); line-height:1.5;">Artist merch through INS retail and online. Scales with audience.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>A2G × INS · Partnership Proposal</span>
+    <span>03</span>
+  </div>
+</div>
+
+<!-- PAGE 4: FINANCIAL PROJECTIONS -->
+<div class="page">
+  <div class="header">
+    <div class="logo">A <sub style="font-size:9px">2</sub> G &nbsp;<span style="color:rgba(255,255,255,0.15)">|</span>&nbsp; <span>I N S</span></div>
+    <div class="tag">The Numbers</div>
+  </div>
+
+  <p class="eyebrow">3-Year Financial Projection</p>
+  <h2>Conservative Model</h2>
+  <p class="subtitle" style="margin-bottom:30px;">Based on standard industry percentages. Shows structured as value trades.</p>
+
+  <!-- KPI Cards -->
+  <div class="grid-3" style="margin-bottom:30px;">
+    <div class="card" style="text-align:center; padding:32px 20px;">
+      <p class="stat-label" style="margin-bottom:12px;">Year 1</p>
+      <p class="stat-big cyan" style="font-size:44px;">€44K</p>
+      <p class="stat-label" style="margin-top:8px;">China Revenue</p>
+      <div style="display:flex; justify-content:center; gap:24px; margin-top:16px; padding-top:16px; border-top:1px solid rgba(255,255,255,0.06);">
+        <div>
+          <p style="font-family:'JetBrains Mono'; font-size:13px; color:rgba(255,255,255,0.4);">€54K</p>
+          <p class="stat-label">Invested</p>
+        </div>
+        <div>
+          <p style="font-family:'JetBrains Mono'; font-size:13px; color:#34d399;">€24K</p>
+          <p class="stat-label">INS Return</p>
+        </div>
+      </div>
+    </div>
+    <div class="card" style="text-align:center; padding:32px 20px;">
+      <p class="stat-label" style="margin-bottom:12px;">Year 2</p>
+      <p class="stat-big cyan" style="font-size:44px;">€179K</p>
+      <p class="stat-label" style="margin-top:8px;">China Revenue</p>
+      <div style="display:flex; justify-content:center; gap:24px; margin-top:16px; padding-top:16px; border-top:1px solid rgba(255,255,255,0.06);">
+        <div>
+          <p style="font-family:'JetBrains Mono'; font-size:13px; color:rgba(255,255,255,0.4);">€77K</p>
+          <p class="stat-label">Invested</p>
+        </div>
+        <div>
+          <p style="font-family:'JetBrains Mono'; font-size:13px; color:#34d399;">€53K</p>
+          <p class="stat-label">INS Return</p>
+        </div>
+      </div>
+    </div>
+    <div class="card" style="text-align:center; padding:32px 20px;">
+      <p class="stat-label" style="margin-bottom:12px;">Year 3</p>
+      <p class="stat-big cyan" style="font-size:44px;">€525K</p>
+      <p class="stat-label" style="margin-top:8px;">China Revenue</p>
+      <div style="display:flex; justify-content:center; gap:24px; margin-top:16px; padding-top:16px; border-top:1px solid rgba(255,255,255,0.06);">
+        <div>
+          <p style="font-family:'JetBrains Mono'; font-size:13px; color:rgba(255,255,255,0.4);">€122K</p>
+          <p class="stat-label">Invested</p>
+        </div>
+        <div>
+          <p style="font-family:'JetBrains Mono'; font-size:13px; color:#34d399;">€158K</p>
+          <p class="stat-label">INS Return</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Break-even table -->
+  <p class="eyebrow" style="margin-top:10px;">Investment Recovery Summary</p>
+  <table>
+    <tr>
+      <th style="width:40%"></th>
+      <th>Year 1</th>
+      <th>Year 2</th>
+      <th>Year 3</th>
+    </tr>
+    <tr>
+      <td>Cumulative Invested</td>
+      <td>€54K</td>
+      <td>€131K</td>
+      <td>€253K</td>
+    </tr>
+    <tr>
+      <td>Cash Recovered</td>
+      <td>€24K (44%)</td>
+      <td>€77K (59%)</td>
+      <td>€222K (88%)</td>
+    </tr>
+    <tr>
+      <td>Total Value Recovered</td>
+      <td>€59–84K</td>
+      <td>€132–167K</td>
+      <td>€302–352K</td>
+    </tr>
+    <tr class="highlight">
+      <td style="color:#f59e0b;">% of Investment (Total)</td>
+      <td>113–159%</td>
+      <td>101–127%</td>
+      <td>119–139%</td>
+    </tr>
+  </table>
+
+  <div class="page-footer">
+    <span>A2G × INS · Partnership Proposal</span>
+    <span>04</span>
+  </div>
+</div>
+
+<!-- PAGE 5: THE PRECEDENT + VALUE -->
+<div class="page">
+  <div class="header">
+    <div class="logo">A <sub style="font-size:9px">2</sub> G &nbsp;<span style="color:rgba(255,255,255,0.15)">|</span>&nbsp; <span>I N S</span></div>
+    <div class="tag">The Model</div>
+  </div>
+
+  <p class="eyebrow">The Model Has Already Been Proven</p>
+  <h2>FIVE Holdings × Pacha Group</h2>
+  <p class="subtitle" style="margin-bottom:30px;">
+    FIVE acquired Pacha for €302.5M — brand, IP, label, content engine. $589M revenue in 2024 (28% YoY).
+    But their biggest vulnerability: without owned artists, they always pay someone else's fee.
+  </p>
+
+  <div class="grid-2" style="margin-bottom:40px;">
+    <div class="compare-box">
+      <p style="font-family:'JetBrains Mono'; font-size:9px; letter-spacing:3px; color:rgba(255,255,255,0.25); text-transform:uppercase; margin-bottom:12px;">FIVE Holdings</p>
+      <p class="stat-big" style="color:rgba(255,255,255,0.3); font-size:36px; margin-bottom:8px;">€302.5M</p>
+      <p style="font-size:12px; color:rgba(255,255,255,0.3);">Still rents talent — no owned artist pipeline</p>
+    </div>
+    <div class="compare-box gold-border">
+      <p style="font-family:'JetBrains Mono'; font-size:9px; letter-spacing:3px; color:#f59e0b; text-transform:uppercase; margin-bottom:12px;">INS + A2G</p>
+      <p class="stat-big gold" style="font-size:36px; margin-bottom:8px;">€54K <span style="font-size:18px; color:rgba(245,158,11,0.5);">Year 1</span></p>
+      <p style="font-size:12px; color:rgba(245,158,11,0.5);">Co-owns artists from day one — audiences come for the brand</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+  <div class="spacer-sm"></div>
+
+  <p class="eyebrow">Value Beyond Revenue — 6 Dimensions</p>
+  <div class="spacer-sm"></div>
+
+  <div class="grid-3" style="gap:16px;">
+    <div class="card" style="padding:20px;">
+      <div class="card-num">01</div>
+      <h3 style="font-size:16px;">Revenue Share</h3>
+      <p style="font-size:10px;">60% Phase 1 → 30% Phase 2 → 10% royalty. All China revenue streams.</p>
+    </div>
+    <div class="card" style="padding:20px;">
+      <div class="card-num">02</div>
+      <h3 style="font-size:16px;">Artist IP</h3>
+      <p style="font-size:10px;">Every track, visual, and show = permanent content assets INS co-owns.</p>
+    </div>
+    <div class="card" style="padding:20px;">
+      <div class="card-num">03</div>
+      <h3 style="font-size:16px;">Label Network</h3>
+      <p style="font-size:10px;">Direct channel to Insomniac, Spinnin'/Warner, Future Rave via A2G.</p>
+    </div>
+    <div class="card" style="padding:20px;">
+      <div class="card-num">04</div>
+      <h3 style="font-size:16px;">Ghost Production</h3>
+      <p style="font-size:10px;">Guetta/ARTBAT-level production. €50K–150K market value over 3 years.</p>
+    </div>
+    <div class="card" style="padding:20px;">
+      <div class="card-num">05</div>
+      <h3 style="font-size:16px;">Content Engine</h3>
+      <p style="font-size:10px;">AIRE's DJ×VJ format: sellable A/V from every show. Stage = studio.</p>
+    </div>
+    <div class="card" style="padding:20px;">
+      <div class="card-num">06</div>
+      <h3 style="font-size:16px;">Repeatable Model</h3>
+      <p style="font-size:10px;">Year 1 builds the OS. Every future artist uses the same infrastructure.</p>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>A2G × INS · Partnership Proposal</span>
+    <span>05</span>
+  </div>
+</div>
+
+<!-- PAGE 6: ABOUT + CTA -->
+<div class="page" style="display:flex; flex-direction:column;">
+  <div class="header">
+    <div class="logo">A <sub style="font-size:9px">2</sub> G &nbsp;<span style="color:rgba(255,255,255,0.15)">|</span>&nbsp; <span>I N S</span></div>
+    <div class="tag">About A2G</div>
+  </div>
+
+  <p class="eyebrow">About A2G Company</p>
+  <h2>Who We Are</h2>
+  <p class="subtitle" style="margin-bottom:30px; max-width:600px;">
+    Dubai-based music and technology holding. We develop artists, platforms, and IP — as a co-building partner that takes long-term equity positions in talent.
+  </p>
+
+  <div class="grid-4" style="margin-bottom:30px;">
+    <div style="text-align:center; padding:20px;">
+      <p class="stat-big" style="font-size:36px; color:rgba(255,255,255,0.6);">4</p>
+      <p class="stat-label">Artists Managed</p>
+    </div>
+    <div style="text-align:center; padding:20px;">
+      <p class="stat-big" style="font-size:36px; color:rgba(255,255,255,0.6);">8</p>
+      <p class="stat-label">Active Businesses</p>
+    </div>
+    <div style="text-align:center; padding:20px;">
+      <p class="stat-big" style="font-size:28px; color:rgba(255,255,255,0.6);">Dubai</p>
+      <p class="stat-label">HQ, UAE (FZCO)</p>
+    </div>
+    <div style="text-align:center; padding:20px;">
+      <p class="stat-big" style="font-size:36px; color:rgba(255,255,255,0.6);">5</p>
+      <p class="stat-label">Major Label Families</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <p class="eyebrow" style="margin-top:20px;">Artist Roster</p>
+  <div class="spacer-sm"></div>
+
+  <div class="grid-2" style="gap:16px; margin-bottom:30px;">
+    <div style="display:flex; align-items:baseline; gap:16px; padding:12px 0; border-bottom:1px solid rgba(255,255,255,0.04);">
+      <span style="font-family:'Cormorant Garamond'; font-size:22px; font-weight:300; min-width:180px;">Roger Sanchez</span>
+      <span style="font-size:11px; color:rgba(255,255,255,0.3);">House legend · Grammy · 25+ years</span>
+    </div>
+    <div style="display:flex; align-items:baseline; gap:16px; padding:12px 0; border-bottom:1px solid rgba(255,255,255,0.04);">
+      <span style="font-family:'Cormorant Garamond'; font-size:22px; font-weight:300; min-width:180px;">PROPHECY</span>
+      <span style="font-size:11px; color:rgba(255,255,255,0.3);">Insomniac · Spinnin' · 300K+ listeners</span>
+    </div>
+    <div style="display:flex; align-items:baseline; gap:16px; padding:12px 0; border-bottom:1px solid rgba(255,255,255,0.04);">
+      <span style="font-family:'Cormorant Garamond'; font-size:22px; font-weight:300; min-width:180px;">AIRE</span>
+      <span style="font-size:11px; color:rgba(255,255,255,0.3);">DJ×VJ Live Act · Thundercode</span>
+    </div>
+    <div style="display:flex; align-items:baseline; gap:16px; padding:12px 0; border-bottom:1px solid rgba(255,255,255,0.04);">
+      <span style="font-family:'Cormorant Garamond'; font-size:22px; font-weight:300; min-width:180px;">BABEL Music</span>
+      <span style="font-size:11px; color:rgba(255,255,255,0.3);">Melodic electronic · Tomorrowland</span>
+    </div>
+  </div>
+
+  <div style="flex:1;"></div>
+
+  <!-- CTA -->
+  <div style="text-align:center; padding:40px 0; border-top:1px solid rgba(245,158,11,0.15);">
+    <p class="eyebrow" style="margin-bottom:12px;">Ready to Build?</p>
+    <h2 style="font-size:42px;">Let's Build <span class="gold">Together</span></h2>
+    <p style="font-size:13px; color:rgba(255,255,255,0.35); margin-top:12px;">aitzolarev@gmail.com</p>
+    <p style="font-family:'JetBrains Mono'; font-size:9px; color:rgba(255,255,255,0.15); letter-spacing:2px; margin-top:20px;">ins.a2g.company</p>
+  </div>
+
+  <div class="page-footer">
+    <span>A2G × INS · Partnership Proposal</span>
+    <span>06</span>
+  </div>
+</div>
+
+</body>
+</html>
