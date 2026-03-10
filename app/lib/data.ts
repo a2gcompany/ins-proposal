@@ -93,7 +93,7 @@ export const DEFAULT_DATA = {
     { source: "Live Shows", desc: "External bookings (non-INS venues): INS takes % of net artist fee. As artist profile grows, so does the fee — and INS's share." },
     { source: "Streaming", desc: "China-territory distribution (QQ Music, NetEase, Douyin). INS builds the infrastructure, then earns % on every stream." },
     { source: "Gaming & Sync", desc: "INS's gaming division is a direct channel: in-game music, brand collabs, advertising placements — all split at the agreed rate." },
-    { source: "Ghost Production", desc: "Prophecy produces for INS local artists in exchange for shows + exposure. A value-trade engine: music for stage time. Phase 1 only." },
+    { source: "Ghost Production", desc: "Prophecy produces for INS local artists in exchange for shows + exposure. A value-trade engine: A value-trade engine that evolves into co-production revenue as local artists grow." },
     { source: "Merchandise", desc: "Artist merch through INS retail and online channels. Aspirational — scales with audience." },
     { source: "Content Licensing", desc: "AIRE A/V sets, masterclass content, DJ sets — sellable media assets produced on every activation." },
   ],
@@ -103,7 +103,7 @@ export const DEFAULT_DATA = {
     {
       year: "Year 1", title: "Establishment", subtitle: "Build the foundation. First shows, first tracks, first audience.",
       tracks: [
-        { artist: "Prophecy", color: "#00cfff", items: ["5 shows at INS venues — establish live presence in China", "Ghost-produce for Björn — build his catalog with Western-grade production", "Prophecy × Björn collab release — cross-pollinate audiences", "China-territory streaming setup (QQ Music, NetEase, Douyin)"] },
+        { artist: "Prophecy", color: "#00cfff", items: ["4–5 shows at INS venues — establish live presence in China", "Ghost-produce for Björn — build his catalog with Western-grade production", "Prophecy × Björn collab release — cross-pollinate audiences", "China-territory streaming setup (QQ Music, NetEase, Douyin)"] },
         { artist: "AIRE", color: "#7dd3fc", items: ["5 immersive DJ × VJ shows at INS venues — debut the format", "AIRE × Björn visual collab — content from every show", "First A/V content package: sellable assets from each activation", "Build social presence on Chinese platforms (Douyin, RED)"] },
         { artist: "Björn", color: "#38bdf8", items: ["Receive ghost-produced tracks from Prophecy — accelerate catalog", "Feature in AIRE shows as support/visual collab act", "First solo releases on INS-connected labels", "INS handles creative direction & marketing locally"] },
         { artist: "INS", color: "#f59e0b", items: ["Creative direction & marketing for all 3 artists in China", "Set up China-territory distribution infrastructure", "Local brand activation: Park Coffee Club, campus events", "Scouting pipeline: identify next local talent for Year 2"] },
@@ -136,7 +136,7 @@ export const DEFAULT_DATA = {
       pillar: "Prophecy",
       insShare: [60, 30, 30],
       years: [
-        { lines: [{ l: "5 shows × €4K avg", v: 20 }, { l: "Streaming (QQ Music, NetEase, Douyin)", v: 5 }, { l: "Sync & gaming placements", v: 5 }] },
+        { lines: [{ l: "4 shows × €4K avg", v: 16 }, { l: "Streaming (QQ Music, NetEase, Douyin)", v: 5 }, { l: "Sync & gaming placements", v: 5 }] },
         { lines: [{ l: "12 shows × €5K avg", v: 60 }, { l: "Streaming (growing catalog)", v: 15 }, { l: "Sync & gaming", v: 9 }] },
         { lines: [{ l: "20 shows × €10K avg", v: 200 }, { l: "Streaming (established presence)", v: 40 }, { l: "Sync, gaming & brand deals", v: 35 }] },
       ],
@@ -154,9 +154,9 @@ export const DEFAULT_DATA = {
       pillar: "Local Artists",
       insShare: [60, 30, 30],
       years: [
-        { lines: [{ l: "Joint releases", v: 2 }] },
+        { lines: [{ l: "3 shows × €1K", v: 3 }, { l: "Joint releases", v: 3 }] },
         { lines: [{ l: "5 shows × €3K", v: 15 }, { l: "Ghost production", v: 22 }, { l: "Joint releases", v: 10 }] },
-        { lines: [{ l: "12 shows × €5K", v: 60 }, { l: "Streaming", v: 30 }, { l: "Joint releases", v: 10 }] },
+        { lines: [{ l: "10 shows × €5K", v: 50 }, { l: "Streaming", v: 10 }, { l: "Joint releases", v: 10 }] },
       ],
     },
   ],
