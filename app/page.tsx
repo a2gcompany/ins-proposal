@@ -1408,12 +1408,12 @@ function BreakEvenCard({ combined }: { combined: ComputedTotals; editMode: boole
             </p>
             <div className="flex items-end gap-8">
               <div>
-                <p className="font-display text-2xl font-light text-white/30">359K</p>
+                <p className="font-display text-2xl font-light text-white/30">253K</p>
                 <p className="font-mono text-[8px] text-white/20">total invested</p>
               </div>
               <div className="text-gold/30 text-xl mb-1">&rarr;</div>
               <div>
-                <p className="font-display text-2xl font-light text-gold">221K</p>
+                <p className="font-display text-2xl font-light text-gold">222K</p>
                 <p className="font-mono text-[8px] text-gold/40">base return</p>
               </div>
               <div className="text-gold/30 text-xl mb-1">&rarr;</div>
