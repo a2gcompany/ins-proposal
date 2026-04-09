@@ -176,7 +176,7 @@ export default function PrintPage() {
             The biggest market<br />nobody has <span className="gold-shimmer italic">unlocked</span>.
           </h2>
           <p className="font-body text-[8pt] text-white/35 mb-[10mm] max-w-[140mm]">
-            China's electronic music market reached $8.5B in 2025, growing at 10.6% CAGR. No replicable co-development model with long-term territorial revenue sharing exists yet.
+            China&apos;s electronic music market reached $8.5B in 2025, growing at 10.6% CAGR. No replicable co-development model with long-term territorial revenue sharing exists yet.
           </p>
 
           {/* FIVE Holdings */}
@@ -189,7 +189,7 @@ export default function PrintPage() {
               <p>Plans $500M expansion across US and Asia. $460M credit facility secured.</p>
             </div>
             <p className="font-body text-[8pt] text-[#C9A84C] italic mt-[4mm] leading-relaxed">
-              But FIVE proved its biggest vulnerability: without their own artists, they're always paying someone else's fee to fill their own venues.
+              But FIVE proved its biggest vulnerability: without their own artists, they&apos;re always paying someone else&apos;s fee to fill their own venues.
             </p>
           </div>
 
@@ -220,7 +220,7 @@ export default function PrintPage() {
             Western talent,<br />built for <span className="italic text-[#00cfff]">Asia</span>.
           </h2>
 
-          {d.artists.map((a, i) => (
+          {d.artists.map((a) => (
             <div key={a.id} className="flex gap-[5mm] mb-[6mm] items-start">
               <div className="w-[40mm] h-[40mm] shrink-0 rounded-[2mm] overflow-hidden bg-[#0a1020]">
                 {a.image ? (
@@ -380,7 +380,7 @@ export default function PrintPage() {
           <h2 className="font-display text-[28pt] font-light leading-[1.1] mb-[4mm]">
             The artist<br /><span className="gold-shimmer italic">incubator</span>.
           </h2>
-          <p className="font-display text-[11pt] italic text-[#C9A84C] mb-[4mm]">"We don't book artists. We build them."</p>
+          <p className="font-display text-[11pt] italic text-[#C9A84C] mb-[4mm]">&ldquo;We don&apos;t book artists. We build them.&rdquo;</p>
           <p className="font-body text-[8pt] text-white/35 leading-relaxed mb-[8mm] max-w-[140mm]">
             Prophecy is the key that starts the machine. Björn is the first prototype. If it works, the infrastructure serves every artist after — same system, lower cost, faster results.
           </p>
@@ -431,11 +431,11 @@ export default function PrintPage() {
         <div className="absolute inset-0 bg-gradient-to-b from-[#00cfff03] via-transparent to-[#C9A84C05]" />
         <div className="h-full flex flex-col items-center justify-center text-center px-[30mm]">
           <GoldLine />
-          <h2 className="font-display text-[34pt] font-light mt-[4mm] mb-[2mm]">Let's Build</h2>
+          <h2 className="font-display text-[34pt] font-light mt-[4mm] mb-[2mm]">Let&apos;s Build</h2>
           <h2 className="font-display text-[34pt] font-light italic text-[#C9A84C] mb-[6mm]">Together</h2>
 
           <p className="font-body text-[9pt] text-white/35 mb-[12mm] max-w-[100mm] leading-relaxed">
-            We propose a long-term partnership, not a one-night booking. If the vision aligns, let's move fast.
+            We propose a long-term partnership, not a one-night booking. If the vision aligns, let&apos;s move fast.
           </p>
 
           <p className="font-body text-[11pt] text-white mb-[1mm]">Aitzol Arevalo Gómez</p>
