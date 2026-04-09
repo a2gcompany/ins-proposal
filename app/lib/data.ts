@@ -202,14 +202,89 @@ export const DEFAULT_DATA = {
     },
   },
 
+  // ── ECOSYSTEMS (schema-aligned) ───────────────────────────────────────────────
+  ecosystems: {
+    ins: {
+      label: "INS ecosystem",
+      entities: [
+        { id: "hero-com", name: "HERO.COM", role: "Venues + infrastructure" },
+        { id: "ins", name: "INS", role: "Brand + operations + local marketing" },
+        { id: "hero-esports", name: "Hero E-Sports", role: "Gaming + sync pipeline" },
+        { id: "ins-shows", name: "INS Shows", role: "Live events in China" },
+        { id: "insane", name: "INSane", role: "Record label" },
+      ],
+      delivers: [
+        "Licensing (gaming, brand, sync)",
+        "China Marketing (Douyin, RED, local promo)",
+        "Shows (China + INS venues)",
+      ],
+    },
+    a2g: {
+      label: "A2G company",
+      entities: [
+        { id: "prophecy", name: "Prophecy", role: "Production + live engine" },
+        { id: "persona", name: "PERSONA", role: "Label + EDMisLove 7M promo" },
+        { id: "aire", name: "AIRE", role: "Content + immersive DJ×VJ shows" },
+      ],
+      delivers: [
+        "Music for INS artists (ghost production)",
+        "Music for INSane release",
+        "Releases for INS artists (label pitches)",
+        "WW Marketing",
+        "Content (A/V from every show)",
+        "Exclusive immersive shows",
+      ],
+    },
+  },
+
+  // ── REVENUE PER ARTIST TYPE (schema: 3 blocks) ─────────────────────────────
+  revenueByArtistType: [
+    {
+      block: "REVENUE + MARKETING HERO",
+      color: "#3b82f6",
+      artists: ["Björn", "INS artist 2", "Artist 3..."],
+      desc: "INS local artists — developed with A2G production, revenue stays in INS ecosystem",
+      streams: [
+        { id: "shows", name: "Shows", territory: "Global" },
+        { id: "royalties", name: "Royalties and publishing", territory: "Global" },
+        { id: "licensing", name: "Licensing", territory: "Global" },
+        { id: "exclusivity", name: "Exclusivity and control", territory: "Global" },
+        { id: "ww-marketing", name: "WW Marketing", territory: "Worldwide" },
+      ],
+    },
+    {
+      block: "REVENUE + MARKETING HERO + A2G",
+      color: "#8b5cf6",
+      artists: ["AIRE"],
+      desc: "A2G artist with shared China revenue — immersive format produces sellable content",
+      streams: [
+        { id: "shows-china", name: "Shows (China)", territory: "China" },
+        { id: "licensing-china", name: "Licensing (China)", territory: "China" },
+        { id: "exclusivity-china", name: "Exclusivity and control (China)", territory: "China" },
+        { id: "royalties-china", name: "Royalties and publishing (China)", territory: "China" },
+      ],
+    },
+    {
+      block: "REVENUE + MARKETING A2G",
+      color: "#ef4444",
+      artists: ["Prophecy"],
+      desc: "A2G flagship artist — INS provides venues and marketing, A2G manages globally",
+      streams: [
+        { id: "china-marketing", name: "China Marketing", territory: "China" },
+        { id: "shows-ins", name: "Shows (INS)", territory: "China" },
+      ],
+    },
+  ],
+
   // ── VALUE DIMENSIONS ──────────────────────────────────────────────────────────
   valueDimensions: [
     { num: "01", title: "Revenue Share", category: "Economic", desc: "60% in Phase 1 (recovery), 30% in Phase 2 (3 years), 10% royalty up to year 10. Applied across all China-territory revenue: live, streaming, sync, merch, licensing, content." },
     { num: "02", title: "Artist IP as Infrastructure", category: "Strategic", desc: "Every track produced, every visual asset, every show recorded — permanent content assets INS co-owns. This IP library grows monthly and can be monetized across venues, gaming platforms, brand deals, and streaming indefinitely." },
-    { num: "03", title: "Western Label Network Access", category: "Strategic", desc: "Through A2G, INS gains a direct channel to Insomniac Records, Spinnin'/Warner, and Future Rave. INS local artists can be placed on international labels — credibility and reverse-flow revenue that didn't exist before." },
-    { num: "04", title: "Ghost Production Pipeline", category: "Operational", desc: "PROPHECY ghost-produces at Guetta/ARTBAT quality levels. A track costing €5K–15K on the open market gets delivered as part of the partnership. Over 3 years, this represents €50K–150K in production value." },
-    { num: "05", title: "Content Engine", category: "Marketing", desc: "AIRE's DJ×VJ format produces sellable A/V content from every show: short-form for Douyin/RED, long-form for streaming, visual packages for brand licensing. INS venues become both the stage and the studio." },
-    { num: "06", title: "A Repeatable Model", category: "Scalable", desc: "If this works with 3 artists, INS has a proven playbook to replicate. The infrastructure built in Year 1 — distribution channels, marketing processes, label relationships — becomes the operating system for every artist INS develops." },
+    { num: "03", title: "Exclusivity and Control", category: "Strategic", desc: "INS holds territorial exclusivity on China-market activations. For local artists (Björn+), this extends to global exclusivity and control. No competing partnership can replicate these artists in the same territory." },
+    { num: "04", title: "Western Label Network Access", category: "Strategic", desc: "Through A2G, INS gains a direct channel to Insomniac Records, Spinnin'/Warner, and Future Rave. INS local artists can be placed on international labels — credibility and reverse-flow revenue that didn't exist before." },
+    { num: "05", title: "Ghost Production Pipeline", category: "Operational", desc: "PROPHECY ghost-produces at Guetta/ARTBAT quality levels. A track costing €5K–15K on the open market gets delivered as part of the partnership. Over 3 years, this represents €50K–150K in production value." },
+    { num: "06", title: "Content Engine", category: "Marketing", desc: "AIRE's DJ×VJ format produces sellable A/V content from every show: short-form for Douyin/RED, long-form for streaming, visual packages for brand licensing. INS venues become both the stage and the studio." },
+    { num: "07", title: "A Repeatable Model", category: "Scalable", desc: "If this works with 3 artists, INS has a proven playbook to replicate. The infrastructure built in Year 1 — distribution channels, marketing processes, label relationships — becomes the operating system for every artist INS develops." },
   ],
 
   // ── RISKS ────────────────────────────────────────────────────────────────────

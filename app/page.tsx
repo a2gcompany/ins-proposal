@@ -191,6 +191,7 @@ export default function Page() {
         {/* Nav links */}
         <div className="hidden md:flex items-center gap-7 mx-8">
           {[
+            { label: "Partnership", href: "#partnership" },
             { label: "Opportunity", href: "#opportunity" },
             { label: "The Model", href: "#precedent" },
             { label: "Artists", href: "#artists" },
@@ -260,6 +261,99 @@ export default function Page() {
                 <p className="font-body text-xs text-white/25 leading-relaxed mt-0.5"><EditTxt value={s.b} path={s.pB} onUpdate={updateField} editMode={editMode} /></p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── THE PARTNERSHIP (ecosystems from schema) ── */}
+      <section id="partnership" className="py-32 px-8 md:px-16 lg:px-24 bg-[#040810]">
+        <div className="max-w-7xl mx-auto">
+          <div className="reveal mb-16">
+            <p className="font-mono text-[9px] tracking-[0.45em] text-gold uppercase mb-4 opacity-70">
+              The Partnership
+            </p>
+            <h2 className="font-display text-4xl md:text-5xl font-light">
+              Two ecosystems,<br />one <em className="italic gold-shimmer">machine</em>.
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+            {/* INS ecosystem */}
+            <div className="reveal border border-[#3b82f630] bg-[#3b82f608] p-8">
+              <p className="font-display text-2xl font-light text-[#60a5fa] mb-6">INS ecosystem</p>
+              <div className="space-y-3">
+                {proposalData.ecosystems.ins.entities.map((e, i) => (
+                  <div key={i} className="flex items-start gap-3">
+                    <span className="text-[#60a5fa]/60 shrink-0 mt-0.5">·</span>
+                    <div>
+                      <span className="font-body text-sm text-white/70 font-medium">{e.name}</span>
+                      <span className="font-body text-sm text-white/35"> — {e.role}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-6 pt-4 border-t border-[#3b82f620]">
+                <p className="font-mono text-[9px] tracking-[0.35em] text-[#f59e0b]/60 uppercase mb-2">Local artists</p>
+                <p className="font-body text-xs text-[#f59e0b]/40">Björn (first prototype) · INS artist 2 · Artist 3...</p>
+              </div>
+              <div className="mt-4 pt-3 border-t border-[#3b82f620]">
+                <p className="font-mono text-[9px] tracking-[0.35em] text-[#60a5fa]/50 uppercase mb-2">INS delivers into the deal</p>
+                {proposalData.ecosystems.ins.delivers.map((d, i) => (
+                  <p key={i} className="font-body text-xs text-[#60a5fa]/40 mb-1">→ {d}</p>
+                ))}
+              </div>
+            </div>
+
+            {/* A2G ecosystem */}
+            <div className="reveal border border-[#ef444430] bg-[#ef444408] p-8">
+              <p className="font-display text-2xl font-light text-[#f87171] mb-6">A2G company</p>
+              <div className="space-y-3">
+                {proposalData.ecosystems.a2g.entities.map((e, i) => (
+                  <div key={i} className="flex items-start gap-3">
+                    <span className="text-[#f87171]/60 shrink-0 mt-0.5">·</span>
+                    <div>
+                      <span className="font-body text-sm text-white/70 font-medium">{e.name}</span>
+                      <span className="font-body text-sm text-white/35"> — {e.role}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-6 pt-4 border-t border-[#ef444420]">
+                <p className="font-mono text-[9px] tracking-[0.35em] text-[#f87171]/50 uppercase mb-2">A2G delivers into the deal</p>
+                {proposalData.ecosystems.a2g.delivers.map((d, i) => (
+                  <p key={i} className="font-body text-xs text-[#f87171]/40 mb-1">→ {d}</p>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Revenue blocks per artist type */}
+          <div className="reveal border border-gold/[0.08] bg-[#060c14] p-10">
+            <p className="font-mono text-[9px] tracking-[0.4em] text-gold/50 uppercase mb-8">
+              Revenue Attribution by Artist Type
+            </p>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              {proposalData.revenueByArtistType.map((block, bi) => (
+                <div key={bi} className="border rounded-lg p-6" style={{ borderColor: `${block.color}30`, background: `${block.color}08` }}>
+                  <p className="font-mono text-[9px] tracking-[0.35em] uppercase mb-3" style={{ color: block.color }}>{block.block}</p>
+                  <div className="flex flex-wrap gap-1.5 mb-3">
+                    {block.artists.map((a, ai) => (
+                      <span key={ai} className="font-mono text-[8px] px-2 py-0.5 rounded-sm" style={{ color: block.color, background: `${block.color}18`, border: `1px solid ${block.color}30` }}>{a}</span>
+                    ))}
+                  </div>
+                  <p className="font-body text-xs text-white/30 mb-4 leading-relaxed">{block.desc}</p>
+                  <div className="space-y-2">
+                    {block.streams.map((s, si) => (
+                      <div key={si} className="flex items-center gap-2">
+                        <div className="w-1.5 h-1.5 rounded-full" style={{ background: block.color }} />
+                        <p className="font-body text-sm text-white/55">{s.name}</p>
+                        <span className="font-mono text-[8px] text-white/20 ml-auto">{s.territory}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -506,10 +600,39 @@ export default function Page() {
           {/* Revenue split donuts */}
           <RevenueSplitChart />
 
-          {/* Revenue sources — China territory */}
+          {/* Revenue streams per artist type — 3 blocks from schema */}
           <div className="mt-6 border border-gold/[0.08] bg-[#060c14] p-10 shadow-[0_0_20px_rgba(0,207,255,0.04)]">
             <p className="font-mono text-[9px] tracking-[0.4em] text-gold/50 uppercase mb-8">
-              China Territory — Revenue Sources
+              Revenue Streams by Artist Type
+            </p>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              {proposalData.revenueByArtistType.map((block, bi) => (
+                <div key={bi} className="border rounded-lg p-6" style={{ borderColor: `${block.color}30`, background: `${block.color}08` }}>
+                  <p className="font-mono text-[9px] tracking-[0.35em] uppercase mb-2" style={{ color: block.color }}>{block.block}</p>
+                  <div className="flex flex-wrap gap-1.5 mb-3">
+                    {block.artists.map((a, ai) => (
+                      <span key={ai} className="font-mono text-[8px] px-2 py-0.5 rounded-sm" style={{ color: block.color, background: `${block.color}18`, border: `1px solid ${block.color}30` }}>{a}</span>
+                    ))}
+                  </div>
+                  <p className="font-body text-xs text-white/30 mb-4 leading-relaxed">{block.desc}</p>
+                  <div className="space-y-2">
+                    {block.streams.map((s, si) => (
+                      <div key={si} className="flex items-center gap-2">
+                        <div className="w-1 h-1 rounded-full" style={{ background: block.color }} />
+                        <p className="font-body text-sm text-white/55">{s.name}</p>
+                        <span className="font-mono text-[8px] text-white/20 ml-auto">{s.territory}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Legacy revenue sources detail */}
+          <div className="mt-6 border border-gold/[0.08] bg-[#060c14] p-10 shadow-[0_0_20px_rgba(0,207,255,0.04)]">
+            <p className="font-mono text-[9px] tracking-[0.4em] text-gold/50 uppercase mb-8">
+              Revenue Source Details
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {proposalData.revenueSources.map((r, ri) => (

@@ -123,43 +123,75 @@ export default function PrintPage() {
             Two ecosystems,<br />one <span className="gold-shimmer italic">machine</span>.
           </h2>
 
-          <div className="flex gap-[6mm] mb-[8mm]">
+          <div className="flex gap-[6mm] mb-[6mm]">
             {/* INS */}
-            <div className="flex-1 border border-[#0F6E5640] rounded-[4mm] p-[6mm] bg-[#0F6E5608]">
-              <p className="font-display text-[11pt] text-[#00cfff] mb-[4mm]">INS ecosystem</p>
-              {["INS — Venues + infrastructure","Hero E-Sports — Gaming + sync pipeline","INS Shows — Live events in China","INSane — Record label","China Marketing — Douyin, RED, local promo"].map((item, i) => (
-                <p key={i} className="font-body text-[7pt] text-white/50 mb-[2mm] flex gap-[2mm]">
-                  <span className="text-[#5DCAA5] shrink-0">·</span> {item}
+            <div className="flex-1 border border-[#3b82f640] rounded-[4mm] p-[5mm] bg-[#3b82f608]">
+              <p className="font-display text-[11pt] text-[#60a5fa] mb-[3mm]">INS ecosystem</p>
+              {[
+                { name: "HERO.COM", role: "Venues + infrastructure" },
+                { name: "INS", role: "Brand + operations + local marketing" },
+                { name: "Hero E-Sports", role: "Gaming + sync pipeline" },
+                { name: "INS Shows", role: "Live events in China" },
+                { name: "INSane", role: "Record label" },
+              ].map((e, i) => (
+                <p key={i} className="font-body text-[6.5pt] text-white/50 mb-[1.5mm] flex gap-[2mm]">
+                  <span className="text-[#60a5fa] shrink-0">·</span>
+                  <span><span className="text-white/70">{e.name}</span> — {e.role}</span>
                 </p>
               ))}
-              <div className="mt-[4mm] pt-[3mm] border-t border-[#0F6E5630]">
-                <p className="font-mono text-[5pt] tracking-[0.15em] text-[#EF9F27] uppercase mb-[2mm]">Local artists</p>
-                <p className="font-body text-[7pt] text-[#EF9F27]/60">Björn (first prototype) · INS artist 2 · Artist 3...</p>
+              <div className="mt-[3mm] pt-[2mm] border-t border-[#3b82f630]">
+                <p className="font-mono text-[5pt] tracking-[0.15em] text-[#EF9F27] uppercase mb-[1.5mm]">Local artists</p>
+                <p className="font-body text-[6.5pt] text-[#EF9F27]/60">Björn (first prototype) · INS artist 2 · Artist 3...</p>
               </div>
             </div>
             {/* A2G */}
-            <div className="flex-1 border border-[#534AB740] rounded-[4mm] p-[6mm] bg-[#534AB708]">
-              <p className="font-display text-[11pt] text-[#AFA9EC] mb-[4mm]">A2G company</p>
-              {["Prophecy — Production + live engine","AIRE — Content + immersive DJ×VJ shows","PERSONA — Label + EDMisLove 7M promo","Int'l network — Available, not promised"].map((item, i) => (
-                <p key={i} className="font-body text-[7pt] text-white/50 mb-[2mm] flex gap-[2mm]">
-                  <span className="text-[#AFA9EC] shrink-0">·</span> {item}
+            <div className="flex-1 border border-[#ef444440] rounded-[4mm] p-[5mm] bg-[#ef444408]">
+              <p className="font-display text-[11pt] text-[#f87171] mb-[3mm]">A2G company</p>
+              {[
+                { name: "Prophecy", role: "Production + live engine" },
+                { name: "AIRE", role: "Content + immersive DJ×VJ shows" },
+                { name: "PERSONA", role: "Label + EDMisLove 7M promo" },
+              ].map((e, i) => (
+                <p key={i} className="font-body text-[6.5pt] text-white/50 mb-[1.5mm] flex gap-[2mm]">
+                  <span className="text-[#f87171] shrink-0">·</span>
+                  <span><span className="text-white/70">{e.name}</span> — {e.role}</span>
                 </p>
               ))}
+              <div className="mt-[3mm] pt-[2mm] border-t border-[#ef444430]">
+                <p className="font-mono text-[5pt] tracking-[0.15em] text-white/25 uppercase mb-[1.5mm]">INS delivers</p>
+                {["Licensing · China Marketing · Shows (China+INS)"].map((r, i) => (
+                  <p key={i} className="font-body text-[6pt] text-[#60a5fa]/60">→ {r}</p>
+                ))}
+                <p className="font-mono text-[5pt] tracking-[0.15em] text-white/25 uppercase mb-[1.5mm] mt-[2mm]">A2G delivers</p>
+                {["Music for INS artists · INSane releases · WW Marketing · Content · Exclusive shows"].map((r, i) => (
+                  <p key={i} className="font-body text-[6pt] text-[#f87171]/60">→ {r}</p>
+                ))}
+              </div>
             </div>
           </div>
 
-          {/* Revenue + Delivers */}
-          <div className="flex gap-[6mm]">
-            <div className="flex-1">
-              <p className="font-mono text-[5pt] tracking-[0.2em] text-[#5DCAA5] uppercase mb-[3mm]">INS earns from artists</p>
-              {["China shows revenue (60/30/10% share)","Music royalties + publishing (China territory)","Licensing in China (gaming, brand, sync)","Content + merch revenue"].map((r, i) => (
-                <p key={i} className="font-body text-[6.5pt] text-[#5DCAA5]/70 mb-[1.5mm]">· {r}</p>
+          {/* Revenue blocks per artist type */}
+          <p className="font-mono text-[5pt] tracking-[0.2em] text-white/30 uppercase mb-[3mm]">Revenue streams by artist type</p>
+          <div className="flex gap-[3mm]">
+            {/* Block 1: HERO */}
+            <div className="flex-1 border border-[#3b82f630] rounded-[2mm] p-[3mm] bg-[#3b82f608]">
+              <p className="font-mono text-[5pt] tracking-[0.15em] text-[#60a5fa] uppercase mb-[2mm]">Local Artists (Björn+)</p>
+              {["Shows","Royalties + publishing","Licensing","Exclusivity + control","WW Marketing"].map((s, i) => (
+                <p key={i} className="font-body text-[5.5pt] text-white/40 mb-[0.5mm]">· {s}</p>
               ))}
             </div>
-            <div className="flex-1">
-              <p className="font-mono text-[5pt] tracking-[0.2em] text-[#C9A84C] uppercase mb-[3mm]">A2G delivers into the deal</p>
-              {["Ghost production for INS artists","Releases on INSane label","Label releases + worldwide exposure","A/V content + exclusive immersive shows"].map((r, i) => (
-                <p key={i} className="font-body text-[6.5pt] text-[#C9A84C]/70 mb-[1.5mm]">· {r}</p>
+            {/* Block 2: HERO+A2G */}
+            <div className="flex-1 border border-[#8b5cf630] rounded-[2mm] p-[3mm] bg-[#8b5cf608]">
+              <p className="font-mono text-[5pt] tracking-[0.15em] text-[#a78bfa] uppercase mb-[2mm]">AIRE (shared)</p>
+              {["Shows (China)","Licensing (China)","Exclusivity + control (China)","Royalties + publishing (China)"].map((s, i) => (
+                <p key={i} className="font-body text-[5.5pt] text-white/40 mb-[0.5mm]">· {s}</p>
+              ))}
+            </div>
+            {/* Block 3: A2G */}
+            <div className="flex-1 border border-[#ef444430] rounded-[2mm] p-[3mm] bg-[#ef444408]">
+              <p className="font-mono text-[5pt] tracking-[0.15em] text-[#f87171] uppercase mb-[2mm]">Prophecy (A2G)</p>
+              {["China Marketing","Shows (INS venues)"].map((s, i) => (
+                <p key={i} className="font-body text-[5.5pt] text-white/40 mb-[0.5mm]">· {s}</p>
               ))}
             </div>
           </div>
@@ -318,14 +350,20 @@ export default function PrintPage() {
             Value beyond<br /><span className="gold-shimmer italic">revenue</span>.
           </h2>
 
-          <div className="grid grid-cols-2 gap-[4mm]">
-            {d.valueDimensions.map((v) => (
-              <div key={v.num} className="border border-white/[0.04] rounded-[2mm] p-[5mm] bg-white/[0.015]">
-                <p className="font-mono text-[5pt] tracking-[0.15em] text-[#C9A84C] uppercase mb-[2mm]">{v.category}</p>
-                <p className="font-display text-[11pt] text-white mb-[2mm]">{v.title}</p>
-                <p className="font-body text-[6.5pt] text-white/35 leading-relaxed">{v.desc}</p>
-              </div>
-            ))}
+          <div className="grid grid-cols-2 gap-[3mm]">
+            {d.valueDimensions.map((v) => {
+              const catColors: Record<string, string> = {
+                Economic: "#f59e0b", Strategic: "#00cfff", Operational: "#34d399", Marketing: "#a78bfa", Scalable: "#22d3ee",
+              };
+              const c = catColors[v.category] ?? "#f59e0b";
+              return (
+                <div key={v.num} className="border border-white/[0.04] rounded-[2mm] p-[4mm] bg-white/[0.015]">
+                  <p className="font-mono text-[5pt] tracking-[0.15em] uppercase mb-[1.5mm]" style={{ color: c }}>{v.category}</p>
+                  <p className="font-display text-[10pt] text-white mb-[1.5mm]">{v.title}</p>
+                  <p className="font-body text-[6pt] text-white/35 leading-relaxed">{v.desc}</p>
+                </div>
+              );
+            })}
           </div>
         </div>
         <PageNum n={6} />
@@ -407,20 +445,30 @@ export default function PrintPage() {
             </p>
           </div>
 
-          {/* Revenue per artist */}
-          <p className="font-mono text-[5pt] tracking-[0.2em] text-[#5DCAA5] uppercase mb-[3mm]">Each artist generates revenue for INS</p>
-          <div className="grid grid-cols-4 gap-[3mm]">
-            {[
-              { t: "Shows in China", s: "60/30/10% revenue share" },
-              { t: "Royalties + publishing", s: "China territory streams" },
-              { t: "Licensing in China", s: "Gaming, brand, sync" },
-              { t: "Content + merch", s: "A/V assets, brand deals" },
-            ].map((r, i) => (
-              <div key={i} className="border border-[#0F6E5640] rounded-[2mm] p-[3mm] bg-[#0F6E5608]">
-                <p className="font-body text-[6.5pt] text-[#5DCAA5] mb-[1mm]">{r.t}</p>
-                <p className="font-body text-[5.5pt] text-white/25">{r.s}</p>
-              </div>
-            ))}
+          {/* Revenue per artist type — 3 blocks from schema */}
+          <p className="font-mono text-[5pt] tracking-[0.2em] text-white/30 uppercase mb-[3mm]">Revenue streams by artist type</p>
+          <div className="flex gap-[3mm]">
+            <div className="flex-1 border border-[#3b82f630] rounded-[2mm] p-[3mm] bg-[#3b82f608]">
+              <p className="font-mono text-[5pt] tracking-[0.15em] text-[#60a5fa] uppercase mb-[1.5mm]">Revenue · Local Artists</p>
+              <p className="font-body text-[5pt] text-white/25 mb-[2mm]">Björn, INS artist 2...</p>
+              {["Shows","Royalties + publishing","Licensing","Exclusivity + control","WW Marketing"].map((s, i) => (
+                <p key={i} className="font-body text-[5.5pt] text-white/40 mb-[0.5mm]">· {s}</p>
+              ))}
+            </div>
+            <div className="flex-1 border border-[#8b5cf630] rounded-[2mm] p-[3mm] bg-[#8b5cf608]">
+              <p className="font-mono text-[5pt] tracking-[0.15em] text-[#a78bfa] uppercase mb-[1.5mm]">Revenue · AIRE (shared)</p>
+              <p className="font-body text-[5pt] text-white/25 mb-[2mm]">Hero + A2G</p>
+              {["Shows (China)","Licensing (China)","Exclusivity + control (China)","Royalties + publishing (China)"].map((s, i) => (
+                <p key={i} className="font-body text-[5.5pt] text-white/40 mb-[0.5mm]">· {s}</p>
+              ))}
+            </div>
+            <div className="flex-1 border border-[#ef444430] rounded-[2mm] p-[3mm] bg-[#ef444408]">
+              <p className="font-mono text-[5pt] tracking-[0.15em] text-[#f87171] uppercase mb-[1.5mm]">Revenue · Prophecy</p>
+              <p className="font-body text-[5pt] text-white/25 mb-[2mm]">A2G managed</p>
+              {["China Marketing","Shows (INS venues)"].map((s, i) => (
+                <p key={i} className="font-body text-[5.5pt] text-white/40 mb-[0.5mm]">· {s}</p>
+              ))}
+            </div>
           </div>
         </div>
         <PageNum n={8} />
