@@ -117,6 +117,7 @@ export default function Page() {
   const [proposalData, setProposalData] = useState(DEFAULT_DATA);
   const [editMode, setEditMode] = useState(false);
   const [canEdit, setCanEdit] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
 
   useEffect(() => {
     setProposalData(loadData());
@@ -153,6 +154,20 @@ export default function Page() {
     const cumReturn = insReturn.map((_, i) => insReturn.slice(0, i + 1).reduce((s, v) => s + v, 0));
     return { revenue, investment, insReturn, cumInvest, cumReturn };
   }, [proposalData.revenueDetail, proposalData.investmentDetail]);
+
+  useEffect(() => {
+    const sections = document.querySelectorAll("section[id]");
+    const navObs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) setActiveSection(e.target.id);
+        });
+      },
+      { rootMargin: "-30% 0px -60% 0px" }
+    );
+    sections.forEach((s) => navObs.observe(s));
+    return () => navObs.disconnect();
+  }, []);
 
   useEffect(() => {
     const els = document.querySelectorAll(".reveal");
@@ -205,7 +220,7 @@ export default function Page() {
             <a
               key={l.href}
               href={l.href}
-              className="font-mono text-[9px] tracking-[0.3em] text-white/25 hover:text-white/60 uppercase transition-colors duration-200"
+              className={`font-mono text-[9px] tracking-[0.3em] uppercase transition-colors duration-200 ${activeSection === l.href.slice(1) ? "text-gold/80" : "text-white/25 hover:text-white/60"}`}
             >
               {l.label}
             </a>

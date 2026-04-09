@@ -313,9 +313,9 @@ export default function PrintPage() {
               <p className="font-body text-[8pt] text-white/20">Still rents talent</p>
             </div>
             <span className="font-display text-[18pt] text-[#C9A84C]/30">→</span>
-            <div className="flex-1 border border-[#C9A84C30] rounded-[2mm] p-[8mm] text-center bg-[#C9A84C06]">
+            <div className="flex-1 border-2 border-[#C9A84C40] rounded-[2mm] p-[8mm] text-center bg-[#C9A84C06]" style={{ boxShadow: "0 0 20px rgba(201,168,76,0.06)" }}>
               <p className="font-display text-[32pt] font-light text-[#C9A84C] mb-[2mm]">€54K</p>
-              <p className="font-body text-[8pt] text-white/40">Co-owns artists from day one</p>
+              <p className="font-body text-[8pt] text-white/50">Co-owns artists from day one</p>
             </div>
           </div>
 
