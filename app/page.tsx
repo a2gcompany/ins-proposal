@@ -235,7 +235,7 @@ export default function Page() {
                 : <>{proposalData.hero.title.split(" in ")[0]} in<br /><em className="italic gold-shimmer">{proposalData.hero.title.split(" in ")[1]}</em></>
               }
             </h1>
-            <p className="font-body text-sm text-white/45 leading-relaxed mb-12 max-w-xl">
+            <p className="font-body text-sm text-white/55 leading-relaxed mb-12 max-w-xl">
               <EditArea value={proposalData.hero.subtitle} path={["hero","subtitle"]} onUpdate={updateField} editMode={editMode} />
             </p>
             <a
@@ -257,8 +257,8 @@ export default function Page() {
             ].map((s, i) => (
               <div key={i} className={`py-7 ${i < 3 ? "border-b border-white/[0.06]" : ""}`}>
                 <p className="font-display text-2xl font-light text-gold mb-2" style={{ textShadow: "0 0 15px rgba(0,207,255,0.3)" }}>{s.q}</p>
-                <p className="font-body text-sm text-white/55 leading-relaxed"><EditTxt value={s.a} path={s.pA} onUpdate={updateField} editMode={editMode} /></p>
-                <p className="font-body text-xs text-white/25 leading-relaxed mt-0.5"><EditTxt value={s.b} path={s.pB} onUpdate={updateField} editMode={editMode} /></p>
+                <p className="font-body text-sm text-white/65 leading-relaxed"><EditTxt value={s.a} path={s.pA} onUpdate={updateField} editMode={editMode} /></p>
+                <p className="font-body text-xs text-white/40 leading-relaxed mt-0.5"><EditTxt value={s.b} path={s.pB} onUpdate={updateField} editMode={editMode} /></p>
               </div>
             ))}
           </div>
@@ -287,19 +287,19 @@ export default function Page() {
                     <span className="text-[#60a5fa]/60 shrink-0 mt-0.5">·</span>
                     <div>
                       <span className="font-body text-sm text-white/70 font-medium">{e.name}</span>
-                      <span className="font-body text-sm text-white/35"> — {e.role}</span>
+                      <span className="font-body text-sm text-white/50"> — {e.role}</span>
                     </div>
                   </div>
                 ))}
               </div>
               <div className="mt-6 pt-4 border-t border-[#3b82f620]">
                 <p className="font-mono text-[9px] tracking-[0.35em] text-[#f59e0b]/60 uppercase mb-2">Local artists</p>
-                <p className="font-body text-xs text-[#f59e0b]/40">Björn (first prototype) · INS artist 2 · Artist 3...</p>
+                <p className="font-body text-xs text-[#f59e0b]/55">Björn (first prototype) · INS artist 2 · Artist 3...</p>
               </div>
               <div className="mt-4 pt-3 border-t border-[#3b82f620]">
                 <p className="font-mono text-[9px] tracking-[0.35em] text-[#60a5fa]/50 uppercase mb-2">INS delivers into the deal</p>
                 {proposalData.ecosystems.ins.delivers.map((d, i) => (
-                  <p key={i} className="font-body text-xs text-[#60a5fa]/40 mb-1">→ {d}</p>
+                  <p key={i} className="font-body text-xs text-[#60a5fa]/55 mb-1">→ {d}</p>
                 ))}
               </div>
             </div>
@@ -313,7 +313,7 @@ export default function Page() {
                     <span className="text-[#f87171]/60 shrink-0 mt-0.5">·</span>
                     <div>
                       <span className="font-body text-sm text-white/70 font-medium">{e.name}</span>
-                      <span className="font-body text-sm text-white/35"> — {e.role}</span>
+                      <span className="font-body text-sm text-white/50"> — {e.role}</span>
                     </div>
                   </div>
                 ))}
@@ -321,7 +321,7 @@ export default function Page() {
               <div className="mt-6 pt-4 border-t border-[#ef444420]">
                 <p className="font-mono text-[9px] tracking-[0.35em] text-[#f87171]/50 uppercase mb-2">A2G delivers into the deal</p>
                 {proposalData.ecosystems.a2g.delivers.map((d, i) => (
-                  <p key={i} className="font-body text-xs text-[#f87171]/40 mb-1">→ {d}</p>
+                  <p key={i} className="font-body text-xs text-[#f87171]/55 mb-1">→ {d}</p>
                 ))}
               </div>
             </div>
@@ -341,12 +341,12 @@ export default function Page() {
                       <span key={ai} className="font-mono text-[8px] px-2 py-0.5 rounded-sm" style={{ color: block.color, background: `${block.color}18`, border: `1px solid ${block.color}30` }}>{a}</span>
                     ))}
                   </div>
-                  <p className="font-body text-xs text-white/30 mb-4 leading-relaxed">{block.desc}</p>
+                  <p className="font-body text-xs text-white/45 mb-4 leading-relaxed">{block.desc}</p>
                   <div className="space-y-2">
                     {block.streams.map((s, si) => (
                       <div key={si} className="flex items-center gap-2">
                         <div className="w-1.5 h-1.5 rounded-full" style={{ background: block.color }} />
-                        <p className="font-body text-sm text-white/55">{s.name}</p>
+                        <p className="font-body text-sm text-white/65">{s.name}</p>
                         <span className="font-mono text-[8px] text-white/20 ml-auto">{s.territory}</span>
                       </div>
                     ))}
@@ -379,7 +379,7 @@ export default function Page() {
               <EditTxt value={proposalData.market.size} path={["market","size"]} onUpdate={updateField} editMode={editMode} />
             </p>
             <p className="font-body text-sm font-medium text-white/80 mb-3"><EditTxt value={proposalData.market.sizeLabel} path={["market","sizeLabel"]} onUpdate={updateField} editMode={editMode} /></p>
-            <p className="font-body text-xs text-white/35 leading-relaxed"><EditArea value={proposalData.market.sizeSub} path={["market","sizeSub"]} onUpdate={updateField} editMode={editMode} /></p>
+            <p className="font-body text-xs text-white/50 leading-relaxed"><EditArea value={proposalData.market.sizeSub} path={["market","sizeSub"]} onUpdate={updateField} editMode={editMode} /></p>
           </div>
 
           {/* Market Growth Chart */}
@@ -401,7 +401,7 @@ export default function Page() {
           </div>
 
           <div className="reveal border border-white/[0.06] bg-[#060c14] p-10 mb-6 shadow-[0_0_20px_rgba(0,207,255,0.04)]">
-            <p className="font-body text-sm text-white/50 leading-relaxed mb-6 max-w-3xl">
+            <p className="font-body text-sm text-white/60 leading-relaxed mb-6 max-w-3xl">
               {proposalData.precedent.body}
             </p>
             <p className="font-body text-sm text-gold/70 leading-relaxed max-w-3xl italic">
@@ -422,14 +422,14 @@ export default function Page() {
                 {proposalData.precedent.comparison.five.problem}
               </p>
             </div>
-            <div className="bg-[#060c14] p-10 border border-gold/[0.12]" style={{ boxShadow: "0 0 30px rgba(0,207,255,0.05)" }}>
+            <div className="bg-[#060c14] p-10 border-2 border-gold/[0.25]" style={{ boxShadow: "0 0 40px rgba(201,168,76,0.08), 0 0 15px rgba(0,207,255,0.06)" }}>
               <p className="font-mono text-[9px] tracking-[0.4em] text-gold/60 uppercase mb-5">
                 {proposalData.precedent.comparison.ins.label}
               </p>
               <p className="font-display text-5xl font-light leading-none mb-4" style={{ color: "#00cfff", textShadow: "0 0 25px rgba(0,207,255,0.4)" }}>
                 {proposalData.precedent.comparison.ins.investment}
               </p>
-              <p className="font-body text-sm text-white/50 leading-relaxed">
+              <p className="font-body text-sm text-white/60 leading-relaxed">
                 {proposalData.precedent.comparison.ins.advantage}
               </p>
             </div>
@@ -501,7 +501,7 @@ export default function Page() {
                     {a.name}
                   </h3>
                   <p className="font-body text-xs text-white/25 mb-6">{a.origin}</p>
-                  <p className="font-body text-sm text-white/40 italic mb-10 max-w-lg leading-relaxed"><EditArea value={a.tagline} path={["artists",i,"tagline"]} onUpdate={updateField} editMode={editMode} /></p>
+                  <p className="font-body text-sm text-white/55 italic mb-10 max-w-lg leading-relaxed"><EditArea value={a.tagline} path={["artists",i,"tagline"]} onUpdate={updateField} editMode={editMode} /></p>
 
                   {a.collabs.length > 0 && (
                     <div className="mb-10">
@@ -520,7 +520,7 @@ export default function Page() {
 
                   <div className="space-y-3">
                     {a.highlights.map((h, hi) => (
-                      <p key={hi} className="font-body text-sm text-white/40 flex items-start gap-3 leading-relaxed">
+                      <p key={hi} className="font-body text-sm text-white/55 flex items-start gap-3 leading-relaxed">
                         <span className="text-gold/40 shrink-0 mt-0.5">·</span>
                         <EditArea value={h} path={["artists",i,"highlights",hi]} onUpdate={updateField} editMode={editMode} />
                       </p>
@@ -592,7 +592,7 @@ export default function Page() {
                   </div>
                 </div>
                 <h3 className="font-display text-2xl md:text-3xl font-light mb-5"><EditTxt value={p.title} path={["phases",i,"title"]} onUpdate={updateField} editMode={editMode} /></h3>
-                <p className="font-body text-sm text-white/40 leading-relaxed"><EditArea value={p.body} path={["phases",i,"body"]} onUpdate={updateField} editMode={editMode} /></p>
+                <p className="font-body text-sm text-white/55 leading-relaxed"><EditArea value={p.body} path={["phases",i,"body"]} onUpdate={updateField} editMode={editMode} /></p>
               </div>
             ))}
           </div>
@@ -614,12 +614,12 @@ export default function Page() {
                       <span key={ai} className="font-mono text-[8px] px-2 py-0.5 rounded-sm" style={{ color: block.color, background: `${block.color}18`, border: `1px solid ${block.color}30` }}>{a}</span>
                     ))}
                   </div>
-                  <p className="font-body text-xs text-white/30 mb-4 leading-relaxed">{block.desc}</p>
+                  <p className="font-body text-xs text-white/45 mb-4 leading-relaxed">{block.desc}</p>
                   <div className="space-y-2">
                     {block.streams.map((s, si) => (
                       <div key={si} className="flex items-center gap-2">
                         <div className="w-1 h-1 rounded-full" style={{ background: block.color }} />
-                        <p className="font-body text-sm text-white/55">{s.name}</p>
+                        <p className="font-body text-sm text-white/65">{s.name}</p>
                         <span className="font-mono text-[8px] text-white/20 ml-auto">{s.territory}</span>
                       </div>
                     ))}
@@ -640,7 +640,7 @@ export default function Page() {
                   <span className="text-gold/40 shrink-0 mt-0.5">·</span>
                   <div>
                     <p className="font-body text-sm font-medium text-white/70 mb-1"><EditTxt value={r.source} path={["revenueSources",ri,"source"]} onUpdate={updateField} editMode={editMode} /></p>
-                    <p className="font-body text-xs text-white/30 leading-relaxed"><EditArea value={r.desc} path={["revenueSources",ri,"desc"]} onUpdate={updateField} editMode={editMode} /></p>
+                    <p className="font-body text-xs text-white/45 leading-relaxed"><EditArea value={r.desc} path={["revenueSources",ri,"desc"]} onUpdate={updateField} editMode={editMode} /></p>
                   </div>
                 </div>
               ))}
@@ -691,7 +691,7 @@ export default function Page() {
                   <h3 className="font-display text-xl font-light mb-4 group-hover:text-gold transition-colors duration-300">
                     {dim.title}
                   </h3>
-                  <p className="font-body text-xs text-white/35 leading-relaxed">{dim.desc}</p>
+                  <p className="font-body text-xs text-white/50 leading-relaxed">{dim.desc}</p>
                 </div>
               );
             })}
@@ -733,9 +733,9 @@ export default function Page() {
               <table className="w-full">
                 <thead>
                   <tr className="border-b border-white/[0.05]">
-                    <th className="text-left px-8 py-4 font-mono text-[9px] tracking-[0.35em] text-white/25 uppercase">Metric</th>
+                    <th className="text-left px-8 py-4 font-mono text-[9px] tracking-[0.35em] text-white/35 uppercase">Metric</th>
                     {["Year 1", "Year 2", "Year 3"].map(yr => (
-                      <th key={yr} className="text-right px-8 py-4 font-mono text-[9px] tracking-[0.35em] text-white/25 uppercase">{yr}</th>
+                      <th key={yr} className="text-right px-8 py-4 font-mono text-[9px] tracking-[0.35em] text-white/35 uppercase">{yr}</th>
                     ))}
                   </tr>
                 </thead>
@@ -745,10 +745,10 @@ export default function Page() {
                       key={ri}
                       className={`border-b border-white/[0.04] hover:bg-white/[0.02] transition-colors ${row.highlight ? "bg-gold/[0.04]" : ""}`}
                     >
-                      <td className={`px-8 py-4 font-body text-sm ${row.highlight ? "text-gold font-medium" : "text-white/45"}`}>{row.metric}</td>
-                      <td className={`px-8 py-4 text-right font-mono text-sm ${row.highlight ? "text-gold" : "text-white/35"}`}>{row.y1}</td>
-                      <td className={`px-8 py-4 text-right font-mono text-sm ${row.highlight ? "text-gold" : "text-white/35"}`}>{row.y2}</td>
-                      <td className={`px-8 py-4 text-right font-mono text-sm ${row.highlight ? "text-gold" : "text-white/35"}`}>{row.y3}</td>
+                      <td className={`px-8 py-4 font-body text-sm ${row.highlight ? "text-gold font-medium" : "text-white/60"}`}>{row.metric}</td>
+                      <td className={`px-8 py-4 text-right font-mono text-sm ${row.highlight ? "text-gold" : "text-white/50"}`}>{row.y1}</td>
+                      <td className={`px-8 py-4 text-right font-mono text-sm ${row.highlight ? "text-gold" : "text-white/50"}`}>{row.y2}</td>
+                      <td className={`px-8 py-4 text-right font-mono text-sm ${row.highlight ? "text-gold" : "text-white/50"}`}>{row.y3}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -778,9 +778,9 @@ export default function Page() {
               <table className="w-full">
                 <thead>
                   <tr className="border-b border-white/[0.05]">
-                    <th className="text-left px-8 py-5 font-mono text-[9px] tracking-[0.35em] text-white/25 uppercase w-1/3">Risk</th>
-                    <th className="text-left px-8 py-5 font-mono text-[9px] tracking-[0.35em] text-white/25 uppercase">Mitigation</th>
-                    <th className="text-left px-8 py-5 font-mono text-[9px] tracking-[0.35em] text-white/25 uppercase w-28">Likelihood</th>
+                    <th className="text-left px-8 py-5 font-mono text-[9px] tracking-[0.35em] text-white/35 uppercase w-1/3">Risk</th>
+                    <th className="text-left px-8 py-5 font-mono text-[9px] tracking-[0.35em] text-white/35 uppercase">Mitigation</th>
+                    <th className="text-left px-8 py-5 font-mono text-[9px] tracking-[0.35em] text-white/35 uppercase w-28">Likelihood</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -788,8 +788,8 @@ export default function Page() {
                     const likelihoodColor = r.likelihood === "Low" ? "#34d399" : r.likelihood === "Medium" || r.likelihood === "Low–Medium" ? "#f59e0b" : "#94a3b8";
                     return (
                       <tr key={ri} className="border-b border-white/[0.04] hover:bg-white/[0.02] transition-colors">
-                        <td className="px-8 py-6 font-body text-sm text-white/60 align-top leading-relaxed">{r.risk}</td>
-                        <td className="px-8 py-6 font-body text-xs text-white/35 align-top leading-relaxed">{r.mitigation}</td>
+                        <td className="px-8 py-6 font-body text-sm text-white/70 align-top leading-relaxed">{r.risk}</td>
+                        <td className="px-8 py-6 font-body text-xs text-white/50 align-top leading-relaxed">{r.mitigation}</td>
                         <td className="px-8 py-6 align-top">
                           <span
                             className="font-mono text-[8px] tracking-[0.2em] uppercase px-2 py-1 rounded-sm whitespace-nowrap"
@@ -843,7 +843,7 @@ export default function Page() {
                       </div>
                       <ul className="space-y-2.5">
                         {track.items.map((item, ii) => (
-                          <li key={ii} className="font-body text-xs text-white/35 flex items-start gap-2 leading-relaxed">
+                          <li key={ii} className="font-body text-xs text-white/50 flex items-start gap-2 leading-relaxed">
                             <span className="shrink-0 mt-1 w-1 h-1 rounded-full bg-white/15" />
                             <EditArea value={item} path={["roadmap",phaseIdx,"tracks",ti,"items",ii]} onUpdate={updateField} editMode={editMode} />
                           </li>
@@ -887,7 +887,7 @@ export default function Page() {
                   {opp.title}
                 </h3>
                 <p className="font-mono text-[9px] tracking-[0.3em] text-gold/40 uppercase mb-4">{opp.subtitle}</p>
-                <p className="font-body text-xs text-white/35 leading-relaxed">{opp.desc}</p>
+                <p className="font-body text-xs text-white/50 leading-relaxed">{opp.desc}</p>
               </div>
             ))}
           </div>
@@ -906,14 +906,14 @@ export default function Page() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             <div className="reveal space-y-10">
-              <p className="font-body text-base text-white/50 leading-relaxed">
+              <p className="font-body text-base text-white/60 leading-relaxed">
                 <EditArea value={proposalData.about.description} path={["about","description"]} onUpdate={updateField} editMode={editMode} />
               </p>
               <div className="grid grid-cols-2 gap-px bg-gold/[0.08]">
                 {proposalData.about.stats.map((s, si) => (
                   <div key={si} className="bg-[#050a10] p-7 hover:bg-[#0a1018] transition-colors">
                     <p className="font-display text-4xl font-light text-gold mb-2"><EditTxt value={s.n} path={["about","stats",si,"n"]} onUpdate={updateField} editMode={editMode} /></p>
-                    <p className="font-body text-xs text-white/35"><EditTxt value={s.l} path={["about","stats",si,"l"]} onUpdate={updateField} editMode={editMode} /></p>
+                    <p className="font-body text-xs text-white/50"><EditTxt value={s.l} path={["about","stats",si,"l"]} onUpdate={updateField} editMode={editMode} /></p>
                   </div>
                 ))}
               </div>
@@ -921,7 +921,7 @@ export default function Page() {
 
             <div className="reveal space-y-8">
               <div>
-                <p className="font-mono text-[9px] tracking-[0.4em] text-white/25 uppercase mb-6">
+                <p className="font-mono text-[9px] tracking-[0.4em] text-white/35 uppercase mb-6">
                   Artist Roster
                 </p>
                 <div className="space-y-0">
@@ -931,7 +931,7 @@ export default function Page() {
                       className="border-b border-white/[0.05] py-5 flex items-start justify-between gap-6 hover:border-gold/15 transition-colors"
                     >
                       <p className="font-display text-xl font-light"><EditTxt value={r.artist} path={["about","roster",ri,"artist"]} onUpdate={updateField} editMode={editMode} /></p>
-                      <p className="font-body text-xs text-white/30 text-right leading-relaxed max-w-44">
+                      <p className="font-body text-xs text-white/45 text-right leading-relaxed max-w-44">
                         <EditTxt value={r.note} path={["about","roster",ri,"note"]} onUpdate={updateField} editMode={editMode} />
                       </p>
                     </div>
@@ -942,7 +942,7 @@ export default function Page() {
                 <p className="font-mono text-[9px] tracking-[0.4em] text-white/20 uppercase mb-4">
                   Label Track Record
                 </p>
-                <p className="font-body text-xs text-white/30 leading-relaxed">
+                <p className="font-body text-xs text-white/45 leading-relaxed">
                   <EditArea value={proposalData.about.labelTrackRecord} path={["about","labelTrackRecord"]} onUpdate={updateField} editMode={editMode} />
                 </p>
               </div>
@@ -1128,7 +1128,7 @@ function RevenueSplitChart() {
             <DonutChart percent={p.artist} visible={visible} delay={i * 0.2} />
 
             <h4 className="font-display text-xl font-light mt-6 mb-2">{p.title}</h4>
-            <p className="font-body text-xs text-white/35 leading-relaxed max-w-[200px]">{p.desc}</p>
+            <p className="font-body text-xs text-white/50 leading-relaxed max-w-[200px]">{p.desc}</p>
 
             {/* Legend */}
             <div className="flex items-center gap-6 mt-5">
@@ -1212,7 +1212,7 @@ function InvestmentReturnChart({ combined }: { combined: ComputedTotals; editMod
             className={`p-8 ${i < 2 ? "border-r border-white/[0.06]" : ""} transition-opacity duration-700`}
             style={{ opacity: visible ? 1 : 0, transitionDelay: `${i * 0.15}s` }}
           >
-            <p className="font-mono text-[9px] tracking-[0.35em] text-white/25 uppercase mb-4">{yr}</p>
+            <p className="font-mono text-[9px] tracking-[0.35em] text-white/35 uppercase mb-4">{yr}</p>
             {/* Revenue — dominant */}
             <p
               className="font-display text-4xl md:text-5xl font-light leading-none mb-1"
@@ -1507,19 +1507,19 @@ function BreakEvenCard({ combined }: { combined: ComputedTotals; editMode: boole
           <div className="space-y-4">
             <div className="flex items-start gap-3">
               <span className="text-gold/40 mt-0.5 shrink-0">+</span>
-              <p className="font-body text-xs text-white/35 leading-relaxed">
+              <p className="font-body text-xs text-white/50 leading-relaxed">
                 Ghost-production revenue from INS local artists creates additional recurring income stream
               </p>
             </div>
             <div className="flex items-start gap-3">
               <span className="text-gold/40 mt-0.5 shrink-0">+</span>
-              <p className="font-body text-xs text-white/35 leading-relaxed">
+              <p className="font-body text-xs text-white/50 leading-relaxed">
                 AIRE live show development unlocks premium venue bookings at 2-3x standard fees
               </p>
             </div>
             <div className="flex items-start gap-3">
               <span className="text-gold/40 mt-0.5 shrink-0">+</span>
-              <p className="font-body text-xs text-white/35 leading-relaxed">
+              <p className="font-body text-xs text-white/50 leading-relaxed">
                 Local artist incubation builds a self-sustaining pipeline with minimal incremental cost
               </p>
             </div>

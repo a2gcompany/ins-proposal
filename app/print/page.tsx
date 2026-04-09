@@ -87,8 +87,8 @@ export default function PrintPage() {
           <h1 className="font-display text-[38pt] font-light leading-[1.08] tracking-tight mb-[6mm]">
             From booking shows<br />to building artist<br />businesses in <em className="italic text-[#00cfff]">China</em>
           </h1>
-          <p className="font-body text-[9pt] text-white/35 leading-relaxed max-w-[130mm]">
-            A co-development model that transforms Western artist booking into long-term shared ownership in the Chinese market.
+          <p className="font-body text-[9pt] text-white/50 leading-relaxed max-w-[130mm]">
+            From booking shows to building artist businesses — a first-of-its-kind co-development model with long-term shared ownership.
           </p>
         </div>
 
@@ -129,7 +129,7 @@ export default function PrintPage() {
               <div className="flex-1 border-t-[0.6mm] border-[#00cfff] pt-[4mm]">
                 <p className="font-mono text-[5.5pt] tracking-[0.2em] text-[#00cfff] uppercase mb-[3mm]">INS provides</p>
                 {["Venues and live infrastructure", "China marketing and platform access", "Brand, licensing and business relationships", "Local execution capacity"].map((b, i) => (
-                  <p key={i} className="font-body text-[7pt] text-white/45 mb-[2mm] flex gap-[2mm]">
+                  <p key={i} className="font-body text-[7pt] text-white/60 mb-[2mm] flex gap-[2mm]">
                     <span className="text-[#00cfff]/30 shrink-0">·</span>{b}
                   </p>
                 ))}
@@ -137,7 +137,7 @@ export default function PrintPage() {
               <div className="flex-1 border-t-[0.6mm] border-[#C9A84C] pt-[4mm]">
                 <p className="font-mono text-[5.5pt] tracking-[0.2em] text-[#C9A84C] uppercase mb-[3mm]">A2G provides</p>
                 {["Artist development and production", "Release strategy and label access", "Show concepts and content formats", "International creative network"].map((b, i) => (
-                  <p key={i} className="font-body text-[7pt] text-white/45 mb-[2mm] flex gap-[2mm]">
+                  <p key={i} className="font-body text-[7pt] text-white/60 mb-[2mm] flex gap-[2mm]">
                     <span className="text-[#C9A84C]/30 shrink-0">·</span>{b}
                   </p>
                 ))}
@@ -145,7 +145,7 @@ export default function PrintPage() {
               <div className="flex-1 border-t-[0.6mm] border-white/30 pt-[4mm]">
                 <p className="font-mono text-[5.5pt] tracking-[0.2em] text-white/50 uppercase mb-[3mm]">Together they build</p>
                 {["China-ready artist campaigns", "Shows, releases and content moments", "Revenue across live, royalties, licensing, content", "A repeatable system for future artists"].map((b, i) => (
-                  <p key={i} className="font-body text-[7pt] text-white/45 mb-[2mm] flex gap-[2mm]">
+                  <p key={i} className="font-body text-[7pt] text-white/60 mb-[2mm] flex gap-[2mm]">
                     <span className="text-white/20 shrink-0">·</span>{b}
                   </p>
                 ))}
@@ -303,7 +303,7 @@ export default function PrintPage() {
               <p className="font-display text-[18pt] font-light text-white/15 ml-auto">$589M</p>
               <p className="font-body text-[7pt] text-white/15">revenue</p>
             </div>
-            <p className="font-body text-[8pt] text-white/25">No artist pipeline.</p>
+            <p className="font-body text-[8pt] text-white/40">Venue ownership without artist ownership means perpetual dependency on external booking fees.</p>
           </div>
 
           {/* Comparison visual */}
@@ -340,7 +340,7 @@ export default function PrintPage() {
             {[
               { name: "PROPHECY", genre: "Melodic Techno", image: "/images/artists/prophecy.png", role: "Opens doors", sub: "Production credibility, international label relationships, release pipeline." },
               { name: "AIRE", genre: "DJ × VJ Live Act", image: "/images/artists/aire.png", role: "Creates content", sub: "Immersive DJ×VJ format. Premium visual assets from every activation." },
-              { name: "BJÖRN", genre: "Electronic", image: "/images/artists/bjorn.png", role: "Proves the local case", sub: "INS artist developed through the system. From local to exportable." },
+              { name: "BJÖRN", genre: "Electronic", image: "/images/artists/bjorn.png", role: "Proves the local case", sub: "INS's homegrown artist — the proof of concept. From local act to internationally positioned name, using A2G's production network." },
             ].map((a) => (
               <div key={a.name} className="flex-1 flex flex-col">
                 <div className="flex-1 rounded-[2mm] overflow-hidden bg-[#0a1020] mb-[3mm]">
@@ -348,7 +348,7 @@ export default function PrintPage() {
                 </div>
                 <p className="font-display text-[14pt] font-light tracking-wide mb-[1mm]">{a.name}</p>
                 <p className="font-display text-[9pt] text-[#C9A84C] italic mb-[2mm]">{a.role}</p>
-                <p className="font-body text-[7pt] text-white/30 leading-relaxed">{a.sub}</p>
+                <p className="font-body text-[7pt] text-white/45 leading-relaxed">{a.sub}</p>
               </div>
             ))}
           </div>
@@ -402,7 +402,7 @@ export default function PrintPage() {
                   <div key={r.t} className="border border-white/[0.06] rounded-[2mm] p-[5mm] bg-white/[0.015]">
                     <span className="text-[5pt] block mb-[2mm]" style={{ color: r.c }}>◆</span>
                     <p className="font-display text-[10pt] font-light text-white/80 mb-[1.5mm]">{r.t}</p>
-                    <p className="font-body text-[6pt] text-white/30 leading-relaxed">{r.s}</p>
+                    <p className="font-body text-[6pt] text-white/45 leading-relaxed">{r.s}</p>
                   </div>
                 ))}
               </div>
@@ -421,7 +421,7 @@ export default function PrintPage() {
                   <span className="font-body text-[9pt] text-white w-[22mm]">{p.t}</span>
                   <div className="flex-1">
                     <span className="font-display text-[10pt] font-light block" style={{ color: p.c }}>{p.s}</span>
-                    <span className="font-body text-[6pt] text-white/20">{p.d}</span>
+                    <span className="font-body text-[6pt] text-white/35">{p.d}</span>
                   </div>
                 </div>
               ))}
@@ -442,7 +442,7 @@ export default function PrintPage() {
                 { y: "Year 3", rev: "€495K", ret: "€145K", shows: "30+ shows", streams: "~20M" },
               ].map((f) => (
                 <div key={f.y} className="flex-1 border border-white/[0.06] rounded-[2mm] p-[5mm] bg-white/[0.015]">
-                  <p className="font-mono text-[5pt] text-white/25 mb-[2mm]">{f.y}</p>
+                  <p className="font-mono text-[5pt] text-white/40 mb-[2mm]">{f.y}</p>
                   <p className="font-display text-[22pt] font-light text-[#00cfff] mb-[1mm]" style={{ textShadow: "0 0 15px rgba(0,207,255,0.15)" }}>{f.rev}</p>
                   <p className="font-mono text-[5pt] text-white/20 mb-[2mm]">total revenue</p>
                   <p className="font-display text-[14pt] font-light text-[#C9A84C]">{f.ret}</p>
@@ -485,7 +485,7 @@ export default function PrintPage() {
                 "INS partner brand activations",
                 "3–5 non-INS China shows (€4–5K rate)",
               ].map((item, i) => (
-                <p key={i} className="font-body text-[8pt] text-white/40 mb-[3mm] flex gap-[2mm]">
+                <p key={i} className="font-body text-[8pt] text-white/55 mb-[3mm] flex gap-[2mm]">
                   <span className="text-[#00cfff]/30 shrink-0">·</span>{item}
                 </p>
               ))}
@@ -501,7 +501,7 @@ export default function PrintPage() {
                 "Support with Björn development",
                 "30% share for 3yr post-recovery, then 10% to Year 10",
               ].map((item, i) => (
-                <p key={i} className="font-body text-[8pt] text-white/40 mb-[3mm] flex gap-[2mm]">
+                <p key={i} className="font-body text-[8pt] text-white/55 mb-[3mm] flex gap-[2mm]">
                   <span className="text-[#C9A84C]/30 shrink-0">·</span>{item}
                 </p>
               ))}
@@ -511,7 +511,7 @@ export default function PrintPage() {
           {/* Gold bar */}
           <div className="border-l-[1mm] border-[#C9A84C40] pl-[5mm] py-[4mm] bg-[#C9A84C06] mb-[6mm]">
             <p className="font-body text-[8pt] text-[#C9A84C]">INS invests ~€24K Year 1</p>
-            <p className="font-body text-[6pt] text-white/20 mt-[1mm]">Shows (discounted) + marketing co-fund + distribution setup</p>
+            <p className="font-body text-[6pt] text-white/35 mt-[1mm]">€10K marketing co-funding + €14K ghost production package (4 tracks at €3,500/track)</p>
           </div>
 
           {/* Success criteria — pushed to bottom */}
@@ -526,7 +526,7 @@ export default function PrintPage() {
                 "Revenue share mechanics proven in practice",
                 "Brand activations generate measurable ROI",
               ].map((c, i) => (
-                <p key={i} className="font-body text-[7.5pt] text-white/40 flex gap-[2mm] items-start">
+                <p key={i} className="font-body text-[7.5pt] text-white/55 flex gap-[2mm] items-start">
                   <span className="text-[#C9A84C]/40 shrink-0 text-[6pt] mt-[0.3mm]">☐</span>{c}
                 </p>
               ))}
@@ -559,7 +559,7 @@ export default function PrintPage() {
                 <div key={i} className="flex items-center gap-[10mm]">
                   <div className="text-center">
                     <p className={`font-display text-[14pt] ${a.active ? "text-[#EF9F27]" : "text-white/15"}`}>{a.n}</p>
-                    <p className="font-body text-[7pt] text-white/25 mt-[2mm]">{a.s}</p>
+                    <p className="font-body text-[7pt] text-white/40 mt-[2mm]">{a.s}</p>
                   </div>
                   {i < 2 && <span className="font-display text-[16pt] text-[#C9A84C]/20">→</span>}
                 </div>
@@ -600,7 +600,7 @@ export default function PrintPage() {
                 <div key={r.t} className="border border-white/[0.04] rounded-[2mm] p-[4mm] bg-white/[0.015]">
                   <span className="text-[5pt] block mb-[1mm]" style={{ color: r.c }}>◆</span>
                   <p className="font-body text-[7pt] text-white/60 mb-[1mm]">{r.t}</p>
-                  <p className="font-body text-[5.5pt] text-white/25">{r.s}</p>
+                  <p className="font-body text-[5.5pt] text-white/40">{r.s}</p>
                 </div>
               ))}
             </div>
@@ -631,7 +631,7 @@ export default function PrintPage() {
                 <div key={s.n} className="flex-1 border border-white/[0.06] rounded-[2mm] p-[6mm] bg-white/[0.015]">
                   <p className="font-display text-[20pt] font-light text-[#C9A84C]/30 mb-[3mm]">{s.n}</p>
                   <p className="font-display text-[11pt] text-white/70 mb-[2mm]">{s.t}</p>
-                  <p className="font-body text-[7pt] text-white/30 leading-relaxed">{s.d}</p>
+                  <p className="font-body text-[7pt] text-white/45 leading-relaxed">{s.d}</p>
                 </div>
               ))}
             </div>
@@ -639,7 +639,7 @@ export default function PrintPage() {
             {/* Timeline bar */}
             <div className="flex items-center gap-[3mm] mb-[6mm]">
               <div className="h-[0.3mm] flex-1 bg-gradient-to-r from-[#00cfff20] via-[#C9A84C20] to-[#4ade8020]" />
-              <span className="font-mono text-[4.5pt] tracking-[0.15em] text-white/20 uppercase shrink-0">Target: first show Q3 2026</span>
+              <span className="font-mono text-[4.5pt] tracking-[0.15em] text-white/20 uppercase shrink-0">Target: first shows Q2–Q3 2026</span>
               <div className="h-[0.3mm] flex-1 bg-gradient-to-r from-[#4ade8020] via-[#C9A84C20] to-[#00cfff20]" />
             </div>
           </div>

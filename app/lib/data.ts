@@ -12,7 +12,7 @@ export const DEFAULT_DATA = {
     whyB: "No Western artist pipeline into China exists yet.",
     whatA: "Co-development, co-ownership.",
     whatB: "3 artists + INS infrastructure = shared equity from day one.",
-    whenA: "Shanghai — April 2026.",
+    whenA: "Shanghai — Q2–Q3 2026.",
     whenB: "First shows live. Revenue generation from Q3.",
     howA: "INS co-funds. A2G activates.",
     howB: "Structured revenue split for up to 10 years.",
@@ -72,7 +72,7 @@ export const DEFAULT_DATA = {
       tagline: "INS's own talent — built for an international arc.",
       collabs: [] as string[],
       highlights: [
-        "INS's homegrown artist — the internal success story: from local act to internationally positioned name",
+        "INS's homegrown artist — the proof of concept for the co-development model. From local act to internationally positioned name, using A2G's production network and label connections",
         "A2G brings the Western production network: co-production credits, ghost-production pipeline, label pitches",
         "Prophecy and AIRE activate the stages — BJÖRN builds his audience on the same nights, in the same rooms",
         "Target label placement: Insomniac, Future Rave, Spinnin' — channels opened by Prophecy's existing relationships",
@@ -195,7 +195,7 @@ export const DEFAULT_DATA = {
     title: "The Model Has Already Been Proven",
     subtitle: "FIVE Holdings × Pacha Group",
     body: "In October 2023, FIVE Holdings acquired Pacha Group for €302.5M — buying a brand, an IP library, a label, a content engine, and a global entertainment platform. FIVE reported $589M revenue in 2024 (up 28% YoY) with $208M EBITDA. In February 2026 they acquired Brooklyn Mirage/Avant Gardner, rebranding it as Pacha NYC.",
-    lesson: "But FIVE proved its biggest vulnerability: without their own artists, they're always paying someone else's fee to fill their own venues. The A2G × INS partnership solves exactly this. With €54K in Year 1, INS begins building what FIVE never did — a self-sustaining artist pipeline.",
+    lesson: "FIVE's model revealed the industry's structural gap: venue ownership without artist ownership means perpetual dependency on external booking fees. The A2G × INS partnership solves exactly this. With €54K in Year 1, INS begins building what FIVE never did — a self-sustaining artist pipeline.",
     comparison: {
       five: { label: "FIVE Holdings", investment: "€302.5M", problem: "Still rents talent — no owned artist pipeline" },
       ins: { label: "INS + A2G", investment: "€54K Year 1", advantage: "Co-owns artists from day one — audiences come for the brand" },
@@ -338,7 +338,7 @@ export const DEFAULT_DATA = {
     title: "Let\u2019s Build",
     titleAccent: "Together",
     description: "We propose a long-term partnership, not a one-night booking. If the vision aligns, let\u2019s move fast.",
-    email: "aitzolarev@gmail.com",
+    email: "a.arevalo@a2g.company",
   },
 };
 
