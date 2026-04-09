@@ -240,10 +240,16 @@ export default function EditPrintPage() {
         .edit-wrap.note-mode { cursor: crosshair; }
         .edit-wrap.note-mode .page * { pointer-events: none; }
         .edit-wrap.note-mode .page { pointer-events: auto; cursor: crosshair; }
+        @media print {
+          .edit-toolbar { display: none !important; }
+          .edit-wrap { padding-top: 0 !important; }
+          .edit-wrap [contenteditable="true"] { outline: none !important; }
+          .edit-wrap .page { overflow: visible !important; }
+        }
       `}</style>
 
       {/* Toolbar */}
-      <div className="fixed top-0 left-0 right-0 z-[200] bg-[#080c14]/95 backdrop-blur-lg border-b border-white/[0.06]">
+      <div className="edit-toolbar fixed top-0 left-0 right-0 z-[200] bg-[#080c14]/95 backdrop-blur-lg border-b border-white/[0.06]">
         <div className="max-w-[230mm] mx-auto flex items-center gap-3 px-4 py-2.5">
           <a href="/print" className="text-white/25 hover:text-white/50 text-xs font-mono">
             &larr; Print
@@ -288,6 +294,13 @@ export default function EditPrintPage() {
               </span>
             )}
           </div>
+
+          <button
+            onClick={() => window.print()}
+            className="px-3 py-1.5 rounded text-xs font-mono bg-[#C9A84C]/90 text-black hover:bg-[#C9A84C] transition-all"
+          >
+            Print / PDF
+          </button>
 
           <button
             onClick={() => {
