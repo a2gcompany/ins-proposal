@@ -265,7 +265,7 @@ export default function PrintPage() {
 
           {/* How it works */}
           <div className="flex gap-[4mm] mb-[8mm]">
-            {d.structure.map((s) => (
+            {d.phases.map((s) => (
               <div key={s.num} className="flex-1 border border-white/[0.04] rounded-[2mm] p-[4mm] bg-white/[0.015]">
                 <p className="font-display text-[14pt] text-white/10 mb-[1mm]">{s.num}</p>
                 <p className="font-display text-[11pt] text-[#C9A84C] mb-[2mm]">{s.title}</p>
@@ -319,7 +319,7 @@ export default function PrintPage() {
           </h2>
 
           <div className="grid grid-cols-2 gap-[4mm]">
-            {d.value.map((v) => (
+            {d.valueDimensions.map((v) => (
               <div key={v.num} className="border border-white/[0.04] rounded-[2mm] p-[5mm] bg-white/[0.015]">
                 <p className="font-mono text-[5pt] tracking-[0.15em] text-[#C9A84C] uppercase mb-[2mm]">{v.category}</p>
                 <p className="font-display text-[11pt] text-white mb-[2mm]">{v.title}</p>
