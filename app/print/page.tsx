@@ -324,12 +324,64 @@ export default function PrintPage() {
         <PageNum n={3} />
       </Page>
 
-      {/* ═══ PAGE 4: THE ARTISTS ═══ */}
+      {/* ═══ PAGE 4: WHY NOW ═══ */}
+      <Page>
+        <Header />
+        <div className="pt-[22mm] px-[16mm] flex flex-col justify-between h-full pb-[14mm]">
+          <div>
+            <SectionLabel color="#00cfff">The timing</SectionLabel>
+            <h2 className="font-display text-[26pt] font-light leading-[1.1] mb-[8mm]">
+              Why <span className="italic text-[#00cfff]">now</span>.
+            </h2>
+          </div>
+
+          {/* Market inflection */}
+          <div className="border border-[#00cfff15] rounded-[2mm] p-[6mm] bg-[#00cfff03] mb-[5mm]">
+            <div className="flex items-baseline gap-[4mm] mb-[3mm]">
+              <p className="font-display text-[22pt] font-light text-[#00cfff]" style={{ textShadow: "0 0 15px rgba(0,207,255,0.15)" }}>$8.5B</p>
+              <p className="font-body text-[7pt] text-white/40">2025 market size</p>
+              <span className="font-display text-[12pt] text-white/15 mx-[2mm]">→</span>
+              <p className="font-display text-[22pt] font-light text-[#C9A84C]">$19.1B</p>
+              <p className="font-body text-[7pt] text-white/40">projected 2033</p>
+            </div>
+            <p className="font-body text-[7pt] text-white/40">China&apos;s electronic music market is at an inflection point. 10.6% CAGR over 8 years.</p>
+          </div>
+
+          {/* 5 reasons */}
+          <div className="flex-1 flex flex-col justify-center">
+            {[
+              { n: "01", t: "Platform prioritization", d: "Douyin, NetEase, and QQ Music are actively prioritizing international content with territorial partnerships. The infrastructure to distribute Western artists in China is ready — the artist pipeline isn't.", c: "#00cfff" },
+              { n: "02", t: "The FIVE gap", d: "FIVE Holdings proved the venue-acquisition model at €302.5M but left an enormous gap: no owned artist pipeline. Venue ownership without artist ownership is a recurring cost, not an asset.", c: "#C9A84C" },
+              { n: "03", t: "First-mover advantage", d: "Major Asian nightlife groups are seeking differentiation. The first group to build a co-development artist pipeline will have a defensible competitive advantage that's expensive to replicate.", c: "#4ade80" },
+              { n: "04", t: "Window of opportunity", d: "If INS doesn't capture this model now, another group with similar infrastructure will. The partnerships, label relationships, and production network A2G brings are available today — not indefinitely.", c: "#f87171" },
+              { n: "05", t: "Low-cost entry", d: "€24K Year 1 investment to test a model that, if proven, scales across unlimited artists using the same infrastructure. The risk-to-upside ratio will never be this favorable again.", c: "#a78bfa" },
+            ].map((r) => (
+              <div key={r.n} className="flex gap-[4mm] mb-[5mm]">
+                <span className="font-mono text-[7pt] font-medium shrink-0 w-[6mm]" style={{ color: r.c }}>{r.n}</span>
+                <div>
+                  <p className="font-display text-[9pt] font-light text-white/80 mb-[1mm]">{r.t}</p>
+                  <p className="font-body text-[6.5pt] text-white/40 leading-relaxed">{r.d}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="border-l-[1mm] border-[#C9A84C40] pl-[5mm] py-[3mm] bg-[#C9A84C06]">
+            <p className="font-display text-[8pt] italic text-[#C9A84C]/70">
+              The question isn&apos;t whether this model works. It&apos;s who builds it first.
+            </p>
+          </div>
+        </div>
+        <PageNum n={4} />
+      </Page>
+
+      {/* ═══ PAGE 5: THE ARTISTS ═══ */}
       <Page>
         <Header />
         <div className="pt-[20mm] px-[14mm] flex flex-col justify-between h-full pb-[14mm]">
           <div>
             <SectionLabel>The artists</SectionLabel>
+
             <h2 className="font-display text-[26pt] font-light leading-[1.1] mb-[6mm]">
               Three roles.<br />One <span className="italic text-[#00cfff]">system</span>.
             </h2>
@@ -374,10 +426,10 @@ export default function PrintPage() {
             </div>
           </div>
         </div>
-        <PageNum n={4} />
+        <PageNum n={5} />
       </Page>
 
-      {/* ═══ PAGE 5: THE ECONOMICS ═══ */}
+      {/* ═══ PAGE 6: THE ECONOMICS ═══ */}
       <Page>
         <Header />
         <div className="pt-[22mm] px-[16mm] flex flex-col justify-between h-full pb-[14mm]">
@@ -458,10 +510,10 @@ export default function PrintPage() {
             <p className="font-mono text-[4.5pt] text-white/15 tracking-[0.1em]">Non-China touring and global catalogue remain outside scope.</p>
           </div>
         </div>
-        <PageNum n={5} />
+        <PageNum n={6} />
       </Page>
 
-      {/* ═══ PAGE 6: YEAR 1 PLAN ═══ */}
+      {/* ═══ PAGE 7: YEAR 1 PLAN ═══ */}
       <Page>
         <Header />
         <div className="pt-[22mm] px-[16mm] flex flex-col justify-between h-full pb-[14mm]">
@@ -519,12 +571,12 @@ export default function PrintPage() {
             <p className="font-mono text-[5pt] tracking-[0.2em] text-white/25 uppercase mb-[4mm]">Year 1 is successful if:</p>
             <div className="grid grid-cols-2 gap-[3mm]">
               {[
-                "Real shows launched in China",
-                "Content engine creates reusable assets",
-                "Björn enters structured development path",
-                "INS has a playbook reusable for artist 2",
-                "Revenue share mechanics proven in practice",
-                "Brand activations generate measurable ROI",
+                "Prophecy completes 3+ shows at INS venues with >70% attendance",
+                "At least 1 ghost-production track for Björn on a Tier 2+ label",
+                "AIRE content pipeline produces 5+ reusable A/V pieces",
+                "Year 1 revenue reaches minimum €30K (partial breakeven)",
+                "Björn reaches 100K+ monthly listeners on Chinese platforms",
+                "INS has a proven playbook reusable for artist 2",
               ].map((c, i) => (
                 <p key={i} className="font-body text-[7.5pt] text-white/55 flex gap-[2mm] items-start">
                   <span className="text-[#C9A84C]/40 shrink-0 text-[6pt] mt-[0.3mm]">☐</span>{c}
@@ -533,10 +585,10 @@ export default function PrintPage() {
             </div>
           </div>
         </div>
-        <PageNum n={6} />
+        <PageNum n={7} />
       </Page>
 
-      {/* ═══ PAGE 7: THE ARTIST FACTORY ═══ */}
+      {/* ═══ PAGE 8: THE ARTIST FACTORY ═══ */}
       <Page>
         <Header />
         <div className="pt-[22mm] px-[16mm] flex flex-col justify-between h-full pb-[14mm]">
@@ -606,10 +658,47 @@ export default function PrintPage() {
             </div>
           </div>
         </div>
-        <PageNum n={7} />
+        <PageNum n={8} />
       </Page>
 
-      {/* ═══ PAGE 8: CTA ═══ */}
+      {/* ═══ PAGE 9: RISKS & MITIGATION ═══ */}
+      <Page>
+        <Header />
+        <div className="pt-[22mm] px-[16mm] flex flex-col justify-between h-full pb-[14mm]">
+          <div>
+            <SectionLabel>Risk management</SectionLabel>
+            <h2 className="font-display text-[26pt] font-light leading-[1.1] mb-[8mm]">
+              Every risk has<br />a <span className="gold-shimmer italic">structure</span>.
+            </h2>
+          </div>
+
+          {/* 5 risk rows */}
+          <div className="flex-1 flex flex-col justify-center">
+            {[
+              { risk: "Artist departure", mitigation: "Catalog revenue continues — tracks and assets keep generating income. A2G commits to replacing any artist within the partnership framework.", likelihood: "Medium", color: "#f59e0b" },
+              { risk: "Slower revenue growth", mitigation: "Phase 1 (60/40) has no time limit — it runs until INS recoups investment. No scenario where INS moves to a lower share before recovering capital.", likelihood: "Low–Med", color: "#f59e0b" },
+              { risk: "Regulatory changes", mitigation: "Distribution through established Chinese platforms (QQ Music, NetEase) with existing regulatory compliance. No gray-area structures.", likelihood: "Low", color: "#34d399" },
+              { risk: "Underperformance", mitigation: "Value-trade model (shows for production) limits cash exposure. Ghost production and content creation continue generating non-cash value even if live revenue underperforms.", likelihood: "Medium", color: "#f59e0b" },
+              { risk: "Early exit", mitigation: "Exit clause after Year 2 with 6-month notice. Existing catalog revenue continues per agreed split. IP ownership proportional to investment made.", likelihood: "Structural", color: "#94a3b8" },
+            ].map((r, i) => (
+              <div key={i} className="flex gap-[4mm] py-[4mm] border-b border-white/[0.04]">
+                <div className="w-[35mm] shrink-0">
+                  <p className="font-display text-[9pt] font-light text-white/70 mb-[1mm]">{r.risk}</p>
+                  <span className="font-mono text-[4.5pt] tracking-[0.15em] uppercase px-[2mm] py-[0.5mm] rounded-[0.5mm]" style={{ color: r.color, background: `${r.color}18`, border: `1px solid ${r.color}30` }}>{r.likelihood}</span>
+                </div>
+                <p className="font-body text-[6.5pt] text-white/45 leading-relaxed flex-1">{r.mitigation}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="border-l-[1mm] border-[#C9A84C40] pl-[5mm] py-[3mm] bg-[#C9A84C06]">
+            <p className="font-body text-[7pt] text-white/40">Every failure mode has a contractual or structural response built in. The deal is designed so that INS never loses more than its cash exposure.</p>
+          </div>
+        </div>
+        <PageNum n={9} />
+      </Page>
+
+      {/* ═══ PAGE 10: CTA ═══ */}
       <Page>
         <div className="absolute inset-0 bg-gradient-to-b from-[#00cfff03] via-transparent to-[#C9A84C05]" />
         <Header />
@@ -655,7 +744,8 @@ export default function PrintPage() {
             <p className="font-body text-[9pt] text-[#00cfff] mb-[8mm]">a.arevalo@a2g.company</p>
 
             <QRCode />
-            <p className="font-mono text-[5pt] text-white/20 mt-[2mm]">ins-proposal.vercel.app</p>
+            <p className="font-mono text-[5pt] text-white/30 mt-[2mm]">Scan to view the full interactive proposal</p>
+            <p className="font-mono text-[4.5pt] text-white/20 mt-[0.5mm]">ins-proposal.vercel.app</p>
           </div>
 
           {/* Bottom */}
@@ -671,7 +761,7 @@ export default function PrintPage() {
             </div>
           </div>
         </div>
-        <PageNum n={8} />
+        <PageNum n={10} />
       </Page>
     </div>
   );
