@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 function QRCode() {
   const [src, setSrc] = useState("");
@@ -45,8 +45,29 @@ function GoldLine() {
 }
 
 export default function PrintPage() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Apply text edits saved from /print/edit
+  useEffect(() => {
+    const c = containerRef.current;
+    if (!c) return;
+    try {
+      const saved = JSON.parse(localStorage.getItem("ins-proposal-edits") || "{}");
+      if (!Object.keys(saved).length) return;
+      const pages = Array.from(c.querySelectorAll(".page"));
+      pages.forEach((page, pi) => {
+        page.querySelectorAll("h1, h2, p").forEach((el, ei) => {
+          const h = el as HTMLElement;
+          if (!h.textContent?.trim()) return;
+          const v = saved[`${pi}-${ei}`];
+          if (v) h.textContent = v;
+        });
+      });
+    } catch {}
+  }, []);
+
   return (
-    <div className="print-container">
+    <div ref={containerRef} className="print-container">
       <style jsx global>{`
         @page { size: 210mm 297mm; margin: 0; }
         @media print {
