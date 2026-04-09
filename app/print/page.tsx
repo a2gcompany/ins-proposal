@@ -47,6 +47,22 @@ function GoldLine() {
   return <div className="w-[30mm] h-[0.3mm] bg-[#C9A84C] mb-[5mm]" />;
 }
 
+/* ── Schema Node ── */
+function Node({ label, sub, x, y, color = "#fff", w = 28 }: { label: string; sub?: string; x: number; y: number; color?: string; w?: number }) {
+  return (
+    <foreignObject x={x - w / 2} y={y - 8} width={w} height={sub ? 18 : 14}>
+      <div className="flex flex-col items-center justify-center h-full">
+        <span className="font-mono text-[4.5pt] tracking-[0.1em] text-center leading-none" style={{ color }}>{label}</span>
+        {sub && <span className="font-body text-[3.5pt] text-white/25 text-center leading-none mt-[0.5mm]">{sub}</span>}
+      </div>
+    </foreignObject>
+  );
+}
+
+function Line({ x1, y1, x2, y2, color = "rgba(255,255,255,0.08)" }: { x1: number; y1: number; x2: number; y2: number; color?: string }) {
+  return <line x1={x1} y1={y1} x2={x2} y2={y2} stroke={color} strokeWidth="0.4" />;
+}
+
 export default function PrintPage() {
   return (
     <div className="print-container">
@@ -66,7 +82,7 @@ export default function PrintPage() {
         .gold-shimmer { background: linear-gradient(135deg, #C9A84C 0%, #e8d48a 50%, #C9A84C 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
       `}</style>
 
-      {/* Print button - screen only */}
+      {/* Print button */}
       <div className="no-print fixed top-4 right-4 z-50 flex gap-2">
         <button onClick={() => window.print()} className="bg-[#C9A84C] text-black font-mono text-xs px-4 py-2 rounded hover:bg-[#d4b55f] transition">
           Print / Save PDF
@@ -95,7 +111,6 @@ export default function PrintPage() {
           </p>
         </div>
 
-        {/* Stats row */}
         <div className="absolute bottom-[25mm] left-[16mm] right-[16mm] flex gap-[15mm]">
           {[
             { v: "$8.5B", l: "China electronic\nmusic market" },
@@ -114,361 +129,417 @@ export default function PrintPage() {
         <PageNum n={1} />
       </Page>
 
-      {/* ═══ PAGE 2: THE PARTNERSHIP ═══ */}
+      {/* ═══ PAGE 2: THE BIG PICTURE — Node diagram ═══ */}
       <Page>
         <Header />
-        <div className="pt-[22mm] px-[16mm]">
-          <SectionLabel>The partnership</SectionLabel>
-          <h2 className="font-display text-[28pt] font-light leading-[1.1] mb-[12mm]">
-            Two ecosystems,<br />one <span className="gold-shimmer italic">machine</span>.
+        <div className="pt-[20mm] px-[12mm] flex flex-col h-full">
+          <SectionLabel>The big picture</SectionLabel>
+          <h2 className="font-display text-[28pt] font-light leading-[1.1] mb-[6mm]">
+            Two ecosystems. One <span className="gold-shimmer italic">machine</span>.
           </h2>
 
-          <div className="flex gap-[6mm] mb-[6mm]">
-            {/* INS */}
-            <div className="flex-1 border border-[#3b82f640] rounded-[4mm] p-[5mm] bg-[#3b82f608]">
-              <p className="font-display text-[11pt] text-[#60a5fa] mb-[3mm]">INS ecosystem</p>
-              {[
-                { name: "HERO.COM", role: "Venues + infrastructure" },
-                { name: "INS", role: "Brand + operations + local marketing" },
-                { name: "Hero E-Sports", role: "Gaming + sync pipeline" },
-                { name: "INS Shows", role: "Live events in China" },
-                { name: "INSane", role: "Record label" },
-              ].map((e, i) => (
-                <p key={i} className="font-body text-[6.5pt] text-white/50 mb-[1.5mm] flex gap-[2mm]">
-                  <span className="text-[#60a5fa] shrink-0">·</span>
-                  <span><span className="text-white/70">{e.name}</span> — {e.role}</span>
-                </p>
+          {/* Node diagram */}
+          <div className="flex-1 flex items-center justify-center">
+            <svg viewBox="0 0 180 220" width="180mm" height="220mm" className="overflow-visible">
+              {/* ── INS zone (top, blue tint) ── */}
+              <rect x="2" y="2" width="80" height="58" rx="2" fill="rgba(59,130,246,0.04)" stroke="rgba(59,130,246,0.15)" strokeWidth="0.3" />
+              <text x="42" y="9" textAnchor="middle" className="font-mono" style={{ fontSize: "4pt", fill: "rgba(96,165,250,0.5)", letterSpacing: "0.15em" }}>INS ECOSYSTEM</text>
+
+              {/* INS main nodes */}
+              <Node label="HERO.COM" sub="Venues" x={18} y={20} color="#60a5fa" />
+              <Node label="INS" sub="Brand + ops" x={42} y={20} color="#60a5fa" />
+              <Node label="Hero E-Sports" sub="Gaming + sync" x={70} y={20} color="#60a5fa" />
+
+              {/* INS sub-nodes */}
+              <Node label="INS Shows" sub="Live events" x={18} y={38} color="#60a5fa" w={24} />
+              <Node label="INSane" sub="Record label" x={42} y={38} color="#60a5fa" w={24} />
+              <Node label="China Mktg" sub="Douyin · RED" x={70} y={38} color="#60a5fa" w={24} />
+
+              {/* INS outputs */}
+              <Node label="Licensing" x={12} y={52} color="rgba(96,165,250,0.5)" w={20} />
+              <Node label="Shows" x={42} y={52} color="rgba(96,165,250,0.5)" w={20} />
+              <Node label="Marketing" x={72} y={52} color="rgba(96,165,250,0.5)" w={20} />
+
+              {/* INS internal lines */}
+              <Line x1={42} y1={26} x2={18} y2={32} color="rgba(96,165,250,0.15)" />
+              <Line x1={42} y1={26} x2={42} y2={32} color="rgba(96,165,250,0.15)" />
+              <Line x1={42} y1={26} x2={70} y2={32} color="rgba(96,165,250,0.15)" />
+              <Line x1={18} y1={44} x2={12} y2={48} color="rgba(96,165,250,0.1)" />
+              <Line x1={42} y1={44} x2={42} y2={48} color="rgba(96,165,250,0.1)" />
+              <Line x1={70} y1={44} x2={72} y2={48} color="rgba(96,165,250,0.1)" />
+
+              {/* ── A2G zone (top right, red tint) ── */}
+              <rect x="98" y="2" width="80" height="58" rx="2" fill="rgba(239,68,68,0.04)" stroke="rgba(239,68,68,0.15)" strokeWidth="0.3" />
+              <text x="138" y="9" textAnchor="middle" className="font-mono" style={{ fontSize: "4pt", fill: "rgba(248,113,113,0.5)", letterSpacing: "0.15em" }}>A2G COMPANY</text>
+
+              {/* A2G main nodes */}
+              <Node label="Prophecy" sub="Production engine" x={112} y={22} color="#f87171" />
+              <Node label="PERSONA" sub="Label + EDMisLove" x={140} y={22} color="#f87171" w={30} />
+              <Node label="AIRE" sub="DJ×VJ shows" x={166} y={22} color="#f87171" />
+
+              {/* A2G outputs */}
+              <Node label="Ghost prod" sub="for INS artists" x={106} y={40} color="rgba(248,113,113,0.5)" w={22} />
+              <Node label="Releases" sub="for INSane" x={128} y={40} color="rgba(248,113,113,0.5)" w={22} />
+              <Node label="WW Mktg" x={148} y={40} color="rgba(248,113,113,0.5)" w={20} />
+              <Node label="Content" sub="A/V assets" x={166} y={40} color="rgba(248,113,113,0.5)" w={20} />
+
+              {/* A2G internal lines */}
+              <Line x1={112} y1={28} x2={106} y2={34} color="rgba(248,113,113,0.15)" />
+              <Line x1={112} y1={28} x2={128} y2={34} color="rgba(248,113,113,0.15)" />
+              <Line x1={140} y1={28} x2={128} y2={34} color="rgba(248,113,113,0.15)" />
+              <Line x1={140} y1={28} x2={148} y2={34} color="rgba(248,113,113,0.15)" />
+              <Line x1={166} y1={28} x2={166} y2={34} color="rgba(248,113,113,0.15)" />
+
+              {/* ═══ THE DEAL (center) ═══ */}
+              <rect x="60" y="70" width="60" height="24" rx="2" fill="rgba(201,168,76,0.06)" stroke="rgba(201,168,76,0.3)" strokeWidth="0.5" />
+              <text x="90" y="79" textAnchor="middle" className="font-display" style={{ fontSize: "7pt", fill: "#C9A84C" }}>THE DEAL</text>
+              <text x="90" y="87" textAnchor="middle" className="font-body" style={{ fontSize: "3.5pt", fill: "rgba(255,255,255,0.3)" }}>Co-development · Co-ownership · Revenue share</text>
+
+              {/* Lines from ecosystems to deal */}
+              <Line x1={42} y1={56} x2={75} y2={70} color="rgba(96,165,250,0.2)" />
+              <Line x1={12} y1={56} x2={70} y2={70} color="rgba(96,165,250,0.12)" />
+              <Line x1={72} y1={56} x2={85} y2={70} color="rgba(96,165,250,0.12)" />
+              <Line x1={112} y1={46} x2={105} y2={70} color="rgba(248,113,113,0.2)" />
+              <Line x1={148} y1={46} x2={110} y2={70} color="rgba(248,113,113,0.12)" />
+              <Line x1={166} y1={46} x2={115} y2={70} color="rgba(248,113,113,0.12)" />
+
+              {/* Context nodes around deal */}
+              <Node label="THE MARKET" sub="$8.5B · 10.6% CAGR" x={30} y={82} color="rgba(255,255,255,0.3)" w={32} />
+              <Node label="PRECEDENT" sub="FIVE Holdings" x={150} y={82} color="rgba(255,255,255,0.3)" w={28} />
+              <Line x1={46} y1={82} x2={60} y2={82} color="rgba(255,255,255,0.06)" />
+              <Line x1={136} y1={82} x2={120} y2={82} color="rgba(255,255,255,0.06)" />
+
+              {/* ═══ ARTIST OUTPUT (bottom 3 blocks) ═══ */}
+
+              {/* Lines from deal to artist blocks */}
+              <Line x1={75} y1={94} x2={32} y2={108} color="rgba(96,165,250,0.2)" />
+              <Line x1={90} y1={94} x2={90} y2={108} color="rgba(139,92,246,0.2)" />
+              <Line x1={105} y1={94} x2={148} y2={108} color="rgba(248,113,113,0.2)" />
+
+              {/* Block 1: Local Artists (blue) */}
+              <rect x="2" y="108" width="56" height="52" rx="2" fill="rgba(59,130,246,0.04)" stroke="rgba(59,130,246,0.15)" strokeWidth="0.3" />
+              <text x="30" y="116" textAnchor="middle" className="font-mono" style={{ fontSize: "3.5pt", fill: "rgba(96,165,250,0.6)", letterSpacing: "0.15em" }}>REVENUE · LOCAL ARTISTS</text>
+              <Node label="Björn" x={18} y={124} color="#60a5fa" w={20} />
+              <Node label="INS artist 2" x={44} y={124} color="#60a5fa" w={22} />
+              {["Shows", "Royalties + publishing", "Licensing", "Exclusivity + control", "WW Marketing"].map((s, i) => (
+                <text key={s} x="8" y={136 + i * 5} className="font-body" style={{ fontSize: "3.5pt", fill: "rgba(255,255,255,0.35)" }}>· {s}</text>
               ))}
-              <div className="mt-[3mm] pt-[2mm] border-t border-[#3b82f630]">
-                <p className="font-mono text-[5pt] tracking-[0.15em] text-[#EF9F27] uppercase mb-[1.5mm]">Local artists</p>
-                <p className="font-body text-[6.5pt] text-[#EF9F27]/60">Björn (first prototype) · INS artist 2 · Artist 3...</p>
-              </div>
-            </div>
-            {/* A2G */}
-            <div className="flex-1 border border-[#ef444440] rounded-[4mm] p-[5mm] bg-[#ef444408]">
-              <p className="font-display text-[11pt] text-[#f87171] mb-[3mm]">A2G company</p>
-              {[
-                { name: "Prophecy", role: "Production + live engine" },
-                { name: "AIRE", role: "Content + immersive DJ×VJ shows" },
-                { name: "PERSONA", role: "Label + EDMisLove 7M promo" },
-              ].map((e, i) => (
-                <p key={i} className="font-body text-[6.5pt] text-white/50 mb-[1.5mm] flex gap-[2mm]">
-                  <span className="text-[#f87171] shrink-0">·</span>
-                  <span><span className="text-white/70">{e.name}</span> — {e.role}</span>
-                </p>
+
+              {/* Block 2: AIRE (purple) */}
+              <rect x="62" y="108" width="56" height="52" rx="2" fill="rgba(139,92,246,0.04)" stroke="rgba(139,92,246,0.15)" strokeWidth="0.3" />
+              <text x="90" y="116" textAnchor="middle" className="font-mono" style={{ fontSize: "3.5pt", fill: "rgba(167,139,250,0.6)", letterSpacing: "0.15em" }}>REVENUE · AIRE (SHARED)</text>
+              <Node label="AIRE" x={90} y={124} color="#a78bfa" w={20} />
+              {["Shows (China)", "Licensing (China)", "Exclusivity + control (China)", "Royalties + publishing (China)"].map((s, i) => (
+                <text key={s} x="68" y={136 + i * 5} className="font-body" style={{ fontSize: "3.5pt", fill: "rgba(255,255,255,0.35)" }}>· {s}</text>
               ))}
-              <div className="mt-[3mm] pt-[2mm] border-t border-[#ef444430]">
-                <p className="font-mono text-[5pt] tracking-[0.15em] text-white/25 uppercase mb-[1.5mm]">INS delivers</p>
-                {["Licensing · China Marketing · Shows (China+INS)"].map((r, i) => (
-                  <p key={i} className="font-body text-[6pt] text-[#60a5fa]/60">→ {r}</p>
-                ))}
-                <p className="font-mono text-[5pt] tracking-[0.15em] text-white/25 uppercase mb-[1.5mm] mt-[2mm]">A2G delivers</p>
-                {["Music for INS artists · INSane releases · WW Marketing · Content · Exclusive shows"].map((r, i) => (
-                  <p key={i} className="font-body text-[6pt] text-[#f87171]/60">→ {r}</p>
-                ))}
-              </div>
-            </div>
+
+              {/* Block 3: Prophecy (red) */}
+              <rect x="122" y="108" width="56" height="52" rx="2" fill="rgba(239,68,68,0.04)" stroke="rgba(239,68,68,0.15)" strokeWidth="0.3" />
+              <text x="150" y="116" textAnchor="middle" className="font-mono" style={{ fontSize: "3.5pt", fill: "rgba(248,113,113,0.6)", letterSpacing: "0.15em" }}>REVENUE · PROPHECY (A2G)</text>
+              <Node label="Prophecy" x={150} y={124} color="#f87171" w={24} />
+              {["China Marketing", "Shows (INS venues)"].map((s, i) => (
+                <text key={s} x="128" y={136 + i * 5} className="font-body" style={{ fontSize: "3.5pt", fill: "rgba(255,255,255,0.35)" }}>· {s}</text>
+              ))}
+
+              {/* ═══ LOOP ARROW: Artist Factory ═══ */}
+              <text x="90" y="170" textAnchor="middle" className="font-mono" style={{ fontSize: "4pt", fill: "rgba(201,168,76,0.5)", letterSpacing: "0.2em" }}>THE ARTIST FACTORY</text>
+              <text x="90" y="176" textAnchor="middle" className="font-body" style={{ fontSize: "3.5pt", fill: "rgba(255,255,255,0.2)" }}>Each artist proves the model → infrastructure serves the next one</text>
+
+              {/* Loop arrow path */}
+              <path d="M 30,162 C 30,185 150,185 150,162" fill="none" stroke="rgba(201,168,76,0.2)" strokeWidth="0.4" strokeDasharray="1.5 1" />
+              <path d="M 88,186 L 90,190 L 92,186" fill="none" stroke="rgba(201,168,76,0.3)" strokeWidth="0.5" />
+              <Line x1={90} y1={190} x2={90} y2={200} color="rgba(201,168,76,0.15)" />
+              <text x="90" y="206" textAnchor="middle" className="font-display" style={{ fontSize: "5pt", fill: "rgba(201,168,76,0.4)", fontStyle: "italic" }}>∞ Infinite artists</text>
+            </svg>
           </div>
 
-          {/* Revenue blocks per artist type */}
-          <p className="font-mono text-[5pt] tracking-[0.2em] text-white/30 uppercase mb-[3mm]">Revenue streams by artist type</p>
-          <div className="flex gap-[3mm]">
-            {/* Block 1: HERO */}
-            <div className="flex-1 border border-[#3b82f630] rounded-[2mm] p-[3mm] bg-[#3b82f608]">
-              <p className="font-mono text-[5pt] tracking-[0.15em] text-[#60a5fa] uppercase mb-[2mm]">Local Artists (Björn+)</p>
-              {["Shows","Royalties + publishing","Licensing","Exclusivity + control","WW Marketing"].map((s, i) => (
-                <p key={i} className="font-body text-[5.5pt] text-white/40 mb-[0.5mm]">· {s}</p>
-              ))}
-            </div>
-            {/* Block 2: HERO+A2G */}
-            <div className="flex-1 border border-[#8b5cf630] rounded-[2mm] p-[3mm] bg-[#8b5cf608]">
-              <p className="font-mono text-[5pt] tracking-[0.15em] text-[#a78bfa] uppercase mb-[2mm]">AIRE (shared)</p>
-              {["Shows (China)","Licensing (China)","Exclusivity + control (China)","Royalties + publishing (China)"].map((s, i) => (
-                <p key={i} className="font-body text-[5.5pt] text-white/40 mb-[0.5mm]">· {s}</p>
-              ))}
-            </div>
-            {/* Block 3: A2G */}
-            <div className="flex-1 border border-[#ef444430] rounded-[2mm] p-[3mm] bg-[#ef444408]">
-              <p className="font-mono text-[5pt] tracking-[0.15em] text-[#f87171] uppercase mb-[2mm]">Prophecy (A2G)</p>
-              {["China Marketing","Shows (INS venues)"].map((s, i) => (
-                <p key={i} className="font-body text-[5.5pt] text-white/40 mb-[0.5mm]">· {s}</p>
-              ))}
-            </div>
-          </div>
+          <p className="text-center font-display text-[10pt] text-white/20 italic pb-[12mm]">
+            Two ecosystems. One machine. Infinite artists.
+          </p>
         </div>
         <PageNum n={2} />
       </Page>
 
-      {/* ═══ PAGE 3: OPPORTUNITY + FIVE ═══ */}
+      {/* ═══ PAGE 3: WHY THIS WORKS ═══ */}
       <Page>
         <Header />
-        <div className="pt-[22mm] px-[16mm]">
-          <SectionLabel>The opportunity</SectionLabel>
-          <h2 className="font-display text-[28pt] font-light leading-[1.1] mb-[4mm]">
-            The biggest market<br />nobody has <span className="gold-shimmer italic">unlocked</span>.
+        <div className="pt-[22mm] px-[16mm] flex flex-col h-full">
+          <SectionLabel>The precedent</SectionLabel>
+          <h2 className="font-display text-[28pt] font-light leading-[1.1] mb-[12mm]">
+            Someone already<br />validated this <span className="gold-shimmer italic">model</span>.
           </h2>
-          <p className="font-body text-[8pt] text-white/35 mb-[10mm] max-w-[140mm]">
-            China&apos;s electronic music market reached $8.5B in 2025, growing at 10.6% CAGR. No replicable co-development model with long-term territorial revenue sharing exists yet.
-          </p>
 
-          {/* FIVE Holdings */}
-          <div className="border border-white/[0.06] rounded-[3mm] p-[8mm] mb-[8mm] bg-white/[0.015]">
-            <p className="font-mono text-[5pt] tracking-[0.3em] text-white/20 uppercase mb-[3mm]">Proven model</p>
-            <p className="font-display text-[16pt] font-light text-white mb-[4mm]">FIVE Holdings × Pacha Group</p>
-            <div className="font-body text-[7.5pt] text-white/40 leading-relaxed space-y-[1mm]">
-              <p>Acquired Pacha for €302.5M in October 2023. Reported $589M revenue in 2024 (28% YoY) with $208M EBITDA.</p>
-              <p>Acquired Brooklyn Mirage / Avant Gardner in February 2026, rebranding as Pacha NYC.</p>
-              <p>Plans $500M expansion across US and Asia. $460M credit facility secured.</p>
+          {/* FIVE Holdings box */}
+          <div className="border border-white/[0.06] rounded-[3mm] p-[10mm] mb-[10mm] bg-white/[0.015]">
+            <p className="font-mono text-[5pt] tracking-[0.3em] text-white/20 uppercase mb-[4mm]">FIVE Holdings × Pacha Group</p>
+            <div className="flex gap-[8mm] items-baseline mb-[6mm]">
+              <p className="font-display text-[28pt] font-light text-white/30">€302.5M</p>
+              <p className="font-body text-[8pt] text-white/25">acquisition</p>
+              <p className="font-display text-[20pt] font-light text-white/20 ml-auto">$589M</p>
+              <p className="font-body text-[8pt] text-white/20">revenue</p>
             </div>
-            <p className="font-body text-[8pt] text-[#C9A84C] italic mt-[4mm] leading-relaxed">
-              But FIVE proved its biggest vulnerability: without their own artists, they&apos;re always paying someone else&apos;s fee to fill their own venues.
-            </p>
+            <p className="font-body text-[8pt] text-white/30">No artist pipeline.</p>
           </div>
 
+          <p className="font-display text-[11pt] italic text-[#C9A84C] leading-relaxed mb-[16mm] max-w-[140mm]">
+            &ldquo;FIVE proved the vulnerability: without owned artists, you always pay someone else.&rdquo;
+          </p>
+
           {/* Comparison */}
-          <div className="flex gap-[6mm] items-center">
-            <div className="flex-1 border border-white/[0.06] rounded-[3mm] p-[6mm] text-center bg-white/[0.015]">
-              <p className="font-mono text-[6pt] tracking-[0.15em] text-white/25 uppercase mb-[2mm]">FIVE Holdings</p>
-              <p className="font-display text-[28pt] font-light text-white/15">€302.5M</p>
-              <p className="font-body text-[6pt] text-white/25">Still rents talent — no owned artist pipeline</p>
+          <div className="flex gap-[8mm] items-center mt-auto mb-[30mm]">
+            <div className="flex-1 border border-white/[0.06] rounded-[3mm] p-[8mm] text-center bg-white/[0.015]">
+              <p className="font-display text-[36pt] font-light text-white/12 mb-[2mm]">€302.5M</p>
+              <p className="font-body text-[7pt] text-white/20">Still rents talent</p>
             </div>
-            <span className="font-display text-[16pt] text-[#C9A84C]">→</span>
-            <div className="flex-1 border border-[#C9A84C30] rounded-[3mm] p-[6mm] text-center bg-[#C9A84C08]">
-              <p className="font-mono text-[6pt] tracking-[0.15em] text-[#C9A84C] uppercase mb-[2mm]">INS + A2G</p>
-              <p className="font-display text-[28pt] font-light text-[#C9A84C]">€54K</p>
-              <p className="font-body text-[6pt] text-white/50">Co-owns artists from day one — audiences come for the brand</p>
+            <span className="font-display text-[20pt] text-[#C9A84C]/40">→</span>
+            <div className="flex-1 border border-[#C9A84C30] rounded-[3mm] p-[8mm] text-center bg-[#C9A84C06]">
+              <p className="font-display text-[36pt] font-light text-[#C9A84C] mb-[2mm]">€54K</p>
+              <p className="font-body text-[7pt] text-white/40">Co-owns artists from day one</p>
             </div>
           </div>
         </div>
         <PageNum n={3} />
       </Page>
 
-      {/* ═══ PAGE 4: ARTISTS ═══ */}
-      <Page className="bg-[#040810]">
+      {/* ═══ PAGE 4: THE ARTISTS ═══ */}
+      <Page>
         <Header />
-        <div className="pt-[22mm] px-[16mm]">
+        <div className="pt-[22mm] px-[16mm] flex flex-col h-full">
           <SectionLabel>The artists</SectionLabel>
           <h2 className="font-display text-[28pt] font-light leading-[1.1] mb-[10mm]">
             Western talent,<br />built for <span className="italic text-[#00cfff]">Asia</span>.
           </h2>
 
-          {d.artists.map((a) => (
-            <div key={a.id} className="flex gap-[5mm] mb-[6mm] items-start">
-              <div className="w-[40mm] h-[40mm] shrink-0 rounded-[2mm] overflow-hidden bg-[#0a1020]">
-                {a.image ? (
-                  <img src={a.image} alt={a.name} className="w-full h-full object-cover" style={{ filter: "brightness(0.85) contrast(1.05)" }} />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center text-white/10 font-mono text-[6pt]">Photo</div>
-                )}
-              </div>
-              <div className="flex-1">
-                <div className="flex items-center gap-[3mm] mb-[1mm]">
-                  <p className="font-display text-[18pt] font-light">{a.name}</p>
-                  <span className="font-mono text-[5pt] tracking-[0.15em] text-[#00cfff]/50 uppercase border border-[#00cfff20] px-[2mm] py-[0.5mm]">{a.genre}</span>
+          <div className="flex gap-[4mm] flex-1 mb-[16mm]">
+            {[
+              { name: "PROPHECY", genre: "Melodic Techno", image: "/images/artists/prophecy.png", line: "The production engine. Anyma, Guetta, ARTBAT co-prods. 300K+ Spotify." },
+              { name: "AIRE", genre: "DJ × VJ Live Act", image: "/images/artists/aire.png", line: "The content engine. DJ×VJ immersive format. Sellable A/V from every show." },
+              { name: "BJÖRN", genre: "Electronic", image: "/images/artists/bjorn.png", line: "The proof of concept. Ghost-produced by Prophecy. First artist through the factory." },
+            ].map((a) => (
+              <div key={a.name} className="flex-1 flex flex-col">
+                <div className="flex-1 rounded-[2mm] overflow-hidden bg-[#0a1020] mb-[4mm]" style={{ aspectRatio: "1" }}>
+                  <img src={a.image} alt={a.name} className="w-full h-full object-cover" style={{ filter: "brightness(0.8) contrast(1.05)" }} />
                 </div>
-                <p className="font-body text-[7pt] text-white/30 italic mb-[2mm]">{a.tagline}</p>
-                {a.highlights.map((h, hi) => (
-                  <p key={hi} className="font-body text-[6.5pt] text-white/40 mb-[1mm] flex gap-[2mm]">
-                    <span className="text-[#00cfff]/30 shrink-0">·</span> {h}
-                  </p>
-                ))}
-                {a.collabs.length > 0 && (
-                  <div className="flex flex-wrap gap-[1.5mm] mt-[2mm]">
-                    {a.collabs.map((co, ci) => (
-                      <span key={ci} className="font-mono text-[5pt] border border-[#00cfff15] px-[2mm] py-[0.5mm] text-[#00cfff]/40 bg-[#00cfff05]">{co}</span>
-                    ))}
-                  </div>
-                )}
+                <div className="flex items-center gap-[2mm] mb-[2mm]">
+                  <p className="font-display text-[14pt] font-light tracking-wide">{a.name}</p>
+                  <span className="font-mono text-[4.5pt] tracking-[0.15em] text-[#00cfff]/40 uppercase border border-[#00cfff15] px-[2mm] py-[0.5mm]">{a.genre}</span>
+                </div>
+                <p className="font-body text-[7pt] text-white/35 leading-relaxed">{a.line}</p>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
         <PageNum n={4} />
       </Page>
 
-      {/* ═══ PAGE 5: THE MODEL + NUMBERS ═══ */}
+      {/* ═══ PAGE 5: HOW IT WORKS ═══ */}
       <Page>
         <Header />
         <div className="pt-[22mm] px-[16mm]">
           <SectionLabel>The model</SectionLabel>
-          <h2 className="font-display text-[28pt] font-light leading-[1.1] mb-[8mm]">
+          <h2 className="font-display text-[28pt] font-light leading-[1.1] mb-[10mm]">
             Co-development,<br /><span className="gold-shimmer italic">co-ownership</span>.
           </h2>
 
-          {/* How it works */}
-          <div className="flex gap-[4mm] mb-[8mm]">
+          {/* 3 phases */}
+          <div className="flex gap-[4mm] mb-[12mm]">
             {d.phases.map((s) => (
-              <div key={s.num} className="flex-1 border border-white/[0.04] rounded-[2mm] p-[4mm] bg-white/[0.015]">
-                <p className="font-display text-[14pt] text-white/10 mb-[1mm]">{s.num}</p>
-                <p className="font-display text-[11pt] text-[#C9A84C] mb-[2mm]">{s.title}</p>
-                <p className="font-body text-[6.5pt] text-white/35 leading-relaxed">{s.body}</p>
+              <div key={s.num} className="flex-1 border border-white/[0.04] rounded-[2mm] p-[5mm] bg-white/[0.015]">
+                <p className="font-display text-[16pt] text-white/10 mb-[1mm]">{s.num}</p>
+                <p className="font-display text-[12pt] text-[#C9A84C] mb-[2mm]">{s.title}</p>
+                <p className="font-body text-[7pt] text-white/35 leading-relaxed">{s.body}</p>
               </div>
             ))}
           </div>
 
           {/* Revenue phases */}
-          <p className="font-mono text-[5pt] tracking-[0.2em] text-white/20 uppercase mb-[3mm]">Revenue share phases</p>
+          <p className="font-mono text-[5pt] tracking-[0.2em] text-white/20 uppercase mb-[4mm]">Revenue share phases</p>
           {[
             { n: "01", t: "Recovery", s: "60% INS · 40% Artist", d: "Until INS recoups full investment", c: "#00cfff" },
             { n: "02", t: "Profit (3yr)", s: "30% INS · 70% Artist", d: "Artist takes majority, INS retains 30%", c: "#C9A84C" },
             { n: "03", t: "Long-term", s: "10% INS · 90% Artist", d: "INS retains royalty up to Year 10", c: "#4ade80" },
           ].map((p) => (
-            <div key={p.n} className="flex items-center gap-[4mm] py-[2.5mm] border-b border-white/[0.03]">
-              <span className="font-mono text-[7pt] font-medium w-[8mm]" style={{ color: p.c }}>{p.n}</span>
-              <span className="font-body text-[8pt] text-white w-[28mm]">{p.t}</span>
-              <span className="font-display text-[10pt] font-light" style={{ color: p.c }}>{p.s}</span>
-              <span className="font-body text-[6.5pt] text-white/25 ml-auto">{p.d}</span>
+            <div key={p.n} className="flex items-center gap-[4mm] py-[3mm] border-b border-white/[0.03]">
+              <span className="font-mono text-[8pt] font-medium w-[8mm]" style={{ color: p.c }}>{p.n}</span>
+              <span className="font-body text-[9pt] text-white w-[28mm]">{p.t}</span>
+              <span className="font-display text-[11pt] font-light" style={{ color: p.c }}>{p.s}</span>
+              <span className="font-body text-[7pt] text-white/25 ml-auto">{p.d}</span>
             </div>
           ))}
-
-          {/* Financial projection */}
-          <p className="font-mono text-[5pt] tracking-[0.2em] text-white/20 uppercase mb-[3mm] mt-[8mm]">3-Year financial projection — conservative model</p>
-          <div className="flex gap-[4mm]">
-            {[
-              { y: "Year 1", r: "€44K", inv: "€54K invested", ret: "€24K return" },
-              { y: "Year 2", r: "€179K", inv: "€77K invested", ret: "€53K return" },
-              { y: "Year 3", r: "€495K", inv: "€122K invested", ret: "€145K return" },
-            ].map((f) => (
-              <div key={f.y} className="flex-1 border border-white/[0.06] rounded-[2mm] p-[5mm] bg-white/[0.015]">
-                <p className="font-mono text-[6pt] text-white/25 mb-[2mm]">{f.y}</p>
-                <p className="font-display text-[22pt] font-light text-[#00cfff] mb-[2mm]" style={{ textShadow: "0 0 15px rgba(0,207,255,0.2)" }}>{f.r}</p>
-                <p className="font-mono text-[5pt] text-white/20">{f.inv}</p>
-                <p className="font-mono text-[5pt] text-[#C9A84C]">{f.ret}</p>
-              </div>
-            ))}
-          </div>
         </div>
         <PageNum n={5} />
       </Page>
 
-      {/* ═══ PAGE 6: VALUE BEYOND REVENUE ═══ */}
+      {/* ═══ PAGE 6: WHAT INS EARNS ═══ */}
       <Page>
         <Header />
-        <div className="pt-[22mm] px-[16mm]">
-          <SectionLabel>What INS gets</SectionLabel>
-          <h2 className="font-display text-[28pt] font-light leading-[1.1] mb-[10mm]">
-            Value beyond<br /><span className="gold-shimmer italic">revenue</span>.
+        <div className="pt-[22mm] px-[16mm] flex flex-col h-full">
+          <SectionLabel>What INS earns</SectionLabel>
+          <h2 className="font-display text-[28pt] font-light leading-[1.1] mb-[12mm]">
+            Where the money<br /><span className="gold-shimmer italic">comes from</span>.
           </h2>
 
-          <div className="grid grid-cols-2 gap-[3mm]">
-            {d.valueDimensions.map((v) => {
-              const catColors: Record<string, string> = {
-                Economic: "#f59e0b", Strategic: "#00cfff", Operational: "#34d399", Marketing: "#a78bfa", Scalable: "#22d3ee",
-              };
-              const c = catColors[v.category] ?? "#f59e0b";
-              return (
-                <div key={v.num} className="border border-white/[0.04] rounded-[2mm] p-[4mm] bg-white/[0.015]">
-                  <p className="font-mono text-[5pt] tracking-[0.15em] uppercase mb-[1.5mm]" style={{ color: c }}>{v.category}</p>
-                  <p className="font-display text-[10pt] text-white mb-[1.5mm]">{v.title}</p>
-                  <p className="font-body text-[6pt] text-white/35 leading-relaxed">{v.desc}</p>
-                </div>
-              );
-            })}
+          {/* 4 revenue cards */}
+          <div className="grid grid-cols-2 gap-[4mm] mb-[12mm]">
+            {[
+              { icon: "◆", title: "Shows in China", desc: "60/30/10% share on every show fee", color: "#00cfff" },
+              { icon: "◆", title: "Royalties + Publishing", desc: "China territory streaming + downloads", color: "#C9A84C" },
+              { icon: "◆", title: "Licensing", desc: "Gaming (Hero E-Sports), brand deals, sync", color: "#4ade80" },
+              { icon: "◆", title: "Content + Merch", desc: "A/V assets from every AIRE show", color: "#a78bfa" },
+            ].map((c) => (
+              <div key={c.title} className="border border-white/[0.06] rounded-[3mm] p-[8mm] bg-white/[0.015]">
+                <span className="text-[6pt] mb-[3mm] block" style={{ color: c.color }}>◆</span>
+                <p className="font-display text-[14pt] font-light text-white mb-[2mm]">{c.title}</p>
+                <p className="font-body text-[8pt] text-white/35 leading-relaxed">{c.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* 3-year summary row */}
+          <p className="font-mono text-[5pt] tracking-[0.2em] text-white/20 uppercase mb-[4mm]">3-Year financial projection — conservative model</p>
+          <div className="flex gap-[4mm] mt-auto mb-[20mm]">
+            {[
+              { y: "Year 1", rev: "€44K", ret: "€24K", retLabel: "INS return" },
+              { y: "Year 2", rev: "€179K", ret: "€53K", retLabel: "INS return" },
+              { y: "Year 3", rev: "€495K", ret: "€145K", retLabel: "INS return" },
+            ].map((f) => (
+              <div key={f.y} className="flex-1 border border-white/[0.06] rounded-[2mm] p-[6mm] bg-white/[0.015]">
+                <p className="font-mono text-[6pt] text-white/25 mb-[3mm]">{f.y}</p>
+                <p className="font-display text-[24pt] font-light text-[#00cfff] mb-[1mm]" style={{ textShadow: "0 0 15px rgba(0,207,255,0.2)" }}>{f.rev}</p>
+                <p className="font-mono text-[6pt] text-white/20 mb-[0.5mm]">total revenue</p>
+                <p className="font-display text-[14pt] font-light text-[#C9A84C] mt-[2mm]">{f.ret}</p>
+                <p className="font-mono text-[5pt] text-[#C9A84C]/50">{f.retLabel}</p>
+              </div>
+            ))}
           </div>
         </div>
         <PageNum n={6} />
       </Page>
 
-      {/* ═══ PAGE 7: PROPHECY YEAR 1 DEAL ═══ */}
+      {/* ═══ PAGE 7: PROPHECY YEAR 1 ═══ */}
       <Page>
         <Header />
-        <div className="flex h-full">
-          {/* Left: image */}
-          <div className="w-[38%] relative bg-[#060c14]">
-            <div className="absolute inset-0 flex items-center justify-center">
-              <img src="/images/artists/prophecy.png" alt="Prophecy" className="w-full h-full object-cover" style={{ filter: "brightness(0.7) contrast(1.1)" }} />
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#050a10]" />
+        <div className="pt-[22mm] px-[16mm] flex flex-col h-full">
+          <SectionLabel color="#00cfff">Year 1 · Prophecy × INS</SectionLabel>
+          <h2 className="font-display text-[28pt] font-light leading-[1.1] mb-[10mm]">
+            The first <span className="italic text-[#00cfff]">move</span>.
+          </h2>
+
+          {/* Two columns */}
+          <div className="flex gap-[8mm] flex-1">
+            {/* Left: What we want from INS */}
+            <div className="flex-1">
+              <p className="font-mono text-[5pt] tracking-[0.2em] text-[#00cfff] uppercase mb-[4mm]">What we want from INS</p>
+              {[
+                "3 shows at INS venues (30% discount asia rate)",
+                "€10K marketing co-funding (distributed as preferred)",
+                "China Marketing Director (part-time, local execution)",
+                "Distribution: Apple Music, NetEase, Douyin",
+                "Sync/gaming pipeline through Hero E-Sports",
+                "INS partner brand activations",
+                "3–5 non-INS China shows (€4–5K rate)",
+              ].map((item, i) => (
+                <p key={i} className="font-body text-[7.5pt] text-white/45 mb-[2.5mm] pl-[3mm] flex gap-[2mm]">
+                  <span className="text-[#00cfff]/30 shrink-0">·</span>{item}
+                </p>
+              ))}
+            </div>
+
+            {/* Right: What INS gets */}
+            <div className="flex-1">
+              <p className="font-mono text-[5pt] tracking-[0.2em] text-[#C9A84C] uppercase mb-[4mm]">What INS gets in return</p>
+              {[
+                "40% China-territory revenue until recouped",
+                "Ghost-production: 4 tracks for Björn at €3,500/track (30% off market)",
+                "Up to 3 Prophecy releases on INS label in Year 1",
+                "Label scouting for Björn — fallback: PERSONA Records with promo",
+                "Connections with the biggest industry players",
+                "Support with Björn development",
+                "30% share for 3yr post-recovery, then 10% to Year 10",
+              ].map((item, i) => (
+                <p key={i} className="font-body text-[7.5pt] text-white/45 mb-[2.5mm] pl-[3mm] flex gap-[2mm]">
+                  <span className="text-[#C9A84C]/30 shrink-0">·</span>{item}
+                </p>
+              ))}
             </div>
           </div>
-          {/* Right: deal */}
-          <div className="w-[62%] pt-[22mm] px-[8mm]">
-            <SectionLabel color="#00cfff">Year 1 · Prophecy × INS</SectionLabel>
-            <h2 className="font-display text-[24pt] font-light leading-[1.1] mb-[8mm]">
-              The first <span className="italic text-[#00cfff]">move</span>.
-            </h2>
 
-            <p className="font-mono text-[5pt] tracking-[0.2em] text-[#00cfff] uppercase mb-[3mm]">What we want from INS</p>
-            {["3 shows at INS venues (30% discount asia rate)","€10K marketing co-funding (distributed as preferred)","China Marketing Director (part-time, local execution)","Distribution: Apple Music, NetEase, Douyin","Sync/gaming pipeline through Hero Esports","INS partner brand activations","3-5 non-INS China shows (€4-5K rate)"].map((item, i) => (
-              <p key={i} className="font-body text-[6.5pt] text-white/45 mb-[1.5mm] pl-[3mm]">
-                <span className="text-white/15 mr-[2mm]">·</span>{item}
-              </p>
-            ))}
-
-            <p className="font-mono text-[5pt] tracking-[0.2em] text-[#C9A84C] uppercase mb-[3mm] mt-[5mm]">What INS gets in return</p>
-            {["40% China-territory revenue until recouped","Ghost-production: 4 tracks for Björn at €3,500/track (30% off market)","Up to 3 Prophecy releases on INS label in Year 1","Label scouting for Björn — fallback: PERSONA Records with promo","Connections with the biggest industry players","Support with Björn development","30% share for 3yr post-recovery, then 10% to Year 10"].map((item, i) => (
-              <p key={i} className="font-body text-[6.5pt] text-white/45 mb-[1.5mm] pl-[3mm]">
-                <span className="text-[#C9A84C]/30 mr-[2mm]">·</span>{item}
-              </p>
-            ))}
-
-            <div className="mt-[5mm] border-l-[1mm] border-[#C9A84C30] pl-[4mm] py-[2mm] bg-[#C9A84C06]">
-              <p className="font-body text-[7pt] text-[#C9A84C]">INS invests ~€24K Year 1</p>
-              <p className="font-body text-[6pt] text-white/30">€10K marketing + €14K ghost production package (4 tracks)</p>
-            </div>
+          {/* Gold bottom bar */}
+          <div className="border-l-[1mm] border-[#C9A84C40] pl-[5mm] py-[3mm] bg-[#C9A84C06] mb-[16mm]">
+            <p className="font-body text-[8pt] text-[#C9A84C] leading-relaxed">
+              INS invests ~€24K → Gets: revenue share + 4 tracks + 3 releases + label scouting + industry access
+            </p>
           </div>
         </div>
         <PageNum n={7} />
       </Page>
 
-      {/* ═══ PAGE 8: ARTIST INCUBATOR ═══ */}
+      {/* ═══ PAGE 8: THE ARTIST FACTORY ═══ */}
       <Page>
         <Header />
-        <div className="pt-[22mm] px-[16mm]">
+        <div className="pt-[22mm] px-[16mm] flex flex-col h-full">
           <SectionLabel>The output</SectionLabel>
-          <h2 className="font-display text-[28pt] font-light leading-[1.1] mb-[4mm]">
+          <h2 className="font-display text-[28pt] font-light leading-[1.1] mb-[3mm]">
             The artist<br /><span className="gold-shimmer italic">incubator</span>.
           </h2>
-          <p className="font-display text-[11pt] italic text-[#C9A84C] mb-[4mm]">&ldquo;We don&apos;t book artists. We build them.&rdquo;</p>
-          <p className="font-body text-[8pt] text-white/35 leading-relaxed mb-[8mm] max-w-[140mm]">
-            Prophecy is the key that starts the machine. Björn is the first prototype. If it works, the infrastructure serves every artist after — same system, lower cost, faster results.
-          </p>
+          <p className="font-display text-[11pt] italic text-[#C9A84C] mb-[10mm]">&ldquo;We don&apos;t book artists. We build them.&rdquo;</p>
 
-          {/* Factory visual */}
-          <div className="border border-[#C9A84C30] rounded-[3mm] p-[6mm] bg-[#C9A84C06] mb-[6mm]">
-            <div className="flex items-center justify-center gap-[8mm]">
+          {/* Factory visual with loop */}
+          <div className="border border-[#C9A84C20] rounded-[3mm] p-[8mm] bg-[#C9A84C04] mb-[6mm]">
+            <div className="flex items-center justify-center gap-[10mm] mb-[4mm]">
               {[
-                { n: "Björn", s: "Year 1 prototype", active: true },
-                { n: "INS artist 2", s: "Year 2 expansion", active: true },
-                { n: "Artist 3...", s: "And beyond", active: false },
+                { n: "Björn", s: "Year 1: prove the model", active: true },
+                { n: "INS artist 2", s: "Year 2: scale it", active: true },
+                { n: "Artist 3...", s: "Year 3: it runs itself", active: false },
               ].map((a, i) => (
-                <div key={i} className="flex items-center gap-[6mm]">
+                <div key={i} className="flex items-center gap-[8mm]">
                   <div className="text-center">
-                    <p className={`font-display text-[12pt] ${a.active ? "text-[#EF9F27]" : "text-white/20"}`}>{a.n}</p>
-                    <p className="font-body text-[6pt] text-white/25">{a.s}</p>
+                    <p className={`font-display text-[14pt] ${a.active ? "text-[#EF9F27]" : "text-white/15"}`}>{a.n}</p>
+                    <p className="font-body text-[6pt] text-white/25 mt-[1mm]">{a.s}</p>
                   </div>
-                  {i < 2 && <span className="font-display text-[14pt] text-[#C9A84C30]">→</span>}
+                  {i < 2 && <span className="font-display text-[16pt] text-[#C9A84C]/25">→</span>}
                 </div>
               ))}
             </div>
-            <p className="text-center font-mono text-[5pt] tracking-[0.2em] text-[#C9A84C]/40 mt-[3mm] uppercase">
-              Same infrastructure · Lower cost · Faster · Repeat
-            </p>
+
+            {/* Loop arrow */}
+            <div className="flex items-center justify-center gap-[3mm] mt-[2mm]">
+              <div className="h-[0.3mm] flex-1 bg-gradient-to-r from-transparent via-[#C9A84C20] to-transparent" />
+              <span className="font-mono text-[5pt] tracking-[0.2em] text-[#C9A84C]/35 uppercase">Same infrastructure · Lower cost · Faster · Repeat</span>
+              <div className="h-[0.3mm] flex-1 bg-gradient-to-r from-transparent via-[#C9A84C20] to-transparent" />
+            </div>
           </div>
 
-          {/* Revenue per artist type — 3 blocks from schema */}
-          <p className="font-mono text-[5pt] tracking-[0.2em] text-white/30 uppercase mb-[3mm]">Revenue streams by artist type</p>
-          <div className="flex gap-[3mm]">
-            <div className="flex-1 border border-[#3b82f630] rounded-[2mm] p-[3mm] bg-[#3b82f608]">
-              <p className="font-mono text-[5pt] tracking-[0.15em] text-[#60a5fa] uppercase mb-[1.5mm]">Revenue · Local Artists</p>
-              <p className="font-body text-[5pt] text-white/25 mb-[2mm]">Björn, INS artist 2...</p>
-              {["Shows","Royalties + publishing","Licensing","Exclusivity + control","WW Marketing"].map((s, i) => (
-                <p key={i} className="font-body text-[5.5pt] text-white/40 mb-[0.5mm]">· {s}</p>
-              ))}
-            </div>
-            <div className="flex-1 border border-[#8b5cf630] rounded-[2mm] p-[3mm] bg-[#8b5cf608]">
-              <p className="font-mono text-[5pt] tracking-[0.15em] text-[#a78bfa] uppercase mb-[1.5mm]">Revenue · AIRE (shared)</p>
-              <p className="font-body text-[5pt] text-white/25 mb-[2mm]">Hero + A2G</p>
-              {["Shows (China)","Licensing (China)","Exclusivity + control (China)","Royalties + publishing (China)"].map((s, i) => (
-                <p key={i} className="font-body text-[5.5pt] text-white/40 mb-[0.5mm]">· {s}</p>
-              ))}
-            </div>
-            <div className="flex-1 border border-[#ef444430] rounded-[2mm] p-[3mm] bg-[#ef444408]">
-              <p className="font-mono text-[5pt] tracking-[0.15em] text-[#f87171] uppercase mb-[1.5mm]">Revenue · Prophecy</p>
-              <p className="font-body text-[5pt] text-white/25 mb-[2mm]">A2G managed</p>
-              {["China Marketing","Shows (INS venues)"].map((s, i) => (
-                <p key={i} className="font-body text-[5.5pt] text-white/40 mb-[0.5mm]">· {s}</p>
-              ))}
-            </div>
+          {/* Progression */}
+          <div className="flex gap-[4mm] mb-[8mm]">
+            {[
+              { y: "Year 1", t: "Prove the model", d: "3 artists, first shows, first revenue", c: "#00cfff" },
+              { y: "Year 2", t: "Scale it", d: "More artists, bigger venues, growing catalog", c: "#C9A84C" },
+              { y: "Year 3", t: "It runs itself", d: "Infrastructure proven, pipeline repeatable", c: "#4ade80" },
+            ].map((p) => (
+              <div key={p.y} className="flex-1 border border-white/[0.04] rounded-[2mm] p-[4mm] bg-white/[0.015]">
+                <p className="font-mono text-[5pt] tracking-[0.15em] uppercase mb-[1mm]" style={{ color: p.c }}>{p.y}</p>
+                <p className="font-display text-[10pt] text-white mb-[1mm]">{p.t}</p>
+                <p className="font-body text-[6pt] text-white/30">{p.d}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Revenue per artist */}
+          <p className="font-mono text-[5pt] tracking-[0.2em] text-white/25 uppercase mb-[3mm]">Each artist generates revenue for INS</p>
+          <div className="grid grid-cols-4 gap-[3mm]">
+            {[
+              { t: "Shows in China", s: "60/30/10% revenue share", c: "#00cfff" },
+              { t: "Royalties + publishing", s: "China territory streams", c: "#C9A84C" },
+              { t: "Licensing in China", s: "Gaming, brand, sync", c: "#4ade80" },
+              { t: "Content + merch", s: "A/V assets, brand deals", c: "#a78bfa" },
+            ].map((r) => (
+              <div key={r.t} className="border border-white/[0.04] rounded-[2mm] p-[3mm] bg-white/[0.015]">
+                <span className="text-[5pt] block mb-[1mm]" style={{ color: r.c }}>◆</span>
+                <p className="font-body text-[6.5pt] text-white/60 mb-[1mm]">{r.t}</p>
+                <p className="font-body text-[5.5pt] text-white/25">{r.s}</p>
+              </div>
+            ))}
           </div>
         </div>
         <PageNum n={8} />
