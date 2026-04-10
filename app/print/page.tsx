@@ -375,7 +375,7 @@ export default function PrintPage() {
             <p className="font-body text-[8pt] text-[#b0b0b0]">China&apos;s electronic music market is at an inflection point. 10.6% CAGR over 8 years.</p>
           </div>
 
-          <div className="mb-[4mm]">
+          <div className="flex-1">
             {[
               { n: "01", t: "Platform prioritization", d: "Douyin, NetEase, and QQ Music are actively prioritizing international content. The infrastructure to distribute Western artists in China is ready \u2014 the artist pipeline isn\u2019t.", c: "#00cfff" },
               { n: "02", t: "The FIVE gap", d: "FIVE Holdings proved venues scale at \u20AC302.5M but left an enormous gap: no owned artist pipeline. Venue ownership without artist ownership is a recurring cost, not an asset.", c: "#C9A84C" },
@@ -383,7 +383,7 @@ export default function PrintPage() {
               { n: "04", t: "Window of opportunity", d: "The partnerships, label relationships, and production network A2G brings are available today \u2014 not indefinitely.", c: "#f87171" },
               { n: "05", t: "Low-cost entry", d: "\u20AC42.5K Year 1 to test a model that scales across unlimited artists using the same infrastructure.", c: "#a78bfa" },
             ].map((r) => (
-              <div key={r.n} className="flex gap-[4mm] mb-[4mm]">
+              <div key={r.n} className="flex gap-[4mm] mb-[3.5mm]">
                 <span className="font-mono text-[8pt] font-medium shrink-0 w-[6mm]" style={{ color: r.c }}>{r.n}</span>
                 <div>
                   <p className="font-display text-[10pt] font-light text-[#d4d4d4] mb-[1mm]">{r.t}</p>
@@ -394,7 +394,7 @@ export default function PrintPage() {
           </div>
 
           {/* Market Growth Chart */}
-          <div className="border border-[#00cfff10] rounded-[2mm] p-[5mm] bg-[#00cfff02] mt-auto">
+          <div className="border border-[#00cfff10] rounded-[2mm] p-[5mm] bg-[#00cfff02]">
             <p className="font-mono text-[5pt] tracking-[0.3em] text-[#00cfff]/40 uppercase mb-[3mm]">China Electronic Music Market &mdash; USD Billions</p>
             <div className="flex items-end gap-[3mm]" style={{ height: "28mm" }}>
               {[
@@ -450,13 +450,13 @@ export default function PrintPage() {
             </h2>
           </div>
 
-          <div className="flex gap-[3mm]" style={{ height: "95mm" }}>
+          <div className="flex gap-[4mm]">
             {[
               {
                 name: "PROPHECY", image: "/images/artists/prophecy.png",
                 role: "Opens doors",
                 sub: "Production credibility, international label relationships, release pipeline.",
-                creds: "Co-produced with ARTBAT, MORTEN, David Guetta, Tiësto · 500K+ Spotify monthly listeners · Labels: Insomniac, Spinnin'/Warner, Future Rave",
+                creds: "Co-produced with ARTBAT, MORTEN, David Guetta, Tiësto · 500K+ Spotify monthly listeners · Labels: Insomniac, Spinnin&apos;/Warner, Future Rave",
               },
               {
                 name: "AIRE", image: "/images/artists/aire.png",
@@ -467,18 +467,18 @@ export default function PrintPage() {
               {
                 name: "BJÖRN", image: "/images/artists/bjorn.png",
                 role: "Proves the local case",
-                sub: "INS's homegrown artist — the proof of concept. From local act to internationally positioned name.",
-                creds: "Guaranteed release path through PERSONA Records + promotion via EDMisLove (7M+ followers). No dependency on external label timelines.",
+                sub: "INS&apos;s homegrown artist — the proof of concept. From local act to internationally positioned name.",
+                creds: "Guaranteed release path through PERSONA Records + promotion via EDMisLove (7M+ followers).",
               },
             ].map((a) => (
               <div key={a.name} className="flex-1 flex flex-col">
-                <div className="flex-1 rounded-[2mm] overflow-hidden bg-[#0a1020] mb-[3mm]">
-                  <img src={a.image} alt={a.name} className="w-full h-full object-cover" style={{ filter: "brightness(0.8) contrast(1.05)" }} />
+                <div className="rounded-[2mm] overflow-hidden bg-[#0a1020] mb-[3mm]" style={{ height: "70mm" }}>
+                  <img src={a.image} alt={a.name} className="w-full h-full object-cover object-top" style={{ filter: "brightness(0.8) contrast(1.05)" }} />
                 </div>
-                <p className="font-display text-[14pt] font-light tracking-wide mb-[1mm]">{a.name}</p>
+                <p className="font-display text-[13pt] font-light tracking-wide mb-[1mm]">{a.name}</p>
                 <p className="font-display text-[9pt] text-[#C9A84C] italic mb-[2mm]">{a.role}</p>
-                <p className="font-body text-[7pt] text-[#b0b0b0] leading-relaxed mb-[2mm]">{a.sub}</p>
-                <p className="font-body text-[5.5pt] text-[#b0b0b0] leading-relaxed">{a.creds}</p>
+                <p className="font-body text-[7.5pt] text-[#b0b0b0] leading-relaxed mb-[2mm]">{a.sub}</p>
+                <p className="font-body text-[6pt] text-[#b0b0b0] leading-relaxed">{a.creds}</p>
               </div>
             ))}
           </div>
