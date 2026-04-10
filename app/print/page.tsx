@@ -443,84 +443,55 @@ export default function PrintPage() {
       <Page>
         <Header />
         <div className="pt-[20mm] px-[14mm] flex flex-col h-full pb-[14mm]">
-          <div className="mb-[6mm]">
+          <div className="mb-[5mm]">
             <SectionLabel>The artists</SectionLabel>
             <h2 className="font-display text-[26pt] font-light leading-[1.1]">
               Three roles.<br />One <span className="italic text-[#00cfff]">system</span>.
             </h2>
           </div>
 
-          {/* Hero artist — Prophecy */}
-          <div className="flex gap-[5mm] mb-[5mm]">
-            <div className="rounded-[2mm] overflow-hidden bg-[#0a1020] shrink-0" style={{ width: "72mm", height: "52mm" }}>
-              <img src="/images/artists/prophecy.png" alt="Prophecy" className="w-full h-full object-cover object-top" style={{ filter: "brightness(0.8) contrast(1.05)" }} />
-            </div>
-            <div className="flex flex-col justify-center">
-              <p className="font-mono text-[5pt] tracking-[0.2em] text-[#C9A84C] uppercase mb-[2mm]">Anchor act</p>
-              <p className="font-display text-[18pt] font-light tracking-wide mb-[1.5mm]">PROPHECY</p>
-              <p className="font-display text-[9pt] text-[#C9A84C] italic mb-[3mm]">Opens doors</p>
-              <p className="font-body text-[7.5pt] text-[#b0b0b0] leading-relaxed mb-[2mm]">Production credibility, international label relationships, release pipeline. The name that gets INS into rooms it can&rsquo;t enter alone.</p>
-              <p className="font-body text-[6pt] text-[#8a8a8a] leading-relaxed">Co-produced with ARTBAT, MORTEN, David Guetta, Tiësto · 500K+ monthly listeners · Insomniac, Spinnin&rsquo;/Warner, Future Rave</p>
-            </div>
-          </div>
-
-          {/* AIRE + Björn row */}
-          <div className="flex gap-[5mm] mb-[5mm]">
+          {/* Vertical stack: Prophecy → AIRE → Björn */}
+          <div className="flex flex-col gap-[4mm] flex-1">
             {[
+              {
+                name: "PROPHECY", image: "/images/artists/prophecy.png",
+                tag: "Anchor act", role: "Opens doors", color: "#C9A84C",
+                sub: "Production credibility, international label relationships, release pipeline. The name that gets INS into rooms it can\u2019t enter alone.",
+                creds: "Co-produced with ARTBAT, MORTEN, David Guetta, Tiësto · 500K+ monthly listeners · Insomniac, Spinnin\u2019/Warner, Future Rave",
+              },
               {
                 name: "AIRE", image: "/images/artists/aire.png",
                 tag: "Content engine", role: "Creates content", color: "#a78bfa",
-                sub: "Immersive DJ\u00D7VJ format. Premium visual assets from every activation.",
+                sub: "Immersive DJ\u00D7VJ format. Premium visual assets from every activation. Each show produces reusable A/V content.",
                 creds: "Thundercode visuals (Alesso, SHM, Alan Walker) · Kuaigon mix & master (Adriatique, Vintage Culture, Fideles)",
               },
               {
                 name: "BJ\u00D6RN", image: "/images/artists/bjorn.png",
                 tag: "Local proof", role: "Proves the model", color: "#00cfff",
-                sub: "INS\u2019s homegrown artist \u2014 from local act to internationally positioned name.",
-                creds: "Release path via PERSONA Records + promotion via EDMisLove (7M+ followers).",
+                sub: "INS\u2019s homegrown artist \u2014 from local act to internationally positioned name. The proof that the system works.",
+                creds: "Release path via PERSONA Records + promotion via EDMisLove (7M+ followers)",
               },
             ].map((a) => (
-              <div key={a.name} className="flex-1 flex gap-[4mm]">
-                <div className="rounded-[2mm] overflow-hidden bg-[#0a1020] shrink-0" style={{ width: "35mm", height: "44mm" }}>
+              <div key={a.name} className="flex gap-[5mm] flex-1">
+                <div className="rounded-[2mm] overflow-hidden bg-[#0a1020] shrink-0" style={{ width: "62mm", height: "100%" }}>
                   <img src={a.image} alt={a.name} className="w-full h-full object-cover object-top" style={{ filter: "brightness(0.8) contrast(1.05)" }} />
                 </div>
-                <div className="flex flex-col justify-center">
+                <div className="flex flex-col justify-center flex-1">
                   <p className="font-mono text-[5pt] tracking-[0.2em] uppercase mb-[1.5mm]" style={{ color: a.color }}>{a.tag}</p>
-                  <p className="font-display text-[13pt] font-light tracking-wide mb-[1mm]">{a.name}</p>
-                  <p className="font-display text-[8pt] italic mb-[2mm]" style={{ color: a.color }}>{a.role}</p>
-                  <p className="font-body text-[7pt] text-[#b0b0b0] leading-relaxed mb-[1.5mm]">{a.sub}</p>
-                  <p className="font-body text-[5.5pt] text-[#8a8a8a] leading-relaxed">{a.creds}</p>
+                  <p className="font-display text-[16pt] font-light tracking-wide mb-[1mm]">{a.name}</p>
+                  <p className="font-display text-[8.5pt] italic mb-[2.5mm]" style={{ color: a.color }}>{a.role}</p>
+                  <p className="font-body text-[7.5pt] text-[#b0b0b0] leading-relaxed mb-[2mm]">{a.sub}</p>
+                  <p className="font-body text-[6pt] text-[#8a8a8a] leading-relaxed">{a.creds}</p>
                 </div>
               </div>
             ))}
           </div>
 
-          {/* System diagram */}
-          <div className="mt-auto">
-            <div className="border border-[#C9A84C20] rounded-[2mm] overflow-hidden mb-[4mm]">
-              <div className="flex">
-                {[
-                  { label: "Prophecy", desc: "International credibility\nOpens label & venue doors", color: "#C9A84C", icon: "→" },
-                  { label: "AIRE", desc: "Content engine\nVisual assets from every show", color: "#a78bfa", icon: "→" },
-                  { label: "Björn", desc: "Local proof of concept\nThe model in action", color: "#00cfff", icon: "★" },
-                ].map((r, i) => (
-                  <div key={r.label} className={`flex-1 p-[4mm] ${i < 2 ? "border-r border-white/[0.06]" : ""}`}>
-                    <div className="flex items-center gap-[2mm] mb-[2mm]">
-                      <span className="text-[6pt]" style={{ color: r.color }}>{r.icon}</span>
-                      <p className="font-mono text-[5.5pt] tracking-[0.15em]" style={{ color: r.color }}>{r.label}</p>
-                    </div>
-                    {r.desc.split("\n").map((line, j) => (
-                      <p key={j} className="font-body text-[6pt] text-[#b0b0b0] leading-relaxed">{line}</p>
-                    ))}
-                  </div>
-                ))}
-              </div>
-              <div className="border-t border-[#C9A84C20] p-[4mm] bg-[#C9A84C06]">
-                <p className="font-display text-[8pt] italic text-[#C9A84C]/70 text-center">
-                  If the pilot works, the same infrastructure serves every artist after.
-                </p>
-              </div>
-            </div>
+          {/* Bottom line */}
+          <div className="border-t border-[#C9A84C20] pt-[3mm] mt-[4mm]">
+            <p className="font-display text-[8pt] italic text-[#C9A84C]/70 text-center">
+              If the pilot works, the same infrastructure serves every artist after.
+            </p>
           </div>
         </div>
         <PageNum n={5} />
