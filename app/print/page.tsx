@@ -473,7 +473,7 @@ export default function PrintPage() {
               },
             ].map((a) => (
               <div key={a.name} className="flex gap-[5mm] flex-1">
-                <div className="rounded-[2mm] overflow-hidden bg-[#0a1020] shrink-0" style={{ width: "72mm", height: "100%" }}>
+                <div className="rounded-[2mm] overflow-hidden bg-[#0a1020] shrink-0" style={{ width: "72mm", height: "70%" }}>
                   <img src={a.image} alt={a.name} className="w-full h-full object-cover object-top" style={{ filter: "brightness(0.8) contrast(1.05)" }} />
                 </div>
                 <div className="flex flex-col justify-center flex-1">
