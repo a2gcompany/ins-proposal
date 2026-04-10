@@ -683,71 +683,78 @@ export default function PrintPage() {
         <PageNum n={7} />
       </Page>
 
-      {/* ═══ PAGE 8: THE ARTIST BUILDER ═══ */}
+      {/* ═══ PAGE 8: ADDITIONAL OPPORTUNITIES ═══ */}
       <Page>
         <Header />
-        <div className="pt-[22mm] px-[16mm] flex flex-col h-full pb-[14mm] gap-[5mm]">
-          <div>
-            <SectionLabel>The output</SectionLabel>
-            <h2 className="font-display text-[26pt] font-light leading-[1.1] mb-[3mm]">
-              The artist<br /><span className="gold-shimmer italic">builder</span>.
+        <div className="pt-[20mm] px-[14mm] flex flex-col h-full pb-[14mm]">
+          <div className="mb-[5mm]">
+            <SectionLabel>Beyond the core deal</SectionLabel>
+            <h2 className="font-display text-[28pt] font-light leading-[1.1] mb-[4mm]">
+              Additional<br />Opportunities
             </h2>
-            <p className="font-display text-[10pt] italic text-[#C9A84C] mb-[6mm]">&ldquo;We don&apos;t book artists. We build them.&rdquo;</p>
+            <p className="font-body text-[8.5pt] text-[#b0b0b0] leading-relaxed">Five expansion vectors that sit outside the core deal but become accessible the moment the partnership is in place.</p>
           </div>
 
-          <div className="border border-[#C9A84C20] rounded-[3mm] p-[8mm] bg-[#C9A84C04] mb-[5mm]">
-            <div className="flex items-center justify-center gap-[12mm] mb-[5mm]">
-              {[
-                { n: "Björn", s: "Year 1: prove it", active: true },
-                { n: "INS artist 2", s: "Year 2: scale it", active: true },
-                { n: "Artist 3...", s: "Year 3: the system accelerates", active: false },
-              ].map((a, i) => (
-                <div key={i} className="flex items-center gap-[10mm]">
-                  <div className="text-center">
-                    <p className={`font-display text-[14pt] ${a.active ? "text-[#EF9F27]" : "text-white/15"}`}>{a.n}</p>
-                    <p className="font-body text-[7pt] text-[#b0b0b0] mt-[2mm]">{a.s}</p>
-                  </div>
-                  {i < 2 && <span className="font-display text-[16pt] text-[#C9A84C]/20">→</span>}
-                </div>
-              ))}
-            </div>
-            <div className="flex items-center justify-center gap-[3mm]">
-              <div className="h-[0.3mm] flex-1 bg-gradient-to-r from-transparent via-[#C9A84C15] to-transparent" />
-              <span className="font-mono text-[5pt] tracking-[0.15em] text-[#C9A84C]/40 uppercase">Same infrastructure · Lower cost · Faster · Repeat</span>
-              <div className="h-[0.3mm] flex-1 bg-gradient-to-r from-transparent via-[#C9A84C15] to-transparent" />
-            </div>
-          </div>
-
-          <div className="flex gap-[4mm] mb-[5mm]">
+          {/* Top row: 3 cards */}
+          <div className="grid grid-cols-3 gap-[3mm] mb-[3mm] flex-1">
             {[
-              { yr: "Year 1", title: "Prove the model", desc: "Prophecy opens doors. Björn enters the system. First shows, first content, first data.", color: "#00cfff" },
-              { yr: "Year 2", title: "Scale it", desc: "Second artist enters. Infrastructure cost drops. Revenue compounds from Year 1 catalogue.", color: "#C9A84C" },
-              { yr: "Year 3", title: "The system accelerates", desc: "Third artist. The system is proven. New artists enter with lower cost and faster ramp.", color: "#4ade80" },
-            ].map((p) => (
-              <div key={p.yr} className="flex-1 border border-white/[0.04] rounded-[2mm] p-[5mm] bg-white/[0.015]">
-                <p className="font-mono text-[5pt] tracking-[0.15em] uppercase mb-[2mm]" style={{ color: p.color }}>{p.yr}</p>
-                <p className="font-display text-[10pt] font-light text-[#d4d4d4] mb-[2mm]">{p.title}</p>
-                <p className="font-body text-[6.5pt] text-[#b0b0b0] leading-relaxed">{p.desc}</p>
+              {
+                n: "01", title: "Label Collaboration",
+                tag: "PERSONA Records \u00D7 INS Label",
+                desc: "A2G operates Persona Records with EDM is Love (5M+ followers). A co-release pipeline gives INS artists access to A2G\u2019s Western distribution, while giving A2G artists access to Chinese distribution.",
+                color: "#C9A84C",
+              },
+              {
+                n: "02", title: "Marketing Services Exchange",
+                tag: "Mutual referral program",
+                desc: "A2G is building a marketing agency for DJs. INS has deep Chinese platform expertise. A mutual referral or service exchange allows both parties to offer clients marketing in territories they couldn\u2019t cover alone.",
+                color: "#00cfff",
+              },
+              {
+                n: "03", title: "Masterclass & Education",
+                tag: "Content revenue stream",
+                desc: "PROPHECY and AIRE can deliver masterclass content that INS packages for campus events, Park Coffee Club activations, or online courses \u2014 positioning INS as an education hub for electronic music in China.",
+                color: "#a78bfa",
+              },
+            ].map((c) => (
+              <div key={c.n} className="border border-white/[0.06] rounded-[2mm] p-[6mm] bg-white/[0.015] flex flex-col">
+                <div className="flex items-center gap-[3mm] mb-[4mm]">
+                  <span className="font-mono text-[6pt] text-[#8a8a8a]">{c.n}</span>
+                  <div className="h-[0.3mm] flex-1 bg-white/[0.06]" />
+                </div>
+                <p className="font-display text-[12pt] font-light text-[#d4d4d4] mb-[2mm]">{c.title}</p>
+                <p className="font-mono text-[5pt] tracking-[0.15em] uppercase mb-[4mm]" style={{ color: c.color }}>{c.tag}</p>
+                <p className="font-body text-[7.5pt] text-[#b0b0b0] leading-relaxed">{c.desc}</p>
               </div>
             ))}
           </div>
 
-          <div>
-            <p className="font-mono text-[5pt] tracking-[0.2em] text-[#8a8a8a] uppercase mb-[3mm]">Each artist generates revenue for INS</p>
-            <div className="grid grid-cols-4 gap-[3mm]">
-              {[
-                { t: "Shows in China", s: "60% → 30% → 10% revenue share", c: "#00cfff" },
-                { t: "Royalties + publishing", s: "China territory streams", c: "#C9A84C" },
-                { t: "Licensing in China", s: "Gaming, brand, sync", c: "#4ade80" },
-                { t: "Content + merch", s: "A/V assets, brand deals", c: "#a78bfa" },
-              ].map((r) => (
-                <div key={r.t} className="border border-white/[0.04] rounded-[2mm] p-[4mm] bg-white/[0.015]">
-                  <span className="text-[5pt] block mb-[1mm]" style={{ color: r.c }}>◆</span>
-                  <p className="font-body text-[7pt] text-[#d4d4d4] mb-[1mm]">{r.t}</p>
-                  <p className="font-body text-[5.5pt] text-[#b0b0b0]">{r.s}</p>
+          {/* Bottom row: 2 cards */}
+          <div className="grid grid-cols-2 gap-[3mm] flex-1">
+            {[
+              {
+                n: "04", title: "Roger Sanchez",
+                tag: "When timing aligns",
+                desc: "A2G manages Roger Sanchez \u2014 Grammy-winning house legend with 25+ years of touring history. INS would have a preferred pathway to book Roger for special events. Not part of the core deal, but the relationship creates the access.",
+                color: "#f97316",
+              },
+              {
+                n: "05", title: "Southeast Asia Expansion",
+                tag: "Year 2+",
+                desc: "As artists developed in China grow, the natural next step is SEA touring (Singapore, Bangkok, Seoul, Bali). INS can co-invest in this expansion and extend their revenue share to the broader Asian territory.",
+                color: "#4ade80",
+              },
+            ].map((c) => (
+              <div key={c.n} className="border border-white/[0.06] rounded-[2mm] p-[6mm] bg-white/[0.015] flex flex-col">
+                <div className="flex items-center gap-[3mm] mb-[4mm]">
+                  <span className="font-mono text-[6pt] text-[#8a8a8a]">{c.n}</span>
+                  <div className="h-[0.3mm] flex-1 bg-white/[0.06]" />
                 </div>
-              ))}
-            </div>
+                <p className="font-display text-[12pt] font-light text-[#d4d4d4] mb-[2mm]">{c.title}</p>
+                <p className="font-mono text-[5pt] tracking-[0.15em] uppercase mb-[4mm]" style={{ color: c.color }}>{c.tag}</p>
+                <p className="font-body text-[7.5pt] text-[#b0b0b0] leading-relaxed">{c.desc}</p>
+              </div>
+            ))}
           </div>
         </div>
         <PageNum n={8} />
