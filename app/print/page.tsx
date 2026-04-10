@@ -614,19 +614,19 @@ export default function PrintPage() {
       {/* ═══ PAGE 7: YEAR 1 PLAN + ADDITIONAL OPPORTUNITIES ═══ */}
       <Page>
         <Header />
-        <div className="pt-[20mm] px-[14mm] flex flex-col h-full pb-[12mm]">
+        <div className="pt-[20mm] px-[14mm] flex flex-col justify-between h-full pb-[12mm]">
           {/* Year 1 header */}
-          <div className="mb-[3mm]">
+          <div className="mb-[4mm]">
             <SectionLabel color="#00cfff">Year 1 · Prophecy × INS</SectionLabel>
-            <h2 className="font-display text-[24pt] font-light leading-[1.1]">
+            <h2 className="font-display text-[26pt] font-light leading-[1.1]">
               The first <span className="italic text-[#00cfff]">move</span>.
             </h2>
           </div>
 
           {/* Two columns: What we want / What INS gets */}
-          <div className="flex gap-[5mm] mb-[3mm]">
+          <div className="flex gap-[6mm] mb-[4mm]">
             <div className="flex-1">
-              <p className="font-mono text-[4.5pt] tracking-[0.2em] text-[#00cfff] uppercase mb-[2mm]">What we want from INS</p>
+              <p className="font-mono text-[5pt] tracking-[0.2em] text-[#00cfff] uppercase mb-[3mm]">What we want from INS</p>
               {[
                 "2 Prophecy + 2 AIRE shows at INS venues",
                 "\u20AC13K marketing co-funding",
@@ -635,13 +635,13 @@ export default function PrintPage() {
                 "Sync/gaming pipeline (Hero E-Sports)",
                 "External bookings: 2 Prophecy + 1 AIRE + 1 Bj\u00F6rn",
               ].map((item, i) => (
-                <p key={i} className="font-body text-[7pt] text-[#d4d4d4] mb-[1.5mm] flex gap-[1.5mm]">
-                  <span className="text-[#00cfff]/30 shrink-0">·</span>{item}
+                <p key={i} className="font-body text-[8pt] text-[#d4d4d4] mb-[2.5mm] flex gap-[2mm]">
+                  <span className="text-[#00cfff]/30 shrink-0">\u00B7</span>{item}
                 </p>
               ))}
             </div>
             <div className="flex-1">
-              <p className="font-mono text-[4.5pt] tracking-[0.2em] text-[#C9A84C] uppercase mb-[2mm]">What INS gets in return</p>
+              <p className="font-mono text-[5pt] tracking-[0.2em] text-[#C9A84C] uppercase mb-[3mm]">What INS gets in return</p>
               {[
                 "60% INS share until recouped",
                 "4 ghost-produced tracks for Bj\u00F6rn (\u20AC14K value trade)",
@@ -650,22 +650,22 @@ export default function PrintPage() {
                 "Connections with top industry players",
                 "30% share 3yr post-recovery, then 10% to Year 10",
               ].map((item, i) => (
-                <p key={i} className="font-body text-[7pt] text-[#d4d4d4] mb-[1.5mm] flex gap-[1.5mm]">
-                  <span className="text-[#C9A84C]/30 shrink-0">·</span>{item}
+                <p key={i} className="font-body text-[8pt] text-[#d4d4d4] mb-[2.5mm] flex gap-[2mm]">
+                  <span className="text-[#C9A84C]/30 shrink-0">\u00B7</span>{item}
                 </p>
               ))}
             </div>
           </div>
 
-          {/* Investment callout + success metrics inline */}
-          <div className="flex gap-[3mm] mb-[4mm]">
-            <div className="border-l-[1mm] border-[#C9A84C40] pl-[4mm] py-[2mm] bg-[#C9A84C06] shrink-0">
-              <p className="font-body text-[7pt] text-[#C9A84C]">INS invests \u20AC42.5K Year 1</p>
-              <p className="font-body text-[5pt] text-[#b0b0b0] mt-[0.5mm]">Show fees + marketing + content + scouting</p>
+          {/* Investment callout + success metrics */}
+          <div className="flex gap-[4mm] mb-[5mm]">
+            <div className="border-l-[1mm] border-[#C9A84C40] pl-[5mm] py-[3mm] bg-[#C9A84C06] shrink-0 flex flex-col justify-center">
+              <p className="font-body text-[8pt] text-[#C9A84C]">INS invests \u20AC42.5K Year 1</p>
+              <p className="font-body text-[6pt] text-[#b0b0b0] mt-[1mm]">Show fees + marketing + content + scouting</p>
             </div>
-            <div className="border border-[#C9A84C30] rounded-[1.5mm] p-[3mm] bg-[#C9A84C04] flex-1">
-              <p className="font-mono text-[4.5pt] tracking-[0.2em] text-[#C9A84C] uppercase mb-[2mm]">Year 1 success metrics</p>
-              <div className="grid grid-cols-3 gap-x-[3mm] gap-y-[1mm]">
+            <div className="border border-[#C9A84C30] rounded-[2mm] p-[4mm] bg-[#C9A84C04] flex-1">
+              <p className="font-mono text-[5pt] tracking-[0.2em] text-[#C9A84C] uppercase mb-[3mm]">Year 1 success metrics</p>
+              <div className="grid grid-cols-3 gap-x-[4mm] gap-y-[2mm]">
                 {[
                   "2 INS venue shows + 2 external bookings",
                   "4 ghost-produced tracks delivered",
@@ -674,8 +674,8 @@ export default function PrintPage() {
                   "Distribution live on QQ, NetEase, Douyin",
                   "Proven playbook for artist 2",
                 ].map((c, i) => (
-                  <p key={i} className="font-body text-[5.5pt] text-[#d4d4d4] flex gap-[1.5mm] items-start">
-                    <span className="text-[#C9A84C]/50 shrink-0 text-[5pt]">\u2610</span>{c}
+                  <p key={i} className="font-body text-[6.5pt] text-[#d4d4d4] flex gap-[2mm] items-start">
+                    <span className="text-[#C9A84C]/50 shrink-0 text-[6pt]">\u2610</span>{c}
                   </p>
                 ))}
               </div>
@@ -683,47 +683,45 @@ export default function PrintPage() {
           </div>
 
           {/* Divider */}
-          <div className="flex items-center gap-[3mm] mb-[3mm]">
+          <div className="flex items-center gap-[3mm] mb-[4mm]">
             <div className="h-[0.3mm] flex-1 bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
-            <span className="font-mono text-[4.5pt] tracking-[0.15em] text-[#8a8a8a] uppercase shrink-0">Beyond the core deal</span>
+            <span className="font-mono text-[5pt] tracking-[0.15em] text-[#8a8a8a] uppercase shrink-0">Beyond the core deal</span>
             <div className="h-[0.3mm] flex-1 bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
           </div>
 
           {/* Additional Opportunities — 5 cards in grid */}
-          <div className="flex-1 flex flex-col gap-[3mm]">
-            <div className="grid grid-cols-3 gap-[3mm] flex-1">
-              {[
-                { n: "01", t: "Label Collaboration", tag: "PERSONA \u00D7 INS Label", d: "Co-release pipeline: INS artists access Western distribution, A2G artists access Chinese distribution via EDM is Love (5M+ followers).", c: "#C9A84C" },
-                { n: "02", t: "Marketing Exchange", tag: "Mutual referral", d: "A2G\u2019s DJ marketing agency + INS\u2019s Chinese platform expertise. Both parties offer clients marketing in territories they can\u2019t cover alone.", c: "#00cfff" },
-                { n: "03", t: "Masterclass & Education", tag: "Content revenue", d: "PROPHECY and AIRE deliver masterclass content for campus events, Park Coffee Club, or online courses \u2014 INS as education hub.", c: "#a78bfa" },
-              ].map((c) => (
-                <div key={c.n} className="border border-white/[0.06] rounded-[1.5mm] p-[4mm] bg-white/[0.015]">
-                  <div className="flex items-center gap-[2mm] mb-[2mm]">
-                    <span className="font-mono text-[5pt] text-[#8a8a8a]">{c.n}</span>
-                    <div className="h-[0.3mm] flex-1 bg-white/[0.06]" />
-                  </div>
-                  <p className="font-display text-[9pt] font-light text-[#d4d4d4] mb-[1mm]">{c.t}</p>
-                  <p className="font-mono text-[4pt] tracking-[0.15em] uppercase mb-[2mm]" style={{ color: c.c }}>{c.tag}</p>
-                  <p className="font-body text-[6pt] text-[#b0b0b0] leading-relaxed">{c.d}</p>
+          <div className="grid grid-cols-3 gap-[3mm] mb-[3mm]">
+            {[
+              { n: "01", t: "Label Collaboration", tag: "PERSONA \u00D7 INS Label", d: "Co-release pipeline: INS artists access Western distribution, A2G artists access Chinese distribution via EDM is Love (5M+ followers).", c: "#C9A84C" },
+              { n: "02", t: "Marketing Exchange", tag: "Mutual referral", d: "A2G\u2019s DJ marketing agency + INS\u2019s Chinese platform expertise. Both parties offer clients marketing in territories they can\u2019t cover alone.", c: "#00cfff" },
+              { n: "03", t: "Masterclass & Education", tag: "Content revenue", d: "PROPHECY and AIRE deliver masterclass content for campus events, Park Coffee Club, or online courses \u2014 INS as education hub.", c: "#a78bfa" },
+            ].map((c) => (
+              <div key={c.n} className="border border-white/[0.06] rounded-[2mm] p-[5mm] bg-white/[0.015]">
+                <div className="flex items-center gap-[2mm] mb-[3mm]">
+                  <span className="font-mono text-[5.5pt] text-[#8a8a8a]">{c.n}</span>
+                  <div className="h-[0.3mm] flex-1 bg-white/[0.06]" />
                 </div>
-              ))}
-            </div>
-            <div className="grid grid-cols-2 gap-[3mm] flex-1">
-              {[
-                { n: "04", t: "Roger Sanchez", tag: "When timing aligns", d: "A2G manages Roger Sanchez \u2014 Grammy-winning house legend, 25+ years touring. INS gets preferred booking pathway for special events.", c: "#f97316" },
-                { n: "05", t: "Southeast Asia Expansion", tag: "Year 2+", d: "As China-developed artists grow, the next step is SEA touring (Singapore, Bangkok, Seoul, Bali). INS co-invests and extends revenue share to broader Asia.", c: "#4ade80" },
-              ].map((c) => (
-                <div key={c.n} className="border border-white/[0.06] rounded-[1.5mm] p-[4mm] bg-white/[0.015]">
-                  <div className="flex items-center gap-[2mm] mb-[2mm]">
-                    <span className="font-mono text-[5pt] text-[#8a8a8a]">{c.n}</span>
-                    <div className="h-[0.3mm] flex-1 bg-white/[0.06]" />
-                  </div>
-                  <p className="font-display text-[9pt] font-light text-[#d4d4d4] mb-[1mm]">{c.t}</p>
-                  <p className="font-mono text-[4pt] tracking-[0.15em] uppercase mb-[2mm]" style={{ color: c.c }}>{c.tag}</p>
-                  <p className="font-body text-[6pt] text-[#b0b0b0] leading-relaxed">{c.d}</p>
+                <p className="font-display text-[10pt] font-light text-[#d4d4d4] mb-[1.5mm]">{c.t}</p>
+                <p className="font-mono text-[4.5pt] tracking-[0.15em] uppercase mb-[2.5mm]" style={{ color: c.c }}>{c.tag}</p>
+                <p className="font-body text-[6.5pt] text-[#b0b0b0] leading-relaxed">{c.d}</p>
+              </div>
+            ))}
+          </div>
+          <div className="grid grid-cols-2 gap-[3mm]">
+            {[
+              { n: "04", t: "Roger Sanchez", tag: "When timing aligns", d: "A2G manages Roger Sanchez \u2014 Grammy-winning house legend, 25+ years touring. INS gets preferred booking pathway for special events.", c: "#f97316" },
+              { n: "05", t: "Southeast Asia Expansion", tag: "Year 2+", d: "As China-developed artists grow, the next step is SEA touring (Singapore, Bangkok, Seoul, Bali). INS co-invests and extends revenue share to broader Asia.", c: "#4ade80" },
+            ].map((c) => (
+              <div key={c.n} className="border border-white/[0.06] rounded-[2mm] p-[5mm] bg-white/[0.015]">
+                <div className="flex items-center gap-[2mm] mb-[3mm]">
+                  <span className="font-mono text-[5.5pt] text-[#8a8a8a]">{c.n}</span>
+                  <div className="h-[0.3mm] flex-1 bg-white/[0.06]" />
                 </div>
-              ))}
-            </div>
+                <p className="font-display text-[10pt] font-light text-[#d4d4d4] mb-[1.5mm]">{c.t}</p>
+                <p className="font-mono text-[4.5pt] tracking-[0.15em] uppercase mb-[2.5mm]" style={{ color: c.c }}>{c.tag}</p>
+                <p className="font-body text-[6.5pt] text-[#b0b0b0] leading-relaxed">{c.d}</p>
+              </div>
+            ))}
           </div>
         </div>
         <PageNum n={7} />
@@ -732,8 +730,8 @@ export default function PrintPage() {
       {/* ═══ PAGE 8: THE STRUCTURE ═══ */}
       <Page>
         <Header />
-        <div className="pt-[20mm] px-[14mm] flex flex-col h-full pb-[12mm]">
-          <div className="mb-[4mm]">
+        <div className="pt-[20mm] px-[14mm] flex flex-col justify-between h-full pb-[12mm]">
+          <div className="mb-[5mm]">
             <SectionLabel color="#00cfff">How it works</SectionLabel>
             <h2 className="font-display text-[26pt] font-light leading-[1.1]">
               The <span className="italic text-[#00cfff]">Structure</span>
@@ -741,68 +739,68 @@ export default function PrintPage() {
           </div>
 
           {/* 3 pillar cards */}
-          <div className="flex gap-[3mm] mb-[5mm]">
+          <div className="flex gap-[4mm] mb-[6mm]">
             {[
               { n: "01", t: "Initial Investment", d: "INS co-funds marketing, live logistics, creative direction and content for the Chinese market. Capital flows in, risk is shared from day one.", c: "#00cfff" },
               { n: "02", t: "Artist Development", d: "Exclusive Asia territory activation: shows, masterclasses, social media, brand-building, and strategic label collaborations.", c: "#C9A84C" },
               { n: "03", t: "Long-term Revenue", d: "Structured 3-phase revenue share on China territory: 60%\u202630%\u202610% INS share (by phase), plus control over where and when artists play in your territory.", c: "#4ade80" },
             ].map((c) => (
-              <div key={c.n} className="flex-1 border border-white/[0.06] rounded-[2mm] p-[5mm] bg-white/[0.015]">
-                <div className="border border-white/[0.08] rounded-[1mm] w-[7mm] h-[7mm] flex items-center justify-center mb-[3mm]">
-                  <span className="font-mono text-[5.5pt]" style={{ color: c.c }}>{c.n}</span>
+              <div key={c.n} className="flex-1 border border-white/[0.06] rounded-[2mm] p-[6mm] bg-white/[0.015]">
+                <div className="border border-white/[0.08] rounded-[1mm] w-[8mm] h-[8mm] flex items-center justify-center mb-[4mm]">
+                  <span className="font-mono text-[6pt]" style={{ color: c.c }}>{c.n}</span>
                 </div>
-                <p className="font-display text-[11pt] font-light text-[#d4d4d4] mb-[2mm]">{c.t}</p>
-                <p className="font-body text-[6.5pt] text-[#b0b0b0] leading-relaxed">{c.d}</p>
+                <p className="font-display text-[12pt] font-light text-[#d4d4d4] mb-[3mm]">{c.t}</p>
+                <p className="font-body text-[7.5pt] text-[#b0b0b0] leading-relaxed">{c.d}</p>
               </div>
             ))}
           </div>
 
           {/* Artist pipeline + Revenue phases side by side */}
-          <div className="flex gap-[4mm] mb-[4mm]">
+          <div className="flex gap-[4mm] mb-[6mm]">
             {/* Pipeline: Björn → Artist 2 → Artist 3 */}
-            <div className="flex-1 border border-[#C9A84C20] rounded-[2mm] p-[4mm] bg-[#C9A84C04]">
-              <p className="font-mono text-[4.5pt] tracking-[0.2em] text-[#C9A84C] uppercase mb-[3mm]">The artist builder</p>
-              <div className="flex items-center justify-between mb-[3mm]">
+            <div className="flex-1 border border-[#C9A84C20] rounded-[2mm] p-[6mm] bg-[#C9A84C04]">
+              <p className="font-mono text-[5pt] tracking-[0.2em] text-[#C9A84C] uppercase mb-[4mm]">The artist builder</p>
+              <div className="flex items-center justify-between mb-[4mm]">
                 {[
                   { n: "Bj\u00F6rn", s: "Year 1: prove it", active: true },
                   { n: "Artist 2", s: "Year 2: scale", active: true },
                   { n: "Artist 3+", s: "Year 3: accelerate", active: false },
                 ].map((a, i) => (
-                  <div key={i} className="flex items-center gap-[3mm]">
+                  <div key={i} className="flex items-center gap-[4mm]">
                     <div className="text-center">
-                      <p className={`font-display text-[9pt] ${a.active ? "text-[#C9A84C]" : "text-white/15"}`}>{a.n}</p>
-                      <p className="font-body text-[5pt] text-[#b0b0b0] mt-[1mm]">{a.s}</p>
+                      <p className={`font-display text-[11pt] ${a.active ? "text-[#C9A84C]" : "text-white/15"}`}>{a.n}</p>
+                      <p className="font-body text-[6pt] text-[#b0b0b0] mt-[1.5mm]">{a.s}</p>
                     </div>
-                    {i < 2 && <span className="font-display text-[10pt] text-[#C9A84C]/20">\u2192</span>}
+                    {i < 2 && <span className="font-display text-[12pt] text-[#C9A84C]/20">\u2192</span>}
                   </div>
                 ))}
               </div>
-              <div className="flex items-center gap-[2mm]">
+              <div className="flex items-center gap-[3mm]">
                 <div className="h-[0.3mm] flex-1 bg-[#C9A84C15]" />
-                <span className="font-mono text-[4pt] text-[#C9A84C]/40 uppercase">Same infra · Lower cost · Repeat</span>
+                <span className="font-mono text-[4.5pt] text-[#C9A84C]/40 uppercase">Same infra \u00B7 Lower cost \u00B7 Repeat</span>
                 <div className="h-[0.3mm] flex-1 bg-[#C9A84C15]" />
               </div>
             </div>
 
             {/* Revenue split donuts */}
-            <div className="flex-1">
-              <p className="font-mono text-[4.5pt] tracking-[0.2em] text-[#8a8a8a] uppercase mb-[3mm]">Revenue split by phase</p>
-              <div className="flex gap-[2mm]">
+            <div className="flex-1 flex flex-col">
+              <p className="font-mono text-[5pt] tracking-[0.2em] text-[#8a8a8a] uppercase mb-[4mm]">Revenue split by phase</p>
+              <div className="flex gap-[3mm] flex-1 items-center">
                 {[
-                  { pct: 40, title: "Recovery", ins: 60, c: "#00cfff" },
-                  { pct: 70, title: "Profit (3yr)", ins: 30, c: "#C9A84C" },
-                  { pct: 90, title: "Long-term", ins: 10, c: "#4ade80" },
+                  { pct: 40, title: "Recovery", ins: 60 },
+                  { pct: 70, title: "Profit (3yr)", ins: 30 },
+                  { pct: 90, title: "Long-term", ins: 10 },
                 ].map((p) => (
                   <div key={p.title} className="flex-1 flex flex-col items-center text-center">
-                    <div className="relative mb-[2mm]" style={{ width: "18mm", height: "18mm" }}>
+                    <div className="relative mb-[3mm]" style={{ width: "22mm", height: "22mm" }}>
                       <div className="absolute inset-0 rounded-full" style={{ background: `conic-gradient(#22d3ee ${p.pct * 3.6}deg, #1e3a5f ${p.pct * 3.6}deg)` }} />
-                      <div className="absolute rounded-full bg-[#0a1628] flex flex-col items-center justify-center" style={{ inset: "3mm" }}>
-                        <span className="font-display text-[9pt] font-light text-[#22d3ee]">{p.pct}%</span>
-                        <span className="font-mono text-[3pt] text-[#8a8a8a]">artist</span>
+                      <div className="absolute rounded-full bg-[#0a1628] flex flex-col items-center justify-center" style={{ inset: "3.5mm" }}>
+                        <span className="font-display text-[11pt] font-light text-[#22d3ee]">{p.pct}%</span>
+                        <span className="font-mono text-[3.5pt] text-[#8a8a8a]">artist</span>
                       </div>
                     </div>
-                    <p className="font-display text-[6pt] text-[#d4d4d4] mb-[0.5mm]">{p.title}</p>
-                    <p className="font-mono text-[4pt] text-[#8a8a8a]">INS {p.ins}%</p>
+                    <p className="font-display text-[7pt] text-[#d4d4d4] mb-[1mm]">{p.title}</p>
+                    <p className="font-mono text-[4.5pt] text-[#8a8a8a]">INS {p.ins}%</p>
                   </div>
                 ))}
               </div>
@@ -810,9 +808,9 @@ export default function PrintPage() {
           </div>
 
           {/* Revenue streams by artist type */}
-          <div className="mt-auto">
-            <p className="font-mono text-[5pt] tracking-[0.2em] text-[#8a8a8a] uppercase mb-[3mm]">Revenue streams by artist type</p>
-            <div className="flex gap-[3mm]">
+          <div>
+            <p className="font-mono text-[5pt] tracking-[0.2em] text-[#8a8a8a] uppercase mb-[4mm]">Revenue streams by artist type</p>
+            <div className="flex gap-[4mm]">
               {[
                 {
                   header: "Revenue + Marketing Hero",
@@ -836,18 +834,18 @@ export default function PrintPage() {
                   items: [{ t: "China Marketing", s: "China" }, { t: "Shows (INS)", s: "China" }],
                 },
               ].map((col) => (
-                <div key={col.header} className="flex-1 border border-white/[0.06] rounded-[2mm] p-[4mm] bg-white/[0.015]">
-                  <p className="font-mono text-[4.5pt] tracking-[0.15em] uppercase mb-[2mm]" style={{ color: col.tagColor }}>{col.header}</p>
-                  <div className="flex gap-[1.5mm] mb-[2mm] flex-wrap">
+                <div key={col.header} className="flex-1 border border-white/[0.06] rounded-[2mm] p-[5mm] bg-white/[0.015]">
+                  <p className="font-mono text-[5pt] tracking-[0.15em] uppercase mb-[2.5mm]" style={{ color: col.tagColor }}>{col.header}</p>
+                  <div className="flex gap-[2mm] mb-[2.5mm] flex-wrap">
                     {col.tags.map((tag) => (
-                      <span key={tag} className="font-mono text-[4.5pt] px-[2mm] py-[0.5mm] rounded-[0.5mm] border" style={{ color: col.tagColor, borderColor: `${col.tagColor}40`, background: `${col.tagColor}10` }}>{tag}</span>
+                      <span key={tag} className="font-mono text-[5pt] px-[2.5mm] py-[1mm] rounded-[0.5mm] border" style={{ color: col.tagColor, borderColor: `${col.tagColor}40`, background: `${col.tagColor}10` }}>{tag}</span>
                     ))}
                   </div>
-                  <p className="font-body text-[5.5pt] text-[#8a8a8a] leading-relaxed mb-[2mm]">{col.desc}</p>
+                  <p className="font-body text-[6pt] text-[#8a8a8a] leading-relaxed mb-[3mm]">{col.desc}</p>
                   {col.items.map((item) => (
-                    <div key={item.t} className="flex justify-between items-center py-[1mm] border-t border-white/[0.03]">
-                      <span className="font-body text-[5.5pt] text-[#d4d4d4] flex items-center gap-[1.5mm]"><span style={{ color: col.tagColor }}>•</span> {item.t}</span>
-                      <span className="font-mono text-[4pt] text-[#8a8a8a]">{item.s}</span>
+                    <div key={item.t} className="flex justify-between items-center py-[1.5mm] border-t border-white/[0.03]">
+                      <span className="font-body text-[6pt] text-[#d4d4d4] flex items-center gap-[2mm]"><span style={{ color: col.tagColor }}>\u2022</span> {item.t}</span>
+                      <span className="font-mono text-[4.5pt] text-[#8a8a8a]">{item.s}</span>
                     </div>
                   ))}
                 </div>
