@@ -442,64 +442,84 @@ export default function PrintPage() {
       {/* ═══ PAGE 5: THE ARTISTS ═══ */}
       <Page>
         <Header />
-        <div className="pt-[20mm] px-[14mm] flex flex-col justify-between h-full pb-[14mm]">
-          <div>
+        <div className="pt-[20mm] px-[14mm] flex flex-col h-full pb-[14mm]">
+          <div className="mb-[6mm]">
             <SectionLabel>The artists</SectionLabel>
-            <h2 className="font-display text-[26pt] font-light leading-[1.1] mb-[6mm]">
+            <h2 className="font-display text-[26pt] font-light leading-[1.1]">
               Three roles.<br />One <span className="italic text-[#00cfff]">system</span>.
             </h2>
           </div>
 
-          <div className="flex gap-[4mm]">
+          {/* Hero artist — Prophecy */}
+          <div className="flex gap-[5mm] mb-[5mm]">
+            <div className="rounded-[2mm] overflow-hidden bg-[#0a1020] shrink-0" style={{ width: "72mm", height: "52mm" }}>
+              <img src="/images/artists/prophecy.png" alt="Prophecy" className="w-full h-full object-cover object-top" style={{ filter: "brightness(0.8) contrast(1.05)" }} />
+            </div>
+            <div className="flex flex-col justify-center">
+              <p className="font-mono text-[5pt] tracking-[0.2em] text-[#C9A84C] uppercase mb-[2mm]">Anchor act</p>
+              <p className="font-display text-[18pt] font-light tracking-wide mb-[1.5mm]">PROPHECY</p>
+              <p className="font-display text-[9pt] text-[#C9A84C] italic mb-[3mm]">Opens doors</p>
+              <p className="font-body text-[7.5pt] text-[#b0b0b0] leading-relaxed mb-[2mm]">Production credibility, international label relationships, release pipeline. The name that gets INS into rooms it can&rsquo;t enter alone.</p>
+              <p className="font-body text-[6pt] text-[#8a8a8a] leading-relaxed">Co-produced with ARTBAT, MORTEN, David Guetta, Tiësto · 500K+ monthly listeners · Insomniac, Spinnin&rsquo;/Warner, Future Rave</p>
+            </div>
+          </div>
+
+          {/* AIRE + Björn row */}
+          <div className="flex gap-[5mm] mb-[5mm]">
             {[
               {
-                name: "PROPHECY", image: "/images/artists/prophecy.png",
-                role: "Opens doors",
-                sub: "Production credibility, international label relationships, release pipeline.",
-                creds: "Co-produced with ARTBAT, MORTEN, David Guetta, Tiësto · 500K+ Spotify monthly listeners · Labels: Insomniac, Spinnin&apos;/Warner, Future Rave",
-              },
-              {
                 name: "AIRE", image: "/images/artists/aire.png",
-                role: "Creates content",
-                sub: "Immersive DJ×VJ format. Premium visual assets from every activation.",
+                tag: "Content engine", role: "Creates content", color: "#a78bfa",
+                sub: "Immersive DJ\u00D7VJ format. Premium visual assets from every activation.",
                 creds: "Thundercode visuals (Alesso, SHM, Alan Walker) · Kuaigon mix & master (Adriatique, Vintage Culture, Fideles)",
               },
               {
-                name: "BJÖRN", image: "/images/artists/bjorn.png",
-                role: "Proves the local case",
-                sub: "INS&apos;s homegrown artist — the proof of concept. From local act to internationally positioned name.",
-                creds: "Guaranteed release path through PERSONA Records + promotion via EDMisLove (7M+ followers).",
+                name: "BJ\u00D6RN", image: "/images/artists/bjorn.png",
+                tag: "Local proof", role: "Proves the model", color: "#00cfff",
+                sub: "INS\u2019s homegrown artist \u2014 from local act to internationally positioned name.",
+                creds: "Release path via PERSONA Records + promotion via EDMisLove (7M+ followers).",
               },
             ].map((a) => (
-              <div key={a.name} className="flex-1 flex flex-col">
-                <div className="rounded-[2mm] overflow-hidden bg-[#0a1020] mb-[3mm]" style={{ height: "70mm" }}>
+              <div key={a.name} className="flex-1 flex gap-[4mm]">
+                <div className="rounded-[2mm] overflow-hidden bg-[#0a1020] shrink-0" style={{ width: "35mm", height: "44mm" }}>
                   <img src={a.image} alt={a.name} className="w-full h-full object-cover object-top" style={{ filter: "brightness(0.8) contrast(1.05)" }} />
                 </div>
-                <p className="font-display text-[13pt] font-light tracking-wide mb-[1mm]">{a.name}</p>
-                <p className="font-display text-[9pt] text-[#C9A84C] italic mb-[2mm]">{a.role}</p>
-                <p className="font-body text-[7.5pt] text-[#b0b0b0] leading-relaxed mb-[2mm]">{a.sub}</p>
-                <p className="font-body text-[6pt] text-[#b0b0b0] leading-relaxed">{a.creds}</p>
+                <div className="flex flex-col justify-center">
+                  <p className="font-mono text-[5pt] tracking-[0.2em] uppercase mb-[1.5mm]" style={{ color: a.color }}>{a.tag}</p>
+                  <p className="font-display text-[13pt] font-light tracking-wide mb-[1mm]">{a.name}</p>
+                  <p className="font-display text-[8pt] italic mb-[2mm]" style={{ color: a.color }}>{a.role}</p>
+                  <p className="font-body text-[7pt] text-[#b0b0b0] leading-relaxed mb-[1.5mm]">{a.sub}</p>
+                  <p className="font-body text-[5.5pt] text-[#8a8a8a] leading-relaxed">{a.creds}</p>
+                </div>
               </div>
             ))}
           </div>
 
-          <div>
-            <div className="border-l-[1mm] border-[#C9A84C40] pl-[5mm] py-[3mm] bg-[#C9A84C06] mb-[4mm]">
-              <p className="font-display text-[9pt] italic text-[#C9A84C]/70">
-                If the pilot works, the same infrastructure serves every artist after.
-              </p>
-            </div>
-            <div className="flex gap-[3mm]">
-              {[
-                { label: "Prophecy", desc: "International credibility", color: "#C9A84C" },
-                { label: "AIRE", desc: "Content engine per show", color: "#a78bfa" },
-                { label: "Björn", desc: "Local proof of concept", color: "#00cfff" },
-              ].map((r) => (
-                <div key={r.label} className="flex-1 border border-white/[0.04] rounded-[1.5mm] p-[3mm] bg-white/[0.015]">
-                  <p className="font-mono text-[5pt] mb-[1mm]" style={{ color: r.color }}>{r.label}</p>
-                  <p className="font-body text-[5.5pt] text-[#b0b0b0]">{r.desc}</p>
-                </div>
-              ))}
+          {/* System diagram */}
+          <div className="mt-auto">
+            <div className="border border-[#C9A84C20] rounded-[2mm] overflow-hidden mb-[4mm]">
+              <div className="flex">
+                {[
+                  { label: "Prophecy", desc: "International credibility\nOpens label & venue doors", color: "#C9A84C", icon: "→" },
+                  { label: "AIRE", desc: "Content engine\nVisual assets from every show", color: "#a78bfa", icon: "→" },
+                  { label: "Björn", desc: "Local proof of concept\nThe model in action", color: "#00cfff", icon: "★" },
+                ].map((r, i) => (
+                  <div key={r.label} className={`flex-1 p-[4mm] ${i < 2 ? "border-r border-white/[0.06]" : ""}`}>
+                    <div className="flex items-center gap-[2mm] mb-[2mm]">
+                      <span className="text-[6pt]" style={{ color: r.color }}>{r.icon}</span>
+                      <p className="font-mono text-[5.5pt] tracking-[0.15em]" style={{ color: r.color }}>{r.label}</p>
+                    </div>
+                    {r.desc.split("\n").map((line, j) => (
+                      <p key={j} className="font-body text-[6pt] text-[#b0b0b0] leading-relaxed">{line}</p>
+                    ))}
+                  </div>
+                ))}
+              </div>
+              <div className="border-t border-[#C9A84C20] p-[4mm] bg-[#C9A84C06]">
+                <p className="font-display text-[8pt] italic text-[#C9A84C]/70 text-center">
+                  If the pilot works, the same infrastructure serves every artist after.
+                </p>
+              </div>
             </div>
           </div>
         </div>
