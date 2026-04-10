@@ -307,7 +307,7 @@ export default function PrintPage() {
                 <p className="font-body text-[5pt] text-[#C9A84C]/30">↓</p>
                 <p className="font-body text-[8pt] text-[#d4d4d4]">Build shows, music, content &amp; IP</p>
                 <p className="font-body text-[5pt] text-[#C9A84C]/30">↓</p>
-                <p className="font-body text-[8pt] text-[#C9A84C] italic">Own a share of every revenue stream — permanently</p>
+                <p className="font-body text-[8pt] text-[#C9A84C] italic">Own a share of every revenue stream — from day one</p>
               </div>
             </div>
           </div>
@@ -471,7 +471,7 @@ export default function PrintPage() {
             <div className="flex-1">
               <div className="grid grid-cols-2 gap-[3mm]">
                 {[
-                  { t: "Shows in China", s: "60/30/10% share on every show fee", c: "#00cfff" },
+                  { t: "Shows in China", s: "60% → 30% → 10% INS share on every show fee", c: "#00cfff" },
                   { t: "Royalties + Publishing", s: "China territory streaming + downloads", c: "#C9A84C" },
                   { t: "Licensing", s: "Gaming (Hero E-Sports), brand deals, sync", c: "#4ade80" },
                   { t: "Content + Merch", s: "A/V assets from every AIRE show", c: "#a78bfa" },
@@ -553,13 +553,13 @@ export default function PrintPage() {
             <div className="flex-1">
               <p className="font-mono text-[5pt] tracking-[0.2em] text-[#00cfff] uppercase mb-[4mm]">What we want from INS</p>
               {[
-                "3 shows at INS venues (30% discount asia rate)",
-                "€10K marketing co-funding (distributed as preferred)",
+                "2 Prophecy shows + 2 AIRE shows at INS venues",
+                "€13K marketing co-funding",
                 "China Marketing Director (part-time, local execution)",
-                "Distribution: Apple Music, NetEase, Douyin",
+                "Distribution: QQ Music, NetEase, Douyin",
                 "Sync/gaming pipeline through Hero E-Sports",
                 "INS partner brand activations",
-                "3–5 additional China shows via INS network or local partners (€4–5K rate)",
+                "External show bookings: 2 Prophecy + 1 AIRE + 1 Björn (INS as agent, 60% share)",
               ].map((item, i) => (
                 <p key={i} className="font-body text-[9pt] text-[#d4d4d4] mb-[3mm] flex gap-[2mm]">
                   <span className="text-[#00cfff]/30 shrink-0">·</span>{item}
@@ -593,11 +593,11 @@ export default function PrintPage() {
             <p className="font-mono text-[5pt] tracking-[0.2em] text-[#C9A84C] uppercase mb-[4mm]">Our commitment — Year 1 success metrics</p>
             <div className="grid grid-cols-2 gap-[3mm]">
               {[
-                "Prophecy completes 3+ shows at INS venues with >70% attendance",
-                "At least 1 ghost-production track for Björn on a Tier 2+ label",
+                "Prophecy completes 2 INS venue shows + 2 external bookings",
+                "4 ghost-produced tracks for Björn delivered (€14K production value)",
                 "AIRE content pipeline produces 5+ reusable A/V pieces",
-                "Year 1 revenue reaches minimum €30K (partial breakeven)",
-                "Björn reaches 100K+ monthly listeners on Chinese platforms",
+                "Year 1 gross revenue reaches €27K (€16.2K INS share)",
+                "Distribution infrastructure live on QQ Music, NetEase, Douyin",
                 "INS has a proven playbook reusable for artist 2",
               ].map((c, i) => (
                 <p key={i} className="font-body text-[7.5pt] text-[#d4d4d4] flex gap-[2mm] items-start">
@@ -663,7 +663,7 @@ export default function PrintPage() {
             <p className="font-mono text-[5pt] tracking-[0.2em] text-[#8a8a8a] uppercase mb-[3mm]">Each artist generates revenue for INS</p>
             <div className="grid grid-cols-4 gap-[3mm]">
               {[
-                { t: "Shows in China", s: "60/30/10% revenue share", c: "#00cfff" },
+                { t: "Shows in China", s: "60% → 30% → 10% revenue share", c: "#00cfff" },
                 { t: "Royalties + publishing", s: "China territory streams", c: "#C9A84C" },
                 { t: "Licensing in China", s: "Gaming, brand, sync", c: "#4ade80" },
                 { t: "Content + merch", s: "A/V assets, brand deals", c: "#a78bfa" },
