@@ -247,7 +247,7 @@ export default function Page() {
             <h1 className="font-display text-[clamp(3.5rem,9vw,7.5rem)] font-light leading-[1.0] mb-8 tracking-tight">
               {editMode
                 ? <EditArea value={proposalData.hero.title} path={["hero","title"]} onUpdate={updateField} editMode={editMode} className="text-white" />
-                : <>{proposalData.hero.title.split(" in ")[0]} in<br /><em className="italic gold-shimmer">{proposalData.hero.title.split(" in ")[1]}</em></>
+                : <><em className="italic gold-shimmer">{proposalData.hero.title}</em></>
               }
             </h1>
             <p className="font-body text-sm text-white/55 leading-relaxed mb-12 max-w-xl">
@@ -1508,14 +1508,13 @@ function BreakEvenCard({ combined }: { combined: ComputedTotals; editMode: boole
           }}
         >
           <p className="font-mono text-[9px] tracking-[0.4em] text-gold/50 uppercase mb-6">
-            Upside Scenario
+            Additional Value
           </p>
 
           <div className="border border-gold/15 p-8 bg-gold/[0.02] mb-6 shadow-[0_0_25px_rgba(0,207,255,0.06)]">
-            <p className="font-display text-3xl font-light text-gold mb-2">285K+</p>
+            <p className="font-display text-3xl font-light text-gold mb-2">&euro;63K</p>
             <p className="font-body text-xs text-white/40 leading-relaxed">
-              Potential Year 3 INS return if Prophecy reaches Top 100 DJ Mag.
-              Based on industry benchmarks for comparable artists at that ranking.
+              Production value received over 3 years (ghost production at &euro;3,500/track market value). Not counted in the cash return.
             </p>
           </div>
 
@@ -1523,7 +1522,7 @@ function BreakEvenCard({ combined }: { combined: ComputedTotals; editMode: boole
             <div className="flex items-start gap-3">
               <span className="text-gold/40 mt-0.5 shrink-0">+</span>
               <p className="font-body text-xs text-white/50 leading-relaxed">
-                Ghost-production revenue from INS local artists creates additional recurring income stream
+                INS venue revenue from shows (door, bar, VIP) is not included in this model. Each INS venue show generates additional venue P&amp;L that offsets the artist fee investment.
               </p>
             </div>
             <div className="flex items-start gap-3">
@@ -1546,18 +1545,18 @@ function BreakEvenCard({ combined }: { combined: ComputedTotals; editMode: boole
             </p>
             <div className="flex items-end gap-8">
               <div>
-                <p className="font-display text-2xl font-light text-white/30">253K</p>
+                <p className="font-display text-2xl font-light text-white/30">&euro;187K</p>
                 <p className="font-mono text-[8px] text-white/20">total invested</p>
               </div>
               <div className="text-gold/30 text-xl mb-1">&rarr;</div>
               <div>
-                <p className="font-display text-2xl font-light text-gold">222K</p>
-                <p className="font-mono text-[8px] text-gold/40">base return</p>
+                <p className="font-display text-2xl font-light text-gold">&euro;245K</p>
+                <p className="font-mono text-[8px] text-gold/40">revenue (131%)</p>
               </div>
               <div className="text-gold/30 text-xl mb-1">&rarr;</div>
               <div>
-                <p className="font-display text-2xl font-light text-emerald-400">500K+</p>
-                <p className="font-mono text-[8px] text-emerald-400/50">upside return</p>
+                <p className="font-display text-2xl font-light text-emerald-400">&euro;308K</p>
+                <p className="font-mono text-[8px] text-emerald-400/50">total value (165%)</p>
               </div>
             </div>
           </div>

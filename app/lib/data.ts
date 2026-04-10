@@ -6,8 +6,8 @@
 export const DEFAULT_DATA = {
   // ── HERO ────────────────────────────────────────────────────────────────────
   hero: {
-    title: "Co-Building the Future of Music in China",
-    subtitle: "A2G Company and INS propose a first-of-its-kind co-development model — transforming Western artist booking into long-term shared ownership in the Chinese market.",
+    title: "Own the show.",
+    subtitle: "A first-of-its-kind partnership: Western production meets Chinese infrastructure. Co-development. Co-ownership. Long-term value.",
     whyA: "$8.5B market growing 10.6%/yr.",
     whyB: "No Western artist pipeline into China exists yet.",
     whatA: "Co-development, co-ownership.",
@@ -41,7 +41,7 @@ export const DEFAULT_DATA = {
         "Co-produced tracks with Anyma, MORTEN, David Guetta and Tiësto — charted across Beatport, Spotify & SiriusXM",
         "HOLLOW feat. Prophecy (ARTBAT × MORTEN) — Insomniac Records — active global campaign, Tier-1 label exposure",
         "Label ecosystem: Insomniac · Spinnin'/Warner · Future Rave — 3 major label families, one artist",
-        "300K+ Spotify monthly listeners · 500K+ YouTube views · Active Beatport catalog",
+        "500K+ Spotify monthly listeners · 500K+ YouTube views · Active Beatport catalog",
       ],
     },
     {
@@ -73,7 +73,7 @@ export const DEFAULT_DATA = {
       collabs: [] as string[],
       highlights: [
         "INS's homegrown artist — the proof of concept for the co-development model. From local act to internationally positioned name, using A2G's production network and label connections",
-        "A2G brings the Western production network: co-production credits, ghost-production pipeline, label pitches",
+        "Guaranteed release path through PERSONA Records + promotion via EDMisLove (7M+ followers). No dependency on external label timelines.",
         "Prophecy and AIRE activate the stages — BJÖRN builds his audience on the same nights, in the same rooms",
         "Target label placement: Insomniac, Future Rave, Spinnin' — channels opened by Prophecy's existing relationships",
         "The partnership's clearest proof of concept — a Chinese artist reaching Western audiences through A2G infrastructure",
@@ -85,7 +85,7 @@ export const DEFAULT_DATA = {
   phases: [
     { num: "01", title: "Initial Investment", body: "INS co-funds marketing, live logistics, creative direction and content for the Chinese market. Capital flows in, risk is shared from day one." },
     { num: "02", title: "Artist Development", body: "Exclusive Asia territory activation: shows, masterclasses, social media, brand-building, and strategic label collaborations." },
-    { num: "03", title: "Long-term Revenue", body: "Structured 3-phase revenue share on China territory: 60/40 until recovery, 30/70 for 3 years, then 10% INS royalty up to year 10." },
+    { num: "03", title: "Long-term Revenue", body: "Structured 3-phase revenue share on China territory: 60% \u2192 30% \u2192 10% INS share (by phase), plus control over where and when artists play in your territory \u2014 from day one." },
   ],
 
   // ── REVENUE SOURCES ───────────────────────────────────────────────────────────
@@ -93,7 +93,7 @@ export const DEFAULT_DATA = {
     { source: "Live Shows", desc: "External bookings (non-INS venues): INS takes % of net artist fee. As artist profile grows, so does the fee — and INS's share." },
     { source: "Streaming", desc: "China-territory distribution (QQ Music, NetEase, Douyin). INS builds the infrastructure, then earns % on every stream." },
     { source: "Gaming & Sync", desc: "INS's gaming division is a direct channel: in-game music, brand collabs, advertising placements — all split at the agreed rate." },
-    { source: "Ghost Production", desc: "Prophecy produces for INS local artists in exchange for shows + exposure. A value-trade engine: A value-trade engine that evolves into co-production revenue as local artists grow." },
+    { source: "Ghost Production", desc: "Prophecy produces tracks for INS artists (4 tracks Year 1, scaling to 8 by Year 3). Market value: \u20AC3,500/track. INS pays Prophecy show fees at INS venues; Prophecy delivers ghost production in return. The value trade generates \u20AC63K in production value over 3 years \u2014 not counted in the cash return." },
     { source: "Merchandise", desc: "Artist merch through INS retail and online channels. Aspirational — scales with audience." },
     { source: "Content Licensing", desc: "AIRE A/V sets, masterclass content, DJ sets — sellable media assets produced on every activation." },
   ],
@@ -130,62 +130,62 @@ export const DEFAULT_DATA = {
   ],
 
   // ── REVENUE DETAIL ── totals auto-calculated from line items ─────────────────
-  // Year 1: €44K total | Year 2: €179K total | Year 3: €495K total
+  // Year 1: €27K total | Year 2: €117.5K total | Year 3: €264K total
   revenueDetail: [
     {
       pillar: "Prophecy",
-      insShare: [60, 30, 30],
+      insShare: [60, 60, 60],
       years: [
-        { lines: [{ l: "4 shows × €4K avg", v: 16 }, { l: "Streaming (QQ Music, NetEase, Douyin)", v: 5 }, { l: "Sync & gaming placements", v: 5 }] },
-        { lines: [{ l: "12 shows × €5K avg", v: 60 }, { l: "Streaming (growing catalog)", v: 15 }, { l: "Sync & gaming", v: 9 }] },
-        { lines: [{ l: "20 shows × €10K avg", v: 200 }, { l: "Streaming (established presence)", v: 40 }, { l: "Sync, gaming & brand deals", v: 35 }] },
+        { lines: [{ l: "2 external shows \u00d7 \u20AC4.5K", v: 9 }, { l: "Streaming (QQ Music, NetEase, Douyin)", v: 5 }, { l: "Sync & gaming", v: 5 }] },
+        { lines: [{ l: "8 external shows \u00d7 \u20AC5.5K", v: 44 }, { l: "Streaming (growing catalog)", v: 15 }, { l: "Sync & gaming", v: 12 }] },
+        { lines: [{ l: "13 external shows \u00d7 \u20AC7K", v: 91 }, { l: "Streaming (established presence)", v: 40 }, { l: "Sync & gaming", v: 25 }] },
       ],
     },
     {
-      pillar: "AIRE Live",
-      insShare: [40, 30, 30],
+      pillar: "AIRE",
+      insShare: [60, 60, 60],
       years: [
-        { lines: [{ l: "3 shows × €3K (DJ+VJ)", v: 9 }, { l: "Content licensing (A/V assets)", v: 3 }] },
-        { lines: [{ l: "8 shows × €5K", v: 40 }, { l: "Content licensing", v: 8 }] },
-        { lines: [{ l: "15 shows × €8K (premium immersive)", v: 120 }, { l: "Content licensing & brand placements", v: 30 }] },
+        { lines: [{ l: "1 external show \u00d7 \u20AC3.5K", v: 3.5 }, { l: "Content licensing (A/V assets)", v: 3 }] },
+        { lines: [{ l: "4 external shows \u00d7 \u20AC4.5K", v: 18 }, { l: "Content licensing", v: 8 }] },
+        { lines: [{ l: "6 external shows \u00d7 \u20AC6K", v: 36 }, { l: "Content licensing & brand placements", v: 15 }] },
       ],
     },
     {
-      pillar: "Local Artists",
-      insShare: [60, 30, 30],
+      pillar: "Bj\u00f6rn + Other",
+      insShare: [60, 60, 60],
       years: [
-        { lines: [{ l: "3 shows × €1K", v: 3 }, { l: "Joint releases", v: 3 }] },
-        { lines: [{ l: "5 shows × €3K", v: 15 }, { l: "Ghost production", v: 22 }, { l: "Joint releases", v: 10 }] },
-        { lines: [{ l: "10 shows × €5K", v: 50 }, { l: "Streaming", v: 10 }, { l: "Joint releases", v: 10 }] },
+        { lines: [{ l: "1 external show \u00d7 \u20AC1.5K", v: 1.5 }, { l: "Merchandise", v: 0 }] },
+        { lines: [{ l: "7 external shows \u00d7 \u20AC2.5K", v: 17.5 }, { l: "Merchandise", v: 3 }] },
+        { lines: [{ l: "13 external shows \u00d7 \u20AC4K", v: 52 }, { l: "Merchandise", v: 5 }] },
       ],
     },
   ],
 
   // ── INVESTMENT DETAIL ── totals auto-calculated from line items ───────────────
-  // Year 1: €54K total | Year 2: €77K total | Year 3: €122K total
+  // Year 1: €42.5K total | Year 2: €61.5K total | Year 3: €83K total
   investmentDetail: [
     {
-      pillar: "Prophecy",
+      pillar: "Show Fees",
       years: [
-        { lines: [{ l: "Marketing campaigns", v: 13 }, { l: "Ghost production booking fees", v: 16 }, { l: "China Marketing Director (€0.5K/mo)", v: 6 }] },
-        { lines: [{ l: "Marketing campaigns", v: 30 }, { l: "Booking fees", v: 12 }, { l: "China Marketing Director (€0.5K/mo)", v: 6 }] },
-        { lines: [{ l: "Marketing campaigns", v: 68 }, { l: "Booking fees", v: 10 }, { l: "China Marketing Director (€0.5K/mo)", v: 6 }] },
+        { lines: [{ l: "Prophecy INS venue shows (2 \u00d7 \u20AC4K)", v: 8 }, { l: "AIRE INS venue shows (2 \u00d7 \u20AC3.5K)", v: 7 }, { l: "INS venue costs (7 shows \u00d7 \u20AC500)", v: 3.5 }] },
+        { lines: [{ l: "Prophecy INS venue shows (2 \u00d7 \u20AC4.5K)", v: 9 }, { l: "AIRE INS venue shows (2 \u00d7 \u20AC4K)", v: 8 }, { l: "INS venue costs (7 shows \u00d7 \u20AC500)", v: 3.5 }] },
+        { lines: [{ l: "Prophecy INS venue shows (2 \u00d7 \u20AC5K)", v: 10 }, { l: "AIRE INS venue shows (2 \u00d7 \u20AC5K)", v: 10 }, { l: "INS venue costs (6 shows \u00d7 \u20AC500)", v: 3 }] },
       ],
     },
     {
-      pillar: "AIRE Live",
+      pillar: "Marketing & Content",
       years: [
-        { lines: [{ l: "3 shows (DJ+VJ fees, travel)", v: 8 }, { l: "Content production", v: 6 }] },
-        { lines: [{ l: "8 shows (DJ+VJ fees, travel)", v: 14 }, { l: "Content production", v: 8 }] },
-        { lines: [{ l: "15 shows (DJ+VJ fees, travel)", v: 20 }, { l: "Content production", v: 6 }] },
+        { lines: [{ l: "Marketing campaigns", v: 13 }, { l: "AIRE content production", v: 6 }] },
+        { lines: [{ l: "Marketing campaigns", v: 25 }, { l: "AIRE content production", v: 8 }] },
+        { lines: [{ l: "Marketing campaigns", v: 40 }, { l: "AIRE content production", v: 10 }] },
       ],
     },
     {
-      pillar: "Local Artists",
+      pillar: "Artist Development",
       years: [
-        { lines: [{ l: "Scouting & development", v: 5 }] },
-        { lines: [{ l: "Artist development", v: 7 }] },
-        { lines: [{ l: "Artist development", v: 12 }] },
+        { lines: [{ l: "Scouting & artist dev", v: 5 }] },
+        { lines: [{ l: "Scouting & artist dev", v: 8 }] },
+        { lines: [{ l: "Scouting & artist dev", v: 10 }] },
       ],
     },
   ],
@@ -195,10 +195,10 @@ export const DEFAULT_DATA = {
     title: "The Model Has Already Been Proven",
     subtitle: "FIVE Holdings × Pacha Group",
     body: "In October 2023, FIVE Holdings acquired Pacha Group for €302.5M — buying a brand, an IP library, a label, a content engine, and a global entertainment platform. FIVE reported $589M revenue in 2024 (up 28% YoY) with $208M EBITDA. In February 2026 they acquired Brooklyn Mirage/Avant Gardner, rebranding it as Pacha NYC.",
-    lesson: "FIVE's model revealed the industry's structural gap: venue ownership without artist ownership means perpetual dependency on external booking fees. The A2G × INS partnership solves exactly this. With €54K in Year 1, INS begins building what FIVE never did — a self-sustaining artist pipeline.",
+    lesson: "FIVE proved infrastructure scales. But without artist ownership, every show is a rental \u2014 never an asset. Every artist that plays is someone else\u2019s. The booking fee leaves the building every night. The A2G \u00d7 INS partnership solves exactly this \u2014 co-owning the artists that fill the stages.",
     comparison: {
-      five: { label: "FIVE Holdings", investment: "€302.5M", problem: "Still rents talent — no owned artist pipeline" },
-      ins: { label: "INS + A2G", investment: "€54K Year 1", advantage: "Co-owns artists from day one — audiences come for the brand" },
+      five: { label: "FIVE Holdings", investment: "\u20AC302.5M", problem: "\u20AC302.5M in venues. $589M in revenue. Zero owned artists. Every show still depends on an external booking agent." },
+      ins: { label: "INS + A2G", investment: "", advantage: "Co-own artists from day one \u2014 audiences come for the brand, not just the booking." },
     },
   },
 
@@ -223,13 +223,14 @@ export const DEFAULT_DATA = {
       label: "A2G company",
       entities: [
         { id: "prophecy", name: "Prophecy", role: "Production + live engine" },
-        { id: "persona", name: "PERSONA", role: "Label + EDMisLove 7M promo" },
+        { id: "persona", name: "PERSONA", role: "Label + guaranteed releases" },
         { id: "aire", name: "AIRE", role: "Content + immersive DJ×VJ shows" },
       ],
       delivers: [
-        "Music for INS artists (ghost production)",
+        "Release strategy + guaranteed distribution (PERSONA Records)",
+        "International promotion \u2014 EDMisLove (7M+), global network",
+        "Production \u2014 ghost-production, original tracks, content formats",
         "Music for INSane release",
-        "Releases for INS artists (label pitches)",
         "WW Marketing",
         "Content (A/V from every show)",
         "Exclusive immersive shows",
@@ -278,13 +279,15 @@ export const DEFAULT_DATA = {
 
   // ── VALUE DIMENSIONS ──────────────────────────────────────────────────────────
   valueDimensions: [
-    { num: "01", title: "Revenue Share", category: "Economic", desc: "60% in Phase 1 (recovery), 30% in Phase 2 (3 years), 10% royalty up to year 10. Applied across all China-territory revenue: live, streaming, sync, merch, licensing, content." },
+    { num: "01", title: "Revenue Share", category: "Economic", desc: "60% \u2192 30% \u2192 10% INS share (by phase). Applied across all China-territory revenue: live, streaming, sync, merch, licensing, content." },
     { num: "02", title: "Artist IP as Infrastructure", category: "Strategic", desc: "Every track produced, every visual asset, every show recorded — permanent content assets INS co-owns. This IP library grows monthly and can be monetized across venues, gaming platforms, brand deals, and streaming indefinitely." },
-    { num: "03", title: "Exclusivity and Control", category: "Strategic", desc: "INS holds territorial exclusivity on China-market activations. For local artists (Björn+), this extends to global exclusivity and control. No competing partnership can replicate these artists in the same territory." },
+    { num: "03", title: "Exclusivity and Control", category: "Strategic", desc: "INS co-invests in artist development \u2014 and with that investment comes decision power. Control where and when artists play in your territory, at what price, and under what terms. No competing partnership can replicate these artists in the same territory." },
     { num: "04", title: "Western Label Network Access", category: "Strategic", desc: "Through A2G, INS gains a direct channel to Insomniac Records, Spinnin'/Warner, and Future Rave. INS local artists can be placed on international labels — credibility and reverse-flow revenue that didn't exist before." },
     { num: "05", title: "Ghost Production Pipeline", category: "Operational", desc: "PROPHECY ghost-produces at Guetta/ARTBAT quality levels. A track costing €5K–15K on the open market gets delivered as part of the partnership. Over 3 years, this represents €50K–150K in production value." },
     { num: "06", title: "Content Engine", category: "Marketing", desc: "AIRE's DJ×VJ format produces sellable A/V content from every show: short-form for Douyin/RED, long-form for streaming, visual packages for brand licensing. INS venues become both the stage and the studio." },
-    { num: "07", title: "A Repeatable Model", category: "Scalable", desc: "If this works with 3 artists, INS has a proven playbook to replicate. The infrastructure built in Year 1 — distribution channels, marketing processes, label relationships — becomes the operating system for every artist INS develops." },
+    { num: "07", title: "A Repeatable Model", category: "Scalable", desc: "If this works with 3 artists, INS has a proven playbook to replicate. The infrastructure built in Year 1 \u2014 distribution channels, marketing processes, label relationships \u2014 becomes the operating system for every artist INS develops." },
+    { num: "08", title: "Programming Independence", category: "Strategic", desc: "Stop depending on external agents to fill your stages. With an owned artist pipeline, INS controls its own programming \u2014 reducing booking costs, increasing margin, and building audience loyalty around artists the brand co-owns." },
+    { num: "09", title: "Audience Data", category: "Intelligence", desc: "Real data on how artists perform across Chinese platforms \u2014 streaming numbers, engagement rates, demographic insights. This intelligence informs not just artist development, but venue programming, marketing spend, and brand partnerships." },
   ],
 
   // ── RISKS ────────────────────────────────────────────────────────────────────
@@ -307,10 +310,10 @@ export const DEFAULT_DATA = {
 
   // ── BREAK-EVEN TABLE ──────────────────────────────────────────────────────────
   breakEven: [
-    { metric: "Cumulative Invested", y1: "€54K", y2: "€131K", y3: "€253K" },
-    { metric: "Cash Recovered", y1: "€24K (44%)", y2: "€77K (59%)", y3: "€222K (88%)" },
-    { metric: "Total Value Recovered", y1: "€59–84K", y2: "€132–167K", y3: "€302–352K" },
-    { metric: "% of Investment (Total)", y1: "113–159%", y2: "101–127%", y3: "119–139%", highlight: true },
+    { metric: "Cumulative Invested", y1: "\u20AC42.5K", y2: "\u20AC104K", y3: "\u20AC187K" },
+    { metric: "INS Revenue (60% share)", y1: "\u20AC16.2K", y2: "\u20AC86.7K", y3: "\u20AC245.1K" },
+    { metric: "Recovery %", y1: "38.1%", y2: "83.4%", y3: "131.1%", highlight: true },
+    { metric: "Production Value Received", y1: "\u20AC14K", y2: "\u20AC35K", y3: "\u20AC63K" },
   ],
 
   about: {
@@ -323,7 +326,7 @@ export const DEFAULT_DATA = {
     ],
     roster: [
       { artist: "Roger Sanchez", note: "House legend · Grammy-winning · 25+ years touring" },
-      { artist: "PROPHECY", note: "Insomniac · Spinnin\u2019/Warner · Future Rave · 300K+ monthly listeners" },
+      { artist: "PROPHECY", note: "Insomniac · Spinnin\u2019/Warner · Future Rave · 500K+ monthly listeners" },
       { artist: "AIRE", note: "DJ\u00d7VJ Live Act · Thundercode · Kuaigon" },
       { artist: "BABEL Music", note: "Melodic electronic · Tomorrowland-aligned" },
       { artist: "Meguru", note: "Hard techno · Female artist · INS ecosystem" },
@@ -335,8 +338,8 @@ export const DEFAULT_DATA = {
 
   cta: {
     eyebrow: "Ready to Build?",
-    title: "Let\u2019s Build",
-    titleAccent: "Together",
+    title: "You built the stages.",
+    titleAccent: "Let\u2019s build what fills them.",
     description: "We propose a long-term partnership, not a one-night booking. If the vision aligns, let\u2019s move fast.",
     email: "a.arevalo@a2g.company",
   },

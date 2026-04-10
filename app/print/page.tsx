@@ -104,7 +104,7 @@ export default function PrintPage() {
         <div className="h-full flex flex-col justify-center px-[16mm] pt-[20mm] pb-[16mm]">
           <GoldLine />
           <h1 className="font-display text-[38pt] font-light leading-[1.08] mb-[6mm]">
-            From booking shows<br />to building artist<br />businesses in <em className="italic text-[#00cfff]">China</em>
+            Own the show.
           </h1>
           <p className="font-body text-[10pt] text-[#c0c0c0] leading-relaxed max-w-[140mm] mb-[12mm]">
             A first-of-its-kind partnership: Western production meets Chinese infrastructure. Co-development. Co-ownership. Long-term value.
@@ -166,8 +166,8 @@ export default function PrintPage() {
                 ))}
               </div>
               <div className="flex-1 border-t-[0.6mm] border-[#C9A84C] pt-[4mm]">
-                <p className="font-mono text-[5.5pt] tracking-[0.2em] text-[#C9A84C] uppercase mb-[3mm]">A2G provides</p>
-                {["Artist development and production", "Release strategy and label access", "Show concepts and content formats", "International creative network"].map((b, i) => (
+                <p className="font-mono text-[5.5pt] tracking-[0.2em] text-[#C9A84C] uppercase mb-[3mm]">A2G delivers</p>
+                {["Release strategy + guaranteed distribution (PERSONA Records)", "International promotion — EDMisLove (7M+), global network", "Production — ghost-production, original tracks, content formats", "Music for INSane release", "WW Marketing", "Content (A/V from every show)", "Exclusive immersive shows"].map((b, i) => (
                   <p key={i} className="font-body text-[8pt] text-[#b0b0b0] mb-[2mm] flex gap-[2mm]">
                     <span className="text-[#C9A84C]/30 shrink-0">·</span>{b}
                   </p>
@@ -260,7 +260,7 @@ export default function PrintPage() {
             <div className="flex gap-[3mm]">
               <div className="flex-1 border border-[#00cfff10] rounded-[1.5mm] p-[3mm] bg-[#00cfff03] text-center">
                 <p className="font-mono text-[5pt] text-[#00cfff]/50 mb-[1mm]">◆ Shows</p>
-                <p className="font-mono text-[4pt] text-[#b0b0b0]">60/30/10%</p>
+                <p className="font-mono text-[4pt] text-[#b0b0b0]">60% → 30% → 10%</p>
               </div>
               <div className="flex-1 border border-[#C9A84C10] rounded-[1.5mm] p-[3mm] bg-[#C9A84C03] text-center">
                 <p className="font-mono text-[5pt] text-[#C9A84C]/50 mb-[1mm]">◆ Royalties</p>
@@ -320,18 +320,18 @@ export default function PrintPage() {
               <p className="font-display text-[18pt] font-light text-white/15 ml-auto">$589M</p>
               <p className="font-body text-[7pt] text-[#b0b0b0]">revenue</p>
             </div>
-            <p className="font-body text-[8pt] text-[#b0b0b0]">Venue ownership without artist ownership means perpetual dependency on external booking fees.</p>
+            <p className="font-body text-[8pt] text-[#b0b0b0]">FIVE proved infrastructure scales. But without artist ownership, every show is a rental — never an asset. Every artist that plays is someone else&apos;s. The booking fee leaves the building every night. The A2G × INS partnership solves exactly this — co-owning the artists that fill the stages.</p>
           </div>
 
           <div className="flex gap-[6mm] items-center">
             <div className="flex-1 border border-white/[0.08] rounded-[2mm] p-[8mm] text-center bg-white/[0.02]">
               <p className="font-display text-[32pt] font-light text-white/10 mb-[2mm]">€302.5M</p>
-              <p className="font-body text-[7pt] text-[#b0b0b0]">€302.5M invested · Still pays external booking fees for every show</p>
+              <p className="font-body text-[7pt] text-[#b0b0b0]">€302.5M in venues. $589M in revenue. Zero owned artists. Every show still depends on an external booking agent.</p>
             </div>
             <span className="font-display text-[18pt] text-[#C9A84C]/30">→</span>
             <div className="flex-1 border-2 border-[#C9A84C40] rounded-[2mm] p-[8mm] text-center bg-[#C9A84C04]" style={{ boxShadow: "0 0 20px rgba(201,168,76,0.06)" }}>
-              <p className="font-display text-[32pt] font-light text-[#C9A84C] mb-[2mm]">€54K</p>
-              <p className="font-body text-[7pt] text-[#d4d4d4]">€54K Year 1 · Co-owns artist development from day one</p>
+              <p className="font-display text-[32pt] font-light text-[#C9A84C] mb-[2mm]">€42.5K</p>
+              <p className="font-body text-[7pt] text-[#d4d4d4]">€42.5K Year 1 · Co-owns artist development from day one</p>
             </div>
           </div>
 
@@ -368,7 +368,7 @@ export default function PrintPage() {
               { n: "02", t: "The FIVE gap", d: "FIVE Holdings proved the venue-acquisition model at €302.5M but left an enormous gap: no owned artist pipeline. Venue ownership without artist ownership is a recurring cost, not an asset.", c: "#C9A84C" },
               { n: "03", t: "First-mover advantage", d: "Major Asian nightlife groups are seeking differentiation. The first group to build a co-development artist pipeline will have a defensible competitive advantage that's expensive to replicate.", c: "#4ade80" },
               { n: "04", t: "Window of opportunity", d: "If INS doesn't capture this model now, another group with similar infrastructure will. The partnerships, label relationships, and production network A2G brings are available today — not indefinitely.", c: "#f87171" },
-              { n: "05", t: "Low-cost entry", d: "€24K Year 1 investment to test a model that, if proven, scales across unlimited artists using the same infrastructure. The risk-to-upside ratio at this stage is exceptionally favorable.", c: "#a78bfa" },
+              { n: "05", t: "Low-cost entry", d: "€42.5K Year 1 investment to test a model that, if proven, scales across unlimited artists using the same infrastructure. The risk-to-upside ratio at this stage is exceptionally favorable.", c: "#a78bfa" },
             ].map((r) => (
               <div key={r.n} className="flex gap-[4mm] mb-[5mm]">
                 <span className="font-mono text-[7pt] font-medium shrink-0 w-[6mm]" style={{ color: r.c }}>{r.n}</span>
@@ -406,7 +406,7 @@ export default function PrintPage() {
                 name: "PROPHECY", image: "/images/artists/prophecy.png",
                 role: "Opens doors",
                 sub: "Production credibility, international label relationships, release pipeline.",
-                creds: "Co-produced with ARTBAT, MORTEN, David Guetta, Tiësto · 300K+ Spotify monthly listeners · Labels: Insomniac, Spinnin'/Warner, Future Rave",
+                creds: "Co-produced with ARTBAT, MORTEN, David Guetta, Tiësto · 500K+ Spotify monthly listeners · Labels: Insomniac, Spinnin'/Warner, Future Rave",
               },
               {
                 name: "AIRE", image: "/images/artists/aire.png",
@@ -418,7 +418,7 @@ export default function PrintPage() {
                 name: "BJÖRN", image: "/images/artists/bjorn.png",
                 role: "Proves the local case",
                 sub: "INS's homegrown artist — the proof of concept. From local act to internationally positioned name.",
-                creds: "568K Spotify monthly listeners · #1 Beatport ranking · Target labels: Insomniac, Future Rave, Spinnin'",
+                creds: "Guaranteed release path through PERSONA Records + promotion via EDMisLove (7M+ followers). No dependency on external label timelines.",
               },
             ].map((a) => (
               <div key={a.name} className="flex-1 flex flex-col">
@@ -488,9 +488,9 @@ export default function PrintPage() {
             <div className="flex-1 flex flex-col">
               <p className="font-mono text-[5pt] tracking-[0.2em] text-[#8a8a8a] uppercase mb-[4mm]">Revenue share phases</p>
               {[
-                { n: "01", t: "Recovery", s: "60% INS · 40% Artist", d: "Until INS recoups full investment", c: "#00cfff" },
-                { n: "02", t: "Profit (3yr)", s: "30% INS · 70% Artist", d: "Artist takes majority, INS retains 30%", c: "#C9A84C" },
-                { n: "03", t: "Long-term", s: "10% INS · 90% Artist", d: "INS retains royalty up to Year 10", c: "#4ade80" },
+                { n: "01", t: "Recovery", s: "60% INS share", d: "Until INS recoups full investment", c: "#00cfff" },
+                { n: "02", t: "Profit (3yr)", s: "30% INS share", d: "Artist takes majority, INS retains 30%", c: "#C9A84C" },
+                { n: "03", t: "Long-term", s: "10% INS share", d: "INS retains royalty up to Year 10", c: "#4ade80" },
               ].map((p) => (
                 <div key={p.n} className="flex items-center gap-[3mm] py-[4mm] border-b border-white/[0.03]">
                   <span className="font-mono text-[8pt] font-medium w-[6mm]" style={{ color: p.c }}>{p.n}</span>
@@ -511,9 +511,9 @@ export default function PrintPage() {
             <p className="font-mono text-[5pt] tracking-[0.2em] text-[#8a8a8a] uppercase mb-[3mm]">3-Year financial projection — conservative model</p>
             <div className="flex gap-[4mm] mb-[4mm]">
               {[
-                { y: "Year 1", rev: "€44K", inv: "€54K", ret: "€24K", pct: "46%", shows: "6 shows", streams: "~500K" },
-                { y: "Year 2", rev: "€179K", inv: "€131K", ret: "€53K", pct: "60%", shows: "15 shows", streams: "~5M" },
-                { y: "Year 3", rev: "€495K", inv: "€253K", ret: "€145K", pct: "88%", shows: "30+ shows", streams: "~20M" },
+                { y: "Year 1", rev: "€27K", inv: "€42.5K", ret: "€16.2K", pct: "38.1%", shows: "6 shows", streams: "~500K" },
+                { y: "Year 2", rev: "€117.5K", inv: "€104K", ret: "€86.7K", pct: "83.4%", shows: "15 shows", streams: "~5M" },
+                { y: "Year 3", rev: "€264K", inv: "€187K", ret: "€245.1K", pct: "131.1%", shows: "30+ shows", streams: "~20M" },
               ].map((f) => (
                 <div key={f.y} className="flex-1 border border-white/[0.06] rounded-[2mm] p-[5mm] bg-white/[0.015]">
                   <p className="font-mono text-[5pt] text-[#b0b0b0] mb-[2mm]">{f.y}</p>
@@ -569,10 +569,10 @@ export default function PrintPage() {
             <div className="flex-1">
               <p className="font-mono text-[5pt] tracking-[0.2em] text-[#C9A84C] uppercase mb-[4mm]">What INS gets in return</p>
               {[
-                "40% China-territory revenue until recouped",
-                "Ghost-production: 4 tracks for Björn at €3,500/track (30% off market)",
+                "60% INS share until recouped",
+                "Ghost-production: 4 tracks for Björn at €3,500/track market value — delivered as value trade",
                 "Up to 3 Prophecy releases on INS label in Year 1",
-                "Label scouting for Björn — fallback: PERSONA Records with promo",
+                "Guaranteed release path through PERSONA Records + promotion via EDMisLove (7M+ followers)",
                 "Connections with the biggest industry players",
                 "Support with Björn development",
                 "30% share for 3yr post-recovery, then 10% to Year 10",
@@ -585,8 +585,8 @@ export default function PrintPage() {
           </div>
 
           <div className="border-l-[1mm] border-[#C9A84C40] pl-[5mm] py-[4mm] bg-[#C9A84C06] mb-[6mm]">
-            <p className="font-body text-[8pt] text-[#C9A84C]">INS invests ~€24K Year 1</p>
-            <p className="font-body text-[6pt] text-[#b0b0b0] mt-[1mm]">€10K marketing co-funding + €14K ghost production package (4 tracks at €3,500/track)</p>
+            <p className="font-body text-[8pt] text-[#C9A84C]">INS invests €42.5K Year 1</p>
+            <p className="font-body text-[6pt] text-[#b0b0b0] mt-[1mm]">Show fees + marketing co-funding + content production + scouting</p>
           </div>
 
           <div className="border border-[#C9A84C30] rounded-[2mm] p-[6mm] bg-[#C9A84C04]">
@@ -694,7 +694,7 @@ export default function PrintPage() {
           <div className="flex-1">
             {[
               { risk: "Artist departure", mitigation: "Catalog revenue continues — tracks and assets keep generating income. A2G commits to replacing any artist within the partnership framework.", likelihood: "Medium", color: "#f97316" },
-              { risk: "Slower revenue growth", mitigation: "Phase 1 (60/40) has no time limit — it runs until INS recoups investment. No scenario where INS moves to a lower share before recovering capital.", likelihood: "Low–Med", color: "#eab308" },
+              { risk: "Slower revenue growth", mitigation: "60% INS share has no time limit — it runs until INS recoups investment. No scenario where INS moves to a lower share before recovering capital.", likelihood: "Low–Med", color: "#eab308" },
               { risk: "Regulatory changes", mitigation: "Distribution through established Chinese platforms (QQ Music, NetEase) with existing regulatory compliance. No gray-area structures.", likelihood: "Low", color: "#22c55e" },
               { risk: "Underperformance", mitigation: "Value-trade model (shows for production) limits cash exposure. Ghost production and content creation continue generating non-cash value even if live revenue underperforms.", likelihood: "Medium", color: "#f97316" },
               { risk: "Early exit", mitigation: "Exit clause after Year 2 with 6-month notice. Existing catalog revenue continues per agreed split. IP ownership proportional to investment made.", likelihood: "Structural", color: "#94a3b8" },
@@ -752,8 +752,8 @@ export default function PrintPage() {
 
           <div className="flex flex-col items-center text-center">
             <GoldLine />
-            <h2 className="font-display text-[34pt] font-light mt-[3mm] mb-[2mm]">Let&apos;s Build</h2>
-            <h2 className="font-display text-[34pt] font-light italic text-[#C9A84C] mb-[8mm]">Together</h2>
+            <h2 className="font-display text-[34pt] font-light mt-[3mm] mb-[2mm]">You built the stages.</h2>
+            <h2 className="font-display text-[34pt] font-light italic text-[#C9A84C] mb-[8mm]">Let&apos;s build what fills them.</h2>
 
             <p className="font-body text-[11pt] text-white mb-[1mm]">Aitzol Arevalo Gómez</p>
             <p className="font-body text-[7pt] text-[#b0b0b0] mb-[3mm]">A2G Company FZCO · Dubai, UAE</p>

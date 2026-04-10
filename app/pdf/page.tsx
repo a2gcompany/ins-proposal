@@ -443,7 +443,7 @@ export default function PdfPage() {
             <div className="card">
               <div className="card-num">03</div>
               <h3>Long-term Revenue</h3>
-              <p contentEditable suppressContentEditableWarning>3-phase revenue share on China territory: 60/40 until recovery, 30/70 for 3 years, then 10% INS royalty up to year 10.</p>
+              <p contentEditable suppressContentEditableWarning>3-phase revenue share on China territory: 60% → 30% → 10% INS share (by phase), plus control over where and when artists play in your territory — from day one.</p>
             </div>
           </div>
 
@@ -477,29 +477,29 @@ export default function PdfPage() {
           <div className="grid-3" style={{marginTop:'10px'}}>
             <div className="fin-card">
               <p className="fin-year">Year 1</p>
-              <p className="fin-num" contentEditable suppressContentEditableWarning>€44K</p>
-              <p className="fin-label">China Revenue</p>
+              <p className="fin-num" contentEditable suppressContentEditableWarning>€27K</p>
+              <p className="fin-label">Gross Revenue</p>
               <div className="fin-sub">
-                <span style={{color:'rgba(255,255,255,0.35)'}} contentEditable suppressContentEditableWarning>€54K invested</span>
-                <span style={{color:'#34d399'}} contentEditable suppressContentEditableWarning>€24K return</span>
+                <span style={{color:'rgba(255,255,255,0.35)'}} contentEditable suppressContentEditableWarning>€42.5K invested</span>
+                <span style={{color:'#34d399'}} contentEditable suppressContentEditableWarning>€16.2K INS revenue</span>
               </div>
             </div>
             <div className="fin-card">
               <p className="fin-year">Year 2</p>
-              <p className="fin-num" contentEditable suppressContentEditableWarning>€179K</p>
-              <p className="fin-label">China Revenue</p>
+              <p className="fin-num" contentEditable suppressContentEditableWarning>€117.5K</p>
+              <p className="fin-label">Gross Revenue</p>
               <div className="fin-sub">
-                <span style={{color:'rgba(255,255,255,0.35)'}} contentEditable suppressContentEditableWarning>€77K invested</span>
-                <span style={{color:'#34d399'}} contentEditable suppressContentEditableWarning>€53K return</span>
+                <span style={{color:'rgba(255,255,255,0.35)'}} contentEditable suppressContentEditableWarning>€104K cumulative invested</span>
+                <span style={{color:'#34d399'}} contentEditable suppressContentEditableWarning>€86.7K cumulative revenue</span>
               </div>
             </div>
             <div className="fin-card">
               <p className="fin-year">Year 3</p>
-              <p className="fin-num" contentEditable suppressContentEditableWarning>€525K</p>
-              <p className="fin-label">China Revenue</p>
+              <p className="fin-num" contentEditable suppressContentEditableWarning>€264K</p>
+              <p className="fin-label">Gross Revenue</p>
               <div className="fin-sub">
-                <span style={{color:'rgba(255,255,255,0.35)'}} contentEditable suppressContentEditableWarning>€122K invested</span>
-                <span style={{color:'#34d399'}} contentEditable suppressContentEditableWarning>€158K return</span>
+                <span style={{color:'rgba(255,255,255,0.35)'}} contentEditable suppressContentEditableWarning>€187K cumulative invested</span>
+                <span style={{color:'#34d399'}} contentEditable suppressContentEditableWarning>€245.1K cumulative revenue</span>
               </div>
             </div>
           </div>
@@ -529,7 +529,7 @@ export default function PdfPage() {
                 <span className="badge badge-gold">Spain</span>
               </div>
               <p className="artist-meta" contentEditable suppressContentEditableWarning>
-                Co-produced with Anyma, MORTEN, David Guetta & Tiësto. HOLLOW feat. Prophecy on Insomniac Records. Label ecosystem: Insomniac · Spinnin&apos;/Warner · Future Rave. 300K+ Spotify monthly listeners.
+                Co-produced with Anyma, MORTEN, David Guetta & Tiësto. HOLLOW feat. Prophecy on Insomniac Records. Label ecosystem: Insomniac · Spinnin&apos;/Warner · Future Rave. 500K+ Spotify monthly listeners.
               </p>
             </div>
           </div>
@@ -587,7 +587,7 @@ export default function PdfPage() {
           <div className="grid-2" style={{gap:'8px', marginBottom:'16px'}}>
             {[
               {a:'Roger Sanchez', n:'House legend · Grammy · 25+ years'},
-              {a:'PROPHECY', n:"Insomniac · Spinnin'/Warner · 300K+ listeners"},
+              {a:'PROPHECY', n:"Insomniac · Spinnin'/Warner · 500K+ listeners"},
               {a:'AIRE', n:'DJ×VJ Live Act · Thundercode'},
               {a:'BABEL Music', n:'Melodic electronic · Tomorrowland'},
             ].map(r => (
@@ -608,7 +608,7 @@ export default function PdfPage() {
           {/* CTA */}
           <div className="cta-section">
             <p className="eyebrow" style={{marginBottom:'8px'}}>Ready to Build?</p>
-            <h2>Let&apos;s Build <span className="gold">Together</span></h2>
+            <h2>You built the stages. <span className="gold">Let&apos;s build what fills them.</span></h2>
             <p className="cta-email" style={{marginTop:'8px'}} contentEditable suppressContentEditableWarning>aitzolarev@gmail.com</p>
             <p style={{fontFamily:'JetBrains Mono, monospace', fontSize:'8px', color:'rgba(255,255,255,0.15)', letterSpacing:'2px', marginTop:'12px'}}>ins.a2g.company</p>
           </div>
