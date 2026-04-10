@@ -472,16 +472,17 @@ export default function PrintPage() {
                 creds: "Release path via PERSONA Records + promotion via EDMisLove (7M+ followers)",
               },
             ].map((a) => (
-              <div key={a.name} className="flex flex-col flex-1">
-                <div className="rounded-[2mm] overflow-hidden bg-[#0a1020] mb-[3mm]" style={{ height: "48mm" }}>
+              <div key={a.name} className="flex gap-[5mm] flex-1">
+                <div className="rounded-[2mm] overflow-hidden bg-[#0a1020] shrink-0" style={{ width: "46mm", height: "100%" }}>
                   <img src={a.image} alt={a.name} className="w-full h-full object-cover object-top" style={{ filter: "brightness(0.8) contrast(1.05)" }} />
                 </div>
-                <div className="flex items-baseline gap-[4mm] mb-[1.5mm]">
-                  <p className="font-display text-[16pt] font-light tracking-wide">{a.name}</p>
-                  <p className="font-mono text-[5pt] tracking-[0.2em] uppercase" style={{ color: a.color }}>{a.tag}</p>
-                  <span className="font-display text-[8.5pt] italic" style={{ color: a.color }}>{a.role}</span>
+                <div className="flex flex-col justify-center flex-1">
+                  <p className="font-mono text-[5pt] tracking-[0.2em] uppercase mb-[1.5mm]" style={{ color: a.color }}>{a.tag}</p>
+                  <p className="font-display text-[16pt] font-light tracking-wide mb-[1mm]">{a.name}</p>
+                  <p className="font-display text-[8.5pt] italic mb-[2.5mm]" style={{ color: a.color }}>{a.role}</p>
+                  <p className="font-body text-[7.5pt] text-[#b0b0b0] leading-relaxed mb-[2mm]">{a.sub}</p>
+                  <p className="font-body text-[6pt] text-[#8a8a8a] leading-relaxed">{a.creds}</p>
                 </div>
-                <p className="font-body text-[7pt] text-[#b0b0b0] leading-relaxed">{a.sub} <span className="text-[#8a8a8a]">{a.creds}</span></p>
               </div>
             ))}
           </div>
