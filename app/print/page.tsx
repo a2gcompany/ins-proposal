@@ -761,23 +761,24 @@ export default function PrintPage() {
             <div className="flex-1 border border-[#C9A84C20] rounded-[2mm] p-[6mm] bg-[#C9A84C04]">
               <p className="font-mono text-[5pt] tracking-[0.2em] text-[#C9A84C] uppercase mb-[4mm]">The artist builder</p>
               <div className="flex items-center justify-between mb-[4mm]">
-                {[
-                  { n: "Bj\u00F6rn", s: "Year 1: prove it", active: true },
-                  { n: "Artist 2", s: "Year 2: scale", active: true },
-                  { n: "Artist 3+", s: "Year 3: accelerate", active: false },
-                ].map((a, i) => (
-                  <div key={i} className="flex items-center gap-[4mm]">
-                    <div className="text-center">
-                      <p className={`font-display text-[11pt] ${a.active ? "text-[#C9A84C]" : "text-white/15"}`}>{a.n}</p>
-                      <p className="font-body text-[6pt] text-[#b0b0b0] mt-[1.5mm]">{a.s}</p>
-                    </div>
-                    {i < 2 && <span className="font-display text-[12pt] text-[#C9A84C]/20">\u2192</span>}
-                  </div>
-                ))}
+                <div className="text-center">
+                  <p className="font-display text-[11pt] text-[#C9A84C]">Bj&ouml;rn</p>
+                  <p className="font-body text-[6pt] text-[#b0b0b0] mt-[1.5mm]">Year 1: prove it</p>
+                </div>
+                <span className="font-display text-[12pt] text-[#C9A84C]/20">&rarr;</span>
+                <div className="text-center">
+                  <p className="font-display text-[11pt] text-[#C9A84C]">Artist 2</p>
+                  <p className="font-body text-[6pt] text-[#b0b0b0] mt-[1.5mm]">Year 2: scale</p>
+                </div>
+                <span className="font-display text-[12pt] text-[#C9A84C]/20">&rarr;</span>
+                <div className="text-center">
+                  <p className="font-display text-[11pt] text-white/15">Artist 3+</p>
+                  <p className="font-body text-[6pt] text-[#b0b0b0] mt-[1.5mm]">Year 3: accelerate</p>
+                </div>
               </div>
               <div className="flex items-center gap-[3mm]">
                 <div className="h-[0.3mm] flex-1 bg-[#C9A84C15]" />
-                <span className="font-mono text-[4.5pt] text-[#C9A84C]/40 uppercase">Same infra \u00B7 Lower cost \u00B7 Repeat</span>
+                <span className="font-mono text-[4.5pt] text-[#C9A84C]/40 uppercase">Same infra &middot; Lower cost &middot; Repeat</span>
                 <div className="h-[0.3mm] flex-1 bg-[#C9A84C15]" />
               </div>
             </div>
@@ -830,8 +831,8 @@ export default function PrintPage() {
                   header: "Revenue + Marketing A2G",
                   tags: ["Prophecy"],
                   tagColor: "#C9A84C",
-                  desc: "A2G flagship artist \u2014 INS provides venues and marketing, A2G manages globally",
-                  items: [{ t: "China Marketing", s: "China" }, { t: "Shows (INS)", s: "China" }],
+                  desc: "A2G flagship artist \u2014 INS provides venues and marketing, A2G manages globally. Revenue from China territory shows and marketing co-investment.",
+                  items: [{ t: "China Marketing", s: "China" }, { t: "Shows (INS venues)", s: "China" }, { t: "External bookings (agent)", s: "China" }, { t: "Brand activations", s: "China" }],
                 },
               ].map((col) => (
                 <div key={col.header} className="flex-1 border border-white/[0.06] rounded-[2mm] p-[5mm] bg-white/[0.015]">
@@ -844,7 +845,7 @@ export default function PrintPage() {
                   <p className="font-body text-[6pt] text-[#8a8a8a] leading-relaxed mb-[3mm]">{col.desc}</p>
                   {col.items.map((item) => (
                     <div key={item.t} className="flex justify-between items-center py-[1.5mm] border-t border-white/[0.03]">
-                      <span className="font-body text-[6pt] text-[#d4d4d4] flex items-center gap-[2mm]"><span style={{ color: col.tagColor }}>\u2022</span> {item.t}</span>
+                      <span className="font-body text-[6pt] text-[#d4d4d4] flex items-center gap-[2mm]"><span style={{ color: col.tagColor }}>&bull;</span> {item.t}</span>
                       <span className="font-mono text-[4.5pt] text-[#8a8a8a]">{item.s}</span>
                     </div>
                   ))}
