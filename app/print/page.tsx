@@ -77,7 +77,7 @@ export default function PrintPage() {
           .no-print { display: none !important; }
         }
         @media screen {
-          .print-container { display: flex; flex-direction: column; align-items: center; gap: 16px; padding: 16px; background: #1a1a1a; min-height: 100vh; }
+          .print-container { display: flex; flex-direction: column; align-items: center; gap: 16px; padding: 16px; background: #1a1a1a; min-height: auto; }
           .page { box-shadow: 0 8px 40px rgba(0,0,0,0.5); }
         }
         .gold-shimmer { background: linear-gradient(135deg, #C9A84C 0%, #e8d48a 50%, #C9A84C 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
@@ -106,7 +106,7 @@ export default function PrintPage() {
           <h1 className="font-display text-[38pt] font-light leading-[1.08] mb-[6mm]">
             From booking shows<br />to building artist<br />businesses in <em className="italic text-[#00cfff]">China</em>
           </h1>
-          <p className="font-body text-[10pt] text-[#c0c0c0] leading-relaxed max-w-[140mm] mb-[20mm]">
+          <p className="font-body text-[10pt] text-[#c0c0c0] leading-relaxed max-w-[140mm] mb-[12mm]">
             A first-of-its-kind partnership: Western production meets Chinese infrastructure. Co-development. Co-ownership. Long-term value.
           </p>
 
@@ -197,7 +197,7 @@ export default function PrintPage() {
                   ].map((e) => (
                     <div key={e.n} className="border border-[#00cfff10] rounded-[1mm] px-[2mm] py-[1.5mm] bg-[#00cfff04] text-center">
                       <p className="font-mono text-[5pt] text-[#00cfff]/60 leading-tight">{e.n}</p>
-                      <p className="font-mono text-[5pt] text-[#9a9a9a]">{e.s}</p>
+                      <p className="font-mono text-[5pt] text-[#b0b0b0]">{e.s}</p>
                     </div>
                   ))}
                 </div>
@@ -206,14 +206,14 @@ export default function PrintPage() {
                 <p className="font-mono text-[5pt] tracking-[0.2em] text-[#C9A84C]/50 uppercase mb-[3mm] text-center">A2G Engine</p>
                 <div className="grid grid-cols-2 gap-[2mm]">
                   {[
-                    { n: "Prophecy", s: "Headliner" },
+                    { n: "Prophecy", s: "Anchor act" },
                     { n: "AIRE", s: "DJ × VJ" },
                     { n: "PERSONA", s: "Label" },
                     { n: "Network", s: "Intl. access" },
                   ].map((e) => (
                     <div key={e.n} className="border border-[#C9A84C10] rounded-[1mm] px-[2mm] py-[1.5mm] bg-[#C9A84C04] text-center">
                       <p className="font-mono text-[5pt] text-[#C9A84C]/60 leading-tight">{e.n}</p>
-                      <p className="font-mono text-[5pt] text-[#9a9a9a]">{e.s}</p>
+                      <p className="font-mono text-[5pt] text-[#b0b0b0]">{e.s}</p>
                     </div>
                   ))}
                 </div>
@@ -324,12 +324,12 @@ export default function PrintPage() {
           </div>
 
           <div className="flex gap-[6mm] items-center">
-            <div className="flex-1 border border-white/[0.06] rounded-[2mm] p-[8mm] text-center bg-white/[0.015]">
+            <div className="flex-1 border border-white/[0.08] rounded-[2mm] p-[8mm] text-center bg-white/[0.02]">
               <p className="font-display text-[32pt] font-light text-white/10 mb-[2mm]">€302.5M</p>
               <p className="font-body text-[7pt] text-[#b0b0b0]">€302.5M invested · Still pays external booking fees for every show</p>
             </div>
             <span className="font-display text-[18pt] text-[#C9A84C]/30">→</span>
-            <div className="flex-1 border-2 border-[#C9A84C40] rounded-[2mm] p-[8mm] text-center bg-[#C9A84C06]" style={{ boxShadow: "0 0 20px rgba(201,168,76,0.06)" }}>
+            <div className="flex-1 border-2 border-[#C9A84C40] rounded-[2mm] p-[8mm] text-center bg-[#C9A84C04]" style={{ boxShadow: "0 0 20px rgba(201,168,76,0.06)" }}>
               <p className="font-display text-[32pt] font-light text-[#C9A84C] mb-[2mm]">€54K</p>
               <p className="font-body text-[7pt] text-[#d4d4d4]">€54K Year 1 · Co-owns artist development from day one</p>
             </div>
@@ -362,7 +362,7 @@ export default function PrintPage() {
             <p className="font-body text-[7pt] text-[#b0b0b0]">China&apos;s electronic music market is at an inflection point. 10.6% CAGR over 8 years.</p>
           </div>
 
-          <div className="flex-1">
+          <div>
             {[
               { n: "01", t: "Platform prioritization", d: "Douyin, NetEase, and QQ Music are actively prioritizing international content with territorial partnerships. The infrastructure to distribute Western artists in China is ready — the artist pipeline isn't.", c: "#00cfff" },
               { n: "02", t: "The FIVE gap", d: "FIVE Holdings proved the venue-acquisition model at €302.5M but left an enormous gap: no owned artist pipeline. Venue ownership without artist ownership is a recurring cost, not an asset.", c: "#C9A84C" },
@@ -380,7 +380,7 @@ export default function PrintPage() {
             ))}
           </div>
 
-          <div className="border-l-[1mm] border-[#C9A84C40] pl-[5mm] py-[3mm] bg-[#C9A84C06]">
+          <div className="border-l-[1mm] border-[#C9A84C40] pl-[5mm] py-[3mm] bg-[#C9A84C06] mt-auto">
             <p className="font-display text-[8pt] italic text-[#C9A84C]/70">
               The question isn&apos;t whether this model works. It&apos;s who builds it first.
             </p>
@@ -428,7 +428,7 @@ export default function PrintPage() {
                 <p className="font-display text-[14pt] font-light tracking-wide mb-[1mm]">{a.name}</p>
                 <p className="font-display text-[9pt] text-[#C9A84C] italic mb-[2mm]">{a.role}</p>
                 <p className="font-body text-[7pt] text-[#b0b0b0] leading-relaxed mb-[2mm]">{a.sub}</p>
-                <p className="font-body text-[5.5pt] text-[#9a9a9a] leading-relaxed">{a.creds}</p>
+                <p className="font-body text-[5.5pt] text-[#b0b0b0] leading-relaxed">{a.creds}</p>
               </div>
             ))}
           </div>
@@ -518,16 +518,16 @@ export default function PrintPage() {
                 <div key={f.y} className="flex-1 border border-white/[0.06] rounded-[2mm] p-[5mm] bg-white/[0.015]">
                   <p className="font-mono text-[5pt] text-[#b0b0b0] mb-[2mm]">{f.y}</p>
                   <p className="font-display text-[22pt] font-light text-[#00cfff] mb-[1mm]" style={{ textShadow: "0 0 15px rgba(0,207,255,0.15)" }}>{f.rev}</p>
-                  <p className="font-mono text-[5pt] text-[#a0a0a0] mb-[2mm]">total revenue</p>
+                  <p className="font-mono text-[5pt] text-[#b0b0b0] mb-[2mm]">total revenue</p>
                   <p className="font-display text-[14pt] font-light text-[#C9A84C]">{f.ret}</p>
                   <p className="font-mono text-[4.5pt] text-[#C9A84C]/50 mb-[1mm]">INS return</p>
                   <div className="flex items-baseline gap-[2mm] mb-[2mm]">
-                    <p className="font-mono text-[5pt] text-[#a0a0a0]">{f.inv} invested</p>
+                    <p className="font-mono text-[5pt] text-[#b0b0b0]">{f.inv} invested</p>
                     <p className="font-mono text-[5pt] font-medium text-[#00cfff]">({f.pct} recovered)</p>
                   </div>
                   <div className="flex gap-[2mm] border-t border-white/[0.04] pt-[2mm]">
-                    <p className="font-mono text-[4.5pt] text-[#a0a0a0]">{f.shows}</p>
-                    <p className="font-mono text-[4.5pt] text-[#a0a0a0]">{f.streams} streams</p>
+                    <p className="font-mono text-[4.5pt] text-[#b0b0b0]">{f.shows}</p>
+                    <p className="font-mono text-[4.5pt] text-[#b0b0b0]">{f.streams} streams</p>
                   </div>
                 </div>
               ))}
@@ -541,7 +541,7 @@ export default function PrintPage() {
       {/* ═══ PAGE 7: YEAR 1 PLAN ═══ */}
       <Page>
         <Header />
-        <div className="pt-[22mm] px-[16mm] flex flex-col justify-between h-full pb-[14mm]">
+        <div className="pt-[22mm] px-[16mm] flex flex-col h-full pb-[14mm] gap-[4mm]">
           <div>
             <SectionLabel color="#00cfff">Year 1 · Prophecy × INS</SectionLabel>
             <h2 className="font-display text-[26pt] font-light leading-[1.1] mb-[6mm]">
@@ -613,7 +613,7 @@ export default function PrintPage() {
       {/* ═══ PAGE 8: THE ARTIST BUILDER ═══ */}
       <Page>
         <Header />
-        <div className="pt-[22mm] px-[16mm] flex flex-col justify-between h-full pb-[14mm]">
+        <div className="pt-[22mm] px-[16mm] flex flex-col h-full pb-[14mm] gap-[5mm]">
           <div>
             <SectionLabel>The output</SectionLabel>
             <h2 className="font-display text-[26pt] font-light leading-[1.1] mb-[3mm]">
