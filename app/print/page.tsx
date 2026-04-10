@@ -364,37 +364,74 @@ export default function PrintPage() {
             </h2>
           </div>
 
-          <div className="border border-[#00cfff15] rounded-[2mm] p-[6mm] bg-[#00cfff03] mb-[6mm]">
-            <div className="flex items-baseline gap-[4mm] mb-[3mm]">
-              <p className="font-display text-[22pt] font-light text-[#00cfff]" style={{ textShadow: "0 0 15px rgba(0,207,255,0.15)" }}>$8.5B</p>
-              <p className="font-body text-[7pt] text-[#b0b0b0]">2025 market size</p>
-              <span className="font-display text-[12pt] text-white/15 mx-[2mm]">→</span>
-              <p className="font-display text-[22pt] font-light text-[#C9A84C]">$19.1B</p>
-              <p className="font-body text-[7pt] text-[#b0b0b0]">projected 2033</p>
+          <div className="border border-[#00cfff15] rounded-[2mm] p-[6mm] bg-[#00cfff03] mb-[5mm]">
+            <div className="flex items-baseline gap-[4mm] mb-[2mm]">
+              <p className="font-display text-[24pt] font-light text-[#00cfff]" style={{ textShadow: "0 0 15px rgba(0,207,255,0.15)" }}>$8.5B</p>
+              <p className="font-body text-[8pt] text-[#b0b0b0]">2025 market size</p>
+              <span className="font-display text-[14pt] text-white/15 mx-[2mm]">&rarr;</span>
+              <p className="font-display text-[24pt] font-light text-[#C9A84C]">$19.1B</p>
+              <p className="font-body text-[8pt] text-[#b0b0b0]">projected 2033</p>
             </div>
-            <p className="font-body text-[7pt] text-[#b0b0b0]">China&apos;s electronic music market is at an inflection point. 10.6% CAGR over 8 years.</p>
+            <p className="font-body text-[8pt] text-[#b0b0b0]">China&apos;s electronic music market is at an inflection point. 10.6% CAGR over 8 years.</p>
           </div>
 
-          <div>
+          <div className="mb-[4mm]">
             {[
-              { n: "01", t: "Platform prioritization", d: "Douyin, NetEase, and QQ Music are actively prioritizing international content with territorial partnerships. The infrastructure to distribute Western artists in China is ready — the artist pipeline isn't.", c: "#00cfff" },
-              { n: "02", t: "The FIVE gap", d: "FIVE Holdings proved the venue-acquisition model at €302.5M but left an enormous gap: no owned artist pipeline. Venue ownership without artist ownership is a recurring cost, not an asset.", c: "#C9A84C" },
-              { n: "03", t: "First-mover advantage", d: "Major Asian nightlife groups are seeking differentiation. The first group to build a co-development artist pipeline will have a defensible competitive advantage that's expensive to replicate.", c: "#4ade80" },
-              { n: "04", t: "Window of opportunity", d: "If INS doesn't capture this model now, another group with similar infrastructure will. The partnerships, label relationships, and production network A2G brings are available today — not indefinitely.", c: "#f87171" },
-              { n: "05", t: "Low-cost entry", d: "€42.5K Year 1 investment to test a model that, if proven, scales across unlimited artists using the same infrastructure. The risk-to-upside ratio at this stage is exceptionally favorable.", c: "#a78bfa" },
+              { n: "01", t: "Platform prioritization", d: "Douyin, NetEase, and QQ Music are actively prioritizing international content. The infrastructure to distribute Western artists in China is ready \u2014 the artist pipeline isn\u2019t.", c: "#00cfff" },
+              { n: "02", t: "The FIVE gap", d: "FIVE Holdings proved venues scale at \u20AC302.5M but left an enormous gap: no owned artist pipeline. Venue ownership without artist ownership is a recurring cost, not an asset.", c: "#C9A84C" },
+              { n: "03", t: "First-mover advantage", d: "The first group to build a co-development artist pipeline will have a defensible competitive advantage that\u2019s expensive to replicate.", c: "#4ade80" },
+              { n: "04", t: "Window of opportunity", d: "The partnerships, label relationships, and production network A2G brings are available today \u2014 not indefinitely.", c: "#f87171" },
+              { n: "05", t: "Low-cost entry", d: "\u20AC42.5K Year 1 to test a model that scales across unlimited artists using the same infrastructure.", c: "#a78bfa" },
             ].map((r) => (
-              <div key={r.n} className="flex gap-[4mm] mb-[5mm]">
-                <span className="font-mono text-[7pt] font-medium shrink-0 w-[6mm]" style={{ color: r.c }}>{r.n}</span>
+              <div key={r.n} className="flex gap-[4mm] mb-[4mm]">
+                <span className="font-mono text-[8pt] font-medium shrink-0 w-[6mm]" style={{ color: r.c }}>{r.n}</span>
                 <div>
-                  <p className="font-display text-[9pt] font-light text-[#d4d4d4] mb-[1mm]">{r.t}</p>
-                  <p className="font-body text-[7.5pt] text-[#c0c0c0] leading-relaxed">{r.d}</p>
+                  <p className="font-display text-[10pt] font-light text-[#d4d4d4] mb-[1mm]">{r.t}</p>
+                  <p className="font-body text-[8.5pt] text-[#c0c0c0] leading-[1.5]">{r.d}</p>
                 </div>
               </div>
             ))}
           </div>
 
-          <div className="border-l-[1mm] border-[#C9A84C40] pl-[5mm] py-[3mm] bg-[#C9A84C06] mt-auto">
-            <p className="font-display text-[8pt] italic text-[#C9A84C]/70">
+          {/* Market Growth Chart */}
+          <div className="border border-[#00cfff10] rounded-[2mm] p-[5mm] bg-[#00cfff02] mt-auto">
+            <p className="font-mono text-[5pt] tracking-[0.3em] text-[#00cfff]/40 uppercase mb-[3mm]">China Electronic Music Market &mdash; USD Billions</p>
+            <div className="flex items-end gap-[3mm]" style={{ height: "28mm" }}>
+              {[
+                { year: "2021", value: 5.2, projected: false },
+                { year: "2022", value: 5.7, projected: false },
+                { year: "2023", value: 6.3, projected: false },
+                { year: "2024", value: 7.0, projected: false },
+                { year: "2025", value: 8.5, projected: false },
+                { year: "2026", value: 9.4, projected: true },
+                { year: "2027", value: 10.4, projected: true },
+              ].map((d) => {
+                const h = (d.value / 10.4) * 100;
+                return (
+                  <div key={d.year} className="flex-1 flex flex-col items-center gap-[1mm]">
+                    <p className="font-mono text-[5pt] text-[#00cfff]/50">${d.value}B</p>
+                    <div className="w-full flex items-end" style={{ height: "20mm" }}>
+                      <div
+                        className="w-full rounded-[0.5mm]"
+                        style={{
+                          height: `${h}%`,
+                          background: d.projected
+                            ? "linear-gradient(to top, rgba(0,207,255,0.15), rgba(0,207,255,0.05))"
+                            : "linear-gradient(to top, #00cfff, rgba(0,207,255,0.5))",
+                          border: d.projected ? "0.5px dashed rgba(0,207,255,0.25)" : "none",
+                        }}
+                      />
+                    </div>
+                    <p className="font-mono text-[4.5pt] text-white/25">{d.year}{d.projected ? "*" : ""}</p>
+                  </div>
+                );
+              })}
+            </div>
+            <p className="font-mono text-[4pt] text-white/15 mt-[2mm]">* Projected &middot; Source: Market Research Reports, 2025</p>
+          </div>
+
+          <div className="border-l-[1mm] border-[#C9A84C40] pl-[5mm] py-[3mm] bg-[#C9A84C06] mt-[4mm]">
+            <p className="font-display text-[9pt] italic text-[#C9A84C]/70">
               The question isn&apos;t whether this model works. It&apos;s who builds it first.
             </p>
           </div>
