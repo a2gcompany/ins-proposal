@@ -760,38 +760,108 @@ export default function PrintPage() {
         <PageNum n={8} />
       </Page>
 
-      {/* ═══ PAGE 9: RISKS & MITIGATION ═══ */}
+      {/* ═══ PAGE 9: THE STRUCTURE ═══ */}
       <Page>
         <Header />
-        <div className="pt-[22mm] px-[16mm] flex flex-col h-full pb-[14mm]">
-          <div>
-            <SectionLabel>Risk management</SectionLabel>
-            <h2 className="font-display text-[26pt] font-light leading-[1.1] mb-[6mm]">
-              Every risk has<br />a <span className="gold-shimmer italic">structure</span>.
+        <div className="pt-[20mm] px-[14mm] flex flex-col h-full pb-[12mm]">
+          <div className="mb-[4mm]">
+            <SectionLabel color="#00cfff">How it works</SectionLabel>
+            <h2 className="font-display text-[26pt] font-light leading-[1.1]">
+              The <span className="italic text-[#00cfff]">Structure</span>
             </h2>
           </div>
 
-          <div className="flex-1">
+          {/* 3 pillar cards */}
+          <div className="flex gap-[3mm] mb-[5mm]">
             {[
-              { risk: "Artist departure", mitigation: "Catalog revenue continues — tracks and assets keep generating income. A2G commits to replacing any artist within the partnership framework.", likelihood: "Medium", color: "#f97316" },
-              { risk: "Slower revenue growth", mitigation: "60% INS share has no time limit — it runs until INS recoups investment. No scenario where INS moves to a lower share before recovering capital.", likelihood: "Low–Med", color: "#eab308" },
-              { risk: "Regulatory changes", mitigation: "Distribution through established Chinese platforms (QQ Music, NetEase) with existing regulatory compliance. No gray-area structures.", likelihood: "Low", color: "#22c55e" },
-              { risk: "Underperformance", mitigation: "Value-trade model (shows for production) limits cash exposure. Ghost production and content creation continue generating non-cash value even if live revenue underperforms.", likelihood: "Medium", color: "#f97316" },
-              { risk: "Early exit", mitigation: "Exit clause after Year 2 with 6-month notice. Existing catalog revenue continues per agreed split. IP ownership proportional to investment made.", likelihood: "Structural", color: "#94a3b8" },
-              { risk: "A2G underdelivery", mitigation: "Deliverables defined per quarter with measurable outputs. INS retains all co-owned IP regardless of partnership status. Performance review built into Year 1 success metrics.", likelihood: "Medium", color: "#f97316" },
-            ].map((r, i) => (
-              <div key={i} className="flex gap-[4mm] py-[3.5mm] border-b border-white/[0.04]">
-                <div className="w-[35mm] shrink-0">
-                  <p className="font-display text-[9pt] font-light text-[#d4d4d4] mb-[1mm]">{r.risk}</p>
-                  <span className="font-mono text-[4.5pt] tracking-[0.15em] uppercase px-[2mm] py-[0.5mm] rounded-[0.5mm]" style={{ color: r.color, background: `${r.color}18`, border: `1px solid ${r.color}30` }}>{r.likelihood}</span>
+              { n: "01", t: "Initial Investment", d: "INS co-funds marketing, live logistics, creative direction and content for the Chinese market. Capital flows in, risk is shared from day one.", c: "#00cfff" },
+              { n: "02", t: "Artist Development", d: "Exclusive Asia territory activation: shows, masterclasses, social media, brand-building, and strategic label collaborations.", c: "#C9A84C" },
+              { n: "03", t: "Long-term Revenue", d: "Structured 3-phase revenue share on China territory: 60%\u202630%\u202610% INS share (by phase), plus control over where and when artists play in your territory.", c: "#4ade80" },
+            ].map((c) => (
+              <div key={c.n} className="flex-1 border border-white/[0.06] rounded-[2mm] p-[5mm] bg-white/[0.015]">
+                <div className="border border-white/[0.08] rounded-[1mm] w-[7mm] h-[7mm] flex items-center justify-center mb-[3mm]">
+                  <span className="font-mono text-[5.5pt]" style={{ color: c.c }}>{c.n}</span>
                 </div>
-                <p className="font-body text-[6.5pt] text-[#b0b0b0] leading-relaxed flex-1">{r.mitigation}</p>
+                <p className="font-display text-[11pt] font-light text-[#d4d4d4] mb-[2mm]">{c.t}</p>
+                <p className="font-body text-[6.5pt] text-[#b0b0b0] leading-relaxed">{c.d}</p>
               </div>
             ))}
           </div>
 
-          <div className="border-l-[1mm] border-[#C9A84C40] pl-[5mm] py-[3mm] bg-[#C9A84C06]">
-            <p className="font-body text-[7pt] text-[#b0b0b0]">Every failure mode has a contractual or structural response built in. The deal is designed so that INS never loses more than its cash exposure.</p>
+          {/* Revenue split donut charts */}
+          <div className="mb-[5mm]">
+            <p className="font-mono text-[5pt] tracking-[0.2em] text-[#8a8a8a] uppercase mb-[4mm]">Revenue split by phase — Artist share</p>
+            <div className="flex gap-[3mm]">
+              {[
+                { phase: "Phase 01", pct: 40, title: "Recovery Phase", desc: "INS recoups initial investment from China territory revenues", ins: 60 },
+                { phase: "Phase 02", pct: 70, title: "Profit Phase (3 yr)", desc: "3 years post-recovery: artist takes majority, INS retains 30%", ins: 30 },
+                { phase: "Phase 03", pct: 90, title: "Long-term (up to 10 yr)", desc: "INS retains 10% royalty on China territory revenues up to year 10", ins: 10 },
+              ].map((p) => (
+                <div key={p.phase} className="flex-1 flex flex-col items-center text-center">
+                  <p className="font-mono text-[5pt] tracking-[0.15em] text-[#00cfff] uppercase mb-[3mm]">{p.phase}</p>
+                  {/* Donut chart */}
+                  <div className="relative mb-[3mm]" style={{ width: "22mm", height: "22mm" }}>
+                    <div className="absolute inset-0 rounded-full" style={{ background: `conic-gradient(#22d3ee ${p.pct * 3.6}deg, #1e3a5f ${p.pct * 3.6}deg)` }} />
+                    <div className="absolute rounded-full bg-[#0a1628] flex flex-col items-center justify-center" style={{ inset: "3.5mm" }}>
+                      <span className="font-display text-[11pt] font-light text-[#22d3ee]">{p.pct}%</span>
+                      <span className="font-mono text-[3.5pt] text-[#8a8a8a] uppercase">artist</span>
+                    </div>
+                  </div>
+                  <p className="font-display text-[8pt] font-light text-[#d4d4d4] mb-[1.5mm]">{p.title}</p>
+                  <p className="font-body text-[5.5pt] text-[#8a8a8a] leading-relaxed mb-[2mm]">{p.desc}</p>
+                  <div className="flex gap-[3mm] justify-center">
+                    <span className="flex items-center gap-[1mm]"><span className="inline-block rounded-full bg-[#22d3ee]" style={{ width: "2mm", height: "2mm" }} /><span className="font-mono text-[4.5pt] text-[#8a8a8a]">Artist {p.pct}%</span></span>
+                    <span className="flex items-center gap-[1mm]"><span className="inline-block rounded-full bg-[#1e3a5f]" style={{ width: "2mm", height: "2mm" }} /><span className="font-mono text-[4.5pt] text-[#8a8a8a]">INS {p.ins}%</span></span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Revenue streams by artist type */}
+          <div className="mt-auto">
+            <p className="font-mono text-[5pt] tracking-[0.2em] text-[#8a8a8a] uppercase mb-[3mm]">Revenue streams by artist type</p>
+            <div className="flex gap-[3mm]">
+              {[
+                {
+                  header: "Revenue + Marketing Hero",
+                  tags: ["Bj\u00F6rn", "INS artist 2", "Artist 3..."],
+                  tagColor: "#00cfff",
+                  desc: "INS local artists \u2014 developed with A2G production, revenue stays in INS ecosystem",
+                  items: [{ t: "Shows", s: "Global" }, { t: "Royalties and publishing", s: "Global" }, { t: "Licensing", s: "Global" }, { t: "Exclusivity and control", s: "Global" }, { t: "WW Marketing", s: "Worldwide" }],
+                },
+                {
+                  header: "Revenue + Marketing Hero + A2G",
+                  tags: ["AIRE"],
+                  tagColor: "#a78bfa",
+                  desc: "A2G artist with shared China revenue \u2014 immersive format produces sellable content",
+                  items: [{ t: "Shows (China)", s: "China" }, { t: "Licensing (China)", s: "China" }, { t: "Exclusivity and control (China)", s: "China" }, { t: "Royalties and publishing (China)", s: "China" }],
+                },
+                {
+                  header: "Revenue + Marketing A2G",
+                  tags: ["Prophecy"],
+                  tagColor: "#C9A84C",
+                  desc: "A2G flagship artist \u2014 INS provides venues and marketing, A2G manages globally",
+                  items: [{ t: "China Marketing", s: "China" }, { t: "Shows (INS)", s: "China" }],
+                },
+              ].map((col) => (
+                <div key={col.header} className="flex-1 border border-white/[0.06] rounded-[2mm] p-[4mm] bg-white/[0.015]">
+                  <p className="font-mono text-[4.5pt] tracking-[0.15em] uppercase mb-[2mm]" style={{ color: col.tagColor }}>{col.header}</p>
+                  <div className="flex gap-[1.5mm] mb-[2mm] flex-wrap">
+                    {col.tags.map((tag) => (
+                      <span key={tag} className="font-mono text-[4.5pt] px-[2mm] py-[0.5mm] rounded-[0.5mm] border" style={{ color: col.tagColor, borderColor: `${col.tagColor}40`, background: `${col.tagColor}10` }}>{tag}</span>
+                    ))}
+                  </div>
+                  <p className="font-body text-[5.5pt] text-[#8a8a8a] leading-relaxed mb-[2mm]">{col.desc}</p>
+                  {col.items.map((item) => (
+                    <div key={item.t} className="flex justify-between items-center py-[1mm] border-t border-white/[0.03]">
+                      <span className="font-body text-[5.5pt] text-[#d4d4d4] flex items-center gap-[1.5mm]"><span style={{ color: col.tagColor }}>•</span> {item.t}</span>
+                      <span className="font-mono text-[4pt] text-[#8a8a8a]">{item.s}</span>
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
         <PageNum n={9} />
