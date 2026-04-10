@@ -323,15 +323,28 @@ export default function PrintPage() {
             <p className="font-body text-[8pt] text-[#b0b0b0]">FIVE proved infrastructure scales. But without artist ownership, every show is a rental — never an asset. Every artist that plays is someone else&apos;s. The booking fee leaves the building every night. The A2G × INS partnership solves exactly this — co-owning the artists that fill the stages.</p>
           </div>
 
-          <div className="flex gap-[6mm] items-center">
-            <div className="flex-1 border border-white/[0.08] rounded-[2mm] p-[8mm] text-center bg-white/[0.02]">
-              <p className="font-display text-[32pt] font-light text-white/10 mb-[2mm]">€302.5M</p>
-              <p className="font-body text-[7pt] text-[#b0b0b0]">€302.5M in venues. $589M in revenue. Zero owned artists. Every show still depends on an external booking agent.</p>
+          <div className="border border-[#C9A84C25] rounded-[2mm] overflow-hidden">
+            <div className="flex">
+              <div className="flex-1 p-[6mm] border-r border-white/[0.06]">
+                <p className="font-mono text-[5pt] tracking-[0.2em] text-white/30 uppercase mb-[3mm]">What FIVE owns</p>
+                {["Venues", "Brand IP", "Booking infrastructure", "Content library"].map((item, i) => (
+                  <p key={i} className="font-body text-[7.5pt] text-[#d4d4d4] mb-[1.5mm] flex gap-[2mm]">
+                    <span className="text-white/20 shrink-0">✓</span>{item}
+                  </p>
+                ))}
+              </div>
+              <div className="flex-1 p-[6mm]">
+                <p className="font-mono text-[5pt] tracking-[0.2em] text-[#f87171]/60 uppercase mb-[3mm]">What FIVE doesn&apos;t own</p>
+                {["Artists", "Music catalog rights", "Production pipeline", "Audience loyalty to owned acts"].map((item, i) => (
+                  <p key={i} className="font-body text-[7.5pt] text-[#f87171]/70 mb-[1.5mm] flex gap-[2mm]">
+                    <span className="text-[#f87171]/30 shrink-0">✗</span>{item}
+                  </p>
+                ))}
+              </div>
             </div>
-            <span className="font-display text-[18pt] text-[#C9A84C]/30">→</span>
-            <div className="flex-1 border-2 border-[#C9A84C40] rounded-[2mm] p-[8mm] text-center bg-[#C9A84C04]" style={{ boxShadow: "0 0 20px rgba(201,168,76,0.06)" }}>
-              <p className="font-display text-[32pt] font-light text-[#C9A84C] mb-[2mm]">€42.5K</p>
-              <p className="font-body text-[7pt] text-[#d4d4d4]">€42.5K Year 1 · Co-owns artist development from day one</p>
+            <div className="border-t border-[#C9A84C25] p-[5mm] bg-[#C9A84C06] flex items-center gap-[4mm]">
+              <span className="font-mono text-[5pt] tracking-[0.2em] text-[#C9A84C] uppercase shrink-0">INS + A2G</span>
+              <p className="font-body text-[7.5pt] text-[#d4d4d4]">Builds the missing column — owned artists, owned catalog, owned audience. The infrastructure INS already has becomes the engine.</p>
             </div>
           </div>
 
