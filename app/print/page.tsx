@@ -548,32 +548,64 @@ export default function PrintPage() {
             </div>
           </div>
 
+          {/* Financial summary cards */}
           <div>
             <p className="font-mono text-[5.5pt] tracking-[0.2em] text-[#8a8a8a] uppercase mb-[4mm]">3-Year financial projection — conservative model</p>
-            <div className="flex gap-[4mm] mb-[3mm]">
+            <div className="flex gap-[4mm] mb-[4mm]">
               {[
-                { y: "Year 1", rev: "€27K", inv: "€42.5K", ret: "€16.2K", pct: "38.1%", shows: "6 shows", streams: "~500K" },
-                { y: "Year 2", rev: "€117.5K", inv: "€104K", ret: "€86.7K", pct: "83.4%", shows: "15 shows", streams: "~5M" },
-                { y: "Year 3", rev: "€264K", inv: "€187K", ret: "€245.1K", pct: "131.1%", shows: "30+ shows", streams: "~20M" },
+                { y: "Year 1", rev: "\u20AC27K", inv: "\u20AC42.5K", ret: "\u20AC16K" },
+                { y: "Year 2", rev: "\u20AC117.5K", inv: "\u20AC61.5K", ret: "\u20AC71K" },
+                { y: "Year 3", rev: "\u20AC264K", inv: "\u20AC83K", ret: "\u20AC159K" },
               ].map((f) => (
-                <div key={f.y} className="flex-1 border border-white/[0.06] rounded-[2mm] p-[6mm] bg-white/[0.015]">
-                  <p className="font-mono text-[6pt] text-[#b0b0b0] mb-[2mm]">{f.y}</p>
-                  <p className="font-display text-[24pt] font-light text-[#00cfff] mb-[1.5mm]" style={{ textShadow: "0 0 15px rgba(0,207,255,0.15)" }}>{f.rev}</p>
-                  <p className="font-mono text-[5.5pt] text-[#b0b0b0] mb-[3mm]">total revenue</p>
-                  <p className="font-display text-[16pt] font-light text-[#C9A84C]">{f.ret}</p>
-                  <p className="font-mono text-[5pt] text-[#C9A84C]/50 mb-[2mm]">INS return</p>
-                  <div className="flex items-baseline gap-[2mm] mb-[3mm]">
-                    <p className="font-mono text-[5.5pt] text-[#b0b0b0]">{f.inv} invested</p>
-                    <p className="font-mono text-[5.5pt] font-medium text-[#00cfff]">({f.pct} recovered)</p>
-                  </div>
-                  <div className="flex gap-[3mm] border-t border-white/[0.04] pt-[3mm]">
-                    <p className="font-mono text-[5pt] text-[#b0b0b0]">{f.shows}</p>
-                    <p className="font-mono text-[5pt] text-[#b0b0b0]">{f.streams} streams</p>
+                <div key={f.y} className="flex-1 border border-white/[0.06] rounded-[2mm] p-[5mm] bg-white/[0.015]">
+                  <p className="font-mono text-[6pt] tracking-[0.15em] text-[#8a8a8a] uppercase mb-[3mm]">{f.y}</p>
+                  <p className="font-display text-[22pt] font-light text-[#00cfff] mb-[1mm]" style={{ textShadow: "0 0 15px rgba(0,207,255,0.15)" }}>{f.rev}</p>
+                  <p className="font-mono text-[5pt] tracking-[0.15em] text-[#00cfff]/50 uppercase mb-[4mm]">China revenue</p>
+                  <div className="flex gap-[3mm]">
+                    <div className="flex-1 border-l border-white/[0.08] pl-[3mm]">
+                      <p className="font-display text-[11pt] font-light text-[#d4d4d4]">{f.inv}</p>
+                      <p className="font-mono text-[4.5pt] tracking-[0.15em] text-[#8a8a8a] uppercase">Invested</p>
+                    </div>
+                    <div className="flex-1 border-l border-[#4ade8030] pl-[3mm]">
+                      <p className="font-display text-[11pt] font-light text-[#4ade80]">{f.ret}</p>
+                      <p className="font-mono text-[4.5pt] tracking-[0.15em] text-[#4ade80]/50 uppercase">INS return</p>
+                    </div>
                   </div>
                 </div>
               ))}
             </div>
-            <p className="font-mono text-[5pt] text-[#8a8a8a] tracking-[0.1em]">Non-China touring and global catalogue remain outside scope.</p>
+
+            {/* Bar chart */}
+            <div className="border border-white/[0.06] rounded-[2mm] p-[5mm] bg-white/[0.015]">
+              <div className="flex gap-[4mm] items-end" style={{ height: "38mm" }}>
+                {[
+                  { y: "Year 1", inv: 42.5, rev: 27, ret: 16 },
+                  { y: "Year 2", inv: 61.5, rev: 117.5, ret: 71 },
+                  { y: "Year 3", inv: 83, rev: 264, ret: 159 },
+                ].map((d) => (
+                  <div key={d.y} className="flex-1 flex flex-col items-center">
+                    <div className="flex gap-[2mm] items-end w-full justify-center" style={{ height: "32mm" }}>
+                      <div className="rounded-t-[0.5mm]" style={{ width: "18%", height: `${(d.inv / 264) * 100}%`, background: "linear-gradient(180deg, #6b7280 0%, #4b5563 100%)" }} />
+                      <div className="rounded-t-[0.5mm]" style={{ width: "18%", height: `${(d.rev / 264) * 100}%`, background: "linear-gradient(180deg, #22d3ee 0%, #0891b2 100%)" }} />
+                      <div className="rounded-t-[0.5mm]" style={{ width: "18%", height: `${(d.ret / 264) * 100}%`, background: "linear-gradient(180deg, #4ade80 0%, #16a34a 100%)" }} />
+                    </div>
+                    <p className="font-mono text-[5pt] text-[#8a8a8a] mt-[2mm]">{d.y}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="flex gap-[6mm] justify-center mt-[3mm] border-t border-white/[0.04] pt-[3mm]">
+                {[
+                  { label: "Investment", color: "#6b7280" },
+                  { label: "China Revenue", color: "#22d3ee" },
+                  { label: "INS Return", color: "#4ade80" },
+                ].map((l) => (
+                  <div key={l.label} className="flex items-center gap-[2mm]">
+                    <div className="rounded-[0.5mm]" style={{ width: "3mm", height: "3mm", backgroundColor: l.color }} />
+                    <p className="font-mono text-[5pt] text-[#8a8a8a]">{l.label}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
         <PageNum n={6} />
