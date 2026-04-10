@@ -611,71 +611,117 @@ export default function PrintPage() {
         <PageNum n={6} />
       </Page>
 
-      {/* ═══ PAGE 7: YEAR 1 PLAN ═══ */}
+      {/* ═══ PAGE 7: YEAR 1 PLAN + ADDITIONAL OPPORTUNITIES ═══ */}
       <Page>
         <Header />
-        <div className="pt-[22mm] px-[16mm] flex flex-col h-full pb-[14mm] gap-[4mm]">
-          <div>
+        <div className="pt-[20mm] px-[14mm] flex flex-col h-full pb-[12mm]">
+          {/* Year 1 header */}
+          <div className="mb-[3mm]">
             <SectionLabel color="#00cfff">Year 1 · Prophecy × INS</SectionLabel>
-            <h2 className="font-display text-[26pt] font-light leading-[1.1] mb-[6mm]">
+            <h2 className="font-display text-[24pt] font-light leading-[1.1]">
               The first <span className="italic text-[#00cfff]">move</span>.
             </h2>
           </div>
 
-          <div className="flex gap-[8mm] mb-[6mm]">
+          {/* Two columns: What we want / What INS gets */}
+          <div className="flex gap-[5mm] mb-[3mm]">
             <div className="flex-1">
-              <p className="font-mono text-[5pt] tracking-[0.2em] text-[#00cfff] uppercase mb-[4mm]">What we want from INS</p>
+              <p className="font-mono text-[4.5pt] tracking-[0.2em] text-[#00cfff] uppercase mb-[2mm]">What we want from INS</p>
               {[
-                "2 Prophecy shows + 2 AIRE shows at INS venues",
-                "€13K marketing co-funding",
-                "China Marketing Director (part-time, local execution)",
+                "2 Prophecy + 2 AIRE shows at INS venues",
+                "\u20AC13K marketing co-funding",
+                "China Marketing Director (part-time)",
                 "Distribution: QQ Music, NetEase, Douyin",
-                "Sync/gaming pipeline through Hero E-Sports",
-                "INS partner brand activations",
-                "External show bookings: 2 Prophecy + 1 AIRE + 1 Björn (INS as agent, 60% share)",
+                "Sync/gaming pipeline (Hero E-Sports)",
+                "External bookings: 2 Prophecy + 1 AIRE + 1 Bj\u00F6rn",
               ].map((item, i) => (
-                <p key={i} className="font-body text-[9pt] text-[#d4d4d4] mb-[3mm] flex gap-[2mm]">
+                <p key={i} className="font-body text-[7pt] text-[#d4d4d4] mb-[1.5mm] flex gap-[1.5mm]">
                   <span className="text-[#00cfff]/30 shrink-0">·</span>{item}
                 </p>
               ))}
             </div>
             <div className="flex-1">
-              <p className="font-mono text-[5pt] tracking-[0.2em] text-[#C9A84C] uppercase mb-[4mm]">What INS gets in return</p>
+              <p className="font-mono text-[4.5pt] tracking-[0.2em] text-[#C9A84C] uppercase mb-[2mm]">What INS gets in return</p>
               {[
                 "60% INS share until recouped",
-                "Ghost-production: 4 tracks for Björn at €3,500/track market value — delivered as value trade",
-                "Up to 3 Prophecy releases on INS label in Year 1",
-                "Guaranteed release path through PERSONA Records + promotion via EDMisLove (7M+ followers)",
-                "Connections with the biggest industry players",
-                "Support with Björn development",
-                "30% share for 3yr post-recovery, then 10% to Year 10",
+                "4 ghost-produced tracks for Bj\u00F6rn (\u20AC14K value trade)",
+                "Up to 3 Prophecy releases on INS label",
+                "PERSONA Records + EDMisLove (7M+ followers)",
+                "Connections with top industry players",
+                "30% share 3yr post-recovery, then 10% to Year 10",
               ].map((item, i) => (
-                <p key={i} className="font-body text-[9pt] text-[#d4d4d4] mb-[3mm] flex gap-[2mm]">
+                <p key={i} className="font-body text-[7pt] text-[#d4d4d4] mb-[1.5mm] flex gap-[1.5mm]">
                   <span className="text-[#C9A84C]/30 shrink-0">·</span>{item}
                 </p>
               ))}
             </div>
           </div>
 
-          <div className="border-l-[1mm] border-[#C9A84C40] pl-[5mm] py-[4mm] bg-[#C9A84C06] mb-[6mm]">
-            <p className="font-body text-[8pt] text-[#C9A84C]">INS invests €42.5K Year 1</p>
-            <p className="font-body text-[6pt] text-[#b0b0b0] mt-[1mm]">Show fees + marketing co-funding + content production + scouting</p>
+          {/* Investment callout + success metrics inline */}
+          <div className="flex gap-[3mm] mb-[4mm]">
+            <div className="border-l-[1mm] border-[#C9A84C40] pl-[4mm] py-[2mm] bg-[#C9A84C06] shrink-0">
+              <p className="font-body text-[7pt] text-[#C9A84C]">INS invests \u20AC42.5K Year 1</p>
+              <p className="font-body text-[5pt] text-[#b0b0b0] mt-[0.5mm]">Show fees + marketing + content + scouting</p>
+            </div>
+            <div className="border border-[#C9A84C30] rounded-[1.5mm] p-[3mm] bg-[#C9A84C04] flex-1">
+              <p className="font-mono text-[4.5pt] tracking-[0.2em] text-[#C9A84C] uppercase mb-[2mm]">Year 1 success metrics</p>
+              <div className="grid grid-cols-3 gap-x-[3mm] gap-y-[1mm]">
+                {[
+                  "2 INS venue shows + 2 external bookings",
+                  "4 ghost-produced tracks delivered",
+                  "5+ reusable AIRE A/V pieces",
+                  "\u20AC27K gross revenue (\u20AC16K INS share)",
+                  "Distribution live on QQ, NetEase, Douyin",
+                  "Proven playbook for artist 2",
+                ].map((c, i) => (
+                  <p key={i} className="font-body text-[5.5pt] text-[#d4d4d4] flex gap-[1.5mm] items-start">
+                    <span className="text-[#C9A84C]/50 shrink-0 text-[5pt]">\u2610</span>{c}
+                  </p>
+                ))}
+              </div>
+            </div>
           </div>
 
-          <div className="border border-[#C9A84C30] rounded-[2mm] p-[6mm] bg-[#C9A84C04]">
-            <p className="font-mono text-[5pt] tracking-[0.2em] text-[#C9A84C] uppercase mb-[4mm]">Our commitment — Year 1 success metrics</p>
-            <div className="grid grid-cols-2 gap-[3mm]">
+          {/* Divider */}
+          <div className="flex items-center gap-[3mm] mb-[3mm]">
+            <div className="h-[0.3mm] flex-1 bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
+            <span className="font-mono text-[4.5pt] tracking-[0.15em] text-[#8a8a8a] uppercase shrink-0">Beyond the core deal</span>
+            <div className="h-[0.3mm] flex-1 bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
+          </div>
+
+          {/* Additional Opportunities — 5 cards in grid */}
+          <div className="flex-1 flex flex-col gap-[3mm]">
+            <div className="grid grid-cols-3 gap-[3mm] flex-1">
               {[
-                "Prophecy completes 2 INS venue shows + 2 external bookings",
-                "4 ghost-produced tracks for Björn delivered (€14K production value)",
-                "AIRE content pipeline produces 5+ reusable A/V pieces",
-                "Year 1 gross revenue reaches €27K (€16.2K INS share)",
-                "Distribution infrastructure live on QQ Music, NetEase, Douyin",
-                "INS has a proven playbook reusable for artist 2",
-              ].map((c, i) => (
-                <p key={i} className="font-body text-[7.5pt] text-[#d4d4d4] flex gap-[2mm] items-start">
-                  <span className="text-[#C9A84C]/50 shrink-0 text-[6pt] mt-[0.3mm]">☐</span>{c}
-                </p>
+                { n: "01", t: "Label Collaboration", tag: "PERSONA \u00D7 INS Label", d: "Co-release pipeline: INS artists access Western distribution, A2G artists access Chinese distribution via EDM is Love (5M+ followers).", c: "#C9A84C" },
+                { n: "02", t: "Marketing Exchange", tag: "Mutual referral", d: "A2G\u2019s DJ marketing agency + INS\u2019s Chinese platform expertise. Both parties offer clients marketing in territories they can\u2019t cover alone.", c: "#00cfff" },
+                { n: "03", t: "Masterclass & Education", tag: "Content revenue", d: "PROPHECY and AIRE deliver masterclass content for campus events, Park Coffee Club, or online courses \u2014 INS as education hub.", c: "#a78bfa" },
+              ].map((c) => (
+                <div key={c.n} className="border border-white/[0.06] rounded-[1.5mm] p-[4mm] bg-white/[0.015]">
+                  <div className="flex items-center gap-[2mm] mb-[2mm]">
+                    <span className="font-mono text-[5pt] text-[#8a8a8a]">{c.n}</span>
+                    <div className="h-[0.3mm] flex-1 bg-white/[0.06]" />
+                  </div>
+                  <p className="font-display text-[9pt] font-light text-[#d4d4d4] mb-[1mm]">{c.t}</p>
+                  <p className="font-mono text-[4pt] tracking-[0.15em] uppercase mb-[2mm]" style={{ color: c.c }}>{c.tag}</p>
+                  <p className="font-body text-[6pt] text-[#b0b0b0] leading-relaxed">{c.d}</p>
+                </div>
+              ))}
+            </div>
+            <div className="grid grid-cols-2 gap-[3mm] flex-1">
+              {[
+                { n: "04", t: "Roger Sanchez", tag: "When timing aligns", d: "A2G manages Roger Sanchez \u2014 Grammy-winning house legend, 25+ years touring. INS gets preferred booking pathway for special events.", c: "#f97316" },
+                { n: "05", t: "Southeast Asia Expansion", tag: "Year 2+", d: "As China-developed artists grow, the next step is SEA touring (Singapore, Bangkok, Seoul, Bali). INS co-invests and extends revenue share to broader Asia.", c: "#4ade80" },
+              ].map((c) => (
+                <div key={c.n} className="border border-white/[0.06] rounded-[1.5mm] p-[4mm] bg-white/[0.015]">
+                  <div className="flex items-center gap-[2mm] mb-[2mm]">
+                    <span className="font-mono text-[5pt] text-[#8a8a8a]">{c.n}</span>
+                    <div className="h-[0.3mm] flex-1 bg-white/[0.06]" />
+                  </div>
+                  <p className="font-display text-[9pt] font-light text-[#d4d4d4] mb-[1mm]">{c.t}</p>
+                  <p className="font-mono text-[4pt] tracking-[0.15em] uppercase mb-[2mm]" style={{ color: c.c }}>{c.tag}</p>
+                  <p className="font-body text-[6pt] text-[#b0b0b0] leading-relaxed">{c.d}</p>
+                </div>
               ))}
             </div>
           </div>
@@ -683,84 +729,7 @@ export default function PrintPage() {
         <PageNum n={7} />
       </Page>
 
-      {/* ═══ PAGE 8: ADDITIONAL OPPORTUNITIES ═══ */}
-      <Page>
-        <Header />
-        <div className="pt-[20mm] px-[14mm] flex flex-col h-full pb-[14mm]">
-          <div className="mb-[5mm]">
-            <SectionLabel>Beyond the core deal</SectionLabel>
-            <h2 className="font-display text-[28pt] font-light leading-[1.1] mb-[4mm]">
-              Additional<br />Opportunities
-            </h2>
-            <p className="font-body text-[8.5pt] text-[#b0b0b0] leading-relaxed">Five expansion vectors that sit outside the core deal but become accessible the moment the partnership is in place.</p>
-          </div>
-
-          {/* Top row: 3 cards */}
-          <div className="grid grid-cols-3 gap-[3mm] mb-[3mm] flex-1">
-            {[
-              {
-                n: "01", title: "Label Collaboration",
-                tag: "PERSONA Records \u00D7 INS Label",
-                desc: "A2G operates Persona Records with EDM is Love (5M+ followers). A co-release pipeline gives INS artists access to A2G\u2019s Western distribution, while giving A2G artists access to Chinese distribution.",
-                color: "#C9A84C",
-              },
-              {
-                n: "02", title: "Marketing Services Exchange",
-                tag: "Mutual referral program",
-                desc: "A2G is building a marketing agency for DJs. INS has deep Chinese platform expertise. A mutual referral or service exchange allows both parties to offer clients marketing in territories they couldn\u2019t cover alone.",
-                color: "#00cfff",
-              },
-              {
-                n: "03", title: "Masterclass & Education",
-                tag: "Content revenue stream",
-                desc: "PROPHECY and AIRE can deliver masterclass content that INS packages for campus events, Park Coffee Club activations, or online courses \u2014 positioning INS as an education hub for electronic music in China.",
-                color: "#a78bfa",
-              },
-            ].map((c) => (
-              <div key={c.n} className="border border-white/[0.06] rounded-[2mm] p-[6mm] bg-white/[0.015] flex flex-col">
-                <div className="flex items-center gap-[3mm] mb-[4mm]">
-                  <span className="font-mono text-[6pt] text-[#8a8a8a]">{c.n}</span>
-                  <div className="h-[0.3mm] flex-1 bg-white/[0.06]" />
-                </div>
-                <p className="font-display text-[12pt] font-light text-[#d4d4d4] mb-[2mm]">{c.title}</p>
-                <p className="font-mono text-[5pt] tracking-[0.15em] uppercase mb-[4mm]" style={{ color: c.color }}>{c.tag}</p>
-                <p className="font-body text-[7.5pt] text-[#b0b0b0] leading-relaxed">{c.desc}</p>
-              </div>
-            ))}
-          </div>
-
-          {/* Bottom row: 2 cards */}
-          <div className="grid grid-cols-2 gap-[3mm] flex-1">
-            {[
-              {
-                n: "04", title: "Roger Sanchez",
-                tag: "When timing aligns",
-                desc: "A2G manages Roger Sanchez \u2014 Grammy-winning house legend with 25+ years of touring history. INS would have a preferred pathway to book Roger for special events. Not part of the core deal, but the relationship creates the access.",
-                color: "#f97316",
-              },
-              {
-                n: "05", title: "Southeast Asia Expansion",
-                tag: "Year 2+",
-                desc: "As artists developed in China grow, the natural next step is SEA touring (Singapore, Bangkok, Seoul, Bali). INS can co-invest in this expansion and extend their revenue share to the broader Asian territory.",
-                color: "#4ade80",
-              },
-            ].map((c) => (
-              <div key={c.n} className="border border-white/[0.06] rounded-[2mm] p-[6mm] bg-white/[0.015] flex flex-col">
-                <div className="flex items-center gap-[3mm] mb-[4mm]">
-                  <span className="font-mono text-[6pt] text-[#8a8a8a]">{c.n}</span>
-                  <div className="h-[0.3mm] flex-1 bg-white/[0.06]" />
-                </div>
-                <p className="font-display text-[12pt] font-light text-[#d4d4d4] mb-[2mm]">{c.title}</p>
-                <p className="font-mono text-[5pt] tracking-[0.15em] uppercase mb-[4mm]" style={{ color: c.color }}>{c.tag}</p>
-                <p className="font-body text-[7.5pt] text-[#b0b0b0] leading-relaxed">{c.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-        <PageNum n={8} />
-      </Page>
-
-      {/* ═══ PAGE 9: THE STRUCTURE ═══ */}
+      {/* ═══ PAGE 8: THE STRUCTURE ═══ */}
       <Page>
         <Header />
         <div className="pt-[20mm] px-[14mm] flex flex-col h-full pb-[12mm]">
@@ -788,33 +757,55 @@ export default function PrintPage() {
             ))}
           </div>
 
-          {/* Revenue split donut charts */}
-          <div className="mb-[5mm]">
-            <p className="font-mono text-[5pt] tracking-[0.2em] text-[#8a8a8a] uppercase mb-[4mm]">Revenue split by phase — Artist share</p>
-            <div className="flex gap-[3mm]">
-              {[
-                { phase: "Phase 01", pct: 40, title: "Recovery Phase", desc: "INS recoups initial investment from China territory revenues", ins: 60 },
-                { phase: "Phase 02", pct: 70, title: "Profit Phase (3 yr)", desc: "3 years post-recovery: artist takes majority, INS retains 30%", ins: 30 },
-                { phase: "Phase 03", pct: 90, title: "Long-term (up to 10 yr)", desc: "INS retains 10% royalty on China territory revenues up to year 10", ins: 10 },
-              ].map((p) => (
-                <div key={p.phase} className="flex-1 flex flex-col items-center text-center">
-                  <p className="font-mono text-[5pt] tracking-[0.15em] text-[#00cfff] uppercase mb-[3mm]">{p.phase}</p>
-                  {/* Donut chart */}
-                  <div className="relative mb-[3mm]" style={{ width: "22mm", height: "22mm" }}>
-                    <div className="absolute inset-0 rounded-full" style={{ background: `conic-gradient(#22d3ee ${p.pct * 3.6}deg, #1e3a5f ${p.pct * 3.6}deg)` }} />
-                    <div className="absolute rounded-full bg-[#0a1628] flex flex-col items-center justify-center" style={{ inset: "3.5mm" }}>
-                      <span className="font-display text-[11pt] font-light text-[#22d3ee]">{p.pct}%</span>
-                      <span className="font-mono text-[3.5pt] text-[#8a8a8a] uppercase">artist</span>
+          {/* Artist pipeline + Revenue phases side by side */}
+          <div className="flex gap-[4mm] mb-[4mm]">
+            {/* Pipeline: Björn → Artist 2 → Artist 3 */}
+            <div className="flex-1 border border-[#C9A84C20] rounded-[2mm] p-[4mm] bg-[#C9A84C04]">
+              <p className="font-mono text-[4.5pt] tracking-[0.2em] text-[#C9A84C] uppercase mb-[3mm]">The artist builder</p>
+              <div className="flex items-center justify-between mb-[3mm]">
+                {[
+                  { n: "Bj\u00F6rn", s: "Year 1: prove it", active: true },
+                  { n: "Artist 2", s: "Year 2: scale", active: true },
+                  { n: "Artist 3+", s: "Year 3: accelerate", active: false },
+                ].map((a, i) => (
+                  <div key={i} className="flex items-center gap-[3mm]">
+                    <div className="text-center">
+                      <p className={`font-display text-[9pt] ${a.active ? "text-[#C9A84C]" : "text-white/15"}`}>{a.n}</p>
+                      <p className="font-body text-[5pt] text-[#b0b0b0] mt-[1mm]">{a.s}</p>
                     </div>
+                    {i < 2 && <span className="font-display text-[10pt] text-[#C9A84C]/20">\u2192</span>}
                   </div>
-                  <p className="font-display text-[8pt] font-light text-[#d4d4d4] mb-[1.5mm]">{p.title}</p>
-                  <p className="font-body text-[5.5pt] text-[#8a8a8a] leading-relaxed mb-[2mm]">{p.desc}</p>
-                  <div className="flex gap-[3mm] justify-center">
-                    <span className="flex items-center gap-[1mm]"><span className="inline-block rounded-full bg-[#22d3ee]" style={{ width: "2mm", height: "2mm" }} /><span className="font-mono text-[4.5pt] text-[#8a8a8a]">Artist {p.pct}%</span></span>
-                    <span className="flex items-center gap-[1mm]"><span className="inline-block rounded-full bg-[#1e3a5f]" style={{ width: "2mm", height: "2mm" }} /><span className="font-mono text-[4.5pt] text-[#8a8a8a]">INS {p.ins}%</span></span>
+                ))}
+              </div>
+              <div className="flex items-center gap-[2mm]">
+                <div className="h-[0.3mm] flex-1 bg-[#C9A84C15]" />
+                <span className="font-mono text-[4pt] text-[#C9A84C]/40 uppercase">Same infra · Lower cost · Repeat</span>
+                <div className="h-[0.3mm] flex-1 bg-[#C9A84C15]" />
+              </div>
+            </div>
+
+            {/* Revenue split donuts */}
+            <div className="flex-1">
+              <p className="font-mono text-[4.5pt] tracking-[0.2em] text-[#8a8a8a] uppercase mb-[3mm]">Revenue split by phase</p>
+              <div className="flex gap-[2mm]">
+                {[
+                  { pct: 40, title: "Recovery", ins: 60, c: "#00cfff" },
+                  { pct: 70, title: "Profit (3yr)", ins: 30, c: "#C9A84C" },
+                  { pct: 90, title: "Long-term", ins: 10, c: "#4ade80" },
+                ].map((p) => (
+                  <div key={p.title} className="flex-1 flex flex-col items-center text-center">
+                    <div className="relative mb-[2mm]" style={{ width: "18mm", height: "18mm" }}>
+                      <div className="absolute inset-0 rounded-full" style={{ background: `conic-gradient(#22d3ee ${p.pct * 3.6}deg, #1e3a5f ${p.pct * 3.6}deg)` }} />
+                      <div className="absolute rounded-full bg-[#0a1628] flex flex-col items-center justify-center" style={{ inset: "3mm" }}>
+                        <span className="font-display text-[9pt] font-light text-[#22d3ee]">{p.pct}%</span>
+                        <span className="font-mono text-[3pt] text-[#8a8a8a]">artist</span>
+                      </div>
+                    </div>
+                    <p className="font-display text-[6pt] text-[#d4d4d4] mb-[0.5mm]">{p.title}</p>
+                    <p className="font-mono text-[4pt] text-[#8a8a8a]">INS {p.ins}%</p>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
 
@@ -864,10 +855,10 @@ export default function PrintPage() {
             </div>
           </div>
         </div>
-        <PageNum n={9} />
+        <PageNum n={8} />
       </Page>
 
-      {/* ═══ PAGE 10: CTA ═══ */}
+      {/* ═══ PAGE 9: CTA ═══ */}
       <Page>
         <div className="absolute inset-0 bg-gradient-to-b from-[#00cfff03] via-transparent to-[#C9A84C05]" />
         <Header />
@@ -926,7 +917,7 @@ export default function PrintPage() {
             </div>
           </div>
         </div>
-        <PageNum n={10} />
+        <PageNum n={9} />
       </Page>
     </div>
   );
