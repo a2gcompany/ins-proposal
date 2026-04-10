@@ -500,15 +500,15 @@ export default function PrintPage() {
       {/* ═══ PAGE 6: THE ECONOMICS ═══ */}
       <Page>
         <Header />
-        <div className="pt-[22mm] px-[16mm] flex flex-col justify-between h-full pb-[14mm]">
+        <div className="pt-[20mm] px-[14mm] flex flex-col justify-between h-full pb-[12mm]">
           <div>
             <SectionLabel>The economics</SectionLabel>
-            <h2 className="font-display text-[26pt] font-light leading-[1.1] mb-[6mm]">
+            <h2 className="font-display text-[28pt] font-light leading-[1.1] mb-[5mm]">
               Where the money<br /><span className="gold-shimmer italic">comes from</span>.
             </h2>
           </div>
 
-          <div className="flex gap-[6mm] mb-[6mm]">
+          <div className="flex gap-[5mm]">
             <div className="flex-1">
               <div className="grid grid-cols-2 gap-[3mm]">
                 {[
@@ -518,62 +518,62 @@ export default function PrintPage() {
                   { t: "Content + Merch", s: "A/V assets from every AIRE show", c: "#a78bfa" },
                 ].map((r) => (
                   <div key={r.t} className="border border-white/[0.06] rounded-[2mm] p-[5mm] bg-white/[0.015]">
-                    <span className="text-[5pt] block mb-[2mm]" style={{ color: r.c }}>◆</span>
-                    <p className="font-display text-[10pt] font-light text-[#d4d4d4] mb-[1.5mm]">{r.t}</p>
-                    <p className="font-body text-[6pt] text-[#b0b0b0] leading-relaxed">{r.s}</p>
+                    <span className="text-[6pt] block mb-[2mm]" style={{ color: r.c }}>◆</span>
+                    <p className="font-display text-[11pt] font-light text-[#d4d4d4] mb-[2mm]">{r.t}</p>
+                    <p className="font-body text-[7pt] text-[#b0b0b0] leading-relaxed">{r.s}</p>
                   </div>
                 ))}
               </div>
             </div>
 
             <div className="flex-1 flex flex-col">
-              <p className="font-mono text-[5pt] tracking-[0.2em] text-[#8a8a8a] uppercase mb-[4mm]">Revenue share phases</p>
+              <p className="font-mono text-[5.5pt] tracking-[0.2em] text-[#8a8a8a] uppercase mb-[4mm]">Revenue share phases</p>
               {[
                 { n: "01", t: "Recovery", s: "60% INS share", d: "Until INS recoups full investment", c: "#00cfff" },
                 { n: "02", t: "Profit (3yr)", s: "30% INS share", d: "Artist takes majority, INS retains 30%", c: "#C9A84C" },
                 { n: "03", t: "Long-term", s: "10% INS share", d: "INS retains royalty up to Year 10", c: "#4ade80" },
               ].map((p) => (
-                <div key={p.n} className="flex items-center gap-[3mm] py-[4mm] border-b border-white/[0.03]">
-                  <span className="font-mono text-[8pt] font-medium w-[6mm]" style={{ color: p.c }}>{p.n}</span>
-                  <span className="font-body text-[9pt] text-white w-[22mm]">{p.t}</span>
+                <div key={p.n} className="flex items-center gap-[3mm] py-[5mm] border-b border-white/[0.03]">
+                  <span className="font-mono text-[9pt] font-medium w-[7mm]" style={{ color: p.c }}>{p.n}</span>
+                  <span className="font-body text-[10pt] text-white w-[24mm]">{p.t}</span>
                   <div className="flex-1">
-                    <span className="font-display text-[10pt] font-light block" style={{ color: p.c }}>{p.s}</span>
-                    <span className="font-body text-[6pt] text-[#b0b0b0]">{p.d}</span>
+                    <span className="font-display text-[11pt] font-light block" style={{ color: p.c }}>{p.s}</span>
+                    <span className="font-body text-[7pt] text-[#b0b0b0]">{p.d}</span>
                   </div>
                 </div>
               ))}
-              <div className="mt-auto border-l-[1mm] border-[#00cfff20] pl-[4mm] py-[3mm] bg-[#00cfff03]">
-                <p className="font-body text-[7pt] text-[#b0b0b0]">INS investment is recouped before artist takes majority share. Zero risk of loss if shows happen.</p>
+              <div className="mt-auto border-l-[1mm] border-[#00cfff20] pl-[5mm] py-[4mm] bg-[#00cfff03]">
+                <p className="font-body text-[8pt] text-[#b0b0b0] leading-relaxed">INS investment is recouped before artist takes majority share. Zero risk of loss if shows happen.</p>
               </div>
             </div>
           </div>
 
           <div>
-            <p className="font-mono text-[5pt] tracking-[0.2em] text-[#8a8a8a] uppercase mb-[3mm]">3-Year financial projection — conservative model</p>
-            <div className="flex gap-[4mm] mb-[4mm]">
+            <p className="font-mono text-[5.5pt] tracking-[0.2em] text-[#8a8a8a] uppercase mb-[4mm]">3-Year financial projection — conservative model</p>
+            <div className="flex gap-[4mm] mb-[3mm]">
               {[
                 { y: "Year 1", rev: "€27K", inv: "€42.5K", ret: "€16.2K", pct: "38.1%", shows: "6 shows", streams: "~500K" },
                 { y: "Year 2", rev: "€117.5K", inv: "€104K", ret: "€86.7K", pct: "83.4%", shows: "15 shows", streams: "~5M" },
                 { y: "Year 3", rev: "€264K", inv: "€187K", ret: "€245.1K", pct: "131.1%", shows: "30+ shows", streams: "~20M" },
               ].map((f) => (
-                <div key={f.y} className="flex-1 border border-white/[0.06] rounded-[2mm] p-[5mm] bg-white/[0.015]">
-                  <p className="font-mono text-[5pt] text-[#b0b0b0] mb-[2mm]">{f.y}</p>
-                  <p className="font-display text-[22pt] font-light text-[#00cfff] mb-[1mm]" style={{ textShadow: "0 0 15px rgba(0,207,255,0.15)" }}>{f.rev}</p>
-                  <p className="font-mono text-[5pt] text-[#b0b0b0] mb-[2mm]">total revenue</p>
-                  <p className="font-display text-[14pt] font-light text-[#C9A84C]">{f.ret}</p>
-                  <p className="font-mono text-[4.5pt] text-[#C9A84C]/50 mb-[1mm]">INS return</p>
-                  <div className="flex items-baseline gap-[2mm] mb-[2mm]">
-                    <p className="font-mono text-[5pt] text-[#b0b0b0]">{f.inv} invested</p>
-                    <p className="font-mono text-[5pt] font-medium text-[#00cfff]">({f.pct} recovered)</p>
+                <div key={f.y} className="flex-1 border border-white/[0.06] rounded-[2mm] p-[6mm] bg-white/[0.015]">
+                  <p className="font-mono text-[6pt] text-[#b0b0b0] mb-[2mm]">{f.y}</p>
+                  <p className="font-display text-[24pt] font-light text-[#00cfff] mb-[1.5mm]" style={{ textShadow: "0 0 15px rgba(0,207,255,0.15)" }}>{f.rev}</p>
+                  <p className="font-mono text-[5.5pt] text-[#b0b0b0] mb-[3mm]">total revenue</p>
+                  <p className="font-display text-[16pt] font-light text-[#C9A84C]">{f.ret}</p>
+                  <p className="font-mono text-[5pt] text-[#C9A84C]/50 mb-[2mm]">INS return</p>
+                  <div className="flex items-baseline gap-[2mm] mb-[3mm]">
+                    <p className="font-mono text-[5.5pt] text-[#b0b0b0]">{f.inv} invested</p>
+                    <p className="font-mono text-[5.5pt] font-medium text-[#00cfff]">({f.pct} recovered)</p>
                   </div>
-                  <div className="flex gap-[2mm] border-t border-white/[0.04] pt-[2mm]">
-                    <p className="font-mono text-[4.5pt] text-[#b0b0b0]">{f.shows}</p>
-                    <p className="font-mono text-[4.5pt] text-[#b0b0b0]">{f.streams} streams</p>
+                  <div className="flex gap-[3mm] border-t border-white/[0.04] pt-[3mm]">
+                    <p className="font-mono text-[5pt] text-[#b0b0b0]">{f.shows}</p>
+                    <p className="font-mono text-[5pt] text-[#b0b0b0]">{f.streams} streams</p>
                   </div>
                 </div>
               ))}
             </div>
-            <p className="font-mono text-[4.5pt] text-[#8a8a8a] tracking-[0.1em]">Non-China touring and global catalogue remain outside scope.</p>
+            <p className="font-mono text-[5pt] text-[#8a8a8a] tracking-[0.1em]">Non-China touring and global catalogue remain outside scope.</p>
           </div>
         </div>
         <PageNum n={6} />
