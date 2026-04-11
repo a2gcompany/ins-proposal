@@ -75,6 +75,7 @@ export default function PrintPage() {
           .page { page-break-after: always; page-break-inside: avoid; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
           .page:last-child { page-break-after: auto; }
           .page * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+          .page p, .page span, .page h1, .page h2 { word-spacing: 0.02em; letter-spacing: 0.01em; }
           .no-print { display: none !important; }
           .gold-shimmer { color: #C9A84C !important; background: none !important; -webkit-background-clip: unset !important; -webkit-text-fill-color: #C9A84C !important; background-clip: unset !important; }
         }
@@ -169,7 +170,7 @@ export default function PrintPage() {
               </div>
               <div className="flex-1 border-t-[0.6mm] border-[#C9A84C] pt-[4mm]">
                 <p className="font-mono text-[5.5pt] tracking-[0.2em] text-[#C9A84C] uppercase mb-[3mm]">A2G delivers</p>
-                {["Release strategy + guaranteed distribution (PERSONA Records)", "International promotion — EDMisLove (7M+), global network", "Production — ghost-production, original tracks, content formats", "Music for INSane release", "WW Marketing", "Content (A/V from every show)", "Exclusive immersive shows"].map((b, i) => (
+                {["Release strategy + secured distribution (PERSONA Records)", "International promotion — EDMisLove (7M+), global network", "Production — ghost-production, original tracks, content formats", "Release-ready music for INSane", "Global marketing", "Content (A/V from every show)", "Exclusive immersive shows"].map((b, i) => (
                   <p key={i} className="font-body text-[8pt] text-[#b0b0b0] mb-[2mm] flex gap-[2mm]">
                     <span className="text-[#C9A84C]/30 shrink-0">·</span>{b}
                   </p>
@@ -236,7 +237,7 @@ export default function PrintPage() {
               </div>
               <div className="border-2 border-[#C9A84C50] rounded-[2mm] px-[10mm] py-[4mm] bg-[#C9A84C08] shrink-0">
                 <p className="font-display text-[12pt] text-[#C9A84C] text-center">THE DEAL</p>
-                <p className="font-mono text-[4pt] tracking-[0.15em] text-[#b0b0b0] text-center mt-[1mm]">Co-development · Co-ownership · Revenue share</p>
+                <p className="font-mono text-[4pt] tracking-[0.15em] text-[#b0b0b0] text-center mt-[1mm]">Co-development · Co-ownership · Revenue-sharing</p>
               </div>
               <div className="flex-1">
                 <p className="font-mono text-[4pt] text-[#8a8a8a] tracking-[0.1em]">FIVE × Pacha: €302.5M</p>
@@ -350,7 +351,7 @@ export default function PrintPage() {
             </div>
           </div>
 
-          <p className="font-mono text-[4.5pt] text-[#8a8a8a] tracking-[0.1em] mt-auto">China: world&apos;s #5 recorded music market. Source: IFPI 2026</p>
+          <p className="font-mono text-[4.5pt] text-[#8a8a8a] tracking-[0.1em] mt-auto">China is the world&apos;s #5 recorded music market. Source: IFPI 2026</p>
         </div>
         <PageNum n={3} />
       </Page>
@@ -383,7 +384,7 @@ export default function PrintPage() {
               { n: "02", t: "The FIVE gap", d: "FIVE Holdings proved venues scale at \u20AC302.5M but left an enormous gap: no owned artist pipeline. Venue ownership without artist ownership is a recurring cost, not an asset.", c: "#C9A84C" },
               { n: "03", t: "First-mover advantage", d: "The first group to build a co-development artist pipeline will have a defensible competitive advantage that\u2019s expensive to replicate.", c: "#4ade80" },
               { n: "04", t: "Window of opportunity", d: "The partnerships, label relationships, and production network A2G brings are available today \u2014 not indefinitely.", c: "#f87171" },
-              { n: "05", t: "Low-cost entry", d: "\u20AC42.5K Year 1 to test a model that scales across unlimited artists using the same infrastructure.", c: "#a78bfa" },
+              { n: "05", t: "Low-cost entry", d: "\u20AC42.5K in Year 1 to test a model that scales across unlimited artists using the same infrastructure.", c: "#a78bfa" },
             ].map((r) => (
               <div key={r.n} className="flex gap-[4mm] mb-[3.5mm]">
                 <span className="font-mono text-[8pt] font-medium shrink-0 w-[6mm]" style={{ color: r.c }}>{r.n}</span>
@@ -429,7 +430,7 @@ export default function PrintPage() {
                 );
               })}
             </div>
-            <p className="font-mono text-[4pt] text-white/15 mt-[2mm]">* Projected · Source: Market Research Reports, 2025</p>
+            <p className="font-mono text-[4pt] text-white/15 mt-[2mm]">* Projected · Source: Statista, IFPI Global Music Report 2025</p>
           </div>
 
           <div className="border-l-[1mm] border-[#C9A84C40] pl-[5mm] py-[3mm] bg-[#C9A84C06] mt-[4mm]">
@@ -538,7 +539,7 @@ export default function PrintPage() {
               <p className="font-mono text-[5.5pt] tracking-[0.2em] text-[#8a8a8a] uppercase mb-[4mm]">Revenue share phases</p>
               {[
                 { n: "01", t: "Recovery", s: "60% INS share", d: "Until INS recoups full investment", c: "#00cfff" },
-                { n: "02", t: "Profit (3yr)", s: "30% INS share", d: "Artist takes majority, INS retains 30%", c: "#C9A84C" },
+                { n: "02", t: "Profit (3 years)", s: "30% INS share", d: "Artist takes majority, INS retains 30%", c: "#C9A84C" },
                 { n: "03", t: "Long-term", s: "10% INS share", d: "INS retains royalty up to Year 10", c: "#4ade80" },
               ].map((p) => (
                 <div key={p.n} className="flex items-center gap-[3mm] py-[5mm] border-b border-white/[0.03]">
@@ -551,7 +552,7 @@ export default function PrintPage() {
                 </div>
               ))}
               <div className="mt-auto border-l-[1mm] border-[#00cfff20] pl-[5mm] py-[4mm] bg-[#00cfff03]">
-                <p className="font-body text-[8pt] text-[#b0b0b0] leading-relaxed">INS investment is recouped before artist takes majority share. Zero risk of loss if shows happen.</p>
+                <p className="font-body text-[8pt] text-[#b0b0b0] leading-relaxed">Recoup-first structure: INS investment is recovered before artist takes majority share. Capital-protected by design.</p>
               </div>
             </div>
           </div>
@@ -561,7 +562,7 @@ export default function PrintPage() {
             <p className="font-mono text-[5.5pt] tracking-[0.2em] text-[#8a8a8a] uppercase mb-[4mm]">3-Year financial projection — conservative model</p>
             <div className="flex gap-[4mm] mb-[4mm]">
               {[
-                { y: "Year 1", rev: "\u20AC27K", inv: "\u20AC42.5K", ret: "\u20AC16K" },
+                { y: "Year 1", rev: "\u20AC27K", inv: "\u20AC42.5K", ret: "\u20AC16.2K" },
                 { y: "Year 2", rev: "\u20AC117.5K", inv: "\u20AC61.5K", ret: "\u20AC71K" },
                 { y: "Year 3", rev: "\u20AC264K", inv: "\u20AC83K", ret: "\u20AC159K" },
               ].map((f) => (
@@ -587,7 +588,7 @@ export default function PrintPage() {
             <div className="border border-white/[0.06] rounded-[2mm] p-[5mm] bg-white/[0.015]">
               <div className="flex gap-[4mm] items-end" style={{ height: "38mm" }}>
                 {[
-                  { y: "Year 1", inv: 42.5, rev: 27, ret: 16 },
+                  { y: "Year 1", inv: 42.5, rev: 27, ret: 16.2 },
                   { y: "Year 2", inv: 61.5, rev: 117.5, ret: 71 },
                   { y: "Year 3", inv: 83, rev: 264, ret: 159 },
                 ].map((d) => (
@@ -656,7 +657,7 @@ export default function PrintPage() {
                 "Up to 3 Prophecy releases on INS label",
                 "PERSONA Records + EDMisLove (7M+ followers)",
                 "Connections with top industry players",
-                "30% share 3yr post-recovery, then 10% to Year 10",
+                "30% share for 3 years post-recovery, then 10% to Year 10",
               ].map((item, i) => (
                 <p key={i} className="font-body text-[8pt] text-[#d4d4d4] mb-[2.5mm] flex gap-[2mm]">
                   <span className="text-[#C9A84C]/30 shrink-0" >·</span>{item}
@@ -678,7 +679,7 @@ export default function PrintPage() {
                   "2 INS venue shows + 2 external bookings",
                   "4 ghost-produced tracks delivered",
                   "5+ reusable AIRE A/V pieces",
-                  "\u20AC27K gross revenue (\u20AC16K INS share)",
+                  "\u20AC27K gross revenue (\u20AC16.2K INS share)",
                   "Distribution live on QQ, NetEase, Douyin",
                   "Proven playbook for artist 2",
                 ].map((c, i) => (
@@ -700,7 +701,7 @@ export default function PrintPage() {
           {/* Additional Opportunities — 5 cards in grid */}
           <div className="grid grid-cols-3 gap-[3mm] mb-[3mm]">
             {[
-              { n: "01", t: "Label Collaboration", tag: "PERSONA \u00D7 INS Label", d: "Co-release pipeline: INS artists access Western distribution, A2G artists access Chinese distribution via EDM is Love (5M+ followers).", c: "#C9A84C" },
+              { n: "01", t: "Label Collaboration", tag: "PERSONA \u00D7 INS Label", d: "Co-release pipeline: INS artists access Western distribution via PERSONA Records, A2G artists access Chinese distribution via EDMisLove (5M+ followers).", c: "#C9A84C" },
               { n: "02", t: "Marketing Exchange", tag: "Mutual referral", d: "A2G\u2019s DJ marketing agency + INS\u2019s Chinese platform expertise. Both parties offer clients marketing in territories they can\u2019t cover alone.", c: "#00cfff" },
               { n: "03", t: "Masterclass & Education", tag: "Content revenue", d: "PROPHECY and AIRE deliver masterclass content for campus events, Park Coffee Club, or online courses \u2014 INS as education hub.", c: "#a78bfa" },
             ].map((c) => (
@@ -718,7 +719,7 @@ export default function PrintPage() {
           <div className="grid grid-cols-2 gap-[3mm]">
             {[
               { n: "04", t: "Roger Sanchez", tag: "When timing aligns", d: "A2G manages Roger Sanchez \u2014 Grammy-winning house legend, 25+ years touring. INS gets preferred booking pathway for special events.", c: "#f97316" },
-              { n: "05", t: "Southeast Asia Expansion", tag: "Year 2+", d: "As China-developed artists grow, the next step is SEA touring (Singapore, Bangkok, Seoul, Bali). INS co-invests and extends revenue share to broader Asia.", c: "#4ade80" },
+              { n: "05", t: "Southeast Asia Expansion", tag: "Year 2+", d: "As China-launched artists grow, the next step is SEA touring (Singapore, Bangkok, Seoul, Bali). INS co-invests and extends revenue share to broader Asia.", c: "#4ade80" },
             ].map((c) => (
               <div key={c.n} className="border border-white/[0.06] rounded-[2mm] p-[5mm] bg-white/[0.015]">
                 <div className="flex items-center gap-[2mm] mb-[3mm]">
@@ -797,7 +798,7 @@ export default function PrintPage() {
               <div className="flex gap-[3mm] flex-1 items-center">
                 {[
                   { pct: 40, title: "Recovery", ins: 60 },
-                  { pct: 70, title: "Profit (3yr)", ins: 30 },
+                  { pct: 70, title: "Profit (3 years)", ins: 30 },
                   { pct: 90, title: "Long-term", ins: 10 },
                 ].map((p) => (
                   <div key={p.title} className="flex-1 flex flex-col items-center text-center">

@@ -27,7 +27,7 @@ function Header() {
         <span className="text-white/10 text-[6pt]">|</span>
         <span className="font-mono text-[6pt] font-medium tracking-[0.25em] text-[#00cfff]">INS</span>
       </div>
-      <span className="font-mono text-[5pt] tracking-[0.3em] text-white/15 uppercase">私密提案 · 2026</span>
+      <span className="font-mono text-[5pt] tracking-[0.3em] text-white/15 uppercase">机密文件 · 2026</span>
     </div>
   );
 }
@@ -93,7 +93,7 @@ export default function PrintChinesePage() {
             <span className="text-white/15">|</span>
             <span className="font-display text-[11pt] font-light tracking-[0.15em] text-[#00cfff]">I N S</span>
           </div>
-          <span className="font-mono text-[5pt] tracking-[0.3em] text-white/15 uppercase">私密及保密 · 2026</span>
+          <span className="font-mono text-[5pt] tracking-[0.3em] text-white/15 uppercase">机密文件 · 2026</span>
         </div>
 
         <div className="h-full flex flex-col justify-center px-[16mm] pt-[20mm] pb-[16mm]">
@@ -117,8 +117,8 @@ export default function PrintChinesePage() {
             </div>
             <span className="font-display text-[12pt] text-white/20">=</span>
             <div className="flex-1 border border-white/[0.1] rounded-[2mm] p-[5mm] bg-white/[0.03]">
-              <p className="font-mono text-[5pt] tracking-[0.2em] text-white/40 uppercase mb-[1.5mm]">产出</p>
-              <p className="font-display text-[9pt] font-light text-[#d4d4d4]">共同拥有的艺人，在演出、流媒体、授权和内容中产生收入</p>
+              <p className="font-mono text-[5pt] tracking-[0.2em] text-white/40 uppercase mb-[1.5mm]">合作成果</p>
+              <p className="font-display text-[9pt] font-light text-[#d4d4d4]">联合孵化的艺人，在演出、流媒体、授权和内容中产生共享收益</p>
             </div>
           </div>
 
@@ -162,7 +162,7 @@ export default function PrintChinesePage() {
               </div>
               <div className="flex-1 border-t-[0.6mm] border-[#C9A84C] pt-[4mm]">
                 <p className="font-mono text-[5.5pt] tracking-[0.2em] text-[#C9A84C] uppercase mb-[3mm]">A2G 交付</p>
-                {["发行策略 + 保障分销（PERSONA唱片）", "国际推广 — EDMisLove（700万+粉丝）、全球网络", "制作 — 代制作、原创曲目、内容形式", "INSane厂牌发行音乐", "全球市场推广", "内容（每场演出的视听素材）", "独家沉浸式演出"].map((b, i) => (
+                {["发行策略 + 已打通的发行渠道（PERSONA Records）", "国际推广 — EDMisLove（700万+粉丝）、全球网络", "制作 — 代制作、原创曲目、内容开发", "通过INSane厂牌发行音乐", "全球市场推广", "内容（每场演出的视听素材）", "独家沉浸式演出"].map((b, i) => (
                   <p key={i} className="font-body text-[8pt] text-[#b0b0b0] mb-[2mm] flex gap-[2mm]">
                     <span className="text-[#C9A84C]/30 shrink-0">·</span>{b}
                   </p>
@@ -233,7 +233,7 @@ export default function PrintChinesePage() {
               </div>
               <div className="flex-1">
                 <p className="font-mono text-[4pt] text-[#8a8a8a] tracking-[0.1em]">FIVE × Pacha: €3.025亿</p>
-                <p className="font-mono text-[4pt] text-[#8a8a8a] tracking-[0.1em]">无自有艺人管线</p>
+                <p className="font-mono text-[4pt] text-[#8a8a8a] tracking-[0.1em]">缺乏自有艺人孵化体系</p>
               </div>
             </div>
 
@@ -286,7 +286,7 @@ export default function PrintChinesePage() {
 
           <div className="flex gap-[4mm] mb-[6mm]">
             <div className="flex-1 border border-white/[0.06] rounded-[2mm] p-[8mm] bg-white/[0.015]">
-              <p className="font-mono text-[5pt] tracking-[0.2em] text-[#8a8a8a] uppercase mb-[4mm]">传统预订模式</p>
+              <p className="font-mono text-[5pt] tracking-[0.2em] text-[#8a8a8a] uppercase mb-[4mm]">传统演出预订模式</p>
               <div className="space-y-[4mm]">
                 <p className="font-body text-[8pt] text-[#b0b0b0]">每次预订支付€1.5万-5万</p>
                 <p className="font-body text-[5pt] text-white/15">↓</p>
@@ -315,7 +315,7 @@ export default function PrintChinesePage() {
               <p className="font-display text-[18pt] font-light text-white/15 ml-auto">$5.89亿</p>
               <p className="font-body text-[7pt] text-[#b0b0b0]">营收</p>
             </div>
-            <p className="font-body text-[8pt] text-[#b0b0b0]">FIVE证明了基础设施可以规模化。但没有艺人所有权，每场演出都是租赁——而非资产。每位表演的艺人都属于别人。预订费每晚都在流失。A2G × INS的合作正是解决这一问题——共同拥有填满舞台的艺人。</p>
+            <p className="font-body text-[8pt] text-[#b0b0b0]">FIVE证明了基础设施可以规模化。但没有艺人所有权，每场演出都是租赁——而非资产。每位表演的艺人都属于别人。支付出去的演出费用无法沉淀为资产。A2G × INS的合作正是解决这一问题——共同拥有填满舞台的艺人。</p>
           </div>
 
           <div className="border border-[#C9A84C25] rounded-[2mm] overflow-hidden">
