@@ -642,7 +642,7 @@ export default function PrintPage() {
                 "External bookings: 2 Prophecy + 1 AIRE + 1 Bj\u00F6rn",
               ].map((item, i) => (
                 <p key={i} className="font-body text-[8pt] text-[#d4d4d4] mb-[2.5mm] flex gap-[2mm]">
-                  <span className="text-[#00cfff]/30 shrink-0">\u00B7</span>{item}
+                  <span className="text-[#00cfff]/30 shrink-0">&middot;</span>{item}
                 </p>
               ))}
             </div>
@@ -657,7 +657,7 @@ export default function PrintPage() {
                 "30% share 3yr post-recovery, then 10% to Year 10",
               ].map((item, i) => (
                 <p key={i} className="font-body text-[8pt] text-[#d4d4d4] mb-[2.5mm] flex gap-[2mm]">
-                  <span className="text-[#C9A84C]/30 shrink-0">\u00B7</span>{item}
+                  <span className="text-[#C9A84C]/30 shrink-0">&middot;</span>{item}
                 </p>
               ))}
             </div>
@@ -666,7 +666,7 @@ export default function PrintPage() {
           {/* Investment callout + success metrics */}
           <div className="flex gap-[4mm] mb-[5mm]">
             <div className="border-l-[1mm] border-[#C9A84C40] pl-[5mm] py-[3mm] bg-[#C9A84C06] shrink-0 flex flex-col justify-center">
-              <p className="font-body text-[8pt] text-[#C9A84C]">INS invests \u20AC42.5K Year 1</p>
+              <p className="font-body text-[8pt] text-[#C9A84C]">INS invests &euro;42.5K Year 1</p>
               <p className="font-body text-[6pt] text-[#b0b0b0] mt-[1mm]">Show fees + marketing + content + scouting</p>
             </div>
             <div className="border border-[#C9A84C30] rounded-[2mm] p-[4mm] bg-[#C9A84C04] flex-1">
@@ -681,7 +681,7 @@ export default function PrintPage() {
                   "Proven playbook for artist 2",
                 ].map((c, i) => (
                   <p key={i} className="font-body text-[6.5pt] text-[#d4d4d4] flex gap-[2mm] items-start">
-                    <span className="text-[#C9A84C]/50 shrink-0 text-[6pt]">\u2610</span>{c}
+                    <span className="text-[#C9A84C]/50 shrink-0 text-[6pt]">&#9744;</span>{c}
                   </p>
                 ))}
               </div>
