@@ -70,17 +70,19 @@ export default function PrintPage() {
       <style jsx global>{`
         @page { size: 210mm 297mm; margin: 0; }
         @media print {
-          body { margin: 0; padding: 0; background: #050a10; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+          body { margin: 0; padding: 0; background: #050a10; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
           .print-container { padding: 0; }
-          .page { page-break-after: always; page-break-inside: avoid; }
+          .page { page-break-after: always; page-break-inside: avoid; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
           .page:last-child { page-break-after: auto; }
+          .page * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
           .no-print { display: none !important; }
+          .gold-shimmer { color: #C9A84C !important; background: none !important; -webkit-background-clip: unset !important; -webkit-text-fill-color: #C9A84C !important; background-clip: unset !important; }
         }
         @media screen {
           .print-container { display: flex; flex-direction: column; align-items: center; gap: 16px; padding: 16px; background: #1a1a1a; min-height: auto; }
           .page { box-shadow: 0 8px 40px rgba(0,0,0,0.5); }
         }
-        .gold-shimmer { background: linear-gradient(135deg, #C9A84C 0%, #e8d48a 50%, #C9A84C 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .gold-shimmer { color: #C9A84C; background: none; -webkit-background-clip: unset; -webkit-text-fill-color: #C9A84C; background-clip: unset; animation: none; }
       `}</style>
 
       <div className="no-print fixed top-4 right-4 z-50">
@@ -232,7 +234,7 @@ export default function PrintPage() {
                 <p className="font-mono text-[4pt] text-[#8a8a8a] tracking-[0.1em]">#5 recorded music market</p>
                 <p className="font-mono text-[4pt] text-[#8a8a8a] tracking-[0.1em]">Source: IFPI 2026</p>
               </div>
-              <div className="border-2 border-[#C9A84C50] rounded-[2mm] px-[10mm] py-[4mm] bg-[#C9A84C08] shrink-0" style={{ boxShadow: "0 0 16px rgba(201,168,76,0.08)" }}>
+              <div className="border-2 border-[#C9A84C50] rounded-[2mm] px-[10mm] py-[4mm] bg-[#C9A84C08] shrink-0">
                 <p className="font-display text-[12pt] text-[#C9A84C] text-center">THE DEAL</p>
                 <p className="font-mono text-[4pt] tracking-[0.15em] text-[#b0b0b0] text-center mt-[1mm]">Co-development · Co-ownership · Revenue share</p>
               </div>
@@ -366,7 +368,7 @@ export default function PrintPage() {
 
           <div className="border border-[#00cfff15] rounded-[2mm] p-[6mm] bg-[#00cfff03] mb-[5mm]">
             <div className="flex items-baseline gap-[4mm] mb-[2mm]">
-              <p className="font-display text-[24pt] font-light text-[#00cfff]" style={{ textShadow: "0 0 15px rgba(0,207,255,0.15)" }}>$8.5B</p>
+              <p className="font-display text-[24pt] font-light text-[#00cfff]">$8.5B</p>
               <p className="font-body text-[8pt] text-[#b0b0b0]">2025 market size</p>
               <span className="text-[14pt] text-white/15 mx-[2mm]">→</span>
               <p className="font-display text-[24pt] font-light text-[#C9A84C]">$19.1B</p>
@@ -565,7 +567,7 @@ export default function PrintPage() {
               ].map((f) => (
                 <div key={f.y} className="flex-1 border border-white/[0.06] rounded-[2mm] p-[5mm] bg-white/[0.015]">
                   <p className="font-mono text-[6pt] tracking-[0.15em] text-[#8a8a8a] uppercase mb-[3mm]">{f.y}</p>
-                  <p className="font-display text-[22pt] font-light text-[#00cfff] mb-[1mm]" style={{ textShadow: "0 0 15px rgba(0,207,255,0.15)" }}>{f.rev}</p>
+                  <p className="font-display text-[22pt] font-light text-[#00cfff] mb-[1mm]">{f.rev}</p>
                   <p className="font-mono text-[5pt] tracking-[0.15em] text-[#00cfff]/50 uppercase mb-[4mm]">China revenue</p>
                   <div className="flex gap-[3mm]">
                     <div className="flex-1 border-l border-white/[0.08] pl-[3mm]">
