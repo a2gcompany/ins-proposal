@@ -452,39 +452,45 @@ export default function PrintPage() {
 
           {/* Vertical stack: Prophecy → AIRE → Björn */}
           <div className="flex flex-col gap-[4mm] flex-1">
-            {[
-              {
-                name: "PROPHECY", image: "/images/artists/prophecy.png",
-                tag: "Anchor act", role: "Opens doors", color: "#C9A84C",
-                sub: "Production credibility, international label relationships, release pipeline. The name that gets INS into rooms it can\u2019t enter alone.",
-                creds: "Co-produced with ARTBAT, MORTEN, David Guetta, Tiësto · 500K+ monthly listeners · Insomniac, Spinnin\u2019/Warner, Future Rave",
-              },
-              {
-                name: "AIRE", image: "/images/artists/aire.png",
-                tag: "Content engine", role: "Creates content", color: "#a78bfa",
-                sub: "Immersive DJ\u00D7VJ format. Premium visual assets from every activation. Each show produces reusable A/V content.",
-                creds: "Thundercode visuals (Alesso, SHM, Alan Walker) · Kuaigon mix & master (Adriatique, Vintage Culture, Fideles)",
-              },
-              {
-                name: "BJ\u00D6RN", image: "/images/artists/bjorn.png",
-                tag: "Local proof", role: "Proves the model", color: "#00cfff",
-                sub: "INS\u2019s homegrown artist \u2014 from local act to internationally positioned name. The proof that the system works.",
-                creds: "Release path via PERSONA Records + promotion via EDMisLove (7M+ followers)",
-              },
-            ].map((a) => (
-              <div key={a.name} className="flex gap-[5mm] flex-1">
-                <div className="rounded-[2mm] overflow-hidden bg-[#0a1020] shrink-0" style={{ width: "72mm", height: "70%" }}>
-                  <img src={a.image} alt={a.name} className="w-full h-full object-cover object-top" style={{ filter: "brightness(0.8) contrast(1.05)" }} />
-                </div>
-                <div className="flex flex-col justify-center flex-1">
-                  <p className="font-mono text-[5pt] tracking-[0.2em] uppercase mb-[1.5mm]" style={{ color: a.color }}>{a.tag}</p>
-                  <p className="font-display text-[16pt] font-light tracking-wide mb-[1mm]">{a.name}</p>
-                  <p className="font-display text-[8.5pt] italic mb-[2.5mm]" style={{ color: a.color }}>{a.role}</p>
-                  <p className="font-body text-[7.5pt] text-[#b0b0b0] leading-relaxed mb-[2mm]">{a.sub}</p>
-                  <p className="font-body text-[6pt] text-[#8a8a8a] leading-relaxed">{a.creds}</p>
-                </div>
+            {/* PROPHECY */}
+            <div className="flex gap-[5mm] flex-1">
+              <div className="rounded-[2mm] overflow-hidden bg-[#0a1020] shrink-0" style={{ width: "72mm", height: "70%" }}>
+                <img src="/images/artists/prophecy.png" alt="Prophecy" className="w-full h-full object-cover object-top" style={{ filter: "brightness(0.8) contrast(1.05)" }} />
               </div>
-            ))}
+              <div className="flex flex-col justify-center flex-1">
+                <p className="font-mono text-[5pt] tracking-[0.2em] text-[#C9A84C] uppercase mb-[1.5mm]">Anchor act</p>
+                <p className="font-display text-[16pt] font-light tracking-wide mb-[1mm]">PROPHECY</p>
+                <p className="font-display text-[8.5pt] text-[#C9A84C] italic mb-[2.5mm]">Opens doors</p>
+                <p className="font-body text-[7.5pt] text-[#b0b0b0] leading-relaxed mb-[2mm]">Production credibility, international label relationships, release pipeline. The name that gets INS into rooms it can&rsquo;t enter alone.</p>
+                <p className="font-body text-[6pt] text-[#8a8a8a] leading-relaxed">Co-produced with ARTBAT, MORTEN, David Guetta, Ti&euml;sto &middot; 500K+ monthly listeners &middot; Insomniac, Spinnin&rsquo;/Warner, Future Rave</p>
+              </div>
+            </div>
+            {/* AIRE — zoomed in 30% to hide text overlays */}
+            <div className="flex gap-[5mm] flex-1">
+              <div className="rounded-[2mm] overflow-hidden bg-[#0a1020] shrink-0" style={{ width: "72mm", height: "70%" }}>
+                <img src="/images/artists/aire.png" alt="AIRE" className="w-full h-full object-cover" style={{ filter: "brightness(0.8) contrast(1.05)", transform: "scale(1.3)", transformOrigin: "center center" }} />
+              </div>
+              <div className="flex flex-col justify-center flex-1">
+                <p className="font-mono text-[5pt] tracking-[0.2em] text-[#a78bfa] uppercase mb-[1.5mm]">Content engine</p>
+                <p className="font-display text-[16pt] font-light tracking-wide mb-[1mm]">AIRE</p>
+                <p className="font-display text-[8.5pt] text-[#a78bfa] italic mb-[2.5mm]">Creates content</p>
+                <p className="font-body text-[7.5pt] text-[#b0b0b0] leading-relaxed mb-[2mm]">Immersive DJ&times;VJ format. Premium visual assets from every activation. Each show produces reusable A/V content.</p>
+                <p className="font-body text-[6pt] text-[#8a8a8a] leading-relaxed">Thundercode visuals (Alesso, SHM, Alan Walker) &middot; Kuaigon mix &amp; master (Adriatique, Vintage Culture, Fideles)</p>
+              </div>
+            </div>
+            {/* BJÖRN — shifted left 20% to show name in image */}
+            <div className="flex gap-[5mm] flex-1">
+              <div className="rounded-[2mm] overflow-hidden bg-[#0a1020] shrink-0" style={{ width: "72mm", height: "70%" }}>
+                <img src="/images/artists/bjorn.png" alt="Björn" className="w-full h-full object-cover" style={{ filter: "brightness(0.8) contrast(1.05)", objectPosition: "20% center" }} />
+              </div>
+              <div className="flex flex-col justify-center flex-1">
+                <p className="font-mono text-[5pt] tracking-[0.2em] text-[#00cfff] uppercase mb-[1.5mm]">Local proof</p>
+                <p className="font-display text-[16pt] font-light tracking-wide mb-[1mm]">BJ&Ouml;RN</p>
+                <p className="font-display text-[8.5pt] text-[#00cfff] italic mb-[2.5mm]">Proves the model</p>
+                <p className="font-body text-[7.5pt] text-[#b0b0b0] leading-relaxed mb-[2mm]">INS&rsquo;s homegrown artist &mdash; from local act to internationally positioned name. The proof that the system works.</p>
+                <p className="font-body text-[6pt] text-[#8a8a8a] leading-relaxed">Release path via PERSONA Records + promotion via EDMisLove (7M+ followers)</p>
+              </div>
+            </div>
           </div>
 
           {/* Bottom line */}
