@@ -912,7 +912,7 @@ export default function PrintPage() {
 
           <div className="text-center">
             <p className="font-display text-[9pt] italic text-[#C9A84C]/50 max-w-[140mm] leading-relaxed mx-auto mb-[6mm]">
-              If the pilot works, INS doesn&apos;t just host talent in China. It starts building artist value in China.
+              If the pilot works, INS doesn&apos;t just host talent. It starts building artist value.
             </p>
 
             <div className="flex items-center justify-center gap-[3mm]">
