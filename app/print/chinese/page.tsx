@@ -259,7 +259,7 @@ export default function PrintChinesePage() {
               </div>
               <div className="flex-1 border border-[#C9A84C10] rounded-[1.5mm] p-[3mm] bg-[#C9A84C03] text-center">
                 <p className="font-mono text-[5pt] text-[#C9A84C]/50 mb-[1mm]">◆ 版税</p>
-                <p className="font-mono text-[4pt] text-[#b0b0b0]">中国区域</p>
+                <p className="font-mono text-[4pt] text-[#b0b0b0]">中国市场</p>
               </div>
               <div className="flex-1 border border-[#4ade8010] rounded-[1.5mm] p-[3mm] bg-[#4ade8003] text-center">
                 <p className="font-mono text-[5pt] text-[#4ade80]/50 mb-[1mm]">◆ 授权</p>
@@ -330,7 +330,7 @@ export default function PrintChinesePage() {
               </div>
               <div className="flex-1 p-[6mm]">
                 <p className="font-mono text-[5pt] tracking-[0.2em] text-[#f87171]/60 uppercase mb-[3mm]">FIVE 缺失的</p>
-                {["艺人", "音乐版权目录", "制作管线", "对自有艺人的受众忠诚度"].map((item, i) => (
+                {["艺人", "音乐版权目录", "制作体系", "对自有艺人的受众忠诚度"].map((item, i) => (
                   <p key={i} className="font-body text-[7.5pt] text-[#f87171]/70 mb-[1.5mm] flex gap-[2mm]">
                     <span className="text-[#f87171]/30 shrink-0">✗</span>{item}
                   </p>
@@ -339,7 +339,7 @@ export default function PrintChinesePage() {
             </div>
             <div className="border-t border-[#C9A84C25] p-[5mm] bg-[#C9A84C06] flex items-center gap-[4mm]">
               <span className="font-mono text-[5pt] tracking-[0.2em] text-[#C9A84C] uppercase shrink-0">INS + A2G</span>
-              <p className="font-body text-[7.5pt] text-[#d4d4d4]">补全缺失的一环——自有艺人、自有版权目录、自有受众。INS现有的基础设施成为推动引擎。</p>
+              <p className="font-body text-[7.5pt] text-[#d4d4d4]">补上缺失的一环——自有艺人、自有版权目录、自有受众。INS现有的基础设施成为推动引擎。</p>
             </div>
           </div>
 
@@ -372,9 +372,9 @@ export default function PrintChinesePage() {
 
           <div className="flex-1">
             {[
-              { n: "01", t: "平台优先化", d: "抖音、网易云音乐和QQ音乐正在积极引入国际内容。向中国分发西方艺人的基础设施已就绪——缺的是艺人管线。", c: "#00cfff" },
-              { n: "02", t: "FIVE的空白", d: "FIVE Holdings以€3.025亿的收购证明了场馆可以规模化，但留下了巨大缺口：没有自有艺人管线。只有场馆而没有艺人，是持续支出，不是资产。", c: "#C9A84C" },
-              { n: "03", t: "先发优势", d: "率先建立共同开发艺人管线的团队，将获得难以复制的竞争壁垒。", c: "#4ade80" },
+              { n: "01", t: "平台正在加速引入国际内容", d: "抖音、网易云音乐和QQ音乐正在积极引入国际内容。将国际艺人内容导入中国市场的基础设施已就绪——缺的是可持续的艺人供给体系。", c: "#00cfff" },
+              { n: "02", t: "FIVE的空白", d: "FIVE Holdings以€3.025亿的收购证明了场馆可以规模化，但留下了巨大缺口：缺乏自有艺人孵化体系。只有场馆、没有艺人，带来的是持续成本，而不是可积累的资产。", c: "#C9A84C" },
+              { n: "03", t: "先发优势", d: "率先建立共同开发艺人孵化体系的团队，将获得难以复制的竞争壁垒。", c: "#4ade80" },
               { n: "04", t: "窗口期", d: "A2G带来的合作关系、厂牌资源和制作网络现在可用——但不会永远等待。", c: "#f87171" },
               { n: "05", t: "低成本切入", d: "第1年仅需€4.25万即可测试一个可在同一基础设施上无限扩展的模式。", c: "#a78bfa" },
             ].map((r) => (
@@ -422,7 +422,7 @@ export default function PrintChinesePage() {
                 );
               })}
             </div>
-            <p className="font-mono text-[4pt] text-white/15 mt-[2mm]">* 预测值 · 来源: 市场研究报告, 2025</p>
+            <p className="font-mono text-[4pt] text-white/15 mt-[2mm]">* 预测值 · 来源：Statista，IFPI全球音乐报告 2025</p>
           </div>
 
           <div className="border-l-[1mm] border-[#C9A84C40] pl-[5mm] py-[3mm] bg-[#C9A84C06] mt-[4mm]">
@@ -454,8 +454,8 @@ export default function PrintChinesePage() {
               <div className="flex flex-col justify-start flex-1">
                 <p className="font-mono text-[5pt] tracking-[0.2em] text-[#C9A84C] uppercase mb-[1.5mm]">核心艺人</p>
                 <p className="font-display text-[16pt] font-light tracking-wide mb-[1mm]">PROPHECY</p>
-                <p className="font-display text-[8.5pt] text-[#C9A84C] italic mb-[2.5mm]">打开大门</p>
-                <p className="font-body text-[7.5pt] text-[#b0b0b0] leading-relaxed mb-[2mm]">制作实力、国际厂牌关系、发行管线。让INS进入无法独自触达的圈子。</p>
+                <p className="font-display text-[8.5pt] text-[#C9A84C] italic mb-[2.5mm]">打通关键渠道</p>
+                <p className="font-body text-[7.5pt] text-[#b0b0b0] leading-relaxed mb-[2mm]">制作实力、国际厂牌关系、发行管线。帮助INS触达其单独难以进入的资源圈层。</p>
                 <p className="font-body text-[6pt] text-[#8a8a8a] leading-relaxed">与ARTBAT、MORTEN、David Guetta、Ti&euml;sto合作制作 · 50万+月听众 · Insomniac、Spinnin&apos;/Warner、Future Rave</p>
               </div>
             </div>
@@ -480,7 +480,7 @@ export default function PrintChinesePage() {
               <div className="flex flex-col justify-start flex-1">
                 <p className="font-mono text-[5pt] tracking-[0.2em] text-[#00cfff] uppercase mb-[1.5mm]">本土验证</p>
                 <p className="font-display text-[16pt] font-light tracking-wide mb-[1mm]">BJ&Ouml;RN</p>
-                <p className="font-display text-[8.5pt] text-[#00cfff] italic mb-[2.5mm]">验证模式</p>
+                <p className="font-display text-[8.5pt] text-[#00cfff] italic mb-[2.5mm]">验证商业模式</p>
                 <p className="font-body text-[7.5pt] text-[#b0b0b0] leading-relaxed mb-[2mm]">INS的本土艺人——从本地新人到国际化定位。体系有效的证明。</p>
                 <p className="font-body text-[6pt] text-[#8a8a8a] leading-relaxed">通过PERSONA Records发行 + EDMisLove推广（700万+粉丝）</p>
               </div>
@@ -512,7 +512,7 @@ export default function PrintChinesePage() {
               <div className="grid grid-cols-2 gap-[3mm]">
                 {[
                   { t: "中国演出", s: "60% → 30% → 10% INS分成每场演出费", c: "#00cfff" },
-                  { t: "版税 + 出版", s: "中国区域流媒体 + 下载", c: "#C9A84C" },
+                  { t: "版税 + 出版", s: "中国市场流媒体 + 下载", c: "#C9A84C" },
                   { t: "授权", s: "电竞（Hero E-Sports）、品牌合作、同步", c: "#4ade80" },
                   { t: "内容 + 周边", s: "每场AIRE演出的视听素材", c: "#a78bfa" },
                 ].map((r) => (
@@ -542,7 +542,7 @@ export default function PrintChinesePage() {
                 </div>
               ))}
               <div className="mt-auto border-l-[1mm] border-[#00cfff20] pl-[5mm] py-[4mm] bg-[#00cfff03]">
-                <p className="font-body text-[8pt] text-[#b0b0b0] leading-relaxed">INS的投资在艺人获取多数份额之前回收。只要演出发生，零损失风险。</p>
+                <p className="font-body text-[8pt] text-[#b0b0b0] leading-relaxed">通过先回收后分成的结构，INS的投资风险得到有效控制。投资在艺人获取多数份额之前优先回收。</p>
               </div>
             </div>
           </div>
@@ -563,11 +563,11 @@ export default function PrintChinesePage() {
                   <div className="flex gap-[3mm]">
                     <div className="flex-1 border-l border-white/[0.08] pl-[3mm]">
                       <p className="font-display text-[11pt] font-light text-[#d4d4d4]">{f.inv}</p>
-                      <p className="font-mono text-[4.5pt] tracking-[0.15em] text-[#8a8a8a] uppercase">已投资</p>
+                      <p className="font-mono text-[4.5pt] tracking-[0.15em] text-[#8a8a8a] uppercase">投入金额</p>
                     </div>
                     <div className="flex-1 border-l border-[#4ade8030] pl-[3mm]">
                       <p className="font-display text-[11pt] font-light text-[#4ade80]">{f.ret}</p>
-                      <p className="font-mono text-[4.5pt] tracking-[0.15em] text-[#4ade80]/50 uppercase">INS回报</p>
+                      <p className="font-mono text-[4.5pt] tracking-[0.15em] text-[#4ade80]/50 uppercase">INS收益</p>
                     </div>
                   </div>
                 </div>
@@ -596,7 +596,7 @@ export default function PrintChinesePage() {
                 {[
                   { label: "投资", color: "#6b7280" },
                   { label: "中国收入", color: "#22d3ee" },
-                  { label: "INS回报", color: "#4ade80" },
+                  { label: "INS收益", color: "#4ade80" },
                 ].map((l) => (
                   <div key={l.label} className="flex items-center gap-[2mm]">
                     <div className="rounded-[0.5mm]" style={{ width: "3mm", height: "3mm", backgroundColor: l.color }} />
@@ -617,7 +617,7 @@ export default function PrintChinesePage() {
           <div className="mb-[4mm]">
             <SectionLabel color="#00cfff">第1年 · Prophecy × INS</SectionLabel>
             <h2 className="font-display text-[26pt] font-light leading-[1.1]">
-              第一步<span className="italic text-[#00cfff]">行动</span>。
+              第一阶段<span className="italic text-[#00cfff]">启动</span>。
             </h2>
           </div>
 
@@ -627,9 +627,9 @@ export default function PrintChinesePage() {
               {[
                 "2场Prophecy + 2场AIRE在INS场馆演出",
                 "\u20AC1.3万市场推广联合投入",
-                "中国市场总监（兼职）",
+                "中国市场推广负责人",
                 "分发渠道：QQ音乐、网易云音乐、抖音",
-                "同步/电竞管线（Hero E-Sports）",
+                "同步/电竞渠道（Hero E-Sports）",
                 "外部预订：2场Prophecy + 1场AIRE + 1场Bj\u00F6rn",
               ].map((item, i) => (
                 <p key={i} className="font-body text-[8pt] text-[#d4d4d4] mb-[2.5mm] flex gap-[2mm]">
@@ -644,7 +644,7 @@ export default function PrintChinesePage() {
                 "4首为Bj\u00F6rn代制作的曲目（价值\u20AC1.4万等价交换）",
                 "最多3首Prophecy发行于INS厂牌",
                 "PERSONA Records + EDMisLove（700万+粉丝）",
-                "与顶级行业人士的关系网络",
+                "高价值行业资源连接",
                 "回收后3年30%分成，此后至第10年10%",
               ].map((item, i) => (
                 <p key={i} className="font-body text-[8pt] text-[#d4d4d4] mb-[2.5mm] flex gap-[2mm]">
@@ -686,7 +686,7 @@ export default function PrintChinesePage() {
 
           <div className="grid grid-cols-3 gap-[3mm] mb-[3mm]">
             {[
-              { n: "01", t: "厂牌合作", tag: "PERSONA × INS厂牌", d: "联合发行管线：INS艺人获得西方分发，A2G艺人通过EDM is Love（500万+粉丝）获得中国分发。", c: "#C9A84C" },
+              { n: "01", t: "厂牌合作", tag: "PERSONA × INS厂牌", d: "联合发行体系：INS艺人通过PERSONA Records获得西方分发，A2G艺人通过EDMisLove（700万+粉丝）获得中国分发。", c: "#C9A84C" },
               { n: "02", t: "市场推广互换", tag: "互荐合作", d: "A2G的DJ营销机构 + INS的中国平台专长。双方为客户提供对方无法覆盖区域的市场推广。", c: "#00cfff" },
               { n: "03", t: "大师课与教育", tag: "内容收入", d: "PROPHECY和AIRE为校园活动、Park Coffee Club或在线课程提供大师课内容——INS作为教育中心。", c: "#a78bfa" },
             ].map((c) => (
@@ -703,8 +703,8 @@ export default function PrintChinesePage() {
           </div>
           <div className="grid grid-cols-2 gap-[3mm]">
             {[
-              { n: "04", t: "Roger Sanchez", tag: "时机成熟时", d: "A2G管理Roger Sanchez——格莱美获奖传奇House音乐人，25年以上巡演经验。INS获得特别活动优先预订通道。", c: "#f97316" },
-              { n: "05", t: "东南亚拓展", tag: "第2年+", d: "随着中国市场艺人成长，下一步是东南亚巡演（新加坡、曼谷、首尔、巴厘岛）。INS共同投资并将收入分成扩展至更广泛的亚洲地区。", c: "#4ade80" },
+              { n: "04", t: "Roger Sanchez", tag: "时机成熟时", d: "A2G管理Roger Sanchez——格莱美获奖传奇House音乐人，25年以上巡演经验。INS获得特别活动优先合作通道。", c: "#f97316" },
+              { n: "05", t: "东南亚拓展", tag: "第2年+", d: "随着中国市场启动的艺人成长，下一步是东南亚巡演（新加坡、曼谷、首尔、巴厘岛）。INS共同投资并将收入分成扩展至东南亚及更广泛亚洲市场。", c: "#4ade80" },
             ].map((c) => (
               <div key={c.n} className="border border-white/[0.06] rounded-[2mm] p-[5mm] bg-white/[0.015]">
                 <div className="flex items-center gap-[2mm] mb-[3mm]">
@@ -735,8 +735,8 @@ export default function PrintChinesePage() {
           <div className="flex gap-[4mm] mb-[6mm]">
             {[
               { n: "01", t: "初始投资", d: "INS共同投入市场推广、演出后勤、创意指导和中国市场内容。资金注入，风险从第一天起共担。", c: "#00cfff" },
-              { n: "02", t: "艺人发展", d: "亚洲区域独家激活：演出、大师课、社交媒体、品牌建设及战略厂牌合作。", c: "#C9A84C" },
-              { n: "03", t: "长期收入", d: "结构化3阶段中国区域收入分成：60%→30%→10% INS分成（按阶段），并控制艺人在您区域的演出时间和地点。", c: "#4ade80" },
+              { n: "02", t: "艺人发展", d: "亚洲区域独家运营：演出、大师课、社交媒体、品牌建设及战略厂牌合作。", c: "#C9A84C" },
+              { n: "03", t: "长期收入", d: "结构化3阶段中国市场收入分成：60%→30%→10% INS分成（按阶段），并拥有对艺人在贵方区域内演出安排的优先主导权。", c: "#4ade80" },
             ].map((c) => (
               <div key={c.n} className="flex-1 border border-white/[0.06] rounded-[2mm] p-[6mm] bg-white/[0.015]">
                 <div className="border border-white/[0.08] rounded-[1mm] w-[8mm] h-[8mm] flex items-center justify-center mb-[4mm]">
@@ -803,24 +803,24 @@ export default function PrintChinesePage() {
             <div className="flex gap-[4mm]">
               {[
                 {
-                  header: "收入 + 推广 核心艺人",
+                  header: "核心艺人：收入与推广",
                   tags: ["Bj\u00F6rn", "INS艺人2", "艺人3..."],
                   tagColor: "#00cfff",
                   desc: "INS本地艺人——由A2G制作开发，收入留在INS生态系统中",
                   items: [{ t: "演出", s: "全球" }, { t: "版税与出版", s: "全球" }, { t: "授权", s: "全球" }, { t: "独家权与控制权", s: "全球" }, { t: "全球推广", s: "全球" }],
                 },
                 {
-                  header: "收入 + 推广 核心+A2G",
+                  header: "核心+A2G：收入与推广",
                   tags: ["AIRE"],
                   tagColor: "#a78bfa",
                   desc: "A2G艺人，中国收入共享——沉浸式形式产出可售内容",
                   items: [{ t: "演出（中国）", s: "中国" }, { t: "授权（中国）", s: "中国" }, { t: "独家权与控制权（中国）", s: "中国" }, { t: "版税与出版（中国）", s: "中国" }],
                 },
                 {
-                  header: "收入 + 推广 A2G",
+                  header: "A2G艺人：收入与推广",
                   tags: ["Prophecy"],
                   tagColor: "#C9A84C",
-                  desc: "A2G旗舰艺人——INS提供场馆和市场推广，A2G负责全球管理。中国区域演出和市场推广共投的收入。",
+                  desc: "A2G核心艺人——INS提供场馆和市场推广，A2G负责全球管理。中国市场演出和市场推广共投的收入。",
                   items: [{ t: "中国市场推广", s: "中国" }, { t: "演出（INS场馆）", s: "中国" }, { t: "外部预订（经纪）", s: "中国" }, { t: "品牌激活", s: "中国" }],
                 },
               ].map((col) => (
@@ -855,14 +855,14 @@ export default function PrintChinesePage() {
           <div>
             <SectionLabel>下一步</SectionLabel>
             <h2 className="font-display text-[24pt] font-light leading-[1.1] mb-[8mm]">
-              接下来<span className="gold-shimmer italic">做什么</span>。
+              接下来<span className="gold-shimmer italic">如何推进</span>。
             </h2>
 
             <div className="flex gap-[4mm] mb-[8mm]">
               {[
                 { n: "1", t: "确认试点范围", d: "商定第1年重点：Prophecy为核心艺人，Björn为本地案例，AIRE为内容引擎" },
                 { n: "2", t: "确认经济条款", d: "敲定预算、交付成果、回收机制、收入分成结构" },
-                { n: "3", t: "启动第一个周期", d: "设定时间线，激活中国市场推广，开始建设艺人影响力" },
+                { n: "3", t: "启动第一个周期", d: "设定时间线，激活中国市场推广，启动艺人在中国市场的影响力建设" },
               ].map((s) => (
                 <div key={s.n} className="flex-1 border border-white/[0.06] rounded-[2mm] p-[6mm] bg-white/[0.015]">
                   <p className="font-display text-[20pt] font-light text-[#C9A84C]/30 mb-[3mm]">{s.n}</p>
@@ -889,13 +889,13 @@ export default function PrintChinesePage() {
             <p className="font-body text-[9pt] text-[#00cfff] mb-[8mm]">a.arevalo@a2g.company</p>
 
             <QRCode />
-            <p className="font-mono text-[5pt] text-[#b0b0b0] mt-[2mm]">体验完整交互式提案</p>
+            <p className="font-mono text-[5pt] text-[#b0b0b0] mt-[2mm]">查看完整交互式提案</p>
             <p className="font-mono text-[4.5pt] text-[#8a8a8a] mt-[0.5mm]">ins-proposal.vercel.app</p>
           </div>
 
           <div className="text-center">
             <p className="font-display text-[9pt] italic text-[#C9A84C]/50 max-w-[140mm] leading-relaxed mx-auto mb-[6mm]">
-              试点成功后，INS不仅仅是接待人才，而是开始创造艺人价值。
+              试点成功后，INS不仅仅是在承接艺人演出，而是开始创造艺人价值。
             </p>
 
             <div className="flex items-center justify-center gap-[3mm]">
