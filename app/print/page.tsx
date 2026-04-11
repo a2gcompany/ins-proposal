@@ -368,7 +368,7 @@ export default function PrintPage() {
             <div className="flex items-baseline gap-[4mm] mb-[2mm]">
               <p className="font-display text-[24pt] font-light text-[#00cfff]" style={{ textShadow: "0 0 15px rgba(0,207,255,0.15)" }}>$8.5B</p>
               <p className="font-body text-[8pt] text-[#b0b0b0]">2025 market size</p>
-              <span className="text-[14pt] text-white/15 mx-[2mm]" style={{ fontFamily: "system-ui, sans-serif" }}>&rarr;</span>
+              <span className="text-[14pt] text-white/15 mx-[2mm]" style={{ fontFamily: "system-ui, sans-serif" }}>→</span>
               <p className="font-display text-[24pt] font-light text-[#C9A84C]">$19.1B</p>
               <p className="font-body text-[8pt] text-[#b0b0b0]">projected 2033</p>
             </div>
@@ -427,7 +427,7 @@ export default function PrintPage() {
                 );
               })}
             </div>
-            <p className="font-mono text-[4pt] text-white/15 mt-[2mm]">* Projected <span style={{ fontFamily: "system-ui" }}>&middot;</span> Source: Market Research Reports, 2025</p>
+            <p className="font-mono text-[4pt] text-white/15 mt-[2mm]">* Projected · Source: Market Research Reports, 2025</p>
           </div>
 
           <div className="border-l-[1mm] border-[#C9A84C40] pl-[5mm] py-[3mm] bg-[#C9A84C06] mt-[4mm]">
@@ -462,7 +462,7 @@ export default function PrintPage() {
                 <p className="font-display text-[16pt] font-light tracking-wide mb-[1mm]">PROPHECY</p>
                 <p className="font-display text-[8.5pt] text-[#C9A84C] italic mb-[2.5mm]">Opens doors</p>
                 <p className="font-body text-[7.5pt] text-[#b0b0b0] leading-relaxed mb-[2mm]">Production credibility, international label relationships, release pipeline. The name that gets INS into rooms it can&rsquo;t enter alone.</p>
-                <p className="font-body text-[6pt] text-[#8a8a8a] leading-relaxed">Co-produced with ARTBAT, MORTEN, David Guetta, Ti&euml;sto <span style={{ fontFamily: "system-ui" }}>&middot;</span> 500K+ monthly listeners <span style={{ fontFamily: "system-ui" }}>&middot;</span> Insomniac, Spinnin&rsquo;/Warner, Future Rave</p>
+                <p className="font-body text-[6pt] text-[#8a8a8a] leading-relaxed">Co-produced with ARTBAT, MORTEN, David Guetta, Ti&euml;sto · 500K+ monthly listeners · Insomniac, Spinnin&rsquo;/Warner, Future Rave</p>
               </div>
             </div>
             {/* AIRE — zoomed in 30% to hide text overlays */}
@@ -475,7 +475,7 @@ export default function PrintPage() {
                 <p className="font-display text-[16pt] font-light tracking-wide mb-[1mm]">AIRE</p>
                 <p className="font-display text-[8.5pt] text-[#a78bfa] italic mb-[2.5mm]">Creates content</p>
                 <p className="font-body text-[7.5pt] text-[#b0b0b0] leading-relaxed mb-[2mm]">Immersive DJ&times;VJ format. Premium visual assets from every activation. Each show produces reusable A/V content.</p>
-                <p className="font-body text-[6pt] text-[#8a8a8a] leading-relaxed">Thundercode visuals (Alesso, SHM, Alan Walker) <span style={{ fontFamily: "system-ui" }}>&middot;</span> Kuaigon mix &amp; master (Adriatique, Vintage Culture, Fideles)</p>
+                <p className="font-body text-[6pt] text-[#8a8a8a] leading-relaxed">Thundercode visuals (Alesso, SHM, Alan Walker) · Kuaigon mix &amp; master (Adriatique, Vintage Culture, Fideles)</p>
               </div>
             </div>
             {/* BJÖRN — shifted left 20% to show name in image */}
@@ -642,7 +642,7 @@ export default function PrintPage() {
                 "External bookings: 2 Prophecy + 1 AIRE + 1 Bj\u00F6rn",
               ].map((item, i) => (
                 <p key={i} className="font-body text-[8pt] text-[#d4d4d4] mb-[2.5mm] flex gap-[2mm]">
-                  <span className="text-[#00cfff]/30 shrink-0" style={{ fontFamily: "system-ui, sans-serif" }}>&middot;</span>{item}
+                  <span className="text-[#00cfff]/30 shrink-0" style={{ fontFamily: "system-ui, sans-serif" }}>·</span>{item}
                 </p>
               ))}
             </div>
@@ -657,7 +657,7 @@ export default function PrintPage() {
                 "30% share 3yr post-recovery, then 10% to Year 10",
               ].map((item, i) => (
                 <p key={i} className="font-body text-[8pt] text-[#d4d4d4] mb-[2.5mm] flex gap-[2mm]">
-                  <span className="text-[#C9A84C]/30 shrink-0" style={{ fontFamily: "system-ui, sans-serif" }}>&middot;</span>{item}
+                  <span className="text-[#C9A84C]/30 shrink-0" style={{ fontFamily: "system-ui, sans-serif" }}>·</span>{item}
                 </p>
               ))}
             </div>
@@ -681,7 +681,7 @@ export default function PrintPage() {
                   "Proven playbook for artist 2",
                 ].map((c, i) => (
                   <p key={i} className="font-body text-[6.5pt] text-[#d4d4d4] flex gap-[2mm] items-start">
-                    <span className="text-[#C9A84C]/50 shrink-0 text-[6pt]" style={{ fontFamily: "system-ui, sans-serif" }}>&#9744;</span>{c}
+                    <span className="text-[#C9A84C]/50 shrink-0 text-[6pt]" style={{ fontFamily: "system-ui, sans-serif" }}>☐</span>{c}
                   </p>
                 ))}
               </div>
@@ -771,12 +771,12 @@ export default function PrintPage() {
                   <p className="font-display text-[11pt] text-[#C9A84C]">Bj&ouml;rn</p>
                   <p className="font-body text-[6pt] text-[#b0b0b0] mt-[1.5mm]">Year 1: prove it</p>
                 </div>
-                <span className="text-[12pt] text-[#C9A84C]/20" style={{ fontFamily: "system-ui, sans-serif" }}>&rarr;</span>
+                <span className="text-[12pt] text-[#C9A84C]/20" style={{ fontFamily: "system-ui, sans-serif" }}>→</span>
                 <div className="text-center">
                   <p className="font-display text-[11pt] text-[#C9A84C]">Artist 2</p>
                   <p className="font-body text-[6pt] text-[#b0b0b0] mt-[1.5mm]">Year 2: scale</p>
                 </div>
-                <span className="text-[12pt] text-[#C9A84C]/20" style={{ fontFamily: "system-ui, sans-serif" }}>&rarr;</span>
+                <span className="text-[12pt] text-[#C9A84C]/20" style={{ fontFamily: "system-ui, sans-serif" }}>→</span>
                 <div className="text-center">
                   <p className="font-display text-[11pt] text-white/15">Artist 3+</p>
                   <p className="font-body text-[6pt] text-[#b0b0b0] mt-[1.5mm]">Year 3: accelerate</p>
@@ -784,7 +784,7 @@ export default function PrintPage() {
               </div>
               <div className="flex items-center gap-[3mm]">
                 <div className="h-[0.3mm] flex-1 bg-[#C9A84C15]" />
-                <span className="font-mono text-[4.5pt] text-[#C9A84C]/40 uppercase" style={{ fontFamily: "system-ui, sans-serif" }}>Same infra &middot; Lower cost &middot; Repeat</span>
+                <span className="text-[4.5pt] text-[#C9A84C]/40 uppercase" style={{ fontFamily: "system-ui, sans-serif" }}>Same infra · Lower cost · Repeat</span>
                 <div className="h-[0.3mm] flex-1 bg-[#C9A84C15]" />
               </div>
             </div>
@@ -851,7 +851,7 @@ export default function PrintPage() {
                   <p className="font-body text-[6pt] text-[#8a8a8a] leading-relaxed mb-[3mm]">{col.desc}</p>
                   {col.items.map((item) => (
                     <div key={item.t} className="flex justify-between items-center py-[1.5mm] border-t border-white/[0.03]">
-                      <span className="font-body text-[6pt] text-[#d4d4d4] flex items-center gap-[2mm]"><span style={{ color: col.tagColor, fontFamily: "system-ui, sans-serif" }}>&bull;</span> {item.t}</span>
+                      <span className="font-body text-[6pt] text-[#d4d4d4] flex items-center gap-[2mm]"><span style={{ color: col.tagColor, fontFamily: "system-ui, sans-serif" }}>•</span> {item.t}</span>
                       <span className="font-mono text-[4.5pt] text-[#8a8a8a]">{item.s}</span>
                     </div>
                   ))}
