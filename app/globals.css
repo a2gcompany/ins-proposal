@@ -142,3 +142,34 @@ body::after {
   border-color: rgba(0, 207, 255, 0.2) !important;
   box-shadow: 0 0 20px rgba(0, 207, 255, 0.06);
 }
+
+/* ── Symbol font fallback for print/PDF ── */
+/* Ensures ·, →, ◆, ×, ☐, •, ↩, —, ★ render correctly when custom fonts lack these glyphs */
+@font-face {
+  font-family: "SymbolFallback";
+  src: local("Apple Symbols"), local("Segoe UI Symbol"), local("Noto Sans Symbols 2"), local("sans-serif");
+  unicode-range: U+00B7, U+00D7, U+2014, U+2018-2019, U+201C-201D, U+2022, U+2026, U+2190-21FF, U+25A0-25FF, U+25C6, U+2610, U+2605, U+21A9, U+2192, U+2713;
+}
+
+.print-container, .print-container * {
+  font-family: var(--font-body), "SymbolFallback", system-ui, sans-serif;
+}
+
+.print-container .font-display {
+  font-family: var(--font-display), "SymbolFallback", system-ui, serif;
+}
+
+.print-container .font-mono {
+  font-family: var(--font-mono), "SymbolFallback", system-ui, monospace;
+}
+
+.print-container .font-body {
+  font-family: var(--font-body), "SymbolFallback", system-ui, sans-serif;
+}
+
+@media print {
+  .print-container, .print-container * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}

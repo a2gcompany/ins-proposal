@@ -368,7 +368,7 @@ export default function PrintPage() {
             <div className="flex items-baseline gap-[4mm] mb-[2mm]">
               <p className="font-display text-[24pt] font-light text-[#00cfff]" style={{ textShadow: "0 0 15px rgba(0,207,255,0.15)" }}>$8.5B</p>
               <p className="font-body text-[8pt] text-[#b0b0b0]">2025 market size</p>
-              <span className="text-[14pt] text-white/15 mx-[2mm]" style={{ fontFamily: "system-ui, sans-serif" }}>→</span>
+              <span className="text-[14pt] text-white/15 mx-[2mm]">→</span>
               <p className="font-display text-[24pt] font-light text-[#C9A84C]">$19.1B</p>
               <p className="font-body text-[8pt] text-[#b0b0b0]">projected 2033</p>
             </div>
@@ -642,7 +642,7 @@ export default function PrintPage() {
                 "External bookings: 2 Prophecy + 1 AIRE + 1 Bj\u00F6rn",
               ].map((item, i) => (
                 <p key={i} className="font-body text-[8pt] text-[#d4d4d4] mb-[2.5mm] flex gap-[2mm]">
-                  <span className="text-[#00cfff]/30 shrink-0" style={{ fontFamily: "system-ui, sans-serif" }}>·</span>{item}
+                  <span className="text-[#00cfff]/30 shrink-0" >·</span>{item}
                 </p>
               ))}
             </div>
@@ -657,7 +657,7 @@ export default function PrintPage() {
                 "30% share 3yr post-recovery, then 10% to Year 10",
               ].map((item, i) => (
                 <p key={i} className="font-body text-[8pt] text-[#d4d4d4] mb-[2.5mm] flex gap-[2mm]">
-                  <span className="text-[#C9A84C]/30 shrink-0" style={{ fontFamily: "system-ui, sans-serif" }}>·</span>{item}
+                  <span className="text-[#C9A84C]/30 shrink-0" >·</span>{item}
                 </p>
               ))}
             </div>
@@ -681,7 +681,7 @@ export default function PrintPage() {
                   "Proven playbook for artist 2",
                 ].map((c, i) => (
                   <p key={i} className="font-body text-[6.5pt] text-[#d4d4d4] flex gap-[2mm] items-start">
-                    <span className="text-[#C9A84C]/50 shrink-0 text-[6pt]" style={{ fontFamily: "system-ui, sans-serif" }}>☐</span>{c}
+                    <span className="text-[#C9A84C]/50 shrink-0 text-[6pt]" >☐</span>{c}
                   </p>
                 ))}
               </div>
@@ -771,12 +771,12 @@ export default function PrintPage() {
                   <p className="font-display text-[11pt] text-[#C9A84C]">Bj&ouml;rn</p>
                   <p className="font-body text-[6pt] text-[#b0b0b0] mt-[1.5mm]">Year 1: prove it</p>
                 </div>
-                <span className="text-[12pt] text-[#C9A84C]/20" style={{ fontFamily: "system-ui, sans-serif" }}>→</span>
+                <span className="text-[12pt] text-[#C9A84C]/20" >→</span>
                 <div className="text-center">
                   <p className="font-display text-[11pt] text-[#C9A84C]">Artist 2</p>
                   <p className="font-body text-[6pt] text-[#b0b0b0] mt-[1.5mm]">Year 2: scale</p>
                 </div>
-                <span className="text-[12pt] text-[#C9A84C]/20" style={{ fontFamily: "system-ui, sans-serif" }}>→</span>
+                <span className="text-[12pt] text-[#C9A84C]/20" >→</span>
                 <div className="text-center">
                   <p className="font-display text-[11pt] text-white/15">Artist 3+</p>
                   <p className="font-body text-[6pt] text-[#b0b0b0] mt-[1.5mm]">Year 3: accelerate</p>
@@ -784,7 +784,7 @@ export default function PrintPage() {
               </div>
               <div className="flex items-center gap-[3mm]">
                 <div className="h-[0.3mm] flex-1 bg-[#C9A84C15]" />
-                <span className="text-[4.5pt] text-[#C9A84C]/40 uppercase" style={{ fontFamily: "system-ui, sans-serif" }}>Same infra · Lower cost · Repeat</span>
+                <span className="text-[4.5pt] text-[#C9A84C]/40 uppercase" >Same infra · Lower cost · Repeat</span>
                 <div className="h-[0.3mm] flex-1 bg-[#C9A84C15]" />
               </div>
             </div>
@@ -851,7 +851,7 @@ export default function PrintPage() {
                   <p className="font-body text-[6pt] text-[#8a8a8a] leading-relaxed mb-[3mm]">{col.desc}</p>
                   {col.items.map((item) => (
                     <div key={item.t} className="flex justify-between items-center py-[1.5mm] border-t border-white/[0.03]">
-                      <span className="font-body text-[6pt] text-[#d4d4d4] flex items-center gap-[2mm]"><span style={{ color: col.tagColor, fontFamily: "system-ui, sans-serif" }}>•</span> {item.t}</span>
+                      <span className="font-body text-[6pt] text-[#d4d4d4] flex items-center gap-[2mm]"><span style={{ color: col.tagColor }}>•</span> {item.t}</span>
                       <span className="font-mono text-[4.5pt] text-[#8a8a8a]">{item.s}</span>
                     </div>
                   ))}
