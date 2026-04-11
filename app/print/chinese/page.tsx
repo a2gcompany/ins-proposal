@@ -13,7 +13,7 @@ function QRCode() {
 
 function Page({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
-    <div className={`page relative overflow-hidden ${className}`} style={{ width: "210mm", height: "297mm", background: "#050a10", color: "#fff", fontFamily: "var(--font-body), system-ui, sans-serif" }}>
+    <div className={`page relative overflow-hidden ${className}`} style={{ width: "210mm", height: "297mm", background: "#050a10", color: "#fff", fontFamily: "var(--font-cjk), var(--font-body), 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif" }}>
       {children}
     </div>
   );
@@ -65,6 +65,17 @@ export default function PrintChinesePage() {
           .page { box-shadow: 0 8px 40px rgba(0,0,0,0.5); }
         }
         .gold-shimmer { color: #C9A84C; background: none; -webkit-background-clip: unset; -webkit-text-fill-color: #C9A84C; background-clip: unset; animation: none; }
+        /* CJK font overrides for Chinese PDF rendering */
+        .print-container .page,
+        .print-container .page * {
+          font-family: var(--font-cjk), var(--font-body), 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif !important;
+        }
+        .print-container .page .font-display {
+          font-family: var(--font-cjk), var(--font-display), 'Noto Sans SC', 'PingFang SC', serif !important;
+        }
+        .print-container .page .font-mono {
+          font-family: var(--font-mono), var(--font-cjk), 'Noto Sans SC', monospace !important;
+        }
       `}</style>
 
       <div className="no-print fixed top-4 right-4 z-50">

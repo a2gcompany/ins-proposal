@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, DM_Mono, Plus_Jakarta_Sans } from "next/font/google";
+import { Cormorant_Garamond, DM_Mono, Plus_Jakarta_Sans, Noto_Sans_SC } from "next/font/google";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -21,6 +21,12 @@ const jakarta = Plus_Jakarta_Sans({
   weight: ["300", "400", "500", "600"],
 });
 
+const notoSansSC = Noto_Sans_SC({
+  subsets: ["latin"],
+  variable: "--font-cjk",
+  weight: ["300", "400", "500", "600", "700"],
+});
+
 export const metadata: Metadata = {
   title: "A2G × INS — The Future of Music in Asia",
   description: "A strategic partnership to co-develop Western artists in the Chinese market",
@@ -28,7 +34,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${dmMono.variable} ${jakarta.variable}`}>
+    <html lang="en" className={`${cormorant.variable} ${dmMono.variable} ${jakarta.variable} ${notoSansSC.variable}`}>
       <body className="bg-[#0a0a0a] text-white antialiased">
         {children}
       </body>
