@@ -457,7 +457,7 @@ export default function PrintPage() {
               <div className="rounded-[2mm] overflow-hidden bg-[#0a1020] shrink-0" style={{ width: "72mm", height: "70%" }}>
                 <img src="/images/artists/prophecy.png" alt="Prophecy" className="w-full h-full object-cover object-top" style={{ filter: "brightness(0.8) contrast(1.05)" }} />
               </div>
-              <div className="flex flex-col justify-center flex-1">
+              <div className="flex flex-col justify-start flex-1" style={{ paddingTop: "10%" }}>
                 <p className="font-mono text-[5pt] tracking-[0.2em] text-[#C9A84C] uppercase mb-[1.5mm]">Anchor act</p>
                 <p className="font-display text-[16pt] font-light tracking-wide mb-[1mm]">PROPHECY</p>
                 <p className="font-display text-[8.5pt] text-[#C9A84C] italic mb-[2.5mm]">Opens doors</p>
@@ -470,7 +470,7 @@ export default function PrintPage() {
               <div className="rounded-[2mm] overflow-hidden bg-[#0a1020] shrink-0" style={{ width: "72mm", height: "70%" }}>
                 <img src="/images/artists/aire.png" alt="AIRE" className="w-full h-full object-cover" style={{ filter: "brightness(0.8) contrast(1.05)", transform: "scale(1.3)", transformOrigin: "center center" }} />
               </div>
-              <div className="flex flex-col justify-center flex-1">
+              <div className="flex flex-col justify-start flex-1" style={{ paddingTop: "10%" }}>
                 <p className="font-mono text-[5pt] tracking-[0.2em] text-[#a78bfa] uppercase mb-[1.5mm]">Content engine</p>
                 <p className="font-display text-[16pt] font-light tracking-wide mb-[1mm]">AIRE</p>
                 <p className="font-display text-[8.5pt] text-[#a78bfa] italic mb-[2.5mm]">Creates content</p>
@@ -483,7 +483,7 @@ export default function PrintPage() {
               <div className="rounded-[2mm] overflow-hidden bg-[#0a1020] shrink-0" style={{ width: "72mm", height: "70%" }}>
                 <img src="/images/artists/bjorn.png" alt="Björn" className="w-full h-full object-cover" style={{ filter: "brightness(0.8) contrast(1.05)", objectPosition: "20% center" }} />
               </div>
-              <div className="flex flex-col justify-center flex-1">
+              <div className="flex flex-col justify-start flex-1" style={{ paddingTop: "10%" }}>
                 <p className="font-mono text-[5pt] tracking-[0.2em] text-[#00cfff] uppercase mb-[1.5mm]">Local proof</p>
                 <p className="font-display text-[16pt] font-light tracking-wide mb-[1mm]">BJ&Ouml;RN</p>
                 <p className="font-display text-[8.5pt] text-[#00cfff] italic mb-[2.5mm]">Proves the model</p>
