@@ -468,7 +468,7 @@ export default function PrintPage() {
             {/* AIRE — zoomed in 30% to hide text overlays */}
             <div className="flex gap-[5mm] flex-1">
               <div className="rounded-[2mm] overflow-hidden bg-[#0a1020] shrink-0" style={{ width: "72mm", height: "70%" }}>
-                <img src="/images/artists/aire.png" alt="AIRE" className="w-full h-full object-cover" style={{ filter: "brightness(0.8) contrast(1.05)", transform: "scale(1.3)", transformOrigin: "center center" }} />
+                <img src="/images/artists/aire.png" alt="AIRE" className="w-full h-full object-cover" style={{ filter: "brightness(0.8) contrast(1.05)", transform: "scale(1.5)", transformOrigin: "center center" }} />
               </div>
               <div className="flex flex-col justify-start flex-1">
                 <p className="font-mono text-[5pt] tracking-[0.2em] text-[#a78bfa] uppercase mb-[1.5mm]">Content engine</p>
