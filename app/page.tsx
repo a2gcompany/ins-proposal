@@ -215,7 +215,6 @@ export default function Page() {
             { label: "Numbers", href: "#numbers" },
             { label: "Risks", href: "#risks" },
             { label: "Roadmap", href: "#roadmap" },
-            { label: "About", href: "#about" },
           ].map((l) => (
             <a
               key={l.href}
@@ -905,63 +904,6 @@ export default function Page() {
                 <p className="font-body text-xs text-white/50 leading-relaxed">{opp.desc}</p>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── ABOUT A2G ── */}
-      <section id="about" className="py-32 px-8 md:px-16 lg:px-24">
-        <div className="max-w-7xl mx-auto">
-          <div className="reveal mb-16">
-            <p className="font-mono text-[9px] tracking-[0.45em] text-gold uppercase mb-4 opacity-70">
-              About A2G
-            </p>
-            <h2 className="font-display text-4xl md:text-5xl font-light">The Partner</h2>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            <div className="reveal space-y-10">
-              <p className="font-body text-base text-white/60 leading-relaxed">
-                <EditArea value={proposalData.about.description} path={["about","description"]} onUpdate={updateField} editMode={editMode} />
-              </p>
-              <div className="grid grid-cols-2 gap-px bg-gold/[0.08]">
-                {proposalData.about.stats.map((s, si) => (
-                  <div key={si} className="bg-[#050a10] p-7 hover:bg-[#0a1018] transition-colors">
-                    <p className="font-display text-4xl font-light text-gold mb-2"><EditTxt value={s.n} path={["about","stats",si,"n"]} onUpdate={updateField} editMode={editMode} /></p>
-                    <p className="font-body text-xs text-white/50"><EditTxt value={s.l} path={["about","stats",si,"l"]} onUpdate={updateField} editMode={editMode} /></p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="reveal space-y-8">
-              <div>
-                <p className="font-mono text-[9px] tracking-[0.4em] text-white/35 uppercase mb-6">
-                  Artist Roster
-                </p>
-                <div className="space-y-0">
-                  {proposalData.about.roster.map((r, ri) => (
-                    <div
-                      key={ri}
-                      className="border-b border-white/[0.05] py-5 flex items-start justify-between gap-6 hover:border-gold/15 transition-colors"
-                    >
-                      <p className="font-display text-xl font-light"><EditTxt value={r.artist} path={["about","roster",ri,"artist"]} onUpdate={updateField} editMode={editMode} /></p>
-                      <p className="font-body text-xs text-white/45 text-right leading-relaxed max-w-44">
-                        <EditTxt value={r.note} path={["about","roster",ri,"note"]} onUpdate={updateField} editMode={editMode} />
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="pt-2">
-                <p className="font-mono text-[9px] tracking-[0.4em] text-white/20 uppercase mb-4">
-                  Label Track Record
-                </p>
-                <p className="font-body text-xs text-white/45 leading-relaxed">
-                  <EditArea value={proposalData.about.labelTrackRecord} path={["about","labelTrackRecord"]} onUpdate={updateField} editMode={editMode} />
-                </p>
-              </div>
-            </div>
           </div>
         </div>
       </section>

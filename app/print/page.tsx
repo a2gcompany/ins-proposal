@@ -70,12 +70,14 @@ export default function PrintPage() {
       <style jsx global>{`
         @page { size: 210mm 297mm; margin: 0; }
         @media print {
+          html { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
           body { margin: 0; padding: 0; background: #050a10; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
           .print-container { padding: 0; }
           .page { page-break-after: always; page-break-inside: avoid; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
           .page:last-child { page-break-after: auto; }
           .page * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
           .page p, .page span, .page h1, .page h2 { word-spacing: 0.02em; letter-spacing: 0.01em; }
+          .page img { image-rendering: -webkit-optimize-contrast; image-rendering: high-quality; }
           .no-print { display: none !important; }
           .gold-shimmer { color: #C9A84C !important; background: none !important; -webkit-background-clip: unset !important; -webkit-text-fill-color: #C9A84C !important; background-clip: unset !important; }
         }
@@ -83,6 +85,7 @@ export default function PrintPage() {
           .print-container { display: flex; flex-direction: column; align-items: center; gap: 16px; padding: 16px; background: #1a1a1a; min-height: auto; }
           .page { box-shadow: 0 8px 40px rgba(0,0,0,0.5); }
         }
+        * { text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
         .gold-shimmer { color: #C9A84C; background: none; -webkit-background-clip: unset; -webkit-text-fill-color: #C9A84C; background-clip: unset; animation: none; }
       `}</style>
 
@@ -718,7 +721,7 @@ export default function PrintPage() {
           </div>
           <div className="grid grid-cols-2 gap-[3mm]">
             {[
-              { n: "04", t: "Roger Sanchez", tag: "When timing aligns", d: "A2G manages Roger Sanchez \u2014 Grammy-winning house legend, 25+ years touring. INS gets preferred booking pathway for special events.", c: "#f97316" },
+              { n: "04", t: "360 Artist Incubator", tag: "When timing aligns", d: "Every element in place to build the next local superstars. Same infrastructure, same system, serving every artist after.", c: "#f97316" },
               { n: "05", t: "Southeast Asia Expansion", tag: "Year 2+", d: "As China-launched artists grow, the next step is SEA touring (Singapore, Bangkok, Seoul, Bali). INS co-invests and extends revenue share to broader Asia.", c: "#4ade80" },
             ].map((c) => (
               <div key={c.n} className="border border-white/[0.06] rounded-[2mm] p-[5mm] bg-white/[0.015]">

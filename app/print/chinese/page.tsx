@@ -52,11 +52,14 @@ export default function PrintChinesePage() {
       <style jsx global>{`
         @page { size: 210mm 297mm; margin: 0; }
         @media print {
+          html { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
           body { margin: 0; padding: 0; background: #050a10; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
           .print-container { padding: 0; }
           .page { page-break-after: always; page-break-inside: avoid; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
           .page:last-child { page-break-after: auto; }
           .page * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+          .page p, .page span, .page h1, .page h2 { word-spacing: 0.02em; letter-spacing: 0.01em; }
+          .page img { image-rendering: -webkit-optimize-contrast; image-rendering: high-quality; }
           .no-print { display: none !important; }
           .gold-shimmer { color: #C9A84C !important; background: none !important; -webkit-background-clip: unset !important; -webkit-text-fill-color: #C9A84C !important; background-clip: unset !important; }
         }
@@ -64,6 +67,7 @@ export default function PrintChinesePage() {
           .print-container { display: flex; flex-direction: column; align-items: center; gap: 16px; padding: 16px; background: #1a1a1a; min-height: auto; }
           .page { box-shadow: 0 8px 40px rgba(0,0,0,0.5); }
         }
+        * { text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
         .gold-shimmer { color: #C9A84C; background: none; -webkit-background-clip: unset; -webkit-text-fill-color: #C9A84C; background-clip: unset; animation: none; }
         /* CJK font overrides for Chinese PDF rendering */
         .print-container .page,
@@ -703,7 +707,7 @@ export default function PrintChinesePage() {
           </div>
           <div className="grid grid-cols-2 gap-[3mm]">
             {[
-              { n: "04", t: "Roger Sanchez", tag: "时机成熟时", d: "A2G管理Roger Sanchez——格莱美获奖传奇House音乐人，25年以上巡演经验。INS获得特别活动优先合作通道。", c: "#f97316" },
+              { n: "04", t: "360艺人孵化器", tag: "时机成熟时", d: "所有要素就位，打造更多本地超级明星。同一基础设施、同一体系，服务于每一位后续艺人。", c: "#f97316" },
               { n: "05", t: "东南亚拓展", tag: "第2年+", d: "随着中国市场启动的艺人成长，下一步是东南亚巡演（新加坡、曼谷、首尔、巴厘岛）。INS共同投资并将收入分成扩展至东南亚及更广泛亚洲市场。", c: "#4ade80" },
             ].map((c) => (
               <div key={c.n} className="border border-white/[0.06] rounded-[2mm] p-[5mm] bg-white/[0.015]">
